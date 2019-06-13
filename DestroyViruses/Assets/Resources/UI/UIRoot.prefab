@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 8055660072728453974}
   - component: {fileID: 807792417017415391}
   - component: {fileID: 5786540744964372778}
+  - component: {fileID: 114277743624040308}
   m_Layer: 5
   m_Name: UIRoot
   m_TagString: Untagged
@@ -430,6 +431,19 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114277743624040308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5109543694801700818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948712bd1859f476f95231aa60b42d32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mSubPanelInfos: []
 --- !u!1 &5931368469508816331
 GameObject:
   m_ObjectHideFlags: 0

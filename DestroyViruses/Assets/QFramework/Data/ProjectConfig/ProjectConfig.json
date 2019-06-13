@@ -1,5 +1,5 @@
 {
   "Namespace": "DestroyViruses",
-  "UIScriptDir": "/Scripts/UI",
-  "UIPrefabDir": "/Art/UIPrefab"
+  "UIScriptDir": "/Scripts",
+  "UIPrefabDir": "/Resource/UI"
 }
