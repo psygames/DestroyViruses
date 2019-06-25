@@ -20,7 +20,6 @@ namespace DestroyViruses
 
         public void Init()
         {
-            BulletManager.Instance.Init();
             GameStart();
         }
 
@@ -37,12 +36,11 @@ namespace DestroyViruses
         private void LoadRes()
         {
             // UIRoot
-            ResUtil.LoadSync<GameObject>("Resources/UI/UIRoot");
+            ResUtil.LoadSync<GameObject>("Resources/UI/UIRoot").Instantiate().Name("UIRoot");
             // MainPanel
             UIMgr.OpenPanel<MainPanel>(prefabName: "Resources/UI/MainPanel");
             // MainPlayer
-            ResUtil.LoadSync<GameObject>("Resources/Prefabs/MainPlayer").Instantiate()
-                .transform.SetParent(GameObject.Find("UIRoot/Forward").transform, false);
+            EntityFactory.Instance.CreateMainPlayer();
         }
     }
 }

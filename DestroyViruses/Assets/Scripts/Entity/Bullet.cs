@@ -9,20 +9,32 @@ namespace DestroyViruses
     {
         public void OnRecycled()
         {
-            "回收了".LogInfo();
+            IsRecycled = true;
+            Log.I("回收Bullet：{}", uid);
         }
 
         public bool IsRecycled { get; set; }
 
         public static Bullet Allocate()
         {
-            return SafeObjectPool<Bullet>.Instance.Allocate();
+            var bullet = EntityFactory.Instance.CreateBullet();
+            bullet.IsRecycled = false;
+            return bullet;
         }
 
         public void Recycle2Cache()
         {
-            SafeObjectPool<Bullet>.Instance.Recycle(this);
+            EntityFactory.Instance.RecycleBullet(this);
+        }
+
+        public void Update()
+        {
+            if (IsRecycled)
+                return;
+
+            transform.localPosition += Vector3.up * 10;
+            if (transform.localPosition.y > 1000)
+                Recycle2Cache();
         }
     }
-
 }

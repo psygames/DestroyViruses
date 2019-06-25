@@ -5,7 +5,7 @@ using QFramework;
 
 namespace DestroyViruses
 {
-    public class EntityBase : MonoBehaviour
+    public class EntityBase : MonoBehaviour, IPoolable, IPoolType
     {
         public virtual long uid { get; protected set; }
         public virtual float hp { get; protected set; }
@@ -21,7 +21,7 @@ namespace DestroyViruses
             }
         }
 
-        protected virtual void Awake()
+        public void AllocateUID()
         {
             uid = GenUID();
         }
@@ -37,11 +37,23 @@ namespace DestroyViruses
             }
         }
 
+
         protected virtual void OnDestroy()
         {
             if (m_loader != null)
                 m_loader.Recycle2Cache();
             m_loader = null;
+        }
+
+        public bool IsRecycled { get; set; }
+
+        public void OnRecycled()
+        {
+            IsRecycled = true;
+        }
+
+        public void Recycle2Cache()
+        {
         }
     }
 }

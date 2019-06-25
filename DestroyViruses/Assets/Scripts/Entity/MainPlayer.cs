@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using QFramework;
+using UniRx;
 
 namespace DestroyViruses
 {
@@ -17,6 +18,11 @@ namespace DestroyViruses
         {
             UseBody(1);
             UseFire(1);
+
+            Observable.Interval(new System.TimeSpan(10000000)).Subscribe((interval) =>
+            {
+                EntityFactory.Instance.CreateBullet();
+            });
         }
 
         public void UseBody(int level)
