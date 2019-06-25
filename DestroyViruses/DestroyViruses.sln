@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio for Mac
+# Visual Studio 16
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QFramework.Core.Runtime", "QFramework.Core.Runtime.csproj", "{0DAD7380-39C4-6418-62C2-C475F6F8A79A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject", "Zenject.csproj", "{49A8A766-1B22-6CF9-6AE3-DD44D0860E25}"
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{9AE015F7-1275-1165-013A-A2796D5FE7DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTP", "HTTP.csproj", "{DBB26AC5-BDB8-D4A4-3B29-5BBC2F1C9CB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniRx.Examples", "UniRx.Examples.csproj", "{C8AE29E6-63D6-F6E9-E30A-740C37F721C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QFramework.Core.Editor", "QFramework.Core.Editor.csproj", "{B0C6C8D4-C70C-28F6-B8D9-050ACAECDD75}"
 EndProject
@@ -57,6 +59,10 @@ Global
 		{DBB26AC5-BDB8-D4A4-3B29-5BBC2F1C9CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBB26AC5-BDB8-D4A4-3B29-5BBC2F1C9CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBB26AC5-BDB8-D4A4-3B29-5BBC2F1C9CB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8AE29E6-63D6-F6E9-E30A-740C37F721C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8AE29E6-63D6-F6E9-E30A-740C37F721C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8AE29E6-63D6-F6E9-E30A-740C37F721C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8AE29E6-63D6-F6E9-E30A-740C37F721C9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B0C6C8D4-C70C-28F6-B8D9-050ACAECDD75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B0C6C8D4-C70C-28F6-B8D9-050ACAECDD75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0C6C8D4-C70C-28F6-B8D9-050ACAECDD75}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -88,8 +94,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

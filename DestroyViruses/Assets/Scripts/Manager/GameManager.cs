@@ -8,7 +8,7 @@ namespace DestroyViruses
 {
     public class GameManager : MonoSingleton<GameManager>, IManager
     {
-        private void Start()
+        private void Awake()
         {
             Init();
         }
@@ -37,6 +37,11 @@ namespace DestroyViruses
         private void GameStart()
         {
             UIMgr.OpenPanel<MainPanel>(prefabName: "Resources/UI/MainPanel");
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
         }
     }
 }
