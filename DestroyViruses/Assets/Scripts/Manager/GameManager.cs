@@ -6,42 +6,43 @@ using UnityEngine;
 
 namespace DestroyViruses
 {
-    public class GameManager : MonoSingleton<GameManager>, IManager
+    public class GameManager : MonoSingleton<GameManager>
     {
         private void Awake()
         {
+            DontDestroyOnLoad(this);
+        }
+
+        private void Start()
+        {
             Init();
         }
-        
+
         public void Init()
         {
+            BulletManager.Instance.Init();
             GameStart();
-        }
-
-        public void RegisterEvent<T>(T msgId, OnEvent process) where T : IConvertible
-        {
-        }
-
-        public void SendEvent<T>(T eventId) where T : IConvertible
-        {
-        }
-
-        public void SendMsg(QMsg msg)
-        {
-        }
-
-        public void UnRegistEvent<T>(T msgEvent, OnEvent process) where T : IConvertible
-        {
         }
 
         private void GameStart()
         {
-            UIMgr.OpenPanel<MainPanel>(prefabName: "Resources/UI/MainPanel");
+            LoadRes();
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
+        }
+
+        private void LoadRes()
+        {
+            // UIRoot
+            ResUtil.LoadSync<GameObject>("Resources/UI/UIRoot");
+            // MainPanel
+            UIMgr.OpenPanel<MainPanel>(prefabName: "Resources/UI/MainPanel");
+            // MainPlayer
+            ResUtil.LoadSync<GameObject>("Resources/Prefabs/MainPlayer").Instantiate()
+                .transform.SetParent(GameObject.Find("UIRoot/Forward").transform, false);
         }
     }
 }

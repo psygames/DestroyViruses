@@ -562,11 +562,23 @@
     <Reference Include="QFramework.Log">
       <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/QFramework/Framework/0.Core/Plugins/QFramework.Log.dll</HintPath>
     </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/QFramework/Framework/0.Core/Plugins/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiEditor">
+      <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/QFramework/Framework/0.Core/Plugins/Demigiant/DemiLib/Core/Editor/DemiEditor.dll</HintPath>
+    </Reference>
     <Reference Include="DOTween">
       <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/QFramework/Framework/0.Core/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="DOTweenEditor">
       <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/QFramework/Framework/0.Core/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/QFramework/Framework/0.Core/Plugins/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenProEditor">
+      <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/QFramework/Framework/0.Core/Plugins/Demigiant/DOTweenPro/Editor/DOTweenProEditor.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/QFramework/Framework/0.Core/Plugins/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
@@ -600,18 +612,6 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTweenProEditor">
-      <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/QFramework/Framework/0.Core/Plugins/Demigiant/DOTweenPro/Editor/DOTweenProEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="DemiLib">
-      <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/QFramework/Framework/0.Core/Plugins/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
-    </Reference>
-    <Reference Include="DemiEditor">
-      <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/QFramework/Framework/0.Core/Plugins/Demigiant/DemiLib/Core/Editor/DemiEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTweenPro">
-      <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/QFramework/Framework/0.Core/Plugins/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>G:/software/2018.4.0f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

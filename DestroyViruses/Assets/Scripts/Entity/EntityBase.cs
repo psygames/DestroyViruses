@@ -7,14 +7,41 @@ namespace DestroyViruses
 {
     public class EntityBase : MonoBehaviour
     {
+        public virtual long uid { get; protected set; }
         public virtual float hp { get; protected set; }
         public virtual bool isAlive { get { return hp > 0; } }
 
-        protected ResLoader loader = ResLoader.Allocate();
+        static object s_lockUIDTag = new object();
+        static int s_uid = 0;
+        static long GenUID()
+        {
+            lock (s_lockUIDTag)
+            {
+                return s_uid++;
+            }
+        }
+
+        protected virtual void Awake()
+        {
+            uid = GenUID();
+        }
+
+        private ResLoader m_loader = null;
+        protected virtual ResLoader loader
+        {
+            get
+            {
+                if (m_loader == null)
+                    m_loader = ResLoader.Allocate();
+                return m_loader;
+            }
+        }
 
         protected virtual void OnDestroy()
         {
-            loader.Recycle2Cache();
+            if (m_loader != null)
+                m_loader.Recycle2Cache();
+            m_loader = null;
         }
     }
 }
