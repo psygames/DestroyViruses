@@ -5,14 +5,14 @@ using QFramework;
 
 namespace DestroyViruses
 {
-    public class EntityBase : MonoBehaviour, IPoolable, IPoolType
+    public class EntityBase : MonoBehaviour
     {
         public virtual long uid { get; protected set; }
         public virtual float hp { get; protected set; }
         public virtual bool isAlive { get { return hp > 0; } }
 
         static object s_lockUIDTag = new object();
-        static int s_uid = 0;
+        static int s_uid = 1;
         static long GenUID()
         {
             lock (s_lockUIDTag)
@@ -43,17 +43,6 @@ namespace DestroyViruses
             if (m_loader != null)
                 m_loader.Recycle2Cache();
             m_loader = null;
-        }
-
-        public bool IsRecycled { get; set; }
-
-        public void OnRecycled()
-        {
-            IsRecycled = true;
-        }
-
-        public void Recycle2Cache()
-        {
         }
     }
 }

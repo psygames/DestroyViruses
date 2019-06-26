@@ -40,7 +40,7 @@ namespace DestroyViruses
             // MainPanel
             UIMgr.OpenPanel<MainPanel>(prefabName: "Resources/UI/MainPanel");
             // MainPlayer
-            EntityFactory.Instance.CreateMainPlayer();
+            MainPlayer.Allocate();
         }
     }
 }

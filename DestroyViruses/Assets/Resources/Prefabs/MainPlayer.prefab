@@ -439,6 +439,7 @@ MonoBehaviour:
   fireResPrefix: Resources/Prefabs/Items/fire_
   planeRoot: {fileID: 396537100}
   fireRoot: {fileID: 316074357}
+  headTrans: {fileID: 9192431740312782476}
 --- !u!1 &2583381705806169625
 GameObject:
   m_ObjectHideFlags: 0
