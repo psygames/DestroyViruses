@@ -15,16 +15,6 @@ namespace DestroyViruses
         public Transform fireRoot;
         public Transform headTrans;
 
-        private static EntityPool<MainPlayer> s_pool = null;
-
-        public bool IsRecycled { get; set; }
-
-        public static MainPlayer Allocate()
-        {
-            if (s_pool == null)
-                s_pool = new EntityPool<MainPlayer>("Resources/Prefabs/MainPlayer", "UIRoot/Entity");
-            return s_pool.Create();
-        }
 
         private void Start()
         {
@@ -33,11 +23,12 @@ namespace DestroyViruses
             UseBody(1);
             UseFire(1);
 
-            Observable.Interval(new System.TimeSpan(1000000)).Subscribe((interval) =>
-            {
-                var b = Bullet.Allocate();
-                b.transform.localPosition = UIUtil.GetUIPos(headTrans);
-            });
+            QEventSystem.RegisterEvent(Event.Input.KEY, OnEventInput);
+        }
+
+        private void OnEventInput()
+        {
+
         }
 
         public void UseBody(int level)
@@ -52,8 +43,39 @@ namespace DestroyViruses
             obj.transform.SetParent(fireRoot, false);
         }
 
+        System.IDisposable fireLoop = null;
+        private void Fire()
+        {
+            fireLoop = Observable.Interval(new System.TimeSpan(1000000)).Subscribe((interval) =>
+            {
+                var b = Bullet.Allocate();
+                b.transform.localPosition = UIUtil.GetUIPos(headTrans);
+            });
+        }
+
+        private void HoldFire()
+        {
+            if (fireLoop != null)
+                fireLoop.Dispose();
+            fireLoop = null;
+        }
+
+
+        #region POOL
+        private static EntityPool<MainPlayer> s_pool = null;
+
+        public bool IsRecycled { get; set; }
+
+        public static MainPlayer Allocate()
+        {
+            if (s_pool == null)
+                s_pool = new EntityPool<MainPlayer>("Resources/Prefabs/MainPlayer", "UIRoot/Entity");
+            return s_pool.Create();
+        }
+
         public void OnRecycled()
         {
         }
+        #endregion
     }
 }

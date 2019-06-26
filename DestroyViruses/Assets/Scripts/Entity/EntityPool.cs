@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using QFramework;
+using GameFramework.ObjectPool;
 
 namespace DestroyViruses
 {
-    public class EntityPool<T> where T : EntityBase, IPoolable
-    {
-        private SimpleObjectPool<T> m_pool = null;
+    public class EntityPool<T> where T : EntityBase
+    { 
+        private IObjectPool<T> m_pool = null;
 
         private ResLoader loader = ResLoader.Allocate();
 
@@ -17,7 +17,8 @@ namespace DestroyViruses
         {
             m_template = loader.LoadSync<GameObject>(prefabPath);
             m_root = GameObject.Find(rootPath).transform;
-            m_pool = new SimpleObjectPool<T>(CreateInstance, OnReset, initCount);
+            m_pool = GameFramework.GameFrameworkEntry.GetModule<ObjectPoolManager>().CreateMultiSpawnObjectPool
+                new SimpleObjectPool<T>(CreateInstance, OnReset, initCount);
         }
 
         public void Dispose()

@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using QFramework;
+using GameFramework;
 
 namespace DestroyViruses
 {
-    public class Bullet : EntityBase, IPoolable, IPoolType
+    public class Bullet : EntityBase
     {
         private static EntityPool<Bullet> s_pool = null;
 
