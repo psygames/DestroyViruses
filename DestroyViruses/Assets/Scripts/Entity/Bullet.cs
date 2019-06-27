@@ -24,7 +24,6 @@ namespace DestroyViruses
 
         public void OnRecycled()
         {
-            Log.I("回收Bullet：{0}", uid);
         }
 
 

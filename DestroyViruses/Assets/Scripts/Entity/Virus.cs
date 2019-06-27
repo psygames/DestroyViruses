@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using QFramework;
 
 namespace DestroyViruses
 {
-    public class Virus : EntityBase, IPoolable, IPoolType
+    public class Virus : EntityBase
     {
         private static EntityPool<Virus> s_pool = null;
 
@@ -24,7 +23,6 @@ namespace DestroyViruses
 
         public void OnRecycled()
         {
-            Log.I("回收Bullet：{0}", uid);
         }
 
 

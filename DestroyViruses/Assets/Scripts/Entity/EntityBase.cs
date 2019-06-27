@@ -1,48 +1,57 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using QFramework;
+using GameFramework.Entity;
 
 namespace DestroyViruses
 {
-    public class EntityBase : MonoBehaviour
+    public class EntityBase : MonoBehaviour, IEntity
     {
-        public virtual long uid { get; protected set; }
         public virtual float hp { get; protected set; }
         public virtual bool isAlive { get { return hp > 0; } }
 
-        static object s_lockUIDTag = new object();
-        static int s_uid = 1;
-        static long GenUID()
+        public int Id { get; }
+
+        public string EntityAssetName { get; }
+
+        public object Handle { get; }
+
+        public IEntityGroup EntityGroup { get; }
+
+        public void OnInit(int entityId, string entityAssetName, IEntityGroup entityGroup, bool isNewInstance, object userData)
         {
-            lock (s_lockUIDTag)
-            {
-                return s_uid++;
-            }
         }
 
-        public void AllocateUID()
+        public void OnRecycle()
         {
-            uid = GenUID();
         }
 
-        private ResLoader m_loader = null;
-        protected virtual ResLoader loader
+        public void OnShow(object userData)
         {
-            get
-            {
-                if (m_loader == null)
-                    m_loader = ResLoader.Allocate();
-                return m_loader;
-            }
         }
 
-
-        protected virtual void OnDestroy()
+        public void OnHide(object userData)
         {
-            if (m_loader != null)
-                m_loader.Recycle2Cache();
-            m_loader = null;
+        }
+
+        public void OnAttached(IEntity childEntity, object userData)
+        {
+        }
+
+        public void OnDetached(IEntity childEntity, object userData)
+        {
+        }
+
+        public void OnAttachTo(IEntity parentEntity, object userData)
+        {
+        }
+
+        public void OnDetachFrom(IEntity parentEntity, object userData)
+        {
+        }
+
+        public void OnUpdate(float elapseSeconds, float realElapseSeconds)
+        {
         }
     }
 }

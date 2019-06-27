@@ -1,8 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using UnityEngine.UI;
 
-namespace QFramework
+namespace DestroyViruses
 {
     public static class UIUtil
     {
