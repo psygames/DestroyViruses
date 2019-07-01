@@ -63,20 +63,20 @@
     <Compile Include="Assets\GameMain\Scripts\Editor\ConfigGeneratorMenu.cs" />
     <Compile Include="Assets\GameMain\Scripts\Editor\DataTableGenerator.cs" />
     <Compile Include="Assets\GameMain\Scripts\Editor\DataTableGeneratorMenu.cs" />
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>G:/software/2018.4.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
