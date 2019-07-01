@@ -16,7 +16,7 @@ namespace DestroyViruses
 
         public void UseBody(int level)
         {
-             //var obj = loader.LoadSync<GameObject>(planeResPrefix + level).Instantiate();
+             // var obj = loader.LoadSync<GameObject>(planeResPrefix + level).Instantiate();
             // obj.transform.SetParent(planeRoot, false);
         }
 

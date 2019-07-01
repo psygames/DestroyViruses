@@ -13,16 +13,16 @@ namespace DestroyViruses
         public static readonly string[] DataTableNames = new string[]
         {
             "Aircraft",
-            "Armor",
-            "Asteroid",
-            "Entity",
+            //"Armor",
+            //"Asteroid",
+            //"Entity",
             "Music",
             "Scene",
             "Sound",
-            "Thruster",
+            //"Thruster",
             "UIForm",
             "UISound",
-            "Weapon",
+            //"Weapon",
         };
 
         private Dictionary<string, bool> m_LoadedFlag = new Dictionary<string, bool>();
@@ -77,7 +77,7 @@ namespace DestroyViruses
             }
 
             procedureOwner.SetData<VarInt>(Constant.ProcedureData.NextSceneId, GameEntry.Config.GetInt("Scene.Menu"));
-            ChangeState<ProcedureMain>(procedureOwner);
+            ChangeState<ProcedureChangeScene>(procedureOwner);
         }
 
         private void PreloadResources()
@@ -92,7 +92,7 @@ namespace DestroyViruses
             }
 
             // Preload dictionaries
-            LoadDictionary("Default");
+            // LoadDictionary("Default");
 
             // Preload fonts
             LoadFont("MainFont");
@@ -101,7 +101,7 @@ namespace DestroyViruses
         private void LoadConfig(string configName)
         {
             m_LoadedFlag.Add(Utility.Text.Format("Config.{0}", configName), false);
-            GameEntry.Config.LoadConfig(configName, LoadType.Bytes, this);
+            GameEntry.Config.LoadConfig(configName, LoadType.Text, this);
         }
 
         private void LoadDataTable(string dataTableName)

@@ -7,7 +7,7 @@ namespace DestroyViruses
     public class ProcedureMenu : ProcedureBase
     {
         private bool m_StartGame = false;
-        // private MenuForm m_MenuForm = null;
+        private MenuForm m_MenuForm = null;
 
         public override bool UseNativeDialog
         {
@@ -29,7 +29,7 @@ namespace DestroyViruses
             GameEntry.Event.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
 
             m_StartGame = false;
-            // GameEntry.UI.OpenUIForm(UIFormId.MenuForm, this);
+            GameEntry.UI.OpenUIForm(UIFormId.MenuForm, this);
         }
 
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
@@ -38,11 +38,11 @@ namespace DestroyViruses
 
             GameEntry.Event.Unsubscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
 
-            //if (m_MenuForm != null)
-            //{
-            //    m_MenuForm.Close(isShutdown);
-            //    m_MenuForm = null;
-            //}
+            if (m_MenuForm != null)
+            {
+                m_MenuForm.Close(isShutdown);
+                m_MenuForm = null;
+            }
         }
 
         protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
@@ -51,9 +51,9 @@ namespace DestroyViruses
 
             if (m_StartGame)
             {
-                //procedureOwner.SetData<VarInt>(Constant.ProcedureData.NextSceneId, GameEntry.Config.GetInt("Scene.Main"));
-                //procedureOwner.SetData<VarInt>(Constant.ProcedureData.GameMode, (int)GameMode.Survival);
-                //ChangeState<ProcedureChangeScene>(procedureOwner);
+                procedureOwner.SetData<VarInt>(Constant.ProcedureData.NextSceneId, GameEntry.Config.GetInt("Scene.Main"));
+                procedureOwner.SetData<VarInt>(Constant.ProcedureData.GameMode, (int)GameMode.Survival);
+                ChangeState<ProcedureChangeScene>(procedureOwner);
             }
         }
 

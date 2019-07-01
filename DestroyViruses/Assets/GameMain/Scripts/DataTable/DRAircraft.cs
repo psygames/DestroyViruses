@@ -1,4 +1,14 @@
-﻿using GameFramework;
+﻿//------------------------------------------------------------
+// Game Framework
+// Copyright © 2013-2019 Jiang Yin. All rights reserved.
+// Homepage: http://gameframework.cn/
+// Feedback: mailto:jiangyin@gameframework.cn
+//------------------------------------------------------------
+// 此文件由工具自动生成，请勿直接修改。
+// 生成时间：2019-07-01 17:47:51.898
+//------------------------------------------------------------
+
+using GameFramework;
 using System;
 using System.Collections.Generic;
 using System.IO;

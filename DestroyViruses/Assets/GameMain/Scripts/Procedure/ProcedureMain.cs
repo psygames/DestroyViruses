@@ -81,7 +81,7 @@ namespace DestroyViruses
             if (m_GotoMenuDelaySeconds >= GameOverDelayedSeconds)
             {
                 procedureOwner.SetData<VarInt>(Constant.ProcedureData.NextSceneId, GameEntry.Config.GetInt("Scene.Menu"));
-                // ChangeState<ProcedureChangeScene>(procedureOwner);
+                ChangeState<ProcedureChangeScene>(procedureOwner);
             }
         }
     }

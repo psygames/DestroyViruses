@@ -36,7 +36,7 @@ namespace DestroyViruses
             }
 
             string dataTableNameInType = splitNames.Length > 1 ? splitNames[1] : null;
-            // dataTableComponent.LoadDataTable(dataRowType, dataTableName, dataTableNameInType, AssetUtility.GetDataTableAsset(dataTableName, loadType), loadType, Constant.AssetPriority.DataTableAsset, userData);
+            dataTableComponent.LoadDataTable(dataRowType, dataTableName, dataTableNameInType, AssetUtility.GetDataTableAsset(dataTableName, loadType), loadType, Constant.AssetPriority.DataTableAsset, userData);
         }
 
         public static Color32 ParseColor32(string value)
