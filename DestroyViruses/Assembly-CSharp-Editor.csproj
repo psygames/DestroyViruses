@@ -63,20 +63,20 @@
     <Compile Include="Assets\GameMain\Scripts\Editor\ConfigGeneratorMenu.cs" />
     <Compile Include="Assets\GameMain\Scripts\Editor\DataTableGenerator.cs" />
     <Compile Include="Assets\GameMain\Scripts\Editor\DataTableGeneratorMenu.cs" />
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>G:/software/2018.4.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -314,9 +314,6 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>G:/git/DestroyViruses/DestroyViruses/Assets/GameFramework/Libraries/ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>G:/git/DestroyViruses/DestroyViruses/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -692,18 +689,6 @@
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{9AE015F7-1275-1165-013A-A2796D5FE7DC}</Project>
       <Name>Assembly-CSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityGameFramework.Runtime.csproj">
-      <Project>{C3F86ABB-0993-4066-FE9F-3E68F550EAB1}</Project>
-      <Name>UnityGameFramework.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityGameFramework.Editor.csproj">
-      <Project>{1817DA8E-3FBA-6D85-8DC0-A9846D8232B0}</Project>
-      <Name>UnityGameFramework.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="GameFramework.csproj">
-      <Project>{0705289F-2A03-0E1A-1DE8-61F23910F69C}</Project>
-      <Name>GameFramework</Name>
     </ProjectReference>
     <ProjectReference Include="UniRx.csproj">
       <Project>{E2059683-E811-34EF-2659-9B3572199CF2}</Project>
