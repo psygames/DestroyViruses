@@ -1,5 +1,5 @@
 ﻿
-namespace MonsterLove.Collections
+namespace Pool
 {
 	public class ObjectPoolContainer<T>
 	{

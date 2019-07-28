@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using Pool;
 public class Gun : MonoBehaviour
 {
 	public GameObject bulletPrefab;
