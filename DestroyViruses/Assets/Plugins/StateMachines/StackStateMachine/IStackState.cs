@@ -31,6 +31,6 @@ namespace StateMachine
         /// </summary>
         void OnUpdate(float deltaTime);
 
-    } // interface IStackState
+    } 
 
-} // namespace UnityExtensions
+}

@@ -85,6 +85,6 @@ namespace StateMachine
             onUpdate?.Invoke(deltaTime);
         }
 
-    } // class StackState
+    }
 
-} // namespace UnityExtensions
+}

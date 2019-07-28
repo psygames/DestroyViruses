@@ -60,14 +60,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\GameLogic\Entities\Aircraft.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Entities\Base\EntityBase.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Entities\Base\EntityManager.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Entities\Bullet.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameState\BattleState.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameState\LoadingState.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameState\MainState.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\GameState\StateBase.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Base\UIManager.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Base\UIPanel.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\MainPanel.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Utility\UIUtility.cs" />
+    <Compile Include="Assets\Scripts\Tools\Extensions\EntityExtension.cs" />
+    <Compile Include="Assets\Scripts\Tools\UI\UIEventListener.cs" />
+    <Compile Include="Assets\Scripts\Utils\PathUtil.cs" />
+    <Compile Include="Assets\Scripts\Utils\ResourceUtil.cs" />
+    <Compile Include="Assets\Scripts\Utils\UIUtil.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -284,6 +293,9 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>D:/software/develop/Unity/2018.4.4f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/DOTween/DOTween.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
@@ -292,9 +304,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/software/develop/Unity/2018.4.4f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Pool
-{
+namespace UniPool
+{ 
 	public class ObjectPool<T>
 	{
 		private List<ObjectPoolContainer<T>> list;

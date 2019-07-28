@@ -97,6 +97,6 @@ namespace StateMachine
             _currentState?.OnUpdate(deltaTime);
         }
 
-    } // class StateMachine<T>
+    } 
 
-} // namespace UnityExtensions
+} 

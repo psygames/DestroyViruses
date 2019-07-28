@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Pool
+namespace UniPool
 {
     public class PoolManager : Singleton<PoolManager>
     {
@@ -29,7 +29,7 @@ namespace Pool
             }
         }
 
-        public void warmPool(GameObject prefab, int size)
+        private void warmPool(GameObject prefab, int size)
         {
             if (prefabLookup.ContainsKey(prefab))
             {
@@ -41,12 +41,7 @@ namespace Pool
             dirty = true;
         }
 
-        public GameObject spawnObject(GameObject prefab)
-        {
-            return spawnObject(prefab, Vector3.zero, Quaternion.identity);
-        }
-
-        public GameObject spawnObject(GameObject prefab, Vector3 position, Quaternion rotation)
+        private GameObject spawnObject(GameObject prefab)
         {
             if (!prefabLookup.ContainsKey(prefab))
             {
@@ -56,8 +51,6 @@ namespace Pool
             var pool = prefabLookup[prefab];
 
             var clone = pool.GetItem();
-            clone.transform.position = position;
-            clone.transform.rotation = rotation;
             clone.SetActive(true);
 
             instanceLookup.Add(clone, pool);
@@ -65,7 +58,7 @@ namespace Pool
             return clone;
         }
 
-        public void releaseObject(GameObject clone)
+        private void releaseObject(GameObject clone)
         {
             clone.SetActive(false);
 
@@ -89,7 +82,7 @@ namespace Pool
             return go;
         }
 
-        public void PrintStatus()
+        private void PrintStatus()
         {
             foreach (KeyValuePair<GameObject, ObjectPool<GameObject>> keyVal in prefabLookup)
             {
@@ -107,11 +100,6 @@ namespace Pool
         public static GameObject SpawnObject(GameObject prefab)
         {
             return Instance.spawnObject(prefab);
-        }
-
-        public static GameObject SpawnObject(GameObject prefab, Vector3 position, Quaternion rotation)
-        {
-            return Instance.spawnObject(prefab, position, rotation);
         }
 
         public static void ReleaseObject(GameObject clone)

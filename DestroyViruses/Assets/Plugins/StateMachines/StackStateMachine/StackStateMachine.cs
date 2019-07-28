@@ -187,6 +187,6 @@ namespace StateMachine
             if (stateCount > 0) currentState?.OnUpdate(deltaTime);
         }
 
-    } // class StackStateMachine
+    }
 
-} // namespace UnityExtensions
+}

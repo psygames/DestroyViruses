@@ -65,14 +65,12 @@ namespace StateMachine
         public override void OnEnter()
         {
             _onEnter?.Invoke();
-            Debug.Log($"state {GetType()} enter");
         }
 
 
         public override void OnExit()
         {
             _onExit?.Invoke();
-            Debug.Log($"state {GetType()} exit");
         }
 
 
@@ -80,7 +78,6 @@ namespace StateMachine
         {
             onUpdate?.Invoke(deltaTime);
         }
+    }
 
-    } // class State
-
-} // namespace UnityExtensions
+}

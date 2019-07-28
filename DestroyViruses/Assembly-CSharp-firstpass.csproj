@@ -74,9 +74,13 @@
     <Compile Include="Assets\Plugins\StateMachines\StateMachine\IState.cs" />
     <Compile Include="Assets\Plugins\StateMachines\StateMachine\State.cs" />
     <Compile Include="Assets\Plugins\StateMachines\StateMachine\StateMachine.cs" />
-    <Compile Include="Assets\Plugins\UniPool\Examples\PoolingCSharpObjects\EventBus.cs" />
-    <Compile Include="Assets\Plugins\UniPool\Examples\PoolingGameObjects\Bullet.cs" />
-    <Compile Include="Assets\Plugins\UniPool\Examples\PoolingGameObjects\Gun.cs" />
+    <Compile Include="Assets\Plugins\Unibus\Scripts\MonoBehaviourExtension.cs" />
+    <Compile Include="Assets\Plugins\Unibus\Scripts\SingletonMonoBehaviour.cs" />
+    <Compile Include="Assets\Plugins\Unibus\Scripts\Unibus.cs" />
+    <Compile Include="Assets\Plugins\Unibus\Scripts\UnibusDestroySubscriber.cs" />
+    <Compile Include="Assets\Plugins\Unibus\Scripts\UnibusDisableSubscriber.cs" />
+    <Compile Include="Assets\Plugins\Unibus\Scripts\UnibusObject.cs" />
+    <Compile Include="Assets\Plugins\Unibus\Scripts\UnibusSubscriberBase.cs" />
     <Compile Include="Assets\Plugins\UniPool\Scripts\ObjectPool.cs" />
     <Compile Include="Assets\Plugins\UniPool\Scripts\ObjectPoolContainer.cs" />
     <Compile Include="Assets\Plugins\UniPool\Scripts\PoolManager.cs" />
@@ -297,6 +301,9 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>D:/software/develop/Unity/2018.4.4f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/DOTween/DOTween.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
@@ -305,9 +312,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/software/develop/Unity/2018.4.4f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

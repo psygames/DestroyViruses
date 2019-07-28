@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using StateMachine;
 
 namespace DestroyViruses
 {
-    public class LoadingState : State
+    public class LoadingState : StateBase
     {
         float m_waitSeconds = 0;
         public override void OnEnter()
@@ -19,7 +18,7 @@ namespace DestroyViruses
             base.OnUpdate(deltaTime);
             m_waitSeconds -= deltaTime;
             if (m_waitSeconds <= 0)
-                GameManager.Instance.stateMachine.currentState = new MainState();
+                Change<MainState>();
         }
     }
 }

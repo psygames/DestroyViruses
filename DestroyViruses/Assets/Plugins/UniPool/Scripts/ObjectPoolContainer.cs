@@ -1,5 +1,5 @@
 ﻿
-namespace Pool
+namespace UniPool
 {
 	public class ObjectPoolContainer<T>
 	{

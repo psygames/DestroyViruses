@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using StateMachine;
 
 namespace DestroyViruses
 {
-    public class MainState : State
+    public class MainState : StateBase
     {
-        
+        public override void OnUpdate(float deltaTime)
+        {
+            base.OnUpdate(deltaTime);
+            Change<BattleState>();
+        }
     }
 }
