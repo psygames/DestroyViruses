@@ -40,9 +40,20 @@ namespace DestroyViruses
         public static float defaultAspect { get { return defaultWidth / defaultHeight; } }
         public static float width { get { return aspect > defaultAspect ? defaultWidth * aspect / defaultAspect : defaultWidth; } }
         public static float height { get { return 1 / aspect * width; } }
-        public static float aspect { get { return (float)Screen.width / (float)Screen.height; } }
+        public static float aspect { get { return (float)Screen.width / Screen.height; } }
         public static Vector2 center { get { return size * 0.5f; } }
         public static Vector2 size { get { return new Vector2(width, height); } }
+        private static float sRealToVirtualRate { get { return width / Screen.width; } }
+
+        public static float FormatToVirtual(float value)
+        {
+            return sRealToVirtualRate * value;
+        }
+
+        public static Vector2 FormatToVirtual(Vector2 value)
+        {
+            return sRealToVirtualRate * value;
+        }
 
         public static Vector2 UIWorldToUIPos(Vector3 worldPos)
         {

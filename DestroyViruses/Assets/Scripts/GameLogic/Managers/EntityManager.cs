@@ -32,6 +32,7 @@ namespace DestroyViruses
 
             var entity = PoolManager.SpawnObject(_gameObject).GetComponent<T>();
             entity.transform.localScale = Vector3.one;
+            entity.transform.localPosition = Vector3.zero;
             entity.transform.localRotation = Quaternion.identity;
             return entity;
         }

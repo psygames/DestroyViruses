@@ -12,7 +12,7 @@ namespace DestroyViruses
 
         public override void OnInit()
         {
-            inputListenser.onDrag.AddListener(OnDragInput);
+            InputListenerInit();
         }
 
         public override void OnOpen()
@@ -27,9 +27,20 @@ namespace DestroyViruses
         {
         }
 
-        private void OnDragInput(Vector2 delta)
+        private void InputListenerInit()
         {
-            Debug.Log(delta);
+            inputListenser.onDown.AddListener((data)=>
+            {
+                InputManager.Instance.Push(new InputData(InputType.Down, UIUtil.FormatToVirtual(data)));
+            });
+            inputListenser.onUp.AddListener((data) =>
+            {
+                InputManager.Instance.Push(new InputData(InputType.Up, UIUtil.FormatToVirtual(data)));
+            });
+            inputListenser.onDrag.AddListener((data) =>
+            {
+                InputManager.Instance.Push(new InputData(InputType.Drag, UIUtil.FormatToVirtual(data)));
+            });
         }
     }
 }
