@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace DestroyViruses
 {
-    public partial class Aircraft : EntityBase
+    public class Aircraft : EntityBase
     {
-        private RectTransform mRectTransform = null;
-        private AircraftInputHandle mInputHandle = null;
-        private AircraftMovement mMovement = null;
-        private AircraftFire mFire = null;
+        private RectTransform mRectTransform;
+        private AircraftInputHandle mInputHandle;
+        private AircraftMovement mMovement;
+        private AircraftFire mFire;
 
         private void Awake()
         {

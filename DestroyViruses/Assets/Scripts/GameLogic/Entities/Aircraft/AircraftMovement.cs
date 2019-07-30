@@ -3,9 +3,9 @@ using System.Collections;
 
 namespace DestroyViruses
 {
-    public partial class AircraftMovement : MonoBehaviour
+    public class AircraftMovement : MonoBehaviour
     {
-        private RectTransform mRectTransform = null;
+        private RectTransform mRectTransform;
         public float moveSpeed = 10000;
         private Vector2 mTargetDelta = Vector2.zero;
 

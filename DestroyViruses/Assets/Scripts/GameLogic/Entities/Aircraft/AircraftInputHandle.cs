@@ -4,22 +4,17 @@ using System;
 
 namespace DestroyViruses
 {
-    public partial class AircraftInputHandle : MonoBehaviour
+    public class AircraftInputHandle : MonoBehaviour
     {
-        private Aircraft mAircraft = null;
-        private bool mHasFireAction = false;
-        private bool mFireActionValue = false;
-        private bool mHasMoveAction = false;
+        private bool mHasFireAction;
+        private bool mFireActionValue;
+        private bool mHasMoveAction;
         private Vector2 moveActionValue = Vector2.zero;
 
-        public Action<Vector2> onMove = null;
-        public Action onFire = null;
-        public Action onHoldFire = null;
+        public Action<Vector2> onMove;
+        public Action onFire;
+        public Action onHoldFire;
 
-        private void Awake()
-        {
-            mAircraft = GetComponent<Aircraft>();
-        }
 
         private void Update()
         {
@@ -58,7 +53,7 @@ namespace DestroyViruses
             }
             if (mHasMoveAction)
             {
-                onMove?.Invoke(data.value);
+                onMove?.Invoke(moveActionValue);
             }
         }
     }

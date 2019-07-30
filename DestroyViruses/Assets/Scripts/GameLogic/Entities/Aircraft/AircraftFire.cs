@@ -3,16 +3,15 @@ using System.Collections;
 
 namespace DestroyViruses
 {
-    public partial class AircraftFire : MonoBehaviour
+    public class AircraftFire : MonoBehaviour
     {
-        public float fireOnceCD = 0.5f;
-        public int fireOnceBullets = 5;
+        public float fireSpeed = 20; // bullets/sec
         public float bulletHSpace = 5;
-        public float bulletVSpace = 5;
+        public float bulletVSpace = 50;
 
-        public bool isFiring { get; private set; }
+        public bool IsFiring { get; private set; }
 
-        private float mFireOnceCD = 0;
+        private float mFireOnceCD;
 
         private void Awake()
         {
@@ -30,18 +29,18 @@ namespace DestroyViruses
 
         public void Fire()
         {
-            isFiring = true;
+            IsFiring = true;
         }
 
         public void HoldFire()
         {
-            isFiring = false;
+            IsFiring = false;
         }
 
         private void Update()
         {
             mFireOnceCD = this.UpdateCD(mFireOnceCD);
-            if (isFiring)
+            if (IsFiring)
             {
                 if (mFireOnceCD <= 0)
                 {
