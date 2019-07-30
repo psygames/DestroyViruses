@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UniPool;
 using UnityEngine;
 
@@ -10,27 +6,38 @@ namespace DestroyViruses
 {
     public class EntityManager : Singleton<EntityManager>
     {
-        [SerializeField]
-        private GameObject[] pooledPrefabs;
+        [Serializable]
+        public struct PooledPrefab
+        {
+            public GameObject prefab;
+            public Transform root;
+        }
+
+        public PooledPrefab[] pooledPrefabs;
 
         private T create<T>() where T : EntityBase
         {
-            GameObject _gameObject = null;
-            foreach (var go in pooledPrefabs)
+            PooledPrefab? _pooledPrefab = null;
+            foreach (var pp in pooledPrefabs)
             {
-                if (go.GetComponent<EntityBase>().GetType() == typeof(T))
+                if (pp.prefab.GetComponent<EntityBase>().GetType() == typeof(T))
                 {
-                    _gameObject = go;
+                    _pooledPrefab = pp;
                     break;
                 }
             }
-            if (_gameObject == null)
+            if (_pooledPrefab == null)
             {
                 Debug.LogError($"Create Entity Failed , {typeof(T).Name} is not pooled");
                 return null;
             }
 
-            var entity = PoolManager.SpawnObject(_gameObject).GetComponent<T>();
+            var entity = PoolManager.SpawnObject(_pooledPrefab.Value.prefab).GetComponent<T>();
+            if (_pooledPrefab.Value.root != null)
+            {
+                entity.transform.SetParent(_pooledPrefab.Value.root);
+            }
+
             entity.transform.localScale = Vector3.one;
             entity.transform.localPosition = Vector3.zero;
             entity.transform.localRotation = Quaternion.identity;

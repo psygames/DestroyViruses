@@ -9,7 +9,7 @@ namespace DestroyViruses
         float m_waitSeconds = 0;
         public override void OnEnter()
         {
-            m_waitSeconds = 3;
+            m_waitSeconds = 0.1f;
             base.OnEnter();
         }
 

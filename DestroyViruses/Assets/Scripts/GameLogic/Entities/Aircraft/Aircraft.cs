@@ -6,14 +6,12 @@ namespace DestroyViruses
 {
     public class Aircraft : EntityBase
     {
-        private RectTransform mRectTransform;
         private AircraftInputHandle mInputHandle;
         private AircraftMovement mMovement;
         private AircraftFire mFire;
 
         private void Awake()
         {
-            mRectTransform = GetComponent<RectTransform>();
             mInputHandle = gameObject.GetOrAddComponent<AircraftInputHandle>();
             mMovement = gameObject.GetOrAddComponent<AircraftMovement>();
             mFire = gameObject.GetOrAddComponent<AircraftFire>();
@@ -25,7 +23,7 @@ namespace DestroyViruses
 
         private void Start()
         {
-            mRectTransform.anchoredPosition3D = UIUtil.center;
+            rectTransform.anchoredPosition3D = UIUtil.center;
         }
 
 
