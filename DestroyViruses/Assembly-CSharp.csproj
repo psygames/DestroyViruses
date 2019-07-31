@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\GameLogic\Entities\Aircraft\AircraftMovement.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Entities\Base\EntityBase.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Entities\Bullet.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Entities\Viruses\VirusBase.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameState\BattleState.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameState\LoadingState.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameState\MainState.cs" />
@@ -82,8 +83,8 @@
     <Compile Include="Assets\Scripts\Tools\UI\UIEventListener.cs" />
     <Compile Include="Assets\Scripts\Utils\PathUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\ResourceUtil.cs" />
+    <Compile Include="Assets\Scripts\Utils\TagUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\UIUtil.cs" />
-    <Compile Include="Assets\test.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -300,8 +301,14 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>D:/software/develop/Unity/2018.4.4f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
+    </Reference>
     <Reference Include="DOTween">
-      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/DOTween/DOTween.dll</HintPath>
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>

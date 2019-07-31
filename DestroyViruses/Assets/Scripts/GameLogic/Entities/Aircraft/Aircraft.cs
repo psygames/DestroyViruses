@@ -15,7 +15,6 @@ namespace DestroyViruses
             mInputHandle = gameObject.GetOrAddComponent<AircraftInputHandle>();
             mMovement = gameObject.GetOrAddComponent<AircraftMovement>();
             mFire = gameObject.GetOrAddComponent<AircraftFire>();
-
             mInputHandle.onFire = mFire.Fire;
             mInputHandle.onHoldFire = mFire.HoldFire;
             mInputHandle.onMove = mMovement.Move;
@@ -24,9 +23,6 @@ namespace DestroyViruses
         private void Start()
         {
             rectTransform.anchoredPosition3D = UIUtil.center;
-            Collider2D cd;
-            cd.t
-            cd.
         }
 
 

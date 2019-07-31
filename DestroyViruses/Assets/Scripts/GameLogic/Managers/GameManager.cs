@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using System;
 
 namespace DestroyViruses
 {
@@ -16,6 +18,11 @@ namespace DestroyViruses
         void Start()
         {
             stateMachine.currentState = new LoadingState();
+            Observable.Interval(TimeSpan.FromSeconds(3)).Do((ticks) =>
+            {
+                var virus = VirusBase.Create();
+                virus.Reset(new Vector2(UIUtil.width * 0.5f, UIUtil.height));
+            }).Subscribe();
         }
 
         void Update()

@@ -61,13 +61,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Plugins\Basic\Singleton.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModuleAudio.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModulePhysics.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModulePhysics2D.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModuleSprite.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModuleUI.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModuleUtils.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTweenPro\DOTweenAnimation.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTweenPro\DOTweenProShortcuts.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTweenPro\DOTweenTextMeshPro.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTweenPro\DOTweenTk2d.cs" />
     <Compile Include="Assets\Plugins\StateMachines\StackStateMachine\IStackState.cs" />
     <Compile Include="Assets\Plugins\StateMachines\StackStateMachine\StackState.cs" />
     <Compile Include="Assets\Plugins\StateMachines\StackStateMachine\StackStateMachine.cs" />
@@ -84,7 +88,10 @@
     <Compile Include="Assets\Plugins\UniPool\Scripts\ObjectPool.cs" />
     <Compile Include="Assets\Plugins\UniPool\Scripts\ObjectPoolContainer.cs" />
     <Compile Include="Assets\Plugins\UniPool\Scripts\PoolManager.cs" />
-    <None Include="Assets\Plugins\DOTween\readme.txt" />
+    <None Include="Assets\Plugins\Demigiant\DOTweenPro\readme.txt" />
+    <None Include="Assets\Plugins\Demigiant\DOTween\readme.txt" />
+    <None Include="Assets\Plugins\Demigiant\DemiLib\Core\DemiLib.xml" />
+    <None Include="Assets\Plugins\Demigiant\readme_DOTweenPro.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -301,8 +308,14 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>D:/software/develop/Unity/2018.4.4f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
+    </Reference>
     <Reference Include="DOTween">
-      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/DOTween/DOTween.dll</HintPath>
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>

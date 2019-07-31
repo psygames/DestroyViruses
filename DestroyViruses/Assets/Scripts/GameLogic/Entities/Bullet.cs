@@ -24,9 +24,22 @@ namespace DestroyViruses
             rectTransform.DOAnchorPos3DX(position.x + offsetX, bornCD);
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            Recycle();
+            if (collider.tag == TagUtil.ScreenEdge)
+            {
+                Recycle();
+            }
+            else if (collider.tag == TagUtil.Virus)
+            {
+                PlayBomb();
+                Recycle();
+            }
+        }
+
+        private void PlayBomb()
+        {
+            Debug.LogError("play bomb");
         }
 
         private void Update()

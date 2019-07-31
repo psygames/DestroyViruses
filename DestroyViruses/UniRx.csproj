@@ -518,11 +518,23 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiEditor">
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/Demigiant/DemiLib/Core/Editor/DemiEditor.dll</HintPath>
+    </Reference>
     <Reference Include="DOTween">
-      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/DOTween/DOTween.dll</HintPath>
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="DOTweenEditor">
-      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/DOTween/Editor/DOTweenEditor.dll</HintPath>
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenProEditor">
+      <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Assets/Plugins/Demigiant/DOTweenPro/Editor/DOTweenProEditor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>D:/workspace/DestroyViruses/DestroyViruses/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>

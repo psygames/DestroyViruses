@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ScreenEdge
+  - Aircraft
+  - Bullet
+  - Virus
+  - Buff
   layers:
   - Default
   - TransparentFX
