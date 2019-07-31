@@ -24,6 +24,9 @@ namespace DestroyViruses
         private void Start()
         {
             rectTransform.anchoredPosition3D = UIUtil.center;
+            Collider2D cd;
+            cd.t
+            cd.
         }
 
 
