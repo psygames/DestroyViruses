@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using DestroyViruses;
+using ReflectionEx;
 
 namespace DestroyViruses.Editor
 {
@@ -14,8 +15,14 @@ namespace DestroyViruses.Editor
             base.OnInspectorGUI();
 
             var mgr = target as GameManager;
-            if (mgr != null && mgr.stateMachine != null && mgr.stateMachine.currentState != null)
-                EditorGUILayout.LabelField("Current State", mgr.stateMachine.currentState.GetType().Name);
+            if (mgr != null)
+            {
+                var sm = mgr.ReflectField<StateMachine.StateMachine<StateMachine.State>>("mStateMachine");
+                if (sm != null)
+                {
+                    EditorGUILayout.LabelField("Current State", sm.currentState.GetType().Name);
+                }
+            }
 
         }
     }

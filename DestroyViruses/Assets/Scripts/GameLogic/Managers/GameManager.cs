@@ -6,21 +6,27 @@ namespace DestroyViruses
 {
     public class GameManager : Singleton<GameManager>
     {
-        public StateMachine.StateMachine<StateMachine.State> stateMachine { get; private set; }
+        private StateMachine.StateMachine<StateMachine.State> mStateMachine;
 
         void Awake()
         {
-            stateMachine = new StateMachine.StateMachine<StateMachine.State>();
+            mStateMachine = new StateMachine.StateMachine<StateMachine.State>();
         }
 
         void Start()
         {
-            stateMachine.currentState = new LoadingState();
+            ChangeState<LoadingState>();
         }
 
         void Update()
         {
-            stateMachine.OnUpdate(Time.deltaTime);
+            mStateMachine.OnUpdate(Time.deltaTime);
+        }
+
+
+        public static void ChangeState<T>() where T : StateMachine.State, new()
+        {
+            Instance.mStateMachine.currentState = new T();
         }
     }
 }
