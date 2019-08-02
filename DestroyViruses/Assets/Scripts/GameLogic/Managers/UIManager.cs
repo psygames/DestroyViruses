@@ -51,17 +51,18 @@ namespace DestroyViruses
 
             if (layer == UILayer.Common && commonLayer != null)
             {
-                panel.transform.SetParent(commonLayer, true);
+                panel.transform.SetParent(commonLayer);
             }
             else if (layer == UILayer.Top && topLayer != null)
             {
-                panel.transform.SetParent(topLayer, true);
+                panel.transform.SetParent(topLayer);
             }
             else if (layer == UILayer.Bottom && bottomLayer != null)
             {
-                panel.transform.SetParent(bottomLayer, true);
+                panel.transform.SetParent(bottomLayer);
             }
-
+            panel.rectTransform.localScale = Vector3.one;
+            panel.rectTransform.rotation = Quaternion.identity;
             panel.rectTransform.anchoredPosition3D = anchorPos3D;
             panel.rectTransform.anchoredPosition = anchorPos;
             panel.rectTransform.offsetMin = offsetMin;

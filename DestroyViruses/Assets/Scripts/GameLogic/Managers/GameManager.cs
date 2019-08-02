@@ -18,12 +18,6 @@ namespace DestroyViruses
         void Start()
         {
             ChangeState<LoadingState>();
-
-            Observable.Interval(TimeSpan.FromSeconds(3)).Do((ticks) =>
-            {
-                var virus = VirusBase.Create();
-                virus.Reset(new Vector2(UIUtil.width * 0.5f, UIUtil.height));
-            }).Subscribe();
         }
 
         void Update()

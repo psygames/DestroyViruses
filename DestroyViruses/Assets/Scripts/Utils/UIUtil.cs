@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEngine.U2D;
+using System.Collections.Generic;
 
 namespace DestroyViruses
 {
@@ -92,6 +94,25 @@ namespace DestroyViruses
         public static Vector2 GetUIPos(Transform uiTransform)
         {
             return UIWorldToUIPos(uiTransform.position);
+        }
+
+        private static Dictionary<string, SpriteAtlas> sAtlasDict = new Dictionary<string, SpriteAtlas>();
+        public static SpriteAtlas LoadSpriteAtlas(string path)
+        {
+            if (sAtlasDict.ContainsKey(path))
+            {
+                return sAtlasDict[path];
+            }
+            SpriteAtlas atlas = Resources.Load<SpriteAtlas>(path);
+            sAtlasDict.Add(path, atlas);
+            return atlas;
+        }
+
+        public static Sprite GetSprite(string atlasPath, string spriteName)
+        {
+            var atlas = LoadSpriteAtlas(atlasPath);
+            Sprite sprite = atlas.GetSprite(spriteName);
+            return sprite;
         }
     }
 }

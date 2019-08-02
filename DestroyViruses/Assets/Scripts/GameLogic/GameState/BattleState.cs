@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using System;
 
 namespace DestroyViruses
 {
@@ -10,7 +12,11 @@ namespace DestroyViruses
         {
             base.OnEnter();
             UIManager.Instance.Open<BattlePanel>();
-            Aircraft.Create();
+        }
+
+        public override void OnUpdate(float deltaTime)
+        {
+            base.OnUpdate(deltaTime);
         }
 
         public override void OnExit()
