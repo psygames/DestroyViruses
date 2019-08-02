@@ -86,6 +86,7 @@ namespace DestroyViruses
             panel = Instantiate(panel);
             panel.gameObject.SetActive(false);
             panel.OnInit();
+            mCachedPanels.Add(panel);
             return panel;
         }
 

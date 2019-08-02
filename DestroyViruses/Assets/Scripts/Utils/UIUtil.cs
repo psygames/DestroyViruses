@@ -15,12 +15,38 @@ namespace DestroyViruses
                 {
                     var go = GameObject.Find("UIRoot");
                     if (go == null)
+                    {
+                        Debug.LogError("Can't find UI Root.");
                         return null;
+                    }
                     s_uiRoot = go.GetComponent<RectTransform>();
                 }
                 return s_uiRoot;
             }
         }
+
+        private static RectTransform s_uiBattleRoot = null;
+        public static RectTransform uiBattleRoot
+        {
+            get
+            {
+                if (s_uiBattleRoot == null)
+                {
+                    if (uiRoot != null)
+                    {
+                        var go = uiRoot.Find("Battle");
+                        if (go == null)
+                        {
+                            Debug.LogError("Can't find UI Battle Root.");
+                            return null;
+                        }
+                        s_uiBattleRoot = go.GetComponent<RectTransform>();
+                    }
+                }
+                return s_uiBattleRoot;
+            }
+        }
+
         private static CanvasScaler s_canvasScaler = null;
         public static CanvasScaler canvasScaler
         {

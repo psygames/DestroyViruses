@@ -25,7 +25,6 @@ namespace DestroyViruses
             rectTransform.anchoredPosition3D = UIUtil.center;
         }
 
-
         private void Update()
         {
             

@@ -53,6 +53,7 @@ namespace DestroyViruses
 
         public static void Clear()
         {
+            //TODO:Clear Entities
         }
         #endregion
     }

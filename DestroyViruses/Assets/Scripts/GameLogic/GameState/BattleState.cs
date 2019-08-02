@@ -9,12 +9,14 @@ namespace DestroyViruses
         public override void OnEnter()
         {
             base.OnEnter();
+            UIManager.Instance.Open<BattlePanel>();
             Aircraft.Create();
         }
 
         public override void OnExit()
         {
             base.OnExit();
+            UIManager.Instance.Close<BattlePanel>();
             EntityManager.Clear();
         }
     }

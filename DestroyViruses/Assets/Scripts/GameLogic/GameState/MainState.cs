@@ -14,8 +14,12 @@ namespace DestroyViruses
 
         public override void OnUpdate(float deltaTime)
         {
-            base.OnUpdate(deltaTime);
-            Change<BattleState>();
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            UIManager.Instance.Close<MainPanel>();
         }
     }
 }

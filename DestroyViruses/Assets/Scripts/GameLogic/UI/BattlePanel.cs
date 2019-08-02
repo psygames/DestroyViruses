@@ -7,12 +7,9 @@ using DG.Tweening;
 
 namespace DestroyViruses
 {
-    public class MainPanel : UIPanel
+    public class BattlePanel : UIPanel
     {
         public UIEventListener inputListenser;
-        public float dragBeginThreshold = 100; 
-
-        private Vector2 mTotalDrag = Vector2.zero;
 
         public override void OnInit()
         {
@@ -21,28 +18,34 @@ namespace DestroyViruses
 
         public override void OnOpen()
         {
-            mTotalDrag = Vector2.zero;
-            UIUtil.uiBattleRoot.DOScale(Vector3.one * 1.2f, 0.5f);
+            UIUtil.uiBattleRoot.DOScale(Vector3.one, 0.5f);
         }
 
         public override void OnClose()
         {
+
         }
 
         public override void OnDestroy()
         {
+            inputListenser.onDown.RemoveAllListeners();
+            inputListenser.onUp.RemoveAllListeners();
             inputListenser.onDrag.RemoveAllListeners();
         }
 
         private void InputListenerInit()
         {
+            inputListenser.onDown.AddListener((data) =>
+            {
+                InputManager.Instance.Push(new InputData(InputType.Down, UIUtil.FormatToVirtual(data)));
+            });
+            inputListenser.onUp.AddListener((data) =>
+            {
+                InputManager.Instance.Push(new InputData(InputType.Up, UIUtil.FormatToVirtual(data)));
+            });
             inputListenser.onDrag.AddListener((data) =>
             {
-                mTotalDrag += data;
-                if (mTotalDrag.magnitude > dragBeginThreshold)
-                {
-                    GameManager.ChangeState<BattleState>();
-                }
+                InputManager.Instance.Push(new InputData(InputType.Drag, UIUtil.FormatToVirtual(data)));
             });
         }
     }
