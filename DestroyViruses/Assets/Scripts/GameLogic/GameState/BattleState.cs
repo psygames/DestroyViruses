@@ -12,6 +12,7 @@ namespace DestroyViruses
         {
             base.OnEnter();
             UIManager.Instance.Open<BattlePanel>();
+            GameModeManager.Instance.StartMode<LevelMode>();
         }
 
         public override void OnUpdate(float deltaTime)

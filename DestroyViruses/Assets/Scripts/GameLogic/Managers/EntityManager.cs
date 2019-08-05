@@ -33,14 +33,14 @@ namespace DestroyViruses
             }
 
             var entity = PoolManager.SpawnObject(_pooledPrefab.Value.prefab).GetComponent<T>();
-            if (_pooledPrefab.Value.root != null)
+            if (_pooledPrefab.Value.root != null
+                && _pooledPrefab.Value.root != entity.transform.parent)
             {
                 entity.transform.SetParent(_pooledPrefab.Value.root);
+                entity.transform.localScale = Vector3.one;
+                entity.transform.localPosition = Vector3.zero;
+                entity.transform.localRotation = Quaternion.identity;
             }
-
-            entity.transform.localScale = Vector3.one;
-            entity.transform.localPosition = Vector3.zero;
-            entity.transform.localRotation = Quaternion.identity;
             return entity;
         }
 

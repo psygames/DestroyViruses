@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DestroyViruses
 {
-    public class Aircraft : EntityBase
+    public class Aircraft : EntityBase<Aircraft>
     {
         private AircraftInputHandle mInputHandle;
         private AircraftMovement mMovement;
@@ -30,22 +30,5 @@ namespace DestroyViruses
             
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-        public static Aircraft Create()
-        {
-            var craft = EntityManager.Create<Aircraft>();
-            return craft;
-        }
     }
 }

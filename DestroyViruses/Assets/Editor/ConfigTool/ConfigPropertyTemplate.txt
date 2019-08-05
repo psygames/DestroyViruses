@@ -1,0 +1,4 @@
+﻿		/// <summary>
+		/// {description}
+		/// </summary>
+		public {type} {name} { get; private set; }

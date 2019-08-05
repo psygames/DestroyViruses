@@ -1,0 +1,15 @@
+﻿using UnityEngine;
+
+namespace {namespace}
+{
+    public class {className}Asset : ScriptableObject
+    {
+        public {className}[] dataArray;
+    }
+
+    [System.Serializable]
+    public class {className}
+    {
+{properties}
+    }
+}

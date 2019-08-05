@@ -6,24 +6,23 @@ using UnityEngine.UI;
 
 namespace DestroyViruses
 {
-    public class VirusBase : EntityBase
+    public class VirusBase : EntityBase<VirusBase>
     {
-        public float moveSpeed = 100;
+        public float moveSpeed = 200;
         public float hp = 10000;
+        public float radius = 100;
         public Text hpText;
 
-        public static VirusBase Create()
-        {
-            return EntityManager.Create<VirusBase>();
-        }
+        public Vector2 moveDirection { get; protected set; }
 
-        public void Reset(Vector2 position)
+        public virtual void Reset(Vector2 position)
         {
             hp = 30000;
             rectTransform.anchoredPosition = position;
+            moveDirection = Quaternion.AngleAxis(Random.Range(-80f, 80f), Vector3.forward) * Vector2.down;
         }
 
-        private void OnTriggerEnter2D(Collider2D collider)
+        protected virtual void OnTriggerEnter2D(Collider2D collider)
         {
             if (collider.tag == TagUtil.Bullet)
             {
@@ -32,7 +31,7 @@ namespace DestroyViruses
         }
 
         private float mLastHp = 0;
-        private void UpdateHp()
+        protected virtual void UpdateHp()
         {
             if (mLastHp != hp)
             {
@@ -46,17 +45,30 @@ namespace DestroyViruses
             }
         }
 
-        private void UpdatePosition()
+        protected virtual void UpdatePosition()
         {
-            rectTransform.anchoredPosition += Vector2.down * moveSpeed * Time.deltaTime;
-            if (UIUtil.GetUIPos(rectTransform).y < -100)
+            var uiPos = UIUtil.GetUIPos(rectTransform);
+            if (uiPos.y < -radius)
             {
                 rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, UIUtil.height);
             }
+            else if (uiPos.y > UIUtil.height - radius)
+            {
+                moveDirection = new Vector2(moveDirection.x, -Mathf.Abs(moveDirection.y));
+            }
+            if (uiPos.x < radius)
+            {
+                moveDirection = new Vector2(Mathf.Abs(moveDirection.x), moveDirection.y);
+            }
+            else if (uiPos.x > UIUtil.width - radius)
+            {
+                moveDirection = new Vector2(-Mathf.Abs(moveDirection.x), moveDirection.y);
+            }
+            rectTransform.anchoredPosition += moveDirection * moveSpeed * Time.deltaTime;
         }
 
 
-        private void Update()
+        protected virtual void Update()
         {
             UpdateHp();
             UpdatePosition();

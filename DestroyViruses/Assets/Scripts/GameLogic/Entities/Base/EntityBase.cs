@@ -23,4 +23,12 @@ namespace DestroyViruses
             PoolManager.ReleaseObject(gameObject);
         }
     }
+
+    public class EntityBase<T> : EntityBase where T : EntityBase
+    {
+        public static T Create()
+        {
+            return EntityManager.Create<T>();
+        }
+    }
 }

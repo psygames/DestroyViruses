@@ -11,6 +11,11 @@ public static class GameExtension
     }
 
 
+    public static Vector2 GetUIPos(this Transform transformm)
+    {
+        return UIUtil.GetUIPos(transformm);
+    }
+
     public static void SetSprite(this Image image,string atlasPath, string spriteName)
     {
         image.sprite = UIUtil.GetSprite(atlasPath, spriteName);

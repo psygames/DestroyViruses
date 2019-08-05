@@ -5,18 +5,13 @@ using DG.Tweening;
 
 namespace DestroyViruses
 {
-    public class Bullet : EntityBase
+    public class Bullet : EntityBase<Bullet>
     {
         public const float BULLET_SPEED = 3500;  // px/s
         public const float BULLET_HEIGH = 200;   // px
         public const float BULLET_WIDTH = 30;   // px
 
         public float bornCD = 0.03f;
-
-        public static Bullet Create()
-        {
-            return EntityManager.Create<Bullet>();
-        }
 
         public void Reset(Vector2 position, float offsetX)
         {
@@ -26,29 +21,33 @@ namespace DestroyViruses
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            if (collider.tag == TagUtil.ScreenEdge)
+            if (collider.tag == TagUtil.Virus)
             {
-                Recycle();
-            }
-            else if (collider.tag == TagUtil.Virus)
-            {
-                PlayBomb();
+                PlayExplosion();
                 Recycle();
             }
         }
 
-        private void PlayBomb()
+        static float sNextPlayTime = 0;
+        private void PlayExplosion()
         {
-            Debug.LogError("play bomb");
+            if (Time.time >= sNextPlayTime)
+            {
+                Explosion.Create().rectTransform.anchoredPosition = transform.GetUIPos() + Vector2.up * 10;
+                sNextPlayTime = Time.time + 0.1f;
+            }
         }
 
         private void Update()
         {
-            rectTransform.anchoredPosition += Vector2.up * BULLET_SPEED * Time.deltaTime;
-            if (UIUtil.GetUIPos(rectTransform).y > UIUtil.height + BULLET_HEIGH)
+            Vector2 uiPos = UIUtil.GetUIPos(rectTransform);
+            if (uiPos.y > UIUtil.height + BULLET_HEIGH
+                || uiPos.x > UIUtil.width + BULLET_WIDTH || uiPos.x < -BULLET_WIDTH)
             {
                 Recycle();
             }
+
+            rectTransform.anchoredPosition += Vector2.up * BULLET_SPEED * Time.deltaTime;
         }
     }
 }

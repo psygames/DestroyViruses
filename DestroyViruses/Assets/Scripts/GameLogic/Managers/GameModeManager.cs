@@ -18,9 +18,10 @@ namespace DestroyViruses
             else Resume();
         }
 
-        public void StartMode<T>() where T : GameMode
+        public void StartMode<T>() where T : GameMode, new()
         {
             Stop();
+            mMode = new T();
             mMode?.ReflectInvokeMethod("OnInit");
         }
 
