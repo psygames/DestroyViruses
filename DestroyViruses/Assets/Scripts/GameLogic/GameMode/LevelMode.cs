@@ -8,8 +8,13 @@ namespace DestroyViruses
     // 关卡模式
     public class LevelMode : GameMode
     {
+        private ConfigGameLevel mConfig = null;
+        private int mWave = 0;
+        private int mWaveSpawnIndex = 0;
+
         protected override void OnInit()
         {
+            mConfig = ConfigGameLevel.Get(_ => _.level == LocalDataUtil.gameData.gameLevel);
             Aircraft.Create();
             OnBegin();
         }
@@ -17,7 +22,8 @@ namespace DestroyViruses
         IDisposable virusCreator = null;
         protected override void OnBegin()
         {
-            virusCreator = Observable.Interval(TimeSpan.FromSeconds(3)).Do((ticks) =>
+            mWave = 1;
+            virusCreator = Observable.Interval(TimeSpan.FromSeconds(mConfig.waveSpawnInterval[0])).Do((ticks) =>
             {
                 var virus = VirusBase.Create();
                 virus.Reset(new Vector2(UIUtil.width * 0.5f, UIUtil.height));

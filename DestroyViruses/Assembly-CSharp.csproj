@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameLogic\Config\ConfigAircraftAsset.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Config\ConfigGameLevelAsset.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Config\ConfigVirusAsset.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Entity\Aircraft\Aircraft.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Entity\Aircraft\AircraftFire.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Entity\Aircraft\AircraftInputHandle.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="Assets\Scripts\Tools\Extensions\ReflectionExtension.cs" />
     <Compile Include="Assets\Scripts\Tools\Extensions\UnityExtension.cs" />
     <Compile Include="Assets\Scripts\Tools\UI\UIEventListener.cs" />
+    <Compile Include="Assets\Scripts\Utils\LocalDataUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\PathUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\ResourceUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\TagUtil.cs" />

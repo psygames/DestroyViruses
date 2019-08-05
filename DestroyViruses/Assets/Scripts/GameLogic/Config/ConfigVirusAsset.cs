@@ -4,16 +4,16 @@ using System.Collections.Generic;
 
 namespace DestroyViruses
 {
-    public class ConfigAircraftAsset : ScriptableObject
+    public class ConfigVirusAsset : ScriptableObject
     {
 		[SerializeField]
-        public ConfigAircraft[] dataArray;
+        public ConfigVirus[] dataArray;
 
         [NonSerialized]
-        private Dictionary<string, ConfigAircraft> mDict = null;
+        private Dictionary<string, ConfigVirus> mDict = null;
 
-        private static ConfigAircraftAsset _ins = null;
-        public static ConfigAircraftAsset Instance
+        private static ConfigVirusAsset _ins = null;
+        public static ConfigVirusAsset Instance
         {
             get
             {
@@ -27,21 +27,21 @@ namespace DestroyViruses
 
         private void InitDict()
         {
-            mDict = new Dictionary<string, ConfigAircraft>();
+            mDict = new Dictionary<string, ConfigVirus>();
             foreach (var data in dataArray)
             {
                 mDict.Add(data.id, data);
             }
         }
 
-		public ConfigAircraft Get(string id)
+		public ConfigVirus Get(string id)
         {
-            ConfigAircraft data = null;
+            ConfigVirus data = null;
 			_ins.mDict.TryGetValue(id, out data);
             return data;
         }
 
-		public ConfigAircraft Get(Func<ConfigAircraft, bool> predicate)
+		public ConfigVirus Get(Func<ConfigVirus, bool> predicate)
         {
             foreach (var item in _ins.mDict)
             {
@@ -55,13 +55,13 @@ namespace DestroyViruses
 
         private static void Load()
         {
-            _ins = Resources.Load<ConfigAircraftAsset>("Config/ConfigAircraft");
+            _ins = Resources.Load<ConfigVirusAsset>("Config/ConfigVirus");
             _ins.InitDict();
         }
     }
 
     [System.Serializable]
-    public class ConfigAircraft
+    public class ConfigVirus
     {
 		/// <summary>
 		/// ID
@@ -74,19 +74,29 @@ namespace DestroyViruses
 		public int level;
 
 		/// <summary>
+		/// virus type
+		/// </summary>
+		public string type;
+
+		/// <summary>
 		/// 血量
 		/// </summary>
-		public int hp;
+		public float hp;
+
+		/// <summary>
+		/// 速度
+		/// </summary>
+		public float speed;
 
 
-		public static ConfigAircraft Get(string id)
+		public static ConfigVirus Get(string id)
 		{
-			return ConfigAircraftAsset.Instance.Get(id);
+			return ConfigVirusAsset.Instance.Get(id);
 		}
 		
-		public static ConfigAircraft Get(Func<ConfigAircraft, bool> predicate)
+		public static ConfigVirus Get(Func<ConfigVirus, bool> predicate)
         {
-			return ConfigAircraftAsset.Instance.Get(predicate);
+			return ConfigVirusAsset.Instance.Get(predicate);
 		}
     }
 }

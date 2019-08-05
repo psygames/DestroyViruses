@@ -1,0 +1,230 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd31877f764c3684d82510403d8937cd, type: 3}
+  m_Name: ConfigVirus
+  m_EditorClassIdentifier: 
+  dataArray:
+  - id: 1
+    level: 1
+    type: TriangleVirus
+    hp: 1000
+    speed: 200
+  - id: 2
+    level: 2
+    type: TriangleVirus
+    hp: 1001
+    speed: 201
+  - id: 3
+    level: 3
+    type: TriangleVirus
+    hp: 1002
+    speed: 202
+  - id: 4
+    level: 4
+    type: TriangleVirus
+    hp: 1003
+    speed: 203
+  - id: 5
+    level: 5
+    type: TriangleVirus
+    hp: 1004
+    speed: 204
+  - id: 6
+    level: 6
+    type: TriangleVirus
+    hp: 1005
+    speed: 205
+  - id: 7
+    level: 7
+    type: TriangleVirus
+    hp: 1006
+    speed: 206
+  - id: 8
+    level: 8
+    type: TriangleVirus
+    hp: 1007
+    speed: 207
+  - id: 9
+    level: 9
+    type: TriangleVirus
+    hp: 1008
+    speed: 208
+  - id: 10
+    level: 10
+    type: TriangleVirus
+    hp: 1009
+    speed: 209
+  - id: 11
+    level: 11
+    type: TriangleVirus
+    hp: 1010
+    speed: 210
+  - id: 12
+    level: 12
+    type: TriangleVirus
+    hp: 1011
+    speed: 211
+  - id: 13
+    level: 13
+    type: TriangleVirus
+    hp: 1012
+    speed: 212
+  - id: 14
+    level: 14
+    type: TriangleVirus
+    hp: 1013
+    speed: 213
+  - id: 15
+    level: 15
+    type: TriangleVirus
+    hp: 1014
+    speed: 214
+  - id: 16
+    level: 16
+    type: TriangleVirus
+    hp: 1015
+    speed: 215
+  - id: 17
+    level: 17
+    type: TriangleVirus
+    hp: 1016
+    speed: 216
+  - id: 18
+    level: 18
+    type: TriangleVirus
+    hp: 1017
+    speed: 217
+  - id: 19
+    level: 19
+    type: TriangleVirus
+    hp: 1018
+    speed: 218
+  - id: 20
+    level: 20
+    type: TriangleVirus
+    hp: 1019
+    speed: 219
+  - id: 21
+    level: 21
+    type: TriangleVirus
+    hp: 1020
+    speed: 220
+  - id: 22
+    level: 22
+    type: TriangleVirus
+    hp: 1021
+    speed: 221
+  - id: 23
+    level: 23
+    type: TriangleVirus
+    hp: 1022
+    speed: 222
+  - id: 24
+    level: 24
+    type: TriangleVirus
+    hp: 1023
+    speed: 223
+  - id: 25
+    level: 25
+    type: TriangleVirus
+    hp: 1024
+    speed: 224
+  - id: 26
+    level: 26
+    type: TriangleVirus
+    hp: 1025
+    speed: 225
+  - id: 27
+    level: 27
+    type: TriangleVirus
+    hp: 1026
+    speed: 226
+  - id: 28
+    level: 28
+    type: TriangleVirus
+    hp: 1027
+    speed: 227
+  - id: 29
+    level: 29
+    type: TriangleVirus
+    hp: 1028
+    speed: 228
+  - id: 30
+    level: 30
+    type: TriangleVirus
+    hp: 1029
+    speed: 229
+  - id: 31
+    level: 31
+    type: TriangleVirus
+    hp: 1030
+    speed: 230
+  - id: 32
+    level: 32
+    type: TriangleVirus
+    hp: 1031
+    speed: 231
+  - id: 33
+    level: 33
+    type: TriangleVirus
+    hp: 1032
+    speed: 232
+  - id: 34
+    level: 34
+    type: TriangleVirus
+    hp: 1033
+    speed: 233
+  - id: 35
+    level: 35
+    type: TriangleVirus
+    hp: 1034
+    speed: 234
+  - id: 36
+    level: 36
+    type: TriangleVirus
+    hp: 1035
+    speed: 235
+  - id: 37
+    level: 37
+    type: TriangleVirus
+    hp: 1036
+    speed: 236
+  - id: 38
+    level: 38
+    type: TriangleVirus
+    hp: 1037
+    speed: 237
+  - id: 39
+    level: 39
+    type: TriangleVirus
+    hp: 1038
+    speed: 238
+  - id: 40
+    level: 40
+    type: TriangleVirus
+    hp: 1039
+    speed: 239
+  - id: 41
+    level: 41
+    type: TriangleVirus
+    hp: 1040
+    speed: 240
+  - id: 42
+    level: 42
+    type: TriangleVirus
+    hp: 1041
+    speed: 241
+  - id: 43
+    level: 43
+    type: TriangleVirus
+    hp: 1042
+    speed: 242
