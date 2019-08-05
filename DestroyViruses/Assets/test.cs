@@ -8,7 +8,7 @@ namespace DestroyViruses
     {
         void Start()
         {
-            GetComponent<Image>().SetSprite("SpriteAtlas/common", "Jishen_W1");
+            GetComponent<Image>().SetSprite("SpriteAtlas/common", "fx2_f1");
         }
     }
 }

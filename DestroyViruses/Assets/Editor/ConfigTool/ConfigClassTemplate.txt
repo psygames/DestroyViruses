@@ -1,15 +1,77 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 namespace {namespace}
 {
     public class {className}Asset : ScriptableObject
     {
+		[SerializeField]
         public {className}[] dataArray;
+
+        [NonSerialized]
+        private Dictionary<string, {className}> mDict = null;
+
+        private static {className}Asset _ins = null;
+        public static {className}Asset Instance
+        {
+            get
+            {
+                if (_ins == null)
+                {
+                    Load();
+                }
+                return _ins;
+            }
+        }
+
+        private void InitDict()
+        {
+            mDict = new Dictionary<string, {className}>();
+            foreach (var data in dataArray)
+            {
+                mDict.Add(data.id, data);
+            }
+        }
+
+		public {className} Get(string id)
+        {
+            {className} data = null;
+			_ins.mDict.TryGetValue(id, out data);
+            return data;
+        }
+
+		public {className} Get(Func<{className}, bool> predicate)
+        {
+            foreach (var item in _ins.mDict)
+            {
+                if (predicate(item.Value))
+                {
+                    return item.Value;
+                }
+            }
+            return null;
+        }
+
+        private static void Load()
+        {
+            _ins = Resources.Load<{className}Asset>("Config/{className}");
+            _ins.InitDict();
+        }
     }
 
     [System.Serializable]
     public class {className}
     {
 {properties}
+		public static {className} Get(string id)
+		{
+			return {className}Asset.Instance.Get(id);
+		}
+		
+		public static {className} Get(Func<{className}, bool> predicate)
+        {
+			return {className}Asset.Instance.Get(predicate);
+		}
     }
 }
