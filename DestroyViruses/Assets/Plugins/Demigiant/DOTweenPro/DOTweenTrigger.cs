@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#pragma warning disable 1591
 namespace DG.Tweening
 {
     public class DOTweenTrigger : MonoBehaviour
