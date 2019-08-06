@@ -78,6 +78,8 @@
     <Compile Include="Assets\Scripts\GameLogic\GameState\LoadingState.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameState\MainState.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameState\StateBase.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\LocalData\GameLocalData.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\LocalData\LocalData.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Managers\EntityManager.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Managers\GameModeManager.cs" />

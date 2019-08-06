@@ -33,7 +33,7 @@ namespace DestroyViruses
 
         private void OnApplicationQuit()
         {
-            LocalDataUtil.gameData.Save();
+            GameLocalData.Instance.Save();
         }
     }
 }

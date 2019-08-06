@@ -14,7 +14,7 @@ namespace DestroyViruses
 
         protected override void OnInit()
         {
-            mConfig = ConfigGameLevel.Get(_ => _.level == LocalDataUtil.gameData.gameLevel);
+            mConfig = ConfigGameLevel.Get(_ => _.level == GameLocalData.Instance.gameLevel);
             Aircraft.Create();
             OnBegin();
         }
