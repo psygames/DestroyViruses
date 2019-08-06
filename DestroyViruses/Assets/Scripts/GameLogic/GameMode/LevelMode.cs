@@ -23,7 +23,7 @@ namespace DestroyViruses
         protected override void OnBegin()
         {
             mWave = 1;
-            virusCreator = Observable.Interval(TimeSpan.FromSeconds(mConfig.waveSpawnInterval[0])).Do((ticks) =>
+            virusCreator = Observable.Interval(TimeSpan.FromSeconds(mConfig.spawnInterval)).Do((ticks) =>
             {
                 var virus = VirusBase.Create();
                 virus.Reset(new Vector2(UIUtil.width * 0.5f, UIUtil.height));

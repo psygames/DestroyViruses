@@ -74,29 +74,39 @@ namespace DestroyViruses
 		public int level;
 
 		/// <summary>
-		/// virus(ConfigVirus) id array
+		/// 第一波产生病毒种类，概率均等
 		/// </summary>
 		public string[] wave1;
 
 		/// <summary>
-		/// virus(ConfigVirus) id array
+		/// 第二波产生病毒种类，概率均等
 		/// </summary>
 		public string[] wave2;
 
 		/// <summary>
-		/// virus(ConfigVirus) id array
+		/// 不同(4)尺寸病毒的概率
 		/// </summary>
-		public string[] wave3;
+		public float[] virusSizeProbability;
 
 		/// <summary>
-		/// 每波产生病毒间隔
+		/// 病毒产生间隔
 		/// </summary>
-		public float[] waveSpawnInterval;
+		public float spawnInterval;
 
 		/// <summary>
-		/// 每波产生病毒最大数（当前存活）
+		/// 病毒最大数量
 		/// </summary>
-		public int[] waveSpawnMax;
+		public int spawnMax;
+
+		/// <summary>
+		/// 病毒血量范围
+		/// </summary>
+		public Vector2 virusHpRange;
+
+		/// <summary>
+		/// 病毒速度范围
+		/// </summary>
+		public Vector2 virusSpeedRange;
 
 
 		public static ConfigGameLevel Get(string id)

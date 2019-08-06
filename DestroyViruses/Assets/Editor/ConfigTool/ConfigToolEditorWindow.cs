@@ -30,6 +30,13 @@ public class ConfigToolEditorWindow : EditorWindow
         return str;
     }
 
+    private void OnEnable()
+    {
+        EditorPrefs.SetString("ConfigExcelDir", "Assets/Config/");
+        EditorPrefs.SetString("ConfigClassOutputDir", "Assets/Scripts/GameLogic/Config/");
+        EditorPrefs.SetString("ConfigAssetOutputDir", "Assets/Resources/Config/");
+    }
+
     Vector2 scrollPos = Vector2.zero;
     private void OnGUI()
     {
@@ -162,6 +169,9 @@ public class ConfigToolEditorWindow : EditorWindow
         var propertyTemplate = File.ReadAllText(@"Assets/Editor/ConfigTool/ConfigPropertyTemplate.txt");
         foreach (var p in properties)
         {
+            if (isIgnoreColumn(p))
+                continue;
+
             var _tempStr = propertyTemplate;
             _tempStr = _tempStr.Replace("{name}", p.name);
             _tempStr = _tempStr.Replace("{type}", p.type);
@@ -281,13 +291,13 @@ public class ConfigToolEditorWindow : EditorWindow
                 case "double":
                     return double.Parse(data);
                 case "vector2":
-                    var ii = data.Split('_');
+                    var ii = data.Trim('(', ')').Split('_');
                     return new Vector2(float.Parse(ii[0]), float.Parse(ii[1]));
                 case "vector3":
-                    var iii = data.Split('_');
+                    var iii = data.Trim('(', ')').Split('_');
                     return new Vector3(float.Parse(iii[0]), float.Parse(iii[1]), float.Parse(iii[2]));
                 case "vector4":
-                    var iiii = data.Split('_');
+                    var iiii = data.Trim('(', ')').Split('_');
                     return new Vector4(float.Parse(iiii[0]), float.Parse(iiii[1]), float.Parse(iiii[2]), float.Parse(iiii[3]));
                 case "color":
                     Color color;
@@ -297,6 +307,11 @@ public class ConfigToolEditorWindow : EditorWindow
         }
 
         throw new Exception($"invalid data {stype}: {data}");
+    }
+
+    private bool isIgnoreColumn(PropertyData p)
+    {
+        return p.name == "" || p.type == "" || p.type == "_";
     }
 
     private void GenerateAssetFile(string excelPath)
@@ -349,7 +364,7 @@ public class ConfigToolEditorWindow : EditorWindow
                         {
                             properties[_column].type = item.ToString();
                         }
-                        else if (_row >= 3)
+                        else if (_row >= 3 && !isIgnoreColumn(properties[_column]))
                         {
                             var cellData = ParseData(item.ToString(), properties[_column].type);
                             data.GetType().GetField(properties[_column].name).SetValue(data, cellData);

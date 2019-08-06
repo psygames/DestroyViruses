@@ -23,7 +23,6 @@ namespace DestroyViruses
         private void Start()
         {
             rectTransform.anchoredPosition3D = UIUtil.center;
-            Debug.LogError(ConfigAircraft.Get("1").hp);
         }
 
         private void Update()

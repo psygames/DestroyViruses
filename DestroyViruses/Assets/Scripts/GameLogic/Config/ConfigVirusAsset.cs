@@ -69,24 +69,9 @@ namespace DestroyViruses
 		public string id;
 
 		/// <summary>
-		/// 等级
-		/// </summary>
-		public int level;
-
-		/// <summary>
 		/// virus type
 		/// </summary>
 		public string type;
-
-		/// <summary>
-		/// 血量
-		/// </summary>
-		public float hp;
-
-		/// <summary>
-		/// 速度
-		/// </summary>
-		public float speed;
 
 
 		public static ConfigVirus Get(string id)

@@ -73,11 +73,6 @@ namespace DestroyViruses
 		/// </summary>
 		public int level;
 
-		/// <summary>
-		/// 血量
-		/// </summary>
-		public int hp;
-
 
 		public static ConfigAircraft Get(string id)
 		{
