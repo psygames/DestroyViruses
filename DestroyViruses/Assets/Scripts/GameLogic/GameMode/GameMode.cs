@@ -3,14 +3,14 @@ using System.Collections;
 
 namespace DestroyViruses
 {
-    public class GameMode
+    public abstract class GameMode
     {
-        protected virtual void OnInit() { }
-        protected virtual void OnBegin() { }
-        protected virtual void OnPause() { }
-        protected virtual void OnResume() { }
-        protected virtual void OnUpdate(float deltaTime) { }
-        protected virtual void OnEnd() { }
-        protected virtual void OnQuit() { }
+        protected abstract void OnInit();
+        protected abstract void OnBegin();
+        protected abstract void OnPause();
+        protected abstract void OnResume();
+        protected abstract void OnUpdate(float deltaTime);
+        protected abstract void OnEnd();
+        protected abstract void OnQuit();
     }
 }

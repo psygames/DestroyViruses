@@ -94,9 +94,9 @@ namespace DestroyViruses
 		public float spawnInterval;
 
 		/// <summary>
-		/// 病毒最大数量
+		/// 病毒总数量
 		/// </summary>
-		public int spawnMax;
+		public int spawnCount;
 
 		/// <summary>
 		/// 病毒血量范围

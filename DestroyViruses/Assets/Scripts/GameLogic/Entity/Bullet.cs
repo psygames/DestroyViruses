@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnibusEvent;
 
 namespace DestroyViruses
 {
@@ -13,8 +14,11 @@ namespace DestroyViruses
 
         public float bornCD = 0.03f;
 
-        public void Reset(Vector2 position, float offsetX)
+        protected float mDamage;
+
+        public void Reset(Vector2 position, float offsetX, float damage)
         {
+            mDamage = damage;
             rectTransform.anchoredPosition = position;
             rectTransform.DOAnchorPos3DX(position.x + offsetX, bornCD);
         }
@@ -23,9 +27,15 @@ namespace DestroyViruses
         {
             if (collider.tag == TagUtil.Virus)
             {
+                NotifyHit(collider.GetComponent<VirusBase>());
                 PlayExplosion();
                 Recycle();
             }
+        }
+
+        private void NotifyHit(VirusBase virus)
+        {
+            Unibus.Dispatch(virus, new EventVirus(EventVirus.ActionType.HIT, mDamage));
         }
 
         static float sNextPlayTime = 0;

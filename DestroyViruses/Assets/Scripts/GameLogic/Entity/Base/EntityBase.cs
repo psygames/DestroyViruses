@@ -6,7 +6,9 @@ namespace DestroyViruses
 {
     public class EntityBase : MonoBehaviour
     {
-        public const string prefabPathRoot = "Prefabs/Entities/";
+        public int uid { get; protected set; } = -1;
+        public bool isAlive { get; protected set; } = false;
+
         private RectTransform mRectTransform = null;
         public RectTransform rectTransform
         {
