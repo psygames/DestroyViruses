@@ -38,7 +38,7 @@ namespace DestroyViruses
 
         public void Resume()
         {
-            mMode?.ReflectInvokeMethod("Resume");
+            mMode?.ReflectInvokeMethod("OnResume");
         }
 
         void Update()

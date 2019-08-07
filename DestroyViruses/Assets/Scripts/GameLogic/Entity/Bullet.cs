@@ -35,7 +35,7 @@ namespace DestroyViruses
 
         private void NotifyHit(VirusBase virus)
         {
-            Unibus.Dispatch(virus, new EventVirus(EventVirus.ActionType.HIT, mDamage));
+            Unibus.Dispatch(EventVirus.Get(EventVirus.ActionType.HIT, virus, mDamage));
         }
 
         static float sNextPlayTime = 0;

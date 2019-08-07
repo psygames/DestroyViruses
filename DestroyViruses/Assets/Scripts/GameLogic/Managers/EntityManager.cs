@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UniPool;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ namespace DestroyViruses
         }
 
         public PooledPrefab[] pooledPrefabs;
+
+        private Dictionary<Type, List<EntityBase>> mInstanceDict = new Dictionary<Type, List<EntityBase>>();
 
         private T create<T>() where T : EntityBase
         {
@@ -41,7 +44,47 @@ namespace DestroyViruses
                 entity.transform.localPosition = Vector3.zero;
                 entity.transform.localRotation = Quaternion.identity;
             }
+            var type = entity.GetType();
+            if (!mInstanceDict.ContainsKey(type))
+            {
+                mInstanceDict.Add(type, new List<EntityBase>());
+            }
+            mInstanceDict[type].Add(entity);
             return entity;
+        }
+
+        private bool recycle(EntityBase entity)
+        {
+            var type = entity.GetType();
+            if (!mInstanceDict.ContainsKey(type))
+                return false;
+            if (!mInstanceDict[type].Contains(entity))
+                return false;
+            mInstanceDict[type].Remove(entity);
+            PoolManager.ReleaseObject(entity.gameObject);
+            return true;
+        }
+
+        private List<EntityBase> getAll<T>() where T : EntityBase
+        {
+            var type = typeof(T);
+            if (!mInstanceDict.ContainsKey(type))
+                return null;
+            return mInstanceDict[type];
+        }
+
+        private int count<T>() where T : EntityBase
+        {
+            int count = 0;
+            var type = typeof(T);
+            foreach (var kv in mInstanceDict)
+            {
+                if (type.IsAssignableFrom(kv.Key))
+                {
+                    count += kv.Value.Count;
+                }
+            }
+            return count;
         }
 
 
@@ -49,6 +92,21 @@ namespace DestroyViruses
         public static T Create<T>() where T : EntityBase
         {
             return Instance.create<T>();
+        }
+
+        public static bool Recycle(EntityBase entity)
+        {
+            return Instance.recycle(entity);
+        }
+
+        public static List<EntityBase> GetAll<T>() where T : EntityBase
+        {
+            return Instance.getAll<T>();
+        }
+
+        public static int Count<T>() where T : EntityBase
+        {
+            return Instance.count<T>();
         }
 
         public static void Clear()

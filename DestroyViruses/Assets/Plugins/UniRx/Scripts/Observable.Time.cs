@@ -7,6 +7,11 @@ namespace UniRx
     // Timer, Interval, etc...
     public static partial class Observable
     {
+        public static IObservable<long> Interval(float period)
+        {
+            return Interval(TimeSpan.FromSeconds(period));
+        }
+
         public static IObservable<long> Interval(TimeSpan period)
         {
             return new TimerObservable(period, period, Scheduler.DefaultSchedulers.TimeBasedOperations);
@@ -15,6 +20,11 @@ namespace UniRx
         public static IObservable<long> Interval(TimeSpan period, IScheduler scheduler)
         {
             return new TimerObservable(period, period, scheduler);
+        }
+
+        public static IObservable<long> Timer(float dueTime)
+        {
+            return Timer(TimeSpan.FromSeconds(dueTime));
         }
 
         public static IObservable<long> Timer(TimeSpan dueTime)

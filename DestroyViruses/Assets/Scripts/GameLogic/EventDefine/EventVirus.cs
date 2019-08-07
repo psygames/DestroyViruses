@@ -13,13 +13,19 @@ namespace DestroyViruses
             HIT,
         }
 
-        public ActionType action;
-        public float value = 0;
+        public ActionType action { get; private set; }
+        public VirusBase virus { get; private set; }
+        public float value { get; private set; }
 
-        public EventVirus(ActionType action, float value)
+        private static EventVirus sIns;
+        public static EventVirus Get(ActionType action, VirusBase virus, float value)
         {
-            this.action = action;
-            this.value = value;
+            if (sIns == null)
+                sIns = new EventVirus();
+            sIns.action = action;
+            sIns.virus = virus;
+            sIns.value = value;
+            return sIns;
         }
     }
 }

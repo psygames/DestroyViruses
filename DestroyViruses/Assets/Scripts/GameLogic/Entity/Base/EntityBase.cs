@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UniPool;
 namespace DestroyViruses
 {
     public class EntityBase : MonoBehaviour
@@ -22,7 +21,7 @@ namespace DestroyViruses
 
         public void Recycle()
         {
-            PoolManager.ReleaseObject(gameObject);
+            EntityManager.Recycle(this);
         }
     }
 

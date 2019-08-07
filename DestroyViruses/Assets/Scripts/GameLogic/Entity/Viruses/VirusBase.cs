@@ -23,25 +23,31 @@ namespace DestroyViruses
 
         private void OnEnable()
         {
-            Unibus.Subscribe<EventVirus>(this, OnEventAciton);
+            this.BindUntilDisable<EventVirus>(OnEvent);
         }
 
-        private void OnDisable()
-        {
-            Unibus.Unsubscribe<EventVirus>(this, OnEventAciton);
-        }
-
-        public virtual void Reset(float hp, int size, Vector2 pos, Vector2 direction)
+        public virtual void Reset(float hp, int size, float speed, Vector2 pos, Vector2 direction)
         {
             isAlive = true;
+            mHpTotal = hp;
             mHp = hp;
             mSize = size;
+            mSpeed = speed;
+            this.direction = direction;
             rectTransform.anchoredPosition = pos;
-            this.direction = ;
+            rectTransform.localScale = Vector3.one * GetSizeScale(size);
         }
 
-        private void OnEventAciton(EventVirus evt)
+        private float GetSizeScale(int size)
         {
+            return 1 / Mathf.Sqrt(5 - size);
+        }
+
+        private void OnEvent(EventVirus evt)
+        {
+            if (evt.virus != this)
+                return;
+
             if (evt.action == EventVirus.ActionType.HIT)
             {
                 mHp = Mathf.Max(0, mHp - evt.value);
@@ -55,6 +61,7 @@ namespace DestroyViruses
         private void BeDead()
         {
             isAlive = false;
+            Recycle();
             PlayDead();
             Divide();
         }
@@ -69,12 +76,15 @@ namespace DestroyViruses
             if (mSize <= 1)
                 return;
 
-            var hp = mHp * 0.5f;
+            var hp = mHpTotal * 0.5f;
             var size = mSize - 1;
             var pos = transform.GetUIPos();
-            var a = Create();
-            a.Reset(hp, pos, direction);
 
+            Vector2 dirA = Quaternion.AngleAxis(Random.Range(-60, -80), Vector3.forward) * Vector2.up;
+            Create().Reset(hp, size, mSpeed, pos + dirA * radius * GetSizeScale(size), dirA);
+
+            Vector2 dirB = Quaternion.AngleAxis(Random.Range(60, 80), Vector3.forward) * Vector2.up;
+            Create().Reset(hp, size, mSpeed, pos + dirB * radius * GetSizeScale(size), dirB);
         }
 
 
@@ -86,7 +96,6 @@ namespace DestroyViruses
                 hpText.text = Mathf.CeilToInt(mHp).ToString();
                 mLastHp = mHp;
             }
-
         }
 
         protected virtual void UpdatePosition()

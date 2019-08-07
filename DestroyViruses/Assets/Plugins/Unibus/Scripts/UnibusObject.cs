@@ -28,7 +28,7 @@ namespace UnibusEvent
         {
             if (obj is DictionaryKey)
             {
-                var key = (DictionaryKey) obj;
+                var key = (DictionaryKey)obj;
                 return this.Tag.Equals(key.Tag) && this.Type.Equals(key.Type);
             }
 
@@ -57,7 +57,7 @@ namespace UnibusEvent
                 observerDictionary[key] = new Dictionary<int, OnEventWrapper>();
             }
 
-            observerDictionary[key][eventCallback.GetHashCode()] = (object _object) => { eventCallback((T) _object); };
+            observerDictionary[key][eventCallback.GetHashCode()] = (object _object) => { eventCallback((T)_object); };
         }
 
         public void Unsubscribe<T>(OnEvent<T> eventCallback)
@@ -80,16 +80,22 @@ namespace UnibusEvent
             this.Dispatch(DefaultTag, action);
         }
 
+        private List<OnEventWrapper> mTempList = new List<OnEventWrapper>();
         public void Dispatch<T>(object tag, T action)
         {
             var key = new DictionaryKey(tag, typeof(T));
 
             if (observerDictionary.ContainsKey(key))
             {
-                foreach (var caller in observerDictionary[key].Values)
+                foreach (var c in observerDictionary[key].Values)
+                {
+                    mTempList.Add(c);
+                }
+                foreach (var caller in mTempList)
                 {
                     caller(action);
                 }
+                mTempList.Clear();
             }
             else
             {
