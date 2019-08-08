@@ -7,11 +7,12 @@ using UnibusEvent;
 
 namespace DestroyViruses
 {
-    public class VirusBase : EntityBase<VirusBase>
+    public class VirusBase : EntityBase
     {
         public const float radius = 100f;
 
         public Text hpText;
+        public Image glowImage;
 
         protected float mHp;
         protected float mHpTotal;
@@ -26,13 +27,16 @@ namespace DestroyViruses
             this.BindUntilDisable<EventVirus>(OnEvent);
         }
 
-        public virtual void Reset(float hp, int size, float speed, Vector2 pos, Vector2 direction)
+        public virtual void Reset(float hp, int size, float speed, Vector2 pos, Vector2 direction, Vector2 hpRange)
         {
             isAlive = true;
+            mLastColorIndex = -1;
+            mLastHp = -1;
             mHpTotal = hp;
             mHp = hp;
             mSize = size;
             mSpeed = speed;
+            mHpRange = hpRange;
             this.direction = direction;
             rectTransform.anchoredPosition = pos;
             rectTransform.localScale = Vector3.one * GetSizeScale(size);
@@ -81,14 +85,18 @@ namespace DestroyViruses
             var pos = transform.GetUIPos();
 
             Vector2 dirA = Quaternion.AngleAxis(Random.Range(-60, -80), Vector3.forward) * Vector2.up;
-            Create().Reset(hp, size, mSpeed, pos + dirA * radius * GetSizeScale(size), dirA);
+            Create().Reset(hp, size, mSpeed, pos + dirA * radius * GetSizeScale(size), dirA, mHpRange);
 
             Vector2 dirB = Quaternion.AngleAxis(Random.Range(60, 80), Vector3.forward) * Vector2.up;
-            Create().Reset(hp, size, mSpeed, pos + dirB * radius * GetSizeScale(size), dirB);
+            Create().Reset(hp, size, mSpeed, pos + dirB * radius * GetSizeScale(size), dirB, mHpRange);
         }
 
+        protected VirusBase Create()
+        {
+            return EntityManager.Create(GetType()) as VirusBase;
+        }
 
-        private float mLastHp = 0;
+        private float mLastHp = -1;
         protected virtual void UpdateHp()
         {
             if (mLastHp != mHp)
@@ -120,11 +128,29 @@ namespace DestroyViruses
             rectTransform.anchoredPosition += direction * mSpeed * Time.deltaTime;
         }
 
+        private int mLastColorIndex = -1;
+        protected virtual void UpdateColor()
+        {
+            int colorCount = 9;
+            int index = (int)(mHp / (mHpRange.y - mHpRange.x) * colorCount);
+            index = colorCount - Mathf.Clamp(index, 0, colorCount) - 1;
+            if (mLastColorIndex != index)
+            {
+                OnColorChanged(index);
+                mLastColorIndex = index;
+            }
+        }
+
+        protected virtual void OnColorChanged(int index)
+        {
+            glowImage.SetSprite($"virus_glow_circle_{index}");
+        }
 
         protected virtual void Update()
         {
             UpdateHp();
             UpdatePosition();
+            UpdateColor();
         }
     }
 }

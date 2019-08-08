@@ -175,6 +175,16 @@ public class ConfigToolEditorWindow : EditorWindow
             var _tempStr = propertyTemplate;
             _tempStr = _tempStr.Replace("{name}", p.name);
             _tempStr = _tempStr.Replace("{type}", p.type);
+            if (p.description.Contains("\n"))
+            {
+                p.description = p.description.Replace("\r", "");
+                var paraDesc = "";
+                foreach (var para in p.description.Split('\n'))
+                {
+                    paraDesc += $"<para>{para}</para>";
+                }
+                p.description = paraDesc;
+            }
             _tempStr = _tempStr.Replace("{description}", p.description);
             _propertiesStr += _tempStr;
         }

@@ -57,7 +57,11 @@ namespace UnibusEvent
                 observerDictionary[key] = new Dictionary<int, OnEventWrapper>();
             }
 
-            observerDictionary[key][eventCallback.GetHashCode()] = (object _object) => { eventCallback((T)_object); };
+            observerDictionary[key][eventCallback.GetHashCode()] = (object _object) => 
+            {
+                var obj = _object;
+                eventCallback((T)obj);
+            };
         }
 
         public void Unsubscribe<T>(OnEvent<T> eventCallback)

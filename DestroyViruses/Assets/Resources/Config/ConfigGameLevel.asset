@@ -15,1248 +15,431 @@ MonoBehaviour:
   dataArray:
   - id: 1
     level: 1
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 2
     level: 2
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 3
     level: 3
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 4
     level: 4
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 5
     level: 5
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 6
     level: 6
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 7
     level: 7
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 8
     level: 8
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 9
     level: 9
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 10
     level: 10
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 11
     level: 11
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 12
     level: 12
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 13
     level: 13
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 14
     level: 14
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 15
     level: 15
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 16
     level: 16
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 17
     level: 17
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 18
     level: 18
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 19
     level: 19
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 20
     level: 20
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 21
     level: 21
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 22
     level: 22
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 23
     level: 23
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 24
     level: 24
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 25
     level: 25
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 26
     level: 26
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 27
     level: 27
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 28
     level: 28
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 29
     level: 29
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 30
     level: 30
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 31
     level: 31
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 32
     level: 32
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 33
     level: 33
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 34
     level: 34
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 35
     level: 35
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 36
     level: 36
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 37
     level: 37
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 38
     level: 38
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 39
     level: 39
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 40
     level: 40
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 41
     level: 41
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 42
     level: 42
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1
   - id: 43
     level: 43
-    wave1:
+    waveID:
     - 1
     - 2
     - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    wave2:
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    virusSizeProbability:
-    - 0.4
-    - 0.3
-    - 0.2
-    - 0.1
-    spawnInterval: 1
-    spawnCount: 50
-    virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    spawnIntervalFactor: 1
+    spawnCountFactor: 1
+    virusSpeedFactor: 1
+    virusHpFactor: 1

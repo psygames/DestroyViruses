@@ -14,6 +14,8 @@ namespace DestroyViruses
         public override void OnInit()
         {
             InputListenerInit();
+
+            UnibusEvent.Unibus.Subscribe<EventGameProcedure>(OnGameProcedure);
         }
 
         public override void OnOpen()
@@ -47,6 +49,12 @@ namespace DestroyViruses
             {
                 InputManager.Instance.Push(new InputData(InputType.Drag, UIUtil.FormatToVirtual(data)));
             });
+        }
+
+        private void OnGameProcedure(EventGameProcedure procedure)
+        {
+            //TODO: PROCEDURE
+            Debug.LogError($"{procedure.action}");
         }
     }
 }

@@ -1,134 +1,183 @@
 ﻿using UnityEngine;
 using UniRx;
-using System;
+using UnibusEvent;
 
 namespace DestroyViruses
 {
     // 关卡模式
     public class LevelMode : GameMode
     {
-        private ConfigGameLevel mConfig = null;
-        private bool mIsPause = false;
-        private int mWave = 0;
-        private int mSpawnIndex = 0;
+        private WaveModule mWaveModule = new WaveModule();
 
         protected override void OnInit()
         {
-            mConfig = ConfigGameLevel.Get(_ => _.level == GameLocalData.Instance.gameLevel);
             Aircraft.Create();
+            mWaveModule.Init(GameLocalData.Instance.gameLevel);
+            Unibus.Subscribe<EventAircraft>(OnEventAircraft);
             OnBegin();
         }
 
-        IDisposable virusCreator = null;
         protected override void OnBegin()
         {
-            mSpawnIndex = 0;
-            mWave = 0;
-            Wave1();
-        }
-
-        private void Wave1()
-        {
-            mWave = 1;
-            float inteval = FormulaUtil.WaveSpawnInterval(mWave, mConfig.spawnInterval);
-            virusCreator = Observable.Interval(inteval).Do(_ =>
-            {
-                if (mSpawnIndex >= FormulaUtil.WaveVirusCount(mWave, mConfig.spawnCount))
-                {
-                    virusCreator.Dispose();
-                    Wave2Wait();
-                    return;
-                }
-                CreateVirus();
-                mSpawnIndex++;
-            }).Subscribe();
-        }
-
-        private void Wave2()
-        {
-            mWave = 2;
-            float inteval = FormulaUtil.WaveSpawnInterval(mWave, mConfig.spawnInterval);
-            virusCreator = Observable.Interval(inteval).Do(_ =>
-            {
-                if (mSpawnIndex >= mConfig.spawnCount)
-                {
-                    virusCreator.Dispose();
-                    EndCheck();
-                    return;
-                }
-                CreateVirus();
-                mSpawnIndex++;
-            }).Subscribe();
-        }
-
-        private void Wave2Wait()
-        {
-            virusCreator = Observable.EveryUpdate().Do(_ =>
-            {
-                if (EntityManager.Count<VirusBase>() <= 0)
-                {
-                    virusCreator.Dispose();
-                    Wave2();
-                }
-            }).Subscribe();
-        }
-
-        private void EndCheck()
-        {
-            virusCreator = Observable.EveryUpdate().Do(_ =>
-            {
-                if (EntityManager.Count<VirusBase>() <= 0)
-                {
-                    virusCreator.Dispose();
-                    Win();
-                }
-            }).Subscribe();
-        }
-
-        private void Win()
-        {
-            Debug.LogError("WIN");
-        }
-
-        private void Lose()
-        {
-            Debug.LogError("LOSE");
-        }
-
-        private void CreateVirus()
-        {
-            var virus = VirusBase.Create();
-            var direction = Quaternion.AngleAxis(UnityEngine.Random.Range(-80f, 80f), Vector3.forward) * Vector2.down;
-            var pos = new Vector2(UIUtil.width * 0.5f, UIUtil.height + VirusBase.radius);
-            var hp = FormulaUtil.RandomInRanage(mConfig.virusHpRange);
-            var size = FormulaUtil.RandomInProbArray(mConfig.virusSizeProbability) + 1;
-            var speed = FormulaUtil.RandomInRanage(mConfig.virusSpeedRange);
-            virus.Reset(hp, size, speed, pos, direction);
+            mLastIsFinalWave = false;
+            Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameBegin));
+            mWaveModule.Start();
         }
 
         protected override void OnEnd()
         {
-            virusCreator.Dispose();
+            Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameEnd));
+            mWaveModule.Stop();
         }
 
         protected override void OnQuit()
         {
-            virusCreator.Dispose();
+            Unibus.Unsubscribe<EventAircraft>(OnEventAircraft);
+            mWaveModule.Stop();
         }
+
 
         protected override void OnUpdate(float deltaTime)
         {
-
+            mWaveModule.Update(deltaTime);
+            CheckGameState();
         }
 
         protected override void OnPause()
         {
-            mIsPause = true;
+            mWaveModule.Pause();
         }
 
         protected override void OnResume()
         {
-            mIsPause = false;
+            mWaveModule.Resume();
+        }
+
+
+        private bool mLastIsFinalWave = false;
+        private void CheckGameState()
+        {
+            if (mLastIsFinalWave && mWaveModule.isFinalWave)
+            {
+                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.FinalWave));
+            }
+            mLastIsFinalWave = mWaveModule.isFinalWave;
+
+            if (mWaveModule.isFinalWave && mWaveModule.isStart
+                && EntityManager.Count<VirusBase>() <= 0)
+            {
+                OnEnd();
+                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.Win));
+            }
+        }
+
+        private void OnEventAircraft(EventAircraft evt)
+        {
+            if (evt.action == EventAircraft.ActionType.Crash)
+            {
+                OnEnd();
+                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.Lose));
+            }
+        }
+
+
+
+        public class WaveModule
+        {
+            public const int waveClearVirusCount = 3;
+
+            public ConfigGameLevel configLevel { get; private set; }
+            public ConfigGameVirusWave configWave { get; private set; }
+            public int waveIndex { get; private set; }
+            public bool isFinalWave { get { return waveIndex == configLevel.waveID.Length - 1; } }
+            public int spawnCount { get { return (int)(configWave.spawnCount * configLevel.spawnCountFactor); } }
+            public float spawnInterval { get { return (configWave.spawnInterval * configLevel.spawnIntervalFactor); } }
+
+            public bool isStart { get; private set; }
+            public bool isPause { get; private set; }
+
+            private float mSpawnCD = 0;
+            private int mSpawnIndex = 0;
+
+            public void Init(int gameLevel)
+            {
+                Stop();
+                configLevel = ConfigGameLevel.Get(_ => _.level == gameLevel);
+            }
+
+            public void Start()
+            {
+                SetWave(0);
+                Resume();
+                isStart = true;
+            }
+
+            public void Stop()
+            {
+                isStart = false;
+            }
+
+            public void Resume()
+            {
+                isPause = false;
+            }
+
+            public void Pause()
+            {
+                isPause = true;
+            }
+
+            public void SetWave(int waveIndex)
+            {
+                this.waveIndex = waveIndex;
+                this.mSpawnCD = 0;
+                this.mSpawnIndex = 0;
+                configWave = ConfigGameVirusWave.Get(configLevel.waveID[waveIndex]);
+            }
+
+            public void Update(float deltaTime)
+            {
+                if (!isStart || isPause)
+                    return;
+
+                if (mSpawnIndex < spawnCount) // 产生病毒
+                {
+                    mSpawnCD = Mathf.Max(0, mSpawnCD - deltaTime);
+                    if (mSpawnCD <= 0)
+                    {
+                        SpawnVirus();
+                        //随机CD
+                        mSpawnCD = Random.Range(spawnInterval / 0.8f, spawnInterval * 1.25f);
+                        mSpawnIndex++;
+                    }
+                }
+                else // 等待当前波结束结束
+                {
+                    // 非最终波
+                    if (!isFinalWave && EntityManager.Count<VirusBase>() <= waveClearVirusCount)
+                    {
+                        SetWave(waveIndex + 1);
+                    }
+                }
+            }
+
+
+            private void SpawnVirus()
+            {
+                var direction = Quaternion.AngleAxis(Random.Range(-80f, 80f), Vector3.forward) * Vector2.down;
+                var pos = new Vector2(Random.Range(VirusBase.radius, UIUtil.width - VirusBase.radius), UIUtil.height + VirusBase.radius);
+
+                var hp = FormulaUtil.RandomInRanage(configWave.virusHpRange) * configLevel.virusHpFactor;
+                var speed = FormulaUtil.RandomInRanage(configWave.virusSpeedRange) * configLevel.virusSpeedFactor;
+
+                var virusIndex = FormulaUtil.RandomIndexInProbArray(configWave.virusProb);
+                var virusType = "DestroyViruses.VirusTriangle";//ConfigVirus.Get(configWave.virus[virusIndex]).type;//TODO:VirusType
+                var virus = (VirusBase)EntityManager.Create(System.Type.GetType(virusType));
+                var size = configWave.virusSize[virusIndex];
+
+                virus.Reset(hp, size, speed, pos, direction, configWave.virusHpRange);
+            }
+
         }
     }
 }

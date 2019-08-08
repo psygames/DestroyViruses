@@ -14,7 +14,13 @@ namespace DestroyViruses
             return fireSpeedLevel * 20f;
         }
 
-        public static int RandomInProbArray(float[] probArray)
+
+        public static T RandomInArray<T>(T[] probArray)
+        {
+            return probArray[Random.Range(0, probArray.Length)];
+        }
+
+        public static int RandomIndexInProbArray(float[] probArray)
         {
             var v = Random.value;
             float total = 0;
@@ -41,18 +47,17 @@ namespace DestroyViruses
         public static int WaveVirusCount(int wave, int total)
         {
             if (wave == 1)
-                return (int)(total * 0.7f);
-            else if (wave == 2)
-                return total - WaveVirusCount(1, total);
+                return (int)(total * 0.4f);
+            if (wave == 2)
+                return (int)(total * 0.4f);
+            if (wave == 3)
+                return (int)(total * 0.2f);
             return 0;
         }
 
         public static float WaveSpawnInterval(int wave, float interval)
         {
-            if (wave == 1)
-                return interval;
-            else
-                return interval * 0.7f;
+            return interval / Mathf.Sqrt(wave);
         }
 
         public static float RandomInRanage(Vector2 range)

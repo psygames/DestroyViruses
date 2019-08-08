@@ -16,8 +16,14 @@ public static class GameExtension
         return UIUtil.GetUIPos(transformm);
     }
 
-    public static void SetSprite(this Image image,string atlasPath, string spriteName)
+    public static void SetSprite(this Image image, string atlasPath, string spriteName)
     {
         image.sprite = UIUtil.GetSprite(atlasPath, spriteName);
+    }
+
+    public static void SetSprite(this Image image, string uniqueSpriteName)
+    {
+        //TODO: unique sprite name cached
+        image.sprite = UIUtil.GetSprite("SpriteAtlas/Common", uniqueSpriteName);
     }
 }

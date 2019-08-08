@@ -9,8 +9,7 @@ namespace DestroyViruses
 {
     public class GameModeManager : Singleton<GameModeManager>
     {
-        public bool isModeStarted { get { return mMode != null; } }
-        private GameMode mMode = null;
+        public GameMode currentMode { get; private set; }
 
         private void OnApplicationPause(bool pause)
         {
@@ -21,29 +20,29 @@ namespace DestroyViruses
         public void StartMode<T>() where T : GameMode, new()
         {
             Stop();
-            mMode = new T();
-            mMode?.ReflectInvokeMethod("OnInit");
+            currentMode = new T();
+            currentMode?.ReflectInvokeMethod("OnInit");
         }
 
         public void Stop()
         {
-            mMode?.ReflectInvokeMethod("OnQuit");
-            mMode = null;
+            currentMode?.ReflectInvokeMethod("OnQuit");
+            currentMode = null;
         }
 
         public void Pause()
         {
-            mMode?.ReflectInvokeMethod("OnPause");
+            currentMode?.ReflectInvokeMethod("OnPause");
         }
 
         public void Resume()
         {
-            mMode?.ReflectInvokeMethod("OnResume");
+            currentMode?.ReflectInvokeMethod("OnResume");
         }
 
         void Update()
         {
-            mMode?.ReflectInvokeMethod("OnUpdate", Time.deltaTime);
+            currentMode?.ReflectInvokeMethod("OnUpdate", Time.deltaTime);
         }
     }
 }

@@ -18,12 +18,18 @@ namespace DestroyViruses
 
         private Dictionary<Type, List<EntityBase>> mInstanceDict = new Dictionary<Type, List<EntityBase>>();
 
-        private T create<T>() where T : EntityBase
+        private EntityBase create(Type t)
         {
+            if (!typeof(EntityBase).IsAssignableFrom(t))
+            {
+                Debug.LogError($"Create Entity Failed , {t.Name} is not Assignable To EntityBase");
+                return null;
+            }
+
             PooledPrefab? _pooledPrefab = null;
             foreach (var pp in pooledPrefabs)
             {
-                if (pp.prefab.GetComponent<EntityBase>().GetType() == typeof(T))
+                if (pp.prefab.GetComponent<EntityBase>().GetType() == t)
                 {
                     _pooledPrefab = pp;
                     break;
@@ -31,11 +37,11 @@ namespace DestroyViruses
             }
             if (_pooledPrefab == null)
             {
-                Debug.LogError($"Create Entity Failed , {typeof(T).Name} is not pooled");
+                Debug.LogError($"Create Entity Failed , {t.Name} is not pooled");
                 return null;
             }
 
-            var entity = PoolManager.SpawnObject(_pooledPrefab.Value.prefab).GetComponent<T>();
+            var entity = PoolManager.SpawnObject(_pooledPrefab.Value.prefab).GetComponent<EntityBase>();
             if (_pooledPrefab.Value.root != null
                 && _pooledPrefab.Value.root != entity.transform.parent)
             {
@@ -51,6 +57,11 @@ namespace DestroyViruses
             }
             mInstanceDict[type].Add(entity);
             return entity;
+        }
+
+        private T create<T>() where T : EntityBase
+        {
+            return create(typeof(T)) as T;
         }
 
         private bool recycle(EntityBase entity)
@@ -92,6 +103,11 @@ namespace DestroyViruses
         public static T Create<T>() where T : EntityBase
         {
             return Instance.create<T>();
+        }
+
+        public static EntityBase Create(Type type)
+        {
+            return Instance.create(type);
         }
 
         public static bool Recycle(EntityBase entity)

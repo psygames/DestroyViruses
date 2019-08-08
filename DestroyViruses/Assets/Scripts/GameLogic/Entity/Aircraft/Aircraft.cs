@@ -25,6 +25,14 @@ namespace DestroyViruses
             rectTransform.anchoredPosition3D = UIUtil.center;
         }
 
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == TagUtil.Virus)
+            {
+                UnibusEvent.Unibus.Dispatch(EventAircraft.Get(EventAircraft.ActionType.Crash));
+            }
+        }
+
         private void Update()
         {
 

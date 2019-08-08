@@ -163,22 +163,22 @@ SpriteAtlas:
   - db04_RS
   - f9
   - 2
-  - 2
+  - virus_shape_triangle_2
   - Jishen_W3
   - jishen
   - f2
   - f2
-  - 6
+  - virus_shape_triangle_6
   - d_02
   - jishen2
-  - 3
-  - 4
+  - virus_glow_circle_3
+  - virus_shape_triangle_4
   - Jishen_W4
-  - 5
-  - 2
+  - virus_shape_triangle_5
+  - virus_glow_circle_2
   - f2
   - f8
-  - 4
+  - virus_glow_circle_4
   - 5
   - f6
   - fanTan2
@@ -188,7 +188,7 @@ SpriteAtlas:
   - da01_RS
   - f3
   - glow
-  - 7
+  - virus_glow_circle_7
   - f1
   - f11
   - jitou
@@ -206,13 +206,13 @@ SpriteAtlas:
   - big_title
   - 3
   - f1
-  - 6
+  - virus_glow_circle_6
   - f8
   - 5
-  - 0
+  - virus_glow_circle_0
   - d_05
   - Jishen_W8
-  - 0
+  - virus_shape_triangle_0
   - d0_4
   - d_04
   - f5
@@ -220,7 +220,7 @@ SpriteAtlas:
   - d_01
   - bbb
   - da04_RS
-  - 8
+  - virus_shape_triangle_8
   - 8
   - f6
   - d0_3
@@ -230,8 +230,8 @@ SpriteAtlas:
   - f6
   - 1
   - 6
-  - 3
-  - 7
+  - virus_shape_triangle_3
+  - virus_shape_triangle_7
   - f8
   - d_09
   - da03_RS
@@ -239,7 +239,7 @@ SpriteAtlas:
   - d0_2
   - d_03
   - health_gameing_announce
-  - 5
+  - virus_glow_circle_5
   - f7
   - Jishen_W1
   - 0
@@ -259,16 +259,16 @@ SpriteAtlas:
   - db03_RS
   - dot
   - Jishen_W9
-  - 8
-  - 1
+  - virus_glow_circle_8
+  - virus_shape_triangle_1
   - Jishen_W2
   - 3
-  - 1
+  - virus_glow_circle_1
   - db02_RS
   - d_07
   - f4
   - Jishen_W7
-  - 0
+  - virus_glow_triangle_0
   - d0_1
   m_Tag: common
   m_IsVariant: 0
