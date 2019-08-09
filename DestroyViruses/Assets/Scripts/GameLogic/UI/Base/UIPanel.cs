@@ -22,9 +22,11 @@ namespace DestroyViruses
                 return mRectTransform;
             }
         }
-        public abstract void OnInit();
-        public abstract void OnOpen();
-        public abstract void OnClose();
-        public abstract void OnDestroy();
+        protected virtual void OnOpen() { }
+        protected virtual void OnClose() { }
+        protected void Close()
+        {
+            UIManager.Instance.Close(GetType());
+        }
     }
 }

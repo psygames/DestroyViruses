@@ -9,6 +9,7 @@ namespace DestroyViruses
         public override void OnEnter()
         {
             base.OnEnter();
+            Aircraft.Create().Reset();
             UIManager.Instance.Open<MainPanel>();
         }
 

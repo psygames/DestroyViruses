@@ -101,7 +101,7 @@ namespace DestroyViruses
         {
             if (mLastHp != mHp)
             {
-                hpText.text = Mathf.CeilToInt(mHp).ToString();
+                hpText.text = mHp.KMB();
                 mLastHp = mHp;
             }
         }

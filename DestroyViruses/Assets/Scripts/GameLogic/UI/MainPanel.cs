@@ -14,22 +14,22 @@ namespace DestroyViruses
 
         private Vector2 mTotalDrag = Vector2.zero;
 
-        public override void OnInit()
+        private void Awake()
         {
             InputListenerInit();
         }
 
-        public override void OnOpen()
+        protected override void OnOpen()
         {
             mTotalDrag = Vector2.zero;
             UIUtil.uiBattleRoot.DOScale(Vector3.one * 1.2f, 0.5f);
         }
 
-        public override void OnClose()
+        protected override void OnClose()
         {
         }
 
-        public override void OnDestroy()
+        private void OnDestroy()
         {
             inputListenser.onDrag.RemoveAllListeners();
         }

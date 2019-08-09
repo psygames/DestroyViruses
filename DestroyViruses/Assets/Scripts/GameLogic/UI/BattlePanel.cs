@@ -12,23 +12,23 @@ namespace DestroyViruses
     {
         public UIEventListener inputListenser;
 
-        public override void OnInit()
+        private void Awake()
         {
             InputListenerInit();
             this.BindUntilDisable<EventGameProcedure>(OnGameProcedure);
         }
 
-        public override void OnOpen()
+        protected override void OnOpen()
         {
             UIUtil.uiBattleRoot.DOScale(Vector3.one, 0.5f);
         }
 
-        public override void OnClose()
+        protected override void OnClose()
         {
 
         }
 
-        public override void OnDestroy()
+        private void OnDestroy()
         {
             inputListenser.onDown.RemoveAllListeners();
             inputListenser.onUp.RemoveAllListeners();
@@ -75,6 +75,7 @@ namespace DestroyViruses
         private void ShowGameEndPanel(bool isWin)
         {
             // TODO: game end
+            UIManager.Instance.Open<GameEndPanel>(UILayer.Top);
         }
     }
 }

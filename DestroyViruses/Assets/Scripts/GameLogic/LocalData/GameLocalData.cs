@@ -10,6 +10,7 @@ namespace DestroyViruses
             firePowerLevel = 1;
             fireSpeedLevel = 1;
             gameLevel = 1;
+            unlockedMaxGameLevel = 1;
             coin = 0;
             diamond = 0;
         }
@@ -17,6 +18,7 @@ namespace DestroyViruses
         public int firePowerLevel;  //火力
         public int fireSpeedLevel;  //射速
         public int gameLevel;       //关卡
+        public int unlockedMaxGameLevel;//已解锁关卡
         public int coin;
         public int diamond;
     }

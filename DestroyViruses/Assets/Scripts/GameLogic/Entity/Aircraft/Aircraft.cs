@@ -20,7 +20,7 @@ namespace DestroyViruses
             mInputHandle.onMove = mMovement.Move;
         }
 
-        private void Start()
+        public void Reset()
         {
             rectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, 700, 0);
         }

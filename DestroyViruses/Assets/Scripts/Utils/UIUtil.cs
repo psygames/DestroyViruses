@@ -96,23 +96,34 @@ namespace DestroyViruses
             return UIWorldToUIPos(uiTransform.position);
         }
 
-        private static Dictionary<string, SpriteAtlas> sAtlasDict = new Dictionary<string, SpriteAtlas>();
-        public static SpriteAtlas LoadSpriteAtlas(string path)
+        private static Dictionary<string, SpriteAtlas> sSpriteAtlasDict = null;
+        private static void LoadAtlasAll()
         {
-            if (sAtlasDict.ContainsKey(path))
+            if (sSpriteAtlasDict == null)
             {
-                return sAtlasDict[path];
+                sSpriteAtlasDict = new Dictionary<string, SpriteAtlas>();
+                foreach (var atlas in Resources.LoadAll<SpriteAtlas>(PathUtil.SPRITE_ATLAS_ROOT))
+                {
+                    Sprite[] sprites = new Sprite[atlas.spriteCount];
+                    atlas.GetSprites(sprites);
+                    foreach (var sprite in sprites)
+                    {
+                        var spriteName = sprite.name.Substring(0, sprite.name.Length - 7);
+                        if (!sSpriteAtlasDict.ContainsKey(spriteName))
+                        {
+                            sSpriteAtlasDict.Add(spriteName, atlas);
+                        }
+                    }
+                    sprites = null;
+                }
             }
-            SpriteAtlas atlas = Resources.Load<SpriteAtlas>(path);
-            sAtlasDict.Add(path, atlas);
-            return atlas;
         }
 
-        public static Sprite GetSprite(string atlasPath, string spriteName)
+        public static Sprite GetSprite(string uniqueSpriteName)
         {
-            var atlas = LoadSpriteAtlas(atlasPath);
-            Sprite sprite = atlas.GetSprite(spriteName);
-            return sprite;
+            LoadAtlasAll();
+            sSpriteAtlasDict.TryGetValue(uniqueSpriteName, out SpriteAtlas spriteAtlas);
+            return spriteAtlas?.GetSprite(uniqueSpriteName);
         }
     }
 }

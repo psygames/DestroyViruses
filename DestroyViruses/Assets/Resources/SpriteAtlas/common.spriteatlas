@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c23a689610255324baaef75de9210732, type: 3}
-    totalSpriteSurfaceArea: 4787703
+    totalSpriteSurfaceArea: 4395975
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -91,7 +91,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 53840e9613a2ed64f8dfb6e3a2cfe7d7, type: 3}
   - {fileID: 21300000, guid: e915b3c6aca79af44b1f089ad908d110, type: 3}
   - {fileID: 21300000, guid: 4cf3aac68f6f6ae488891937c0bc4a20, type: 3}
-  - {fileID: 21300000, guid: ec9f8de68ce8c744a8dac243593ad6c2, type: 3}
   - {fileID: 21300000, guid: 37c8c2f65e9e5b8438755a0e3e92886e, type: 3}
   - {fileID: 21300000, guid: 5997a5f6cd638794ea5bf085a8f8db38, type: 3}
   - {fileID: 21300000, guid: 3561f8173968cb44fbfa18434e3958f2, type: 3}
@@ -126,7 +125,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7f08febb41e65fe4a9fb1652061660b2, type: 3}
   - {fileID: 21300000, guid: 53cf87fb491399544bf874c4fb8b0395, type: 3}
   - {fileID: 21300000, guid: cf18520c4120a0947916cf1004526a61, type: 3}
-  - {fileID: 21300000, guid: 6e47cd2cde52a614abec49288ec57ba2, type: 3}
   - {fileID: 21300000, guid: 4acc4b6c84681e9408e86b98f4d48876, type: 3}
   - {fileID: 21300000, guid: db8fc6bc8e606fa48b7f556c2301fccd, type: 3}
   - {fileID: 21300000, guid: 6bca3bbcda9e273408b29dd0cd960825, type: 3}
@@ -203,7 +201,6 @@ SpriteAtlas:
   - f1
   - 4
   - d_06
-  - big_title
   - 3
   - f1
   - virus_glow_circle_6
@@ -238,7 +235,6 @@ SpriteAtlas:
   - f7
   - d0_2
   - d_03
-  - health_gameing_announce
   - virus_glow_circle_5
   - f7
   - Jishen_W1

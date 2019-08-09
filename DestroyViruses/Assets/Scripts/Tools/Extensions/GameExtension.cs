@@ -16,14 +16,43 @@ public static class GameExtension
         return UIUtil.GetUIPos(transformm);
     }
 
-    public static void SetSprite(this Image image, string atlasPath, string spriteName)
-    {
-        image.sprite = UIUtil.GetSprite(atlasPath, spriteName);
-    }
-
     public static void SetSprite(this Image image, string uniqueSpriteName)
     {
-        //TODO: unique sprite name cached
-        image.sprite = UIUtil.GetSprite("SpriteAtlas/Common", uniqueSpriteName);
+        image.sprite = UIUtil.GetSprite(uniqueSpriteName);
+        if (image.type == Image.Type.Simple)
+        {
+            image.SetNativeSize();
+        }
+    }
+
+    // 数值单位转换
+
+    private static string[] sKBMUnits = { "K", "M", "B" };
+    private static float[] sKBMDivs = { 1000f, 1000000f, 1000000000f, 1000000000000f };
+    public static string KMB(this float value)
+    {
+        if (value < sKBMDivs[0])
+        {
+            return ((int)value).ToString();
+        }
+
+        for (int i = 0; i < sKBMUnits.Length; i++)
+        {
+            if (value > sKBMDivs[i] && value < sKBMDivs[i + 1])
+            {
+                value = value / sKBMDivs[i];
+                int d1 = (int)(value * 10) % 10;
+                if (d1 == 0)
+                    return ((int)value).ToString();
+                return ((int)value).ToString() + "." + d1.ToString();
+            }
+        }
+        return "!KBM";
+    }
+
+    // 数值单位转换
+    public static string KMB(this int value)
+    {
+        return KMB((float)value);
     }
 }

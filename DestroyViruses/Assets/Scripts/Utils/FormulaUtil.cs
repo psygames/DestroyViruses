@@ -9,11 +9,21 @@ namespace DestroyViruses
             return firePowerLevel * 100f;
         }
 
+        public static float FirePowerUpCost(int firePowerLevel)
+        {
+            return firePowerLevel * 6240f;
+        }
+
         public static float FireSpeed(int fireSpeedLevel)
         {
             return fireSpeedLevel * 20f;
         }
 
+
+        public static float FireSpeedUpCost(int fireSpeedLevel)
+        {
+            return fireSpeedLevel * 6240f;
+        }
 
         public static T RandomInArray<T>(T[] probArray)
         {
@@ -58,6 +68,11 @@ namespace DestroyViruses
         public static float WaveSpawnInterval(int wave, float interval)
         {
             return interval / Mathf.Sqrt(wave);
+        }
+
+        public static float CoinConvert(float hp)
+        {
+            return hp * 0.01f;
         }
 
         public static float RandomInRanage(Vector2 range)

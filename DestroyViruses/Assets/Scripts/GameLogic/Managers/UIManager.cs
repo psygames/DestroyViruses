@@ -86,7 +86,6 @@ namespace DestroyViruses
             panel = ResourceUtil.Load<UIPanel>(PathUtil.GetPanel(panelType.Name));
             panel = Instantiate(panel);
             panel.gameObject.SetActive(false);
-            panel.OnInit();
             mCachedPanels.Add(panel);
             return panel;
         }
@@ -107,16 +106,27 @@ namespace DestroyViruses
 
             panel.gameObject.SetActive(true);
             SetLayer(panel, layer);
-            panel.OnOpen();
+            panel.Invoke("OnOpen", 0);
             return panel as T;
         }
 
-        public T Close<T>() where T : UIPanel
+        public void Close<T>() where T : UIPanel
         {
             UIPanel panel = GetPanel(typeof(T));
             panel.gameObject.SetActive(false);
-            panel.OnClose();
-            return panel as T;
+            panel.Invoke("OnClose", 0);
+        }
+
+        public void Close(Type type)
+        {
+            if (!typeof(UIPanel).IsAssignableFrom(type))
+            {
+                Debug.LogError($"{type.Name} is not a UIPanel based Type");
+                return;
+            }
+            UIPanel panel = GetPanel(type);
+            panel.gameObject.SetActive(false);
+            panel.Invoke("OnClose", 0);
         }
     }
 }

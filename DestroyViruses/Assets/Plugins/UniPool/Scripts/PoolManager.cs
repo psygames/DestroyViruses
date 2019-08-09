@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -74,6 +74,23 @@ namespace UniPool
             }
         }
 
+        private List<GameObject> mTempClearList = new List<GameObject>();
+        private void releaseAll()
+        {
+            mTempClearList.Clear();
+
+            foreach (var kv in instanceLookup)
+            {
+                mTempClearList.Add(kv.Key);
+            }
+
+            foreach (var _ins in mTempClearList)
+            {
+                releaseObject(_ins);
+            }
+
+            mTempClearList.Clear();
+        }
 
         private GameObject InstantiatePrefab(GameObject prefab)
         {
@@ -105,6 +122,11 @@ namespace UniPool
         public static void ReleaseObject(GameObject clone)
         {
             Instance.releaseObject(clone);
+        }
+
+        public static void ReleaseAll()
+        {
+            Instance.releaseAll();
         }
 
         #endregion
