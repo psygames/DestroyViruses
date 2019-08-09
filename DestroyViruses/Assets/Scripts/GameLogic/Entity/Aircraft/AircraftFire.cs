@@ -26,6 +26,12 @@ namespace DestroyViruses
 
         private void FireOnce()
         {
+            mFirePower = FormulaUtil.FirePower(GameLocalData.Instance.firePowerLevel);
+            mFireSpeed = FormulaUtil.FireSpeed(GameLocalData.Instance.fireSpeedLevel);
+            mFireOnceDuration = Bullet.BULLET_HEIGH / Bullet.BULLET_SPEED;
+            mFireOnceBullets = Mathf.CeilToInt(mFireSpeed * mFireOnceDuration);
+            mFireOnceDuration = mFireOnceBullets / mFireSpeed;
+
             for (int i = 0; i < mFireOnceBullets; i++)
             {
                 var x = Bullet.BULLET_WIDTH * (i - (mFireOnceBullets - 1) * 0.5f);
@@ -46,12 +52,6 @@ namespace DestroyViruses
 
         private void Update()
         {
-            mFirePower = FormulaUtil.FirePower(GameLocalData.Instance.firePowerLevel);
-            mFireSpeed = FormulaUtil.FireSpeed(GameLocalData.Instance.fireSpeedLevel);
-            mFireOnceDuration = Bullet.BULLET_HEIGH / Bullet.BULLET_SPEED;
-            mFireOnceBullets = Mathf.CeilToInt(mFireSpeed * mFireOnceDuration);
-            mFireOnceDuration = mFireOnceBullets / mFireSpeed;
-
             mFireOnceCD = this.UpdateCD(mFireOnceCD);
             if (IsFiring)
             {

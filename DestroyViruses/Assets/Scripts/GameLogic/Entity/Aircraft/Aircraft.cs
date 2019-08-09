@@ -22,7 +22,7 @@ namespace DestroyViruses
 
         private void Start()
         {
-            rectTransform.anchoredPosition3D = UIUtil.center;
+            rectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, 700, 0);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -35,8 +35,10 @@ namespace DestroyViruses
 
         private void Update()
         {
-
+            if (GameUtil.isFrozen)
+            {
+                mFire.HoldFire();
+            }
         }
-
     }
 }

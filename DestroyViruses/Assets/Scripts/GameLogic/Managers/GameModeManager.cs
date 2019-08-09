@@ -17,17 +17,27 @@ namespace DestroyViruses
             else Resume();
         }
 
-        public void StartMode<T>() where T : GameMode, new()
+        public void InitMode<T>() where T : GameMode, new()
         {
-            Stop();
+            QuitMode();
             currentMode = new T();
             currentMode?.ReflectInvokeMethod("OnInit");
         }
 
-        public void Stop()
+        public void QuitMode()
         {
             currentMode?.ReflectInvokeMethod("OnQuit");
             currentMode = null;
+        }
+
+        public void Begin()
+        {
+            currentMode?.ReflectInvokeMethod("OnBegin");
+        }
+
+        public void End(bool isWin)
+        {
+            currentMode?.ReflectInvokeMethod("OnEnd", isWin);
         }
 
         public void Pause()

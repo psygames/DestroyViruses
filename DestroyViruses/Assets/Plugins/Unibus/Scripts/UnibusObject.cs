@@ -104,7 +104,7 @@ namespace UnibusEvent
                 {
                     mTempList = new List<OnEventWrapper>();
                     mTempPooledList.Add(mTempList);
-                    Debug.LogError($"pooled list size: {mTempPooledList.Count}");
+                    // Debug.Log($"pooled list size: {mTempPooledList.Count}");
                 }
                 foreach (var c in observerDictionary[key].Values)
                 {

@@ -9,15 +9,21 @@ namespace DestroyViruses
         private bool mHasFireAction;
         private bool mFireActionValue;
         private bool mHasMoveAction;
+        private bool mFrozen;
         private Vector2 moveActionValue = Vector2.zero;
 
         public Action<Vector2> onMove;
         public Action onFire;
         public Action onHoldFire;
 
-
         private void Update()
         {
+            if (GameUtil.isFrozen)
+            {
+                InputManager.Instance.Clear();
+                return;
+            }
+
             mHasFireAction = false;
             mFireActionValue = false;
             mHasMoveAction = false;

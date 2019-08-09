@@ -148,6 +148,11 @@ namespace DestroyViruses
 
         protected virtual void Update()
         {
+            if (GameUtil.isFrozen)
+            {
+                return;
+            }
+
             UpdateHp();
             UpdatePosition();
             UpdateColor();

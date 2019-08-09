@@ -47,5 +47,10 @@ namespace DestroyViruses
         {
             return mInputStack.Pop();
         }
+
+        public void Clear()
+        {
+            mInputStack.Clear();
+        }
     }
 }

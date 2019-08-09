@@ -11,6 +11,7 @@ namespace DestroyViruses
         {
             m_waitSeconds = 0.1f;
             base.OnEnter();
+            Aircraft.Create();
         }
 
         public override void OnUpdate(float deltaTime)

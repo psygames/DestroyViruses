@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using DG.Tweening;
+using UnibusEvent;
 
 namespace DestroyViruses
 {
@@ -14,8 +15,7 @@ namespace DestroyViruses
         public override void OnInit()
         {
             InputListenerInit();
-
-            UnibusEvent.Unibus.Subscribe<EventGameProcedure>(OnGameProcedure);
+            this.BindUntilDisable<EventGameProcedure>(OnGameProcedure);
         }
 
         public override void OnOpen()
@@ -53,17 +53,28 @@ namespace DestroyViruses
 
         private void OnGameProcedure(EventGameProcedure procedure)
         {
-            //TODO: PROCEDURE
-            Debug.LogError($"{procedure.action}");
-
-            if (procedure.action == EventGameProcedure.ActionType.GameBegin)
+            if (procedure.action == EventGameProcedure.ActionType.FinalWave)
             {
-                UnibusEvent.Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameEnd));
-
-                UnibusEvent.Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameEnd));
-
-                UnibusEvent.Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameEnd));
+                ToastFinalWave();
             }
+            else if (procedure.action == EventGameProcedure.ActionType.GameEndWin)
+            {
+                ShowGameEndPanel(true);
+            }
+            else if (procedure.action == EventGameProcedure.ActionType.GameEndLose)
+            {
+                ShowGameEndPanel(false);
+            }
+        }
+
+        private void ToastFinalWave()
+        {
+            // TODO:TOAST
+        }
+
+        private void ShowGameEndPanel(bool isWin)
+        {
+            // TODO: game end
         }
     }
 }

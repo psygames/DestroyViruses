@@ -12,9 +12,8 @@ namespace DestroyViruses
         {
             GameBegin,
             FinalWave,
-            GameEnd,
-            Win,
-            Lose,
+            GameEndWin,
+            GameEndLose,
         }
 
         public ActionType action { get; private set; }

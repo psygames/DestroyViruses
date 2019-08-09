@@ -11,45 +11,52 @@ namespace DestroyViruses
 
         protected override void OnInit()
         {
-            Aircraft.Create();
+            base.OnInit();
             mWaveModule.Init(GameLocalData.Instance.gameLevel);
             Unibus.Subscribe<EventAircraft>(OnEventAircraft);
-            OnBegin();
+        }
+
+        protected override void OnQuit()
+        {
+            base.OnQuit();
+            Unibus.Unsubscribe<EventAircraft>(OnEventAircraft);
         }
 
         protected override void OnBegin()
         {
+            base.OnBegin();
             mLastIsFinalWave = false;
             Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameBegin));
             mWaveModule.Start();
         }
 
-        protected override void OnEnd()
+        protected override void OnEnd(bool isWin)
         {
-            Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameEnd));
-            mWaveModule.Stop();
-        }
-
-        protected override void OnQuit()
-        {
-            Unibus.Unsubscribe<EventAircraft>(OnEventAircraft);
+            base.OnEnd(isWin);
+            if (isWin)
+                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameEndWin));
+            else
+                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameEndLose));
             mWaveModule.Stop();
         }
 
 
         protected override void OnUpdate(float deltaTime)
         {
+            base.OnUpdate(deltaTime);
             mWaveModule.Update(deltaTime);
             CheckGameState();
         }
 
         protected override void OnPause()
         {
+            base.OnPause();
             mWaveModule.Pause();
         }
 
         protected override void OnResume()
         {
+            base.OnResume();
             mWaveModule.Resume();
         }
 
@@ -66,8 +73,7 @@ namespace DestroyViruses
             if (mWaveModule.isFinalWave && mWaveModule.isStart
                 && EntityManager.Count<VirusBase>() <= 0)
             {
-                OnEnd();
-                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.Win));
+                GameModeManager.Instance.End(true);
             }
         }
 
@@ -75,11 +81,9 @@ namespace DestroyViruses
         {
             if (evt.action == EventAircraft.ActionType.Crash)
             {
-                OnEnd();
-                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.Lose));
+                GameModeManager.Instance.End(false);
             }
         }
-
 
 
         public class WaveModule
