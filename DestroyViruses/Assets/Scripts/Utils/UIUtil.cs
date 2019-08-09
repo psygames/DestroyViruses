@@ -3,6 +3,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.U2D;
 using System.Collections.Generic;
+using UniRx;
 
 namespace DestroyViruses
 {
@@ -124,6 +125,14 @@ namespace DestroyViruses
             LoadAtlasAll();
             sSpriteAtlasDict.TryGetValue(uniqueSpriteName, out SpriteAtlas spriteAtlas);
             return spriteAtlas?.GetSprite(uniqueSpriteName);
+        }
+
+        public static void OnClick(this Button btn, Action callback)
+        {
+            btn.OnClickAsObservable().TakeUntilDestroy(btn).Subscribe(_ =>
+            {
+                callback?.Invoke();
+            });
         }
     }
 }
