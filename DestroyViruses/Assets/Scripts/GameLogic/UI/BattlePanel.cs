@@ -55,6 +55,15 @@ namespace DestroyViruses
         {
             //TODO: PROCEDURE
             Debug.LogError($"{procedure.action}");
+
+            if (procedure.action == EventGameProcedure.ActionType.GameBegin)
+            {
+                UnibusEvent.Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameEnd));
+
+                UnibusEvent.Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameEnd));
+
+                UnibusEvent.Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameEnd));
+            }
         }
     }
 }

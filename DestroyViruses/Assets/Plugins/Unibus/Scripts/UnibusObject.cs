@@ -57,7 +57,7 @@ namespace UnibusEvent
                 observerDictionary[key] = new Dictionary<int, OnEventWrapper>();
             }
 
-            observerDictionary[key][eventCallback.GetHashCode()] = (object _object) => 
+            observerDictionary[key][eventCallback.GetHashCode()] = (object _object) =>
             {
                 var obj = _object;
                 eventCallback((T)obj);
@@ -84,13 +84,28 @@ namespace UnibusEvent
             this.Dispatch(DefaultTag, action);
         }
 
-        private List<OnEventWrapper> mTempList = new List<OnEventWrapper>();
+
+        private List<List<OnEventWrapper>> mTempPooledList = new List<List<OnEventWrapper>>();
         public void Dispatch<T>(object tag, T action)
         {
             var key = new DictionaryKey(tag, typeof(T));
-
             if (observerDictionary.ContainsKey(key))
             {
+                List<OnEventWrapper> mTempList = null;
+                foreach (var lst in mTempPooledList)
+                {
+                    if (lst.Count == 0)
+                    {
+                        mTempList = lst;
+                        break;
+                    }
+                }
+                if (mTempList == null)
+                {
+                    mTempList = new List<OnEventWrapper>();
+                    mTempPooledList.Add(mTempList);
+                    Debug.LogError($"pooled list size: {mTempPooledList.Count}");
+                }
                 foreach (var c in observerDictionary[key].Values)
                 {
                     mTempList.Add(c);
