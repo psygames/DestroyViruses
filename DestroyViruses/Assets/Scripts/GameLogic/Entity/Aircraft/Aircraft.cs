@@ -29,7 +29,7 @@ namespace DestroyViruses
         {
             if (collision.tag == TagUtil.Virus)
             {
-                UnibusEvent.Unibus.Dispatch(EventAircraft.Get(EventAircraft.ActionType.Crash));
+                UnibusEvent.Unibus.Dispatch(EventAircraft.Get(EventAircraft.Action.Crash));
             }
         }
 

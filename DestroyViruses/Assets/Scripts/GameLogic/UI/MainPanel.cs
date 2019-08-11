@@ -4,22 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using DG.Tweening;
+using UnibusEvent;
 
 namespace DestroyViruses
 {
     public class MainPanel : UIPanel
     {
+        // drag listener
         public UIEventListener inputListenser;
-        public float dragBeginThreshold = 100;
+
+        // panels
+        public RadioObjects[] optionBtnRaido;
+        public RadioObjects optionPanelRaido;
 
         public Button baseOptionBtn;
-        public GameObject baseOptionBtnSelect;
         public Button aircraftOptionBtn;
-        public GameObject aircraftOptionBtnSelect;
         public Button coinOptionBtn;
-        public GameObject coinOptionBtnSelect;
 
-        public GameObject basePanel;
         public Button firePowerUpBtn;
         public Text firePowerLevelText;
         public Text firePowerUpCostText;
@@ -27,10 +28,27 @@ namespace DestroyViruses
         public Text fireSpeedLevelText;
         public Text fireSpeedUpCostText;
 
-        public GameObject aircraftPanel;
-        public GameObject coinPanel;
+        // top menu
+        public Text coinText;
+        public Text energyText;
+        public Text diamondText;
 
+        // game level
+        public DOTweenTrigger gameLevelTweenTrigger;
+        public Text previousLevelText;
+        public Text currentLevelText;
+        public Text nextLevelText;
+        public Button previousLevelBtn;
+        public Button currentLevelBtn;
+        public Button nextLevelBtn;
+        public GameObject previousBossTag;
+        public GameObject currentBossTag;
+        public GameObject nextBossTag;
+
+        // private
         private Vector2 mTotalDrag = Vector2.zero;
+        private float mDragBeginThreshold = 100;
+
 
         private void Awake()
         {
@@ -38,14 +56,17 @@ namespace DestroyViruses
             ButtonListenerInit();
         }
 
-        protected override void OnOpen()
+        private void OnEnable()
         {
-            mTotalDrag = Vector2.zero;
-            UIUtil.uiBattleRoot.DOScale(Vector3.one * 1.2f, 0.5f);
+            this.BindUntilDisable<EventGameData>(OnEventGameData);
         }
 
-        protected override void OnClose()
+        protected override void OnOpen()
         {
+            SelectOption(-1);
+            mTotalDrag = Vector2.zero;
+            UIUtil.aircraftTransform.DOScale(Vector3.one * 1.3f, 0.5f).SetEase(Ease.OutQuad);
+            RefreshUI();
         }
 
         private void OnDestroy()
@@ -59,7 +80,7 @@ namespace DestroyViruses
             inputListenser.onDrag.AddListener((data) =>
             {
                 mTotalDrag += data;
-                if (mTotalDrag.magnitude > dragBeginThreshold)
+                if (mTotalDrag.magnitude > mDragBeginThreshold)
                 {
                     GameManager.ChangeState<BattleState>();
                 }
@@ -67,49 +88,127 @@ namespace DestroyViruses
 
             inputListenser.onClick.AddListener(_ =>
             {
-                HideAllPanel();
+                SelectOption(-1);
             });
         }
 
         private void ButtonListenerInit()
         {
-            baseOptionBtn.OnClick(() => { ShowPanel(basePanel, baseOptionBtnSelect); });
-            aircraftOptionBtn.OnClick(() => { ShowPanel(aircraftPanel, aircraftOptionBtnSelect); });
-            coinOptionBtn.OnClick(() => { ShowPanel(coinPanel, coinOptionBtnSelect); });
+            baseOptionBtn.OnClick(() => { SelectOption(0); });
+            aircraftOptionBtn.OnClick(() => { SelectOption(1); });
+            coinOptionBtn.OnClick(() => { SelectOption(2); });
 
             firePowerUpBtn.OnClick(() =>
             {
-                if (GameLocalData.Instance.coin < FormulaUtil.FirePowerUpCost(GameLocalData.Instance.firePowerLevel))
-                {
-                    return;
-                }
-
-                Debug.Log("level up");
+                GameDataManager.Instance.FirePowerUp();
             });
 
             fireSpeedUpBtn.OnClick(() =>
             {
+                GameDataManager.Instance.FireSpeedUp();
+            });
 
+            previousLevelBtn.OnClick(() =>
+            {
+                GDM.ins.SelectGameLevel(GDM.ins.gameLevel - 1);
+                gameLevelTweenTrigger.DoTrigger();
+            });
+
+            currentLevelBtn.OnClick(() =>
+            {
+                gameLevelTweenTrigger.DoTrigger();
+            });
+
+            nextLevelBtn.OnClick(() =>
+            {
+                GDM.ins.SelectGameLevel(GDM.ins.gameLevel + 1);
+                gameLevelTweenTrigger.DoTrigger();
             });
         }
 
-        private void HideAllPanel()
+        private void SelectOption(int optionIndex)
         {
-            basePanel.SetActive(false);
-            baseOptionBtnSelect.SetActive(false);
-
-            aircraftPanel.SetActive(false);
-            aircraftOptionBtnSelect.SetActive(false);
-
-            coinPanel.SetActive(false);
-            coinOptionBtnSelect.SetActive(false);
+            for (int i = 0; i < optionBtnRaido.Length; i++)
+            {
+                optionBtnRaido[i].Radio(i == optionIndex);
+            }
+            optionPanelRaido.Radio(optionIndex);
         }
 
-        public void ShowPanel(GameObject panel, GameObject btnSelect)
+        private void RefreshUI()
         {
-            HideAllPanel();
-            panel.SetActive(true);
-            btnSelect.SetActive(true);
+            coinText.text = GDM.ins.coin.KMB();
+            energyText.text = "100";
+            diamondText.text = "0";
+
+            firePowerLevelText.text = $"LV.{GDM.ins.firePowerLevel}";
+            firePowerUpCostText.text = GDM.ins.firePowerUpCost.KMB();
+            fireSpeedLevelText.text = $"LV.{GDM.ins.fireSpeedLevel}";
+            fireSpeedUpCostText.text = GDM.ins.fireSpeedUpCost.KMB();
+
+            if (GDM.ins.firePowerUpCost > GDM.ins.coin)
+            {
+                firePowerUpCostText.color = UIUtil.RED_COLOR;
+            }
+            else
+            {
+                firePowerUpCostText.color = Color.white;
+            }
+
+            if (GDM.ins.fireSpeedUpCost > GDM.ins.coin)
+            {
+                fireSpeedUpCostText.color = UIUtil.RED_COLOR;
+            }
+            else
+            {
+                fireSpeedUpCostText.color = Color.white;
+            }
+
+            if (GDM.ins.gameLevel - 1 <= 0)
+            {
+                previousLevelText.text = "-";
+                previousBossTag.SetActive(false);
+            }
+            else
+            {
+                previousLevelText.text = (GDM.ins.gameLevel - 1).ToString();
+                previousBossTag.SetActive(ConfigGameLevel.Get(a => a.level == GDM.ins.gameLevel - 1).isBoss);
+            }
+
+            currentLevelText.text = GDM.ins.gameLevel.ToString();
+            currentBossTag.SetActive(ConfigGameLevel.Get(a => a.level == GDM.ins.gameLevel).isBoss);
+
+            if (ConfigGameLevel.Get(a => a.level == GDM.ins.gameLevel) == null)
+            {
+                nextLevelText.text = "-";
+                nextBossTag.SetActive(false);
+            }
+            else
+            {
+                nextLevelText.text = (GDM.ins.gameLevel + 1).ToString();
+                nextBossTag.SetActive(ConfigGameLevel.Get(a => a.level == GDM.ins.gameLevel + 1).isBoss);
+                if (GDM.ins.gameLevel + 1 > GDM.ins.unlockedGameLevel)
+                {
+                    nextLevelText.color = UIUtil.GRAY_COLOR;
+                }
+                else
+                {
+                    nextLevelText.color = currentLevelText.color;
+                }
+            }
+        }
+
+        private void OnEventGameData(EventGameData evt)
+        {
+            if (evt.action == EventGameData.Action.DataChange)
+            {
+                RefreshUI();
+            }
+            else if (evt.action == EventGameData.Action.Error)
+            {
+                //TODO: TOAST ERROR
+                Debug.Log(evt.errorMsg);
+            }
         }
     }
 }

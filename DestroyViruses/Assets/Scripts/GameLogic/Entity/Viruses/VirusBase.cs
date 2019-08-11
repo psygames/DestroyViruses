@@ -52,7 +52,7 @@ namespace DestroyViruses
             if (evt.virus != this)
                 return;
 
-            if (evt.action == EventVirus.ActionType.HIT)
+            if (evt.action == EventVirus.Action.HIT)
             {
                 mHp = Mathf.Max(0, mHp - evt.value);
                 if (mHp <= 0)
@@ -65,6 +65,7 @@ namespace DestroyViruses
         private void BeDead()
         {
             isAlive = false;
+            Unibus.Dispatch(EventVirus.Get(EventVirus.Action.DEAD, this, mHpTotal));
             Recycle();
             PlayDead();
             Divide();
@@ -72,12 +73,19 @@ namespace DestroyViruses
 
         private void PlayDead()
         {
-            //TODO:play dead
+            int colorCount = 4;
+            int type = (int)((mHpTotal - mHpRange.x) / (mHpRange.y - mHpRange.x) * colorCount);
+            type = colorCount - Mathf.Clamp(type, 0, colorCount - 1);
+            ExplosionVirus.Create().Reset(rectTransform.anchoredPosition, type);
         }
 
         private void Divide()
         {
             if (mSize <= 1)
+                return;
+
+            // 血量较少的不产生分裂
+            if ((mHpTotal - mHpRange.x) < (mHpRange.y - mHpRange.x) * 0.2f)
                 return;
 
             var hp = mHpTotal * 0.5f;
@@ -132,8 +140,8 @@ namespace DestroyViruses
         protected virtual void UpdateColor()
         {
             int colorCount = 9;
-            int index = (int)(mHp / (mHpRange.y - mHpRange.x) * colorCount);
-            index = colorCount - Mathf.Clamp(index, 0, colorCount) - 1;
+            int index = (int)((mHp - mHpRange.x) / (mHpRange.y - mHpRange.x) * colorCount);
+            index = colorCount - Mathf.Clamp(index, 0, colorCount - 1) - 1;
             if (mLastColorIndex != index)
             {
                 OnColorChanged(index);

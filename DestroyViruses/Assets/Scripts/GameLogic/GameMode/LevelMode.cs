@@ -8,25 +8,31 @@ namespace DestroyViruses
     public class LevelMode : GameMode
     {
         private WaveModule mWaveModule = new WaveModule();
+        public float getCoin { get; private set; }
+        public float progress { get; private set; }
 
         protected override void OnInit()
         {
             base.OnInit();
-            mWaveModule.Init(GameLocalData.Instance.gameLevel);
+            mWaveModule.Init(GDM.ins.gameLevel);
             Unibus.Subscribe<EventAircraft>(OnEventAircraft);
+            Unibus.Subscribe<EventVirus>(OnEventVirus);
         }
 
         protected override void OnQuit()
         {
             base.OnQuit();
             Unibus.Unsubscribe<EventAircraft>(OnEventAircraft);
+            Unibus.Unsubscribe<EventVirus>(OnEventVirus);
         }
 
         protected override void OnBegin()
         {
             base.OnBegin();
+            getCoin = 0;
+            progress = 0;
             mLastIsFinalWave = false;
-            Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameBegin));
+            Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.GameBegin));
             mWaveModule.Start();
         }
 
@@ -34,10 +40,17 @@ namespace DestroyViruses
         {
             base.OnEnd(isWin);
             if (isWin)
-                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameEndWin));
+                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.GameEndWin));
             else
-                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.GameEndLose));
+                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.GameEndLose));
+
             mWaveModule.Stop();
+
+            // 解锁新关卡
+            if (isWin)
+            {
+                GDM.ins.UnlockNewLevel();
+            }
         }
 
 
@@ -46,6 +59,7 @@ namespace DestroyViruses
             base.OnUpdate(deltaTime);
             mWaveModule.Update(deltaTime);
             CheckGameState();
+            UpdateProgress();
         }
 
         protected override void OnPause()
@@ -64,24 +78,56 @@ namespace DestroyViruses
         private bool mLastIsFinalWave = false;
         private void CheckGameState()
         {
-            if (mLastIsFinalWave && mWaveModule.isFinalWave)
+            if (!mLastIsFinalWave && mWaveModule.isFinalWave)
             {
-                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.ActionType.FinalWave));
+                Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.FinalWave));
             }
             mLastIsFinalWave = mWaveModule.isFinalWave;
 
             if (mWaveModule.isFinalWave && mWaveModule.isStart
-                && EntityManager.Count<VirusBase>() <= 0)
+                && EntityManager.Count<VirusBase>() <= 0
+                && mWaveModule.isSpawnOver)
             {
                 GameModeManager.Instance.End(true);
             }
         }
 
+        private void UpdateProgress()
+        {
+            int total = 0;
+            var configLevel = ConfigGameLevel.Get(_ => _.level == GDM.ins.gameLevel);
+            int spawnedTotal = mWaveModule.spawnIndex;
+            for (int i = 0; i < mWaveModule.configLevel.waveID.Length; i++)
+            {
+                var configWave = ConfigGameVirusWave.Get(mWaveModule.configLevel.waveID[i]);
+                var waveCount = (int)(configWave.spawnCount * configLevel.spawnCountFactor);
+                total += waveCount;
+                if (mWaveModule.waveIndex > i)
+                {
+                    spawnedTotal += waveCount;
+                }
+            }
+            int killed = spawnedTotal - EntityManager.Count<VirusBase>();
+            float _p = Mathf.Clamp01(1f * killed / total);
+            if (_p > progress)
+            {
+                progress = _p;
+            }
+        }
+
         private void OnEventAircraft(EventAircraft evt)
         {
-            if (evt.action == EventAircraft.ActionType.Crash)
+            if (evt.action == EventAircraft.Action.Crash)
             {
                 GameModeManager.Instance.End(false);
+            }
+        }
+
+        private void OnEventVirus(EventVirus evt)
+        {
+            if (evt.action == EventVirus.Action.DEAD)
+            {
+                getCoin += FormulaUtil.CoinConvert(evt.value);
             }
         }
 
@@ -94,14 +140,15 @@ namespace DestroyViruses
             public ConfigGameVirusWave configWave { get; private set; }
             public int waveIndex { get; private set; }
             public bool isFinalWave { get { return waveIndex == configLevel.waveID.Length - 1; } }
+            public bool isSpawnOver { get { return spawnIndex >= spawnCount; } }
             public int spawnCount { get { return (int)(configWave.spawnCount * configLevel.spawnCountFactor); } }
             public float spawnInterval { get { return (configWave.spawnInterval * configLevel.spawnIntervalFactor); } }
+            public int spawnIndex { get; private set; }
 
             public bool isStart { get; private set; }
             public bool isPause { get; private set; }
 
             private float mSpawnCD = 0;
-            private int mSpawnIndex = 0;
 
             public void Init(int gameLevel)
             {
@@ -135,7 +182,7 @@ namespace DestroyViruses
             {
                 this.waveIndex = waveIndex;
                 this.mSpawnCD = 0;
-                this.mSpawnIndex = 0;
+                this.spawnIndex = 0;
                 configWave = ConfigGameVirusWave.Get(configLevel.waveID[waveIndex]);
             }
 
@@ -144,7 +191,7 @@ namespace DestroyViruses
                 if (!isStart || isPause)
                     return;
 
-                if (mSpawnIndex < spawnCount) // 产生病毒
+                if (spawnIndex < spawnCount) // 产生病毒
                 {
                     mSpawnCD = Mathf.Max(0, mSpawnCD - deltaTime);
                     if (mSpawnCD <= 0)
@@ -152,7 +199,7 @@ namespace DestroyViruses
                         SpawnVirus();
                         //随机CD
                         mSpawnCD = Random.Range(spawnInterval / 0.8f, spawnInterval * 1.25f);
-                        mSpawnIndex++;
+                        spawnIndex++;
                     }
                 }
                 else // 等待当前波结束结束
@@ -175,13 +222,12 @@ namespace DestroyViruses
                 var speed = FormulaUtil.RandomInRanage(configWave.virusSpeedRange) * configLevel.virusSpeedFactor;
 
                 var virusIndex = FormulaUtil.RandomIndexInProbArray(configWave.virusProb);
-                var virusType = "DestroyViruses.VirusTriangle";//ConfigVirus.Get(configWave.virus[virusIndex]).type;//TODO:VirusType
+                var virusType = "DestroyViruses." + ConfigVirus.Get(configWave.virus[virusIndex]).type;
                 var virus = (VirusBase)EntityManager.Create(System.Type.GetType(virusType));
                 var size = configWave.virusSize[virusIndex];
 
                 virus.Reset(hp, size, speed, pos, direction, configWave.virusHpRange);
             }
-
         }
     }
 }

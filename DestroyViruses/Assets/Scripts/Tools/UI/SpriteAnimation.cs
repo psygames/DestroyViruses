@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 [RequireComponent(typeof(Image))]
 public class SpriteAnimation : MonoBehaviour
 {
     public Sprite[] sprites;
-    public float interval = 1/30f;
+    public bool loop = true;
+    public float interval = 1 / 30f;
 
     private Image mImage;
     private int mIndex = 0;
@@ -43,9 +45,31 @@ public class SpriteAnimation : MonoBehaviour
 
         if (mTime <= 0)
         {
-            mTime = interval;
-            mIndex = (mIndex + 1) % sprites.Length;
-            SetSprite();
+            mTime += interval;
+            if (loop)
+            {
+                mIndex = (mIndex + 1) % sprites.Length;
+                SetSprite();
+            }
+            else
+            {
+                if (mIndex + 1 >= sprites.Length)
+                {
+                    gameObject.SetActive(false);
+                    return;
+                }
+                else
+                {
+                    mIndex++;
+                    SetSprite();
+                }
+            }
         }
+    }
+
+    public void Restart()
+    {
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
     }
 }

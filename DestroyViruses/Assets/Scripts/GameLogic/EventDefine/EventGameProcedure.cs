@@ -8,7 +8,7 @@ namespace DestroyViruses
 {
     public class EventGameProcedure
     {
-        public enum ActionType
+        public enum Action
         {
             GameBegin,
             FinalWave,
@@ -16,10 +16,10 @@ namespace DestroyViruses
             GameEndLose,
         }
 
-        public ActionType action { get; private set; }
+        public Action action { get; private set; }
 
         private static EventGameProcedure sIns;
-        public static EventGameProcedure Get(ActionType action)
+        public static EventGameProcedure Get(Action action)
         {
             if (sIns == null)
                 sIns = new EventGameProcedure();

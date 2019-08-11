@@ -21,13 +21,12 @@ namespace DestroyViruses
                 fireTransform = transform.Find("fireTransform");
             if (fireTransform == null)
                 Debug.LogError("fireTransform is null, please take care of this!");
-
         }
 
         private void FireOnce()
         {
-            mFirePower = FormulaUtil.FirePower(GameLocalData.Instance.firePowerLevel);
-            mFireSpeed = FormulaUtil.FireSpeed(GameLocalData.Instance.fireSpeedLevel);
+            mFirePower = FormulaUtil.FirePower(GameDataManager.Instance.firePowerLevel);
+            mFireSpeed = FormulaUtil.FireSpeed(GameDataManager.Instance.fireSpeedLevel);
             mFireOnceDuration = Bullet.BULLET_HEIGH / Bullet.BULLET_SPEED;
             mFireOnceBullets = Mathf.CeilToInt(mFireSpeed * mFireOnceDuration);
             mFireOnceDuration = mFireOnceBullets / mFireSpeed;

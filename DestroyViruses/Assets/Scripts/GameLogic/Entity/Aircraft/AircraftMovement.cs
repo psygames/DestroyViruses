@@ -26,7 +26,10 @@ namespace DestroyViruses
 
             Vector2 climpDelta = Vector2.ClampMagnitude(mTargetDelta, moveSpeed * Time.deltaTime);
             mTargetDelta -= climpDelta;
-            mRectTransform.anchoredPosition += climpDelta;
+            var targetPos = mRectTransform.anchoredPosition + climpDelta;
+            targetPos.x = Mathf.Clamp(targetPos.x, 0, UIUtil.width);
+            targetPos.y = Mathf.Clamp(targetPos.y, 0, UIUtil.height);
+            mRectTransform.anchoredPosition = targetPos;
         }
 
     }

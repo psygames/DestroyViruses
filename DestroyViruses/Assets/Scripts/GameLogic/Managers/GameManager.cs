@@ -31,9 +31,5 @@ namespace DestroyViruses
             Instance.mStateMachine.currentState = new T();
         }
 
-        private void OnApplicationQuit()
-        {
-            GameLocalData.Instance.Save();
-        }
     }
 }

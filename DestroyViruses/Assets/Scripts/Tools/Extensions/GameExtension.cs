@@ -38,13 +38,13 @@ public static class GameExtension
 
         for (int i = 0; i < sKBMUnits.Length; i++)
         {
-            if (value > sKBMDivs[i] && value < sKBMDivs[i + 1])
+            if (value >= sKBMDivs[i] && value < sKBMDivs[i + 1])
             {
                 value = value / sKBMDivs[i];
                 int d1 = (int)(value * 10) % 10;
                 if (d1 == 0)
-                    return ((int)value).ToString();
-                return ((int)value).ToString() + "." + d1.ToString();
+                    return ((int)value).ToString() + sKBMUnits[i];
+                return ((int)value).ToString() + "." + d1.ToString() + sKBMUnits[i];
             }
         }
         return "!KBM";

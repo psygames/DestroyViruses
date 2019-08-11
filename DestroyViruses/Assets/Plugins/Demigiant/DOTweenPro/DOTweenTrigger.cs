@@ -30,7 +30,6 @@ namespace DG.Tweening
             foreach (var ani in mAnimas)
             {
                 ani.DORestart();
-                ani.DOPlay();
             }
         }
     }

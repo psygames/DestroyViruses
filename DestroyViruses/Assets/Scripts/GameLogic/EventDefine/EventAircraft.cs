@@ -8,15 +8,15 @@ namespace DestroyViruses
 {
     public class EventAircraft
     {
-        public enum ActionType
+        public enum Action
         {
             Crash,
             Reborn,
         }
 
-        public ActionType action { get; private set; }
+        public Action action { get; private set; }
         private static EventAircraft sIns;
-        public static EventAircraft Get(ActionType action)
+        public static EventAircraft Get(Action action)
         {
             if (sIns == null)
                 sIns = new EventAircraft();

@@ -21,6 +21,7 @@ namespace DestroyViruses
         {
             base.OnExit();
             UIManager.Instance.Close<MainPanel>();
+            GDM.ins.SaveLocalData();
         }
     }
 }

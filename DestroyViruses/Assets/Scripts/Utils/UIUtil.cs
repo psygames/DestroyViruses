@@ -28,25 +28,11 @@ namespace DestroyViruses
             }
         }
 
-        private static RectTransform s_uiBattleRoot = null;
-        public static RectTransform uiBattleRoot
+        public static Transform aircraftTransform
         {
             get
             {
-                if (s_uiBattleRoot == null)
-                {
-                    if (uiRoot != null)
-                    {
-                        var go = uiRoot.Find("Battle");
-                        if (go == null)
-                        {
-                            Debug.LogError("Can't find UI Battle Root.");
-                            return null;
-                        }
-                        s_uiBattleRoot = go.GetComponent<RectTransform>();
-                    }
-                }
-                return s_uiBattleRoot;
+                return EntityManager.GetAll<Aircraft>()[0].transform;
             }
         }
 
@@ -134,5 +120,10 @@ namespace DestroyViruses
                 callback?.Invoke();
             });
         }
+
+        public static Color RED_COLOR = new Color(0.8f, 0.3f, 0.3f);
+        public static Color GRAY_COLOR = new Color(0.6f, 0.7f, 0.7f);
+
+        public static Vector2 COIN_POS { get { return new Vector2(72, height - 78); } }
     }
 }

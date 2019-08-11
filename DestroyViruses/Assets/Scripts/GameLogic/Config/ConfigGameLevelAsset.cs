@@ -98,6 +98,11 @@ namespace DestroyViruses
 		/// </summary>
 		public float virusHpFactor;
 
+		/// <summary>
+		/// BOSS关卡
+		/// </summary>
+		public bool isBoss;
+
 
 		public static ConfigGameLevel Get(string id)
 		{

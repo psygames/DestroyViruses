@@ -10,8 +10,10 @@ namespace DestroyViruses
 {
     public class GameEndPanel : UIPanel
     {
+        public RectTransform coinTransform;
         public Button receiveBtns;
         public Text coinText;
+        public Text titleText;
 
         private void Awake()
         {
@@ -20,13 +22,33 @@ namespace DestroyViruses
 
         private void OnClickReceive()
         {
+            GDM.ins.AddCoin((int)GDM.ins.battleGetCoin);
             Close();
             GameManager.ChangeState<MainState>();
+
+            if (GDM.ins.battleGetCoin != 0)
+            {
+                Coin.CreateGroup(coinTransform.GetUIPos(), UIUtil.COIN_POS, GDM.ins.battleGetCoin);
+            }
+
+            // 注意放到最后
+            if (GDM.ins.newLevelUnlocked)
+            {
+                GDM.ins.SelectGameLevel(GDM.ins.unlockedGameLevel);
+            }
         }
 
         protected override void OnOpen()
         {
-            coinText.text = "11.5K";
+            coinText.text = GDM.ins.battleGetCoin.KMB();
+            if (GDM.ins.newLevelUnlocked)
+            {
+                titleText.text = "恭喜过关";
+            }
+            else
+            {
+                titleText.text = "游戏结束";
+            }
         }
     }
 }

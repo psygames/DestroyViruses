@@ -26,6 +26,7 @@ namespace DestroyViruses
             base.OnExit();
             UIManager.Instance.Close<BattlePanel>();
             EntityManager.Clear();
+            GDM.ins.SaveLocalData();
         }
     }
 }

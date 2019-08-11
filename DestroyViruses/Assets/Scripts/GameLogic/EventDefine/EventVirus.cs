@@ -8,17 +8,18 @@ namespace DestroyViruses
 {
     public class EventVirus
     {
-        public enum ActionType
+        public enum Action
         {
             HIT,
+            DEAD,
         }
 
-        public ActionType action { get; private set; }
+        public Action action { get; private set; }
         public VirusBase virus { get; private set; }
         public float value { get; private set; }
 
         private static EventVirus sIns;
-        public static EventVirus Get(ActionType action, VirusBase virus, float value)
+        public static EventVirus Get(Action action, VirusBase virus, float value)
         {
             if (sIns == null)
                 sIns = new EventVirus();

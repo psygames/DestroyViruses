@@ -22,7 +22,7 @@ namespace DestroyViruses
 
         public static float FireSpeedUpCost(int fireSpeedLevel)
         {
-            return fireSpeedLevel * 6240f;
+            return fireSpeedLevel * 5130f;
         }
 
         public static T RandomInArray<T>(T[] probArray)

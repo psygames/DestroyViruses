@@ -37,9 +37,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 2
     wave: 2
     virus:
@@ -64,9 +64,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 3
     wave: 3
     virus:
@@ -91,9 +91,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 4
     wave: 1
     virus:
@@ -118,9 +118,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 5
     wave: 2
     virus:
@@ -145,9 +145,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 6
     wave: 3
     virus:
@@ -172,9 +172,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 7
     wave: 1
     virus:
@@ -199,9 +199,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 8
     wave: 2
     virus:
@@ -226,9 +226,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 9
     wave: 3
     virus:
@@ -253,9 +253,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 10
     wave: 1
     virus:
@@ -280,9 +280,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 11
     wave: 2
     virus:
@@ -307,9 +307,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 12
     wave: 3
     virus:
@@ -334,9 +334,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 13
     wave: 1
     virus:
@@ -361,9 +361,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 14
     wave: 2
     virus:
@@ -388,9 +388,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 15
     wave: 3
     virus:
@@ -415,9 +415,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 16
     wave: 1
     virus:
@@ -442,9 +442,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 17
     wave: 2
     virus:
@@ -469,9 +469,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 18
     wave: 3
     virus:
@@ -496,9 +496,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 19
     wave: 1
     virus:
@@ -523,9 +523,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 20
     wave: 2
     virus:
@@ -550,9 +550,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 21
     wave: 3
     virus:
@@ -577,9 +577,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 22
     wave: 1
     virus:
@@ -604,9 +604,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 23
     wave: 2
     virus:
@@ -631,9 +631,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 24
     wave: 3
     virus:
@@ -658,9 +658,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 25
     wave: 1
     virus:
@@ -685,9 +685,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 26
     wave: 2
     virus:
@@ -712,9 +712,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 27
     wave: 3
     virus:
@@ -739,9 +739,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 28
     wave: 1
     virus:
@@ -766,9 +766,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 29
     wave: 2
     virus:
@@ -793,9 +793,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 30
     wave: 3
     virus:
@@ -820,9 +820,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 31
     wave: 1
     virus:
@@ -847,9 +847,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 32
     wave: 2
     virus:
@@ -874,9 +874,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 33
     wave: 3
     virus:
@@ -901,9 +901,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 34
     wave: 1
     virus:
@@ -928,9 +928,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 35
     wave: 2
     virus:
@@ -955,9 +955,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 36
     wave: 3
     virus:
@@ -982,9 +982,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 37
     wave: 1
     virus:
@@ -1009,9 +1009,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 38
     wave: 2
     virus:
@@ -1036,9 +1036,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 39
     wave: 3
     virus:
@@ -1063,9 +1063,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 40
     wave: 1
     virus:
@@ -1090,9 +1090,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 41
     wave: 2
     virus:
@@ -1117,9 +1117,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 42
     wave: 3
     virus:
@@ -1144,9 +1144,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 43
     wave: 1
     virus:
@@ -1171,9 +1171,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 1
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 44
     wave: 2
     virus:
@@ -1198,9 +1198,9 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.8
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}
   - id: 45
     wave: 3
     virus:
@@ -1225,6 +1225,6 @@ MonoBehaviour:
     - 2
     virusSize: 010000000200000003000000040000000100000002000000030000000400000001000000
     spawnInterval: 0.6
-    spawnCount: 50
+    spawnCount: 30
     virusHpRange: {x: 1000, y: 5000}
-    virusSpeedRange: {x: 100, y: 150}
+    virusSpeedRange: {x: 100, y: 250}

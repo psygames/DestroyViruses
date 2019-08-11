@@ -36,7 +36,7 @@ namespace DG.Tweening
         public bool isRelative;
         public bool isFrom;
         public bool isIndependentUpdate = false;
-        public bool autoKill = true;
+        public bool autoKill = false;
 
         public bool isActive = true;
         public bool isValid;
