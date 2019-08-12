@@ -127,6 +127,7 @@ namespace DestroyViruses
 
         public static void Clear()
         {
+            Instance.mInstanceDict.Clear();
             PoolManager.ReleaseAll();
         }
         #endregion

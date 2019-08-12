@@ -191,7 +191,7 @@ namespace DestroyViruses
                 if (!isStart || isPause)
                     return;
 
-                if (spawnIndex < spawnCount) // 产生病毒
+                if (!isSpawnOver) // 产生病毒
                 {
                     mSpawnCD = Mathf.Max(0, mSpawnCD - deltaTime);
                     if (mSpawnCD <= 0)
@@ -218,6 +218,7 @@ namespace DestroyViruses
                 var direction = Quaternion.AngleAxis(Random.Range(-80f, 80f), Vector3.forward) * Vector2.down;
                 var pos = new Vector2(Random.Range(VirusBase.radius, UIUtil.width - VirusBase.radius), UIUtil.height + VirusBase.radius);
 
+                var hpRange = configWave.virusHpRange * configLevel.virusHpFactor;
                 var hp = FormulaUtil.RandomInRanage(configWave.virusHpRange) * configLevel.virusHpFactor;
                 var speed = FormulaUtil.RandomInRanage(configWave.virusSpeedRange) * configLevel.virusSpeedFactor;
 
@@ -226,7 +227,7 @@ namespace DestroyViruses
                 var virus = (VirusBase)EntityManager.Create(System.Type.GetType(virusType));
                 var size = configWave.virusSize[virusIndex];
 
-                virus.Reset(hp, size, speed, pos, direction, configWave.virusHpRange);
+                virus.Reset(hp, size, speed, pos, direction, hpRange);
             }
         }
     }
