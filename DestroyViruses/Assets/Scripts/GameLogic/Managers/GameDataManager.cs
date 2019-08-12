@@ -18,7 +18,7 @@ namespace DestroyViruses
 
         // 计算
         public float firePowerUpCost { get { return FormulaUtil.FirePowerUpCost(firePowerLevel); } }
-        public float fireSpeedUpCost { get { return FormulaUtil.FirePowerUpCost(fireSpeedLevel); } }
+        public float fireSpeedUpCost { get { return FormulaUtil.FireSpeedUpCost(fireSpeedLevel); } }
 
         // 临时数据（外部可修改）
         public bool newLevelUnlocked { get; set; }
@@ -56,10 +56,9 @@ namespace DestroyViruses
                 return;
             }
 
-            localData.firePowerLevel += 1;
             localData.coin -= (int)firePowerUpCost;
+            localData.firePowerLevel += 1;
             DispatchEvent(EventGameData.Action.DataChange);
-
             SaveLocalData();
         }
 
@@ -71,10 +70,9 @@ namespace DestroyViruses
                 return;
             }
 
-            localData.fireSpeedLevel += 1;
             localData.coin -= (int)fireSpeedUpCost;
+            localData.fireSpeedLevel += 1;
             DispatchEvent(EventGameData.Action.DataChange);
-
             SaveLocalData();
         }
 

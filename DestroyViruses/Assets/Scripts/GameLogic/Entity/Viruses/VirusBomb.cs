@@ -8,15 +8,18 @@ namespace DestroyViruses
 {
     public class VirusBomb : VirusBase
     {
-        public Image triangleImage1;
-        public Image triangleImage2;
+        public Image shapeBase;
+        public Image[] shapes;
 
         protected override void OnColorChanged(int index)
         {
             base.OnColorChanged(index);
 
-            triangleImage1.SetSprite($"virus_shape_bomb_{index}");
-            triangleImage2.SetSprite($"virus_shape_bomb_{index}");
+            shapeBase.SetSprite($"virus_shape_circle_{index}");
+            foreach (var shape in shapes)
+            {
+                shape.SetSprite($"virus_shape_bomb_{index}");
+            }
         }
     }
 }

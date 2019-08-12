@@ -6,7 +6,7 @@ namespace DestroyViruses
     {
         public static float FirePower(int firePowerLevel)
         {
-            return firePowerLevel * 100f;
+            return 100f + firePowerLevel * 20f;
         }
 
         public static float FirePowerUpCost(int firePowerLevel)
@@ -16,7 +16,7 @@ namespace DestroyViruses
 
         public static float FireSpeed(int fireSpeedLevel)
         {
-            return fireSpeedLevel * 20f;
+            return 40 + fireSpeedLevel * 5f;
         }
 
 

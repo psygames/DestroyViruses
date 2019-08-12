@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: b2f03bcd009937c41bb886555a4fe0a0, type: 3}
-    totalSpriteSurfaceArea: 956572
+    totalSpriteSurfaceArea: 1022108
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -58,6 +58,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e261bbf37c8583c4db50054a1a8fbb8a, type: 3}
   - {fileID: 21300000, guid: 00c7d75422674554fba3cec7f1ea2c3b, type: 3}
   - {fileID: 21300000, guid: c9cb3a9427b4bc84cbfc4ef3fc0fdc10, type: 3}
+  - {fileID: 21300000, guid: 00369b946ced1f14b964cf1e86ec367a, type: 3}
   - {fileID: 21300000, guid: b915384541a793f4face9a6fb872a1ca, type: 3}
   - {fileID: 21300000, guid: 75bcff95229f4cc43af0d303f2b8e5d2, type: 3}
   - {fileID: 21300000, guid: 0e5dc5d50f00dbc448f7d336002843db, type: 3}
@@ -98,6 +99,7 @@ SpriteAtlas:
   - energy_fill_bg
   - game_level_boss
   - button_normal_2
+  - circle_glow
   - game_level_selected
   - button_option_1
   - coin_frame_1

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | DestroyViruses</title>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      UnityLoader.instantiate("unityContainer", "Build/WebGL.json");
+    </script>
+	<script>
+    function Reset()
+    {
+        var canvas = document.getElementById("#canvas");//获取#canvas
+        canvas.height=  document.documentElement.clientHeight;//获取body可见区域高度
+        canvas.width =  document.documentElement.clientWidth;//获取body可见区域高度
+
+    }
+	</script>
+  </head>
+  <body onLoad="Reset()" onResize="Reset()" style="overflow:hidden">  
+    <div id="unityContainer" style="width: 100%; height: 100%; margin: auto"></div>      
+  </body>
+</html>
