@@ -23,18 +23,17 @@ namespace DestroyViruses
         private void OnClickReceive()
         {
             GDM.ins.AddCoin((int)GDM.ins.battleGetCoin);
-            Close();
-            GameManager.ChangeState<MainState>();
-
-            if (GDM.ins.battleGetCoin != 0)
-            {
-                Coin.CreateGroup(coinTransform.GetUIPos(), UIUtil.COIN_POS, GDM.ins.battleGetCoin);
-            }
-
-            // 注意放到最后
             if (GDM.ins.newLevelUnlocked)
             {
                 GDM.ins.SelectGameLevel(GDM.ins.unlockedGameLevel);
+            }
+            Close();
+            GameManager.ChangeState<MainState>();
+
+            // 注意放到最后
+            if (GDM.ins.battleGetCoin != 0)
+            {
+                Coin.CreateGroup(coinTransform.GetUIPos(), UIUtil.COIN_POS, GDM.ins.battleGetCoin);
             }
         }
 
