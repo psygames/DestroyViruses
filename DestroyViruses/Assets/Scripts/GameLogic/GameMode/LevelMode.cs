@@ -47,7 +47,7 @@ namespace DestroyViruses
             mWaveModule.Stop();
 
             // 解锁新关卡
-            if (isWin)
+            if (isWin && GDM.ins.gameLevel >= GDM.ins.unlockedGameLevel)
             {
                 GDM.ins.UnlockNewLevel();
             }

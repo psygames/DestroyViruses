@@ -16,7 +16,7 @@ namespace DestroyViruses
 
         public static float FireSpeed(int fireSpeedLevel)
         {
-            return 40 + fireSpeedLevel * 5f;
+            return 40 + fireSpeedLevel * 10f;
         }
 
 
@@ -72,7 +72,7 @@ namespace DestroyViruses
 
         public static float CoinConvert(float hp)
         {
-            return hp * 0.01f;
+            return hp * 0.05f;
         }
 
         public static float RandomInRanage(Vector2 range)
