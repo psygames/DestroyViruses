@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa90eedb53727c342bb6757ee188cd8c, type: 3}
   m_Name: DataBindSetting
   m_EditorClassIdentifier: 
+  assembly: Assembly-CSharp
   bindTypes:
   - name: global
-    typeName: GameManager
+    typeName: DestroyViruses.GameDataManager
     alias: "\u5168\u5C40"

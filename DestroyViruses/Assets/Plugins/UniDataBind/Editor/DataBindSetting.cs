@@ -9,6 +9,7 @@ namespace UniDataBindEditor
     [System.Serializable]
     public class DataBindSetting : ScriptableObject
     {
+        public string assembly = "Assembly-CSharp";
         public DataBindType[] bindTypes;
 
         [System.Serializable]

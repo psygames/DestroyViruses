@@ -19,10 +19,10 @@ public class ConfigToolEditorWindow : EditorWindow
     }
 
 
-    private string EditorPrefsStringField(string prefName, string title, string defaultValue = "")
+    private string EditorPrefsStringField(string prefName, string _title, string defaultValue = "")
     {
         var prefStr = EditorPrefs.GetString(prefName, defaultValue);
-        var str = (EditorGUILayout.TextField(title, prefStr));
+        var str = (EditorGUILayout.TextField(_title, prefStr));
         if (str != prefStr)
         {
             EditorPrefs.SetString(prefName, str);
@@ -143,21 +143,23 @@ public class ConfigToolEditorWindow : EditorWindow
                     {
                         if (_column >= _headRowColumnCount)
                             break;
+                        switch (_row)
+                        {
+                            case 0:
+                                var p = new PropertyData
+                                {
+                                    name = item.ToString()
+                                };
+                                properties.Add(p);
+                                break;
+                            case 1:
+                                properties[_column].type = item.ToString();
+                                break;
+                            case 2:
+                                properties[_column].description = item.ToString();
+                                break;
+                        }
 
-                        if (_row == 0)
-                        {
-                            var p = new PropertyData();
-                            p.name = item.ToString();
-                            properties.Add(p);
-                        }
-                        else if (_row == 1)
-                        {
-                            properties[_column].type = item.ToString();
-                        }
-                        else if (_row == 2)
-                        {
-                            properties[_column].description = item.ToString();
-                        }
                         _column++;
                     }
                     _row++;
@@ -169,7 +171,7 @@ public class ConfigToolEditorWindow : EditorWindow
         var propertyTemplate = File.ReadAllText(@"Assets/Editor/ConfigTool/ConfigPropertyTemplate.txt");
         foreach (var p in properties)
         {
-            if (isIgnoreColumn(p))
+            if (IsIgnoreColumn(p))
                 continue;
 
             var _tempStr = propertyTemplate;
@@ -222,7 +224,7 @@ public class ConfigToolEditorWindow : EditorWindow
 
         data = new string(chars);
 
-        if (stype.EndsWith("[]"))
+        if (stype.EndsWith("[]", StringComparison.Ordinal))
         {
             data = data.Trim('[', ']');
             var items = data.Split(',');
@@ -319,7 +321,7 @@ public class ConfigToolEditorWindow : EditorWindow
         throw new Exception($"invalid data {stype}: {data}");
     }
 
-    private bool isIgnoreColumn(PropertyData p)
+    private bool IsIgnoreColumn(PropertyData p)
     {
         return p.name == "" || p.type == "" || p.type == "_";
     }
@@ -331,7 +333,7 @@ public class ConfigToolEditorWindow : EditorWindow
         // 第三行属性描述
         // 第四行以及之后数据航
 
-        string classTemplate = File.ReadAllText(@"Assets/Editor/ConfigTool/ConfigClassTemplate.txt");
+        _ = File.ReadAllText(@"Assets/Editor/ConfigTool/ConfigClassTemplate.txt");
         string className = Path.GetFileNameWithoutExtension(excelPath);
         string assetClassName = className + "Asset";
         string _namespace = "DestroyViruses";
@@ -366,15 +368,17 @@ public class ConfigToolEditorWindow : EditorWindow
 
                         if (_row == 0)
                         {
-                            var p = new PropertyData();
-                            p.name = item.ToString();
+                            var p = new PropertyData
+                            {
+                                name = item.ToString()
+                            };
                             properties.Add(p);
                         }
                         else if (_row == 1)
                         {
                             properties[_column].type = item.ToString();
                         }
-                        else if (_row >= 3 && !isIgnoreColumn(properties[_column]))
+                        else if (_row >= 3 && !IsIgnoreColumn(properties[_column]))
                         {
                             var cellData = ParseData(item.ToString(), properties[_column].type);
                             data.GetType().GetField(properties[_column].name).SetValue(data, cellData);
