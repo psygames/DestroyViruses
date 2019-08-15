@@ -10,5 +10,7 @@ namespace UniDataBind
         public string bindName;
         [SerializeField]
         public string bindPath;
+        [SerializeField]
+        public string format;
     }
 }

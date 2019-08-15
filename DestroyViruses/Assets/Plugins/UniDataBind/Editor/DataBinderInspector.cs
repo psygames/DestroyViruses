@@ -4,6 +4,7 @@ using UnityEngine;
 using UniDataBind;
 using UnityEditor;
 using System;
+using System.Linq;
 
 namespace UniDataBindEditor
 {
@@ -14,8 +15,6 @@ namespace UniDataBindEditor
 
         public override void OnInspectorGUI()
         {
-            // base.OnInspectorGUI();
-
             var binder = target as DataBinder;
 
             EditorGUILayout.Space();
@@ -29,12 +28,10 @@ namespace UniDataBindEditor
                 nameArray[i] = bind.name;
                 typeNameArray[i] = bind.typeName;
                 aliasArray[i] = bind.alias;
-                if (bind.name == binder.bindName)
-                    mSelectedIndex = i;
             }
 
             EditorGUILayout.BeginHorizontal();
-            mSelectedIndex = EditorGUILayout.Popup(mSelectedIndex, aliasArray);
+            binder.bindName = Popup(aliasArray, binder.bindName);
             var type = Type.GetType(typeNameArray[mSelectedIndex]);
             if (type == null)
             {
@@ -42,16 +39,40 @@ namespace UniDataBindEditor
             }
             else
             {
-                LoopDraw(type, binder.bindPath);
+                PathDraw(type, binder.bindPath, binder.format);
             }
 
             EditorGUILayout.EndHorizontal();
+
+            binder.format = EditorGUILayout.TextField("格式化", binder.format);
             serializedObject.ApplyModifiedProperties();
         }
 
-        private void LoopDraw(Type type, string path)
+        private void PathDraw(Type type, string path, string format)
+        {
+            var fields = path.Split('.');
+            foreach (var field in fields)
+            {
+                type = GetFieldType(type, field);
+                if (type.IsPrimitive || type == typeof(string))
+                {
+                    if (string.IsNullOrEmpty())
+                }
+            }
+        }
+
+        private Type GetFieldType(Type type, string fieldName)
         {
 
+        }
+
+
+        private string Popup(string[] array, string selected = "")
+        {
+            var index = array.ToList().IndexOf(selected);
+            index = index < 0 ? 0 : index;
+            index = EditorGUILayout.Popup(index, array);
+            return index >= 0 && index < array.Length ? array[index] : selected;
         }
     }
 }
