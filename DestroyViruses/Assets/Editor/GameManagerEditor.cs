@@ -18,7 +18,7 @@ namespace DestroyViruses.Editor
             if (mgr != null)
             {
                 var sm = mgr.ReflectField<StateMachine.StateMachine<StateMachine.State>>("mStateMachine");
-                if (sm != null)
+                if (sm != null && sm.currentState != null)
                 {
                     EditorGUILayout.LabelField("Current State", sm.currentState.GetType().Name);
                 }
