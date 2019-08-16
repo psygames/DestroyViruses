@@ -11,6 +11,7 @@ namespace DestroyViruses
     {
         public const float radius = 100f;
 
+        public RectTransform animationRoot;
         public Text hpText;
         public Image glowImage;
 
@@ -24,7 +25,7 @@ namespace DestroyViruses
 
         private void OnEnable()
         {
-            this.BindUntilDisable<EventVirus>(OnEvent);
+            this.BindUntilDisable<EventBullet>(OnEventBullet);
         }
 
         public virtual void Reset(float hp, int size, float speed, Vector2 pos, Vector2 direction, Vector2 hpRange)
@@ -47,20 +48,34 @@ namespace DestroyViruses
             return 1 / Mathf.Sqrt(5 - size);
         }
 
-        private void OnEvent(EventVirus evt)
+        private void OnEventBullet(EventBullet evt)
         {
-            if (evt.virus != this)
+            if (evt.target != this)
                 return;
 
-            if (evt.action == EventVirus.Action.HIT)
+            if (evt.action == EventBullet.Action.HIT)
             {
-                mHp = Mathf.Max(0, mHp - evt.value);
+                BeHit(evt.damage);
+                mHp = Mathf.Max(0, mHp - evt.damage);
                 if (mHp <= 0)
                 {
                     BeDead();
                 }
             }
         }
+
+        private void BeHit(float damage)
+        {
+            Unibus.Dispatch(EventVirus.Get(EventVirus.Action.BE_HIT, this, damage));
+            PlayHit();
+        }
+
+
+        private void PlayHit()
+        {
+
+        }
+
 
         private void BeDead()
         {

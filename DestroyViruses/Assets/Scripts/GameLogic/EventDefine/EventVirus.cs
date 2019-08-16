@@ -10,7 +10,7 @@ namespace DestroyViruses
     {
         public enum Action
         {
-            HIT,
+            BE_HIT,
             DEAD,
         }
 

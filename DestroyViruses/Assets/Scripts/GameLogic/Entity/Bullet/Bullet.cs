@@ -21,25 +21,25 @@ namespace DestroyViruses
             mDamage = damage;
             rectTransform.anchoredPosition = position;
             rectTransform.DOAnchorPos3DX(position.x + offsetX, bornCD);
+            isAlive = true;
         }
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
+            if (!isAlive)
+                return;
+
             if (collider.tag == TagUtil.Virus)
             {
                 var virus = collider.GetComponent<VirusBase>();
                 if (virus != null && virus.isAlive)
                 {
-                    NotifyHit(collider.GetComponent<VirusBase>());
+                    Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, virus, mDamage));
                     PlayExplosion();
                     Recycle();
+                    isAlive = false;
                 }
             }
-        }
-
-        private void NotifyHit(VirusBase virus)
-        {
-            Unibus.Dispatch(EventVirus.Get(EventVirus.Action.HIT, virus, mDamage));
         }
 
         static float sNextPlayTime = 0;
@@ -59,6 +59,7 @@ namespace DestroyViruses
                 || uiPos.x > UIUtil.width + BULLET_WIDTH || uiPos.x < -BULLET_WIDTH)
             {
                 Recycle();
+                isAlive = false;
             }
 
             rectTransform.anchoredPosition += Vector2.up * BULLET_SPEED * Time.deltaTime;

@@ -625,7 +625,7 @@ MonoBehaviour:
   - prefab: {fileID: 6795419132070359971, guid: 7f6136a2bf1702b4e8723a031f5e752c,
       type: 3}
     root: {fileID: 2101164527}
-  - prefab: {fileID: 5388636947329759520, guid: 4c261e7281a35bb4ab4b22925fa8f730,
+  - prefab: {fileID: 5388636947329759520, guid: 5b585fd9fc0251c428220f4b46919686,
       type: 3}
     root: {fileID: 510663497}
   - prefab: {fileID: 5388636947329759520, guid: 7266064931bfdd54fb87740e59b12019,
@@ -674,9 +674,6 @@ MonoBehaviour:
       type: 3}
     root: {fileID: 510663497}
   - prefab: {fileID: 5388636947329759520, guid: 3723a3559775b0f4e86aac9b71d17ed0,
-      type: 3}
-    root: {fileID: 510663497}
-  - prefab: {fileID: 5388636947329759520, guid: 5b585fd9fc0251c428220f4b46919686,
       type: 3}
     root: {fileID: 510663497}
 --- !u!114 &1541754768
@@ -749,7 +746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1600433768
 RectTransform:
   m_ObjectHideFlags: 0
