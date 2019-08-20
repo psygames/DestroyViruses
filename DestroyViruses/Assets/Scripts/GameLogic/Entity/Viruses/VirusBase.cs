@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnibusEvent;
+using UniRx;
 
 namespace DestroyViruses
 {
@@ -11,7 +12,6 @@ namespace DestroyViruses
     {
         public const float radius = 100f;
 
-        public RectTransform animationRoot;
         public Text hpText;
         public Image glowImage;
 
@@ -21,7 +21,10 @@ namespace DestroyViruses
         protected int mSize;
         protected float mSpeed;
 
-        public Vector2 direction { get; protected set; }
+        protected Vector2 mDirection;
+        protected Vector2 mPosition;
+        protected Vector2 mShakeOffset;
+
 
         private void OnEnable()
         {
@@ -38,8 +41,10 @@ namespace DestroyViruses
             mSize = size;
             mSpeed = speed;
             mHpRange = hpRange;
-            this.direction = direction;
+            mDirection = direction;
+            mPosition = pos;
             rectTransform.anchoredPosition = pos;
+            mShakeOffset = Vector2.zero;
             rectTransform.localScale = Vector3.one * GetSizeScale(size);
         }
 
@@ -73,9 +78,14 @@ namespace DestroyViruses
 
         private void PlayHit()
         {
-
+            mShakeOffset = Random.insideUnitCircle * Random.Range(0, 100);
         }
 
+
+        private void UpdateShake()
+        {
+
+        }
 
         private void BeDead()
         {
@@ -138,17 +148,17 @@ namespace DestroyViruses
             }
             else if (uiPos.y > UIUtil.height - radius)
             {
-                direction = new Vector2(direction.x, -Mathf.Abs(direction.y));
+                mDirection = new Vector2(mDirection.x, -Mathf.Abs(mDirection.y));
             }
             if (uiPos.x < radius)
             {
-                direction = new Vector2(Mathf.Abs(direction.x), direction.y);
+                mDirection = new Vector2(Mathf.Abs(mDirection.x), mDirection.y);
             }
             else if (uiPos.x > UIUtil.width - radius)
             {
-                direction = new Vector2(-Mathf.Abs(direction.x), direction.y);
+                mDirection = new Vector2(-Mathf.Abs(mDirection.x), mDirection.y);
             }
-            rectTransform.anchoredPosition += direction * mSpeed * Time.deltaTime;
+            rectTransform.anchoredPosition += mDirection * mSpeed * Time.deltaTime;
         }
 
         private int mLastColorIndex = -1;

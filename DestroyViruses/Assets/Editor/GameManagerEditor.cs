@@ -23,7 +23,6 @@ namespace DestroyViruses.Editor
                     EditorGUILayout.LabelField("Current State", sm.currentState.GetType().Name);
                 }
             }
-
         }
     }
 }
