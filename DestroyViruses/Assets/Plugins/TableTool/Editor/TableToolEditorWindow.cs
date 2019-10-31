@@ -180,7 +180,7 @@ public class TableToolEditorWindow : EditorWindow
                     }
                     else if (row.ItemArray.Length < _headRowColumnCount)
                     {
-                        throw new System.Exception($"{excelPath} 第{_row}行列数小于首行。");
+                        throw new Exception($"{excelPath} 第{_row}行列数小于首行。");
                     }
                     int _column = 0;
                     foreach (var item in row.ItemArray)
