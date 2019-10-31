@@ -1,5 +1,0 @@
-﻿		/// <summary>
-		/// {description}
-		/// </summary>
-		public {type} {name};
-

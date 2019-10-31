@@ -1,0 +1,564 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+using System.IO;
+using ExcelDataReader;
+using System.Data;
+using System;
+using System.Reflection;
+using System.Text;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
+
+public class TableToolEditorWindow : EditorWindow
+{
+    [MenuItem("Tools/配置表生成工具")]
+    static void GenConfigClass()
+    {
+        var window = GetWindow(typeof(TableToolEditorWindow));
+        window.titleContent = new GUIContent("配置表生成工具");
+    }
+
+
+    private TableToolSettings settings = null;
+    private Assembly assembly = null;
+    private string classTemplate;
+    private string propertyTemplate;
+    private string propertyDictionaryTemplate;
+
+    private void OnEnable()
+    {
+        settings = AssetDatabase.LoadAssetAtPath<TableToolSettings>("Assets/Plugins/TableTool/Editor/TableToolSettings.asset");
+        assembly = Assembly.Load(settings.assemblyName);
+        classTemplate = File.ReadAllText(settings.classTemplatePath);
+        propertyTemplate = File.ReadAllText(settings.propertyTemplatePath);
+        propertyDictionaryTemplate = File.ReadAllText(settings.propertyDictionaryTemplatePath);
+    }
+
+    private void PathField(string title, string path)
+    {
+        if (!File.Exists(path) && !Directory.Exists(path))
+        {
+            EditorUtil.Label($"{title} 不存在：{path}", Color.red);
+        }
+        else
+        {
+            EditorUtil.Text(title, path);
+        }
+    }
+
+    private void OnGUI()
+    {
+        try
+        {
+            EditorGUILayout.Space();
+            EditorUtil.Label("提示！！！ 若需要修改配置文件请转至 TableToolConfig.asset 中修改。");
+            EditorGUILayout.Space();
+
+
+            EditorUtil.Box("配置信息：", () =>
+            {
+                EditorUtil.DisableGroup(() =>
+                {
+                    EditorUtil.Text("Assembly 名字", settings.assemblyName);
+                    EditorUtil.Text("命名空间", settings._namespace);
+                    PathField("类模版 文件路径", settings.classTemplatePath);
+                    PathField("属性模版 文件路径", settings.propertyTemplatePath);
+                    PathField("Excel表格 目录路径", settings.excelFolderPath);
+                    PathField("生成数据类 目录路径", settings.generateClassFolderPath);
+                    PathField("生成数据文件 目录路径", settings.generateAssetFolderPath);
+                    EditorUtil.Text("数据加密开关", settings.encrypt ? "打开" : "关闭");
+                    EditorUtil.Text("数据加密Key", settings.encryptKey);
+                });
+            });
+
+            EditorGUILayout.Space();
+
+            EditorUtil.Box("全部表格：", () =>
+            {
+                if (!Directory.Exists(settings.excelFolderPath))
+                {
+                    EditorUtil.Label($"Excel表格路径不存在：{settings.excelFolderPath}", Color.red);
+                }
+                else
+                {
+                    EditorUtil.ScrollView(() =>
+                    {
+                        foreach (var fi in GetExcelList())
+                        {
+                            EditorUtil.Label("    " + Path.GetFileName(fi));
+                        }
+                    });
+                }
+            });
+
+            EditorGUILayout.Space();
+            if (GUILayout.Button("生成Class"))
+            {
+                GeneAllClasses();
+            }
+            if (GUILayout.Button("生成Asset"))
+            {
+                GeneAllAssets();
+            }
+            EditorGUILayout.Space();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("生成失败: " + e.Message + "\n" + e.StackTrace);
+            EditorUtility.ClearProgressBar();
+        }
+    }
+
+    private void GeneAllAssets()
+    {
+        var files = GetExcelList();
+        int i = 0;
+        foreach (var excelPath in files)
+        {
+            var excelName = Path.GetFileName(excelPath);
+            bool cancel = EditorUtility.DisplayCancelableProgressBar($"生成数据文件中...", excelName, 1f * i / files.Count);
+            if (cancel)
+            {
+                EditorUtility.ClearProgressBar();
+                break;
+            }
+            GenerateAssetFile(excelPath);
+            i++;
+        }
+        AssetDatabase.Refresh();
+        EditorUtility.ClearProgressBar();
+        Debug.Log("生成数据文件完成");
+    }
+
+    private void GeneAllClasses()
+    {
+        var files = GetExcelList();
+        int i = 0;
+        foreach (var excelPath in files)
+        {
+            var excelName = Path.GetFileName(excelPath);
+            bool cancel = EditorUtility.DisplayCancelableProgressBar($"生成Class文件中...", excelName, 1f * i / files.Count);
+            if (cancel)
+            {
+                EditorUtility.ClearProgressBar();
+                break;
+            }
+            GenerateClassFile(excelPath);
+            i++;
+        }
+        AssetDatabase.Refresh();
+        EditorUtility.ClearProgressBar();
+        Debug.Log("生成Class完成");
+    }
+
+    private void GenerateClassFile(string excelPath)
+    {
+        // 第一行属性名
+        // 第二行属性类型
+        // 第三行属性描述
+        // 第四行以及之后数据航
+
+        string className = Path.GetFileNameWithoutExtension(excelPath);
+        string _namespace = settings._namespace;
+        List<PropertyData> properties = new List<PropertyData>();
+        int _headRowColumnCount = -1;
+
+        using (var stream = File.Open(excelPath, FileMode.Open, FileAccess.Read))
+        {
+            using (var reader = ExcelReaderFactory.CreateReader(stream))
+            {
+                var result = reader.AsDataSet();
+                int _row = 0;
+                foreach (DataRow row in result.Tables[0].Rows)
+                {
+                    if (_row == 0)
+                    {
+                        _headRowColumnCount = row.ItemArray.Length;
+                    }
+                    else if (row.ItemArray.Length < _headRowColumnCount)
+                    {
+                        throw new System.Exception($"{excelPath} 第{_row}行列数小于首行。");
+                    }
+                    int _column = 0;
+                    foreach (var item in row.ItemArray)
+                    {
+                        if (_column >= _headRowColumnCount)
+                            break;
+                        switch (_row)
+                        {
+                            case 0:
+                                var p = new PropertyData
+                                {
+                                    name = item.ToString()
+                                };
+                                properties.Add(p);
+                                break;
+                            case 1:
+                                properties[_column].type = item.ToString();
+                                break;
+                            case 2:
+                                properties[_column].description = item.ToString();
+                                break;
+                        }
+
+                        _column++;
+                    }
+                    _row++;
+                }
+            }
+        }
+
+        var _classStr = classTemplate;
+        var _propertiesStr = "";
+        foreach (var p in properties)
+        {
+            if (IsIgnoreColumn(p))
+                continue;
+
+            var _tempStr = propertyTemplate;
+            if (p.type.StartsWith("Dictionary"))
+            {
+                _tempStr = propertyDictionaryTemplate;
+                var kvType = GetDictionaryKVType(p.type);
+                _tempStr = _tempStr.Replace("{keyType}", kvType.Item1);
+                _tempStr = _tempStr.Replace("{valueType}", kvType.Item2);
+            }
+
+            _tempStr = _tempStr.Replace("{type}", p.type);
+            _tempStr = _tempStr.Replace("{name}", p.name);
+            if (p.description.Contains("\n"))
+            {
+                p.description = p.description.Replace("\r", "");
+                var paraDesc = "";
+                foreach (var para in p.description.Split('\n'))
+                {
+                    paraDesc += $"<para>{para}</para>";
+                }
+                p.description = paraDesc;
+            }
+            _tempStr = _tempStr.Replace("{description}", p.description);
+            _propertiesStr += _tempStr;
+        }
+
+
+
+        _classStr = _classStr.Replace("{namespace}", _namespace);
+        _classStr = _classStr.Replace("{className}", className);
+        _classStr = _classStr.Replace("{properties}", _propertiesStr);
+        _classStr = _classStr.Replace("{encrypt}", settings.encrypt.ToString().ToLower());
+        _classStr = _classStr.Replace("{encryptKey}", settings.encryptKey);
+        _classStr = _classStr.Replace("{encryptIv}", className);
+
+        var dir = settings.generateClassFolderPath;
+        if (!Directory.Exists(settings.generateClassFolderPath))
+        {
+            Debug.LogError("未能找到Class生成目录路径：" + settings.generateClassFolderPath);
+            return;
+        }
+        File.WriteAllText(Path.Combine(dir, $"{className}.cs"), _classStr);
+    }
+
+    private Type GetType(string stype)
+    {
+        switch (stype)
+        {
+            case "string":
+                return typeof(string);
+            case "int":
+                return typeof(int);
+            case "long":
+                return typeof(long);
+            case "float":
+                return typeof(float);
+            case "bool":
+                return typeof(bool);
+            case "short":
+                return typeof(short);
+            case "char":
+                return typeof(char);
+            case "double":
+                return typeof(double);
+            default:
+                return assembly.GetType(stype);
+
+        }
+    }
+
+    private Tuple<string, string> GetDictionaryKVType(string stype)
+    {
+        var _st = stype.IndexOf("<") + 1;
+        var keyType = stype.Substring(_st, stype.IndexOf(",") - _st);
+        _st = stype.IndexOf(",") + 1;
+        var valueType = stype.Substring(_st, stype.IndexOf(">") - _st);
+        return Tuple.Create(keyType, valueType);
+    }
+
+    private Type GetDictionaryType(string stype)
+    {
+        var kv = GetDictionaryKVType(stype);
+        var kt = GetType(kv.Item1);
+        var vt = GetType(kv.Item2);
+        Type generic = typeof(Dictionary<,>);
+        return generic.MakeGenericType(kt, vt);
+    }
+
+    public object ParseData(string rawData, string stype)
+    {
+        int bracketsCount = 0;
+        var chars = rawData.ToCharArray();
+        for (int i = 0; i < chars.Length; i++)
+        {
+            if (chars[i] == '(')
+            {
+                bracketsCount++;
+            }
+
+            if (chars[i] == ')')
+            {
+                bracketsCount--;
+            }
+
+            if (bracketsCount > 0 && chars[i] == ',')
+            {
+                chars[i] = '_';
+            }
+        }
+
+        var data = new string(chars);
+
+        if (stype.EndsWith("[]", StringComparison.Ordinal))
+        {
+            data = data.Trim('[', ']');
+            var items = data.Split(',');
+            int length = items[0] == "" ? 0 : items.Length;
+            var itemType = stype.Substring(0, stype.Length - 2);
+            Array array = Array.CreateInstance(GetType(itemType), length);
+            if (array == null)
+            {
+                throw new Exception($"invalid array type : {stype}");
+            }
+            for (int i = 0; i < length; i++)
+            {
+                array.SetValue(ParseData(items[i], itemType), i);
+            }
+            return array;
+        }
+        else
+        {
+            // 特殊类型
+            if (stype.StartsWith("Dictionary"))
+            {
+                data = data.Trim('[', ']');
+                var items = data.Split(',');
+                int length = items[0] == "" ? 0 : items.Length;
+                var dictType = GetDictionaryType(stype);
+                var kvType = GetDictionaryKVType(stype);
+                var dict = Activator.CreateInstance(dictType);
+                var addMethod = dictType.GetMethod("Add");
+                for (int i = 0; i < length; i++)
+                {
+                    var ii = items[i].Trim('(', ')').Split('_');
+                    var key = ParseData(ii[0], kvType.Item1);
+                    var value = ParseData(ii[1], kvType.Item2);
+                    addMethod.Invoke(dict, new object[] { key, value });
+                }
+                return dict;
+            }
+
+            // 内置类型 
+            switch (stype)
+            {
+                case "string":
+                    return data;
+                case "Vector2":
+                    var ii = data.Trim('(', ')').Split('_');
+                    return new Vector2(float.Parse(ii[0]), float.Parse(ii[1]));
+                case "Vector3":
+                    var iii = data.Trim('(', ')').Split('_');
+                    return new Vector3(float.Parse(iii[0]), float.Parse(iii[1]), float.Parse(iii[2]));
+                case "Vector4":
+                    var iiii = data.Trim('(', ')').Split('_');
+                    return new Vector4(float.Parse(iiii[0]), float.Parse(iiii[1]), float.Parse(iiii[2]), float.Parse(iiii[3]));
+                case "Color":
+                    Color color;
+                    ColorUtility.TryParseHtmlString(data, out color);
+                    return color;
+            }
+
+            // 自定义类型 or 基础类型
+            var type = GetType(stype);
+            var parseMethod = type.GetMethod("Parse", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic, null, new Type[] { typeof(string) }, null);
+            if (parseMethod == null)
+                throw new Exception($"类型 {stype} 不存在静态 Parse 方法");
+            return parseMethod.Invoke(null, new object[] { rawData });
+        }
+
+        throw new Exception($"invalid data {stype}: {rawData}");
+    }
+
+    private bool IsIgnoreColumn(PropertyData p)
+    {
+        return p.name == "" || p.type == "" || p.type == "_";
+    }
+
+    private void GenerateAssetFile(string excelPath)
+    {
+        // 第一行属性名
+        // 第二行属性类型
+        // 第三行属性描述
+        // 第四行以及之后数据航
+
+        string className = Path.GetFileNameWithoutExtension(excelPath);
+        string collectionClassName = className + "Collection";
+        string _namespace = settings._namespace;
+        Type classType = GetType(_namespace + "." + className);
+        Type collectionClassType = GetType(_namespace + "." + collectionClassName);
+        List<object> dataList = new List<object>();
+        List<PropertyData> properties = new List<PropertyData>();
+        int _headRowColumnCount = -1;
+        using (var stream = File.Open(excelPath, FileMode.Open, FileAccess.Read))
+        {
+            using (var reader = ExcelReaderFactory.CreateReader(stream))
+            {
+                var result = reader.AsDataSet();
+                int _row = 0;
+                foreach (DataRow row in result.Tables[0].Rows)
+                {
+                    if (_row == 0)
+                    {
+                        _headRowColumnCount = row.ItemArray.Length;
+                    }
+
+                    int _column = 0;
+                    object data = null;
+                    if (_row >= 3)
+                    {
+                        data = Activator.CreateInstance(classType);
+                    }
+                    foreach (var item in row.ItemArray)
+                    {
+                        if (_column >= _headRowColumnCount)
+                            break;
+
+                        if (_row == 0)
+                        {
+                            var p = new PropertyData
+                            {
+                                name = item.ToString()
+                            };
+                            properties.Add(p);
+                        }
+                        else if (_row == 1)
+                        {
+                            properties[_column].type = item.ToString();
+                        }
+                        else if (_row >= 3 && !IsIgnoreColumn(properties[_column]))
+                        {
+                            try
+                            {
+                                var cellData = ParseData(item.ToString(), properties[_column].type);
+                                data.GetType().GetProperty(properties[_column].name).SetValue(data, cellData);
+                            }
+                            catch (Exception e)
+                            {
+                                Debug.LogError($"{className} ParseData Error at cell {_row + 1}:{_column + 1}, type: {properties[_column].type}, value: {item.ToString()}\n{e.Message}\n{e.StackTrace}");
+                            }
+                        }
+                        _column++;
+                    }
+                    if (_row >= 3)
+                    {
+                        dataList.Add(data);
+                    }
+                    _row++;
+                }
+            }
+        }
+
+        var obj = assembly.CreateInstance(collectionClassType.FullName);
+        var dict = Activator.CreateInstance(GetDictionaryType($"Dictionary<string,{_namespace}.{className}>"));
+        var flag = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
+        var keys = new List<string>();
+        for (int i = 0; i < dataList.Count; i++)
+        {
+            string id = (string)dataList[i].GetType().GetProperty("id", flag).GetValue(dataList[i]);
+            if (string.IsNullOrEmpty(id))
+            {
+                continue;
+            }
+            if (keys.Contains(id))
+            {
+                Debug.LogError($"{className} Already has the same id {id}");
+                continue;
+            }
+            dict.GetType().GetMethod("Add", flag).Invoke(dict, new object[] { id, dataList[i] });
+            keys.Add(id);
+        }
+        obj.GetType().GetField("mDict", flag).SetValue(obj, dict);
+        var savePath = Path.Combine(settings.generateAssetFolderPath, $"{className}.bytes");
+        SaveTableObj(obj, savePath, className);
+    }
+
+    private void SaveTableObj(object obj, string path, string className)
+    {
+        var stream = new MemoryStream();
+        var formatter = new BinaryFormatter();
+        formatter.Serialize(stream, obj);
+        var bytes = stream.ToArray();
+        stream.Close();
+        if (settings.encrypt)
+        {
+            bytes = AesEncrypt(bytes, settings.encryptKey, className);
+        }
+        Stream fStream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite);
+        fStream.Write(bytes, 0, bytes.Length);
+        fStream.Close();
+    }
+
+    private byte[] AesEncrypt(byte[] bytes, string key, string iv)
+    {
+        byte[] cryptograph = null;
+        Rijndael Aes = Rijndael.Create();
+        using (MemoryStream Memory = new MemoryStream())
+        {
+            var transform = Aes.CreateEncryptor(AesKey(key), AesKey(iv));
+            using (CryptoStream Encryptor = new CryptoStream(Memory, transform, CryptoStreamMode.Write))
+            {
+                Encryptor.Write(bytes, 0, bytes.Length);
+                Encryptor.FlushFinalBlock();
+                cryptograph = Memory.ToArray();
+            }
+            transform.Dispose();
+        }
+        return cryptograph;
+    }
+
+    private byte[] AesKey(string key)
+    {
+        byte[] bytes = Encoding.UTF8.GetBytes(key);
+        byte[] keyBytes = new byte[16];
+        for (int i = 0; i < bytes.Length; i++)
+        {
+            keyBytes[i % 16] = (byte)(keyBytes[i % 16] ^ bytes[i]);
+        }
+        return keyBytes;
+    }
+
+    private List<string> GetExcelList()
+    {
+        var files = Directory.GetFiles(settings.excelFolderPath)
+            .Where(a => { return a.EndsWith(".xls") || a.EndsWith(".xlsx"); }).ToList();
+        return files;
+    }
+
+
+    class PropertyData
+    {
+        public string name;
+        public string type;
+        public string description;
+    }
+}

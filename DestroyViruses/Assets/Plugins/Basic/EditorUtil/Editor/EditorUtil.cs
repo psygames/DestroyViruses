@@ -37,12 +37,30 @@ namespace UnityEditor
             EditorGUILayout.EndVertical();
         }
 
-        public static Vector2 ScrollView(Vector2 pos, Action callback)
+        public static void Box(Action callback)
         {
-            pos = EditorGUILayout.BeginScrollView(pos);
+            EditorGUILayout.BeginVertical("box");
+            callback?.Invoke();
+            EditorGUILayout.EndVertical();
+        }
+
+        public static void Box(string title, Action callback)
+        {
+            Label(title);
+            EditorGUILayout.BeginVertical("box");
+            callback?.Invoke();
+            EditorGUILayout.EndVertical();
+        }
+
+        private static Dictionary<long, Vector2> sScrollPos = new Dictionary<long, Vector2>();
+        public static void ScrollView(Action callback)
+        {
+            var hash = callback.GetHashCode();
+            if (!sScrollPos.ContainsKey(hash))
+                sScrollPos.Add(hash, Vector2.zero);
+            sScrollPos[hash] = EditorGUILayout.BeginScrollView(sScrollPos[hash]);
             callback?.Invoke();
             EditorGUILayout.EndScrollView();
-            return pos;
         }
 
         private static GUIStyle GeneralStyle(Color color = default)
@@ -72,17 +90,34 @@ namespace UnityEditor
 
         public static void Label(string label1, string label2, Color color = default)
         {
-            EditorGUILayout.LabelField(label1, label2, GeneralStyle(color));
+            if (color == default)
+                EditorGUILayout.LabelField(label1, label2);
+            else
+                EditorGUILayout.LabelField(label1, label2, GeneralStyle(color));
         }
 
         public static void Label(string label, Color color = default)
         {
-            EditorGUILayout.LabelField(label, GeneralStyle(color));
+            if (color == default)
+                EditorGUILayout.LabelField(label);
+            else
+                EditorGUILayout.LabelField(label, GeneralStyle(color));
         }
 
         public static Enum Enum(string title, Enum selected)
         {
             return EditorGUILayout.EnumPopup(title, selected);
+        }
+
+        public static string PrefsStringField(string prefName, string title, string defaultValue = "")
+        {
+            var prefStr = EditorPrefs.GetString(prefName, defaultValue);
+            var str = (EditorGUILayout.TextField(title, prefStr));
+            if (str != prefStr)
+            {
+                EditorPrefs.SetString(prefName, str);
+            }
+            return str;
         }
     }
 }

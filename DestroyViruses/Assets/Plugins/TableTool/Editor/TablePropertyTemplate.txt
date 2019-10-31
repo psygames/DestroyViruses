@@ -1,0 +1,6 @@
+﻿		/// <summary>
+		/// {description}
+		/// </summary>
+		private {type} _{name};
+		public {type} {name} { get { return _{name}; } private set { _{name} = value; } }
+

@@ -1,0 +1,37 @@
+﻿		/// <summary>
+        /// {description}
+        /// </summary>
+        [SerializeField]
+        private {keyType}[] _{name}_dc_key;
+        [SerializeField]
+        private {valueType}[] _{name}_dc_value;
+        private Dictionary<{keyType}, {valueType}> _{name};
+        public Dictionary<{keyType}, {valueType}> {name}
+        {
+            get
+            {
+                if (_{name} == null)
+                {
+                    _{name} = new Dictionary<{keyType}, {valueType}>();
+                    for (int i = 0; i < _{name}_dc_key.Length; i++)
+                    {
+                        _{name}.Add(_{name}_dc_key[i], _{name}_dc_value[i]);
+                    }
+                }
+                return _{name};
+            }
+            private set
+            {
+                _{name} = value;
+                _{name}_dc_key = new {keyType}[value.Keys.Count];
+                _{name}_dc_value = new {valueType}[value.Values.Count];
+				int i = 0;
+                foreach (var kv in value)
+                {
+                    _{name}_dc_key[i] = kv.Key;
+                    _{name}_dc_value[i] = kv.Value;
+                    i++;
+                }
+            }
+        }
+

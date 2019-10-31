@@ -1,0 +1,120 @@
+﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+
+namespace {namespace}
+{
+	[Serializable]
+    public class {className}Collection
+    {
+        private Dictionary<string, {className}> mDict = null;
+
+        [NonSerialized]
+        private static {className}Collection _ins = null;
+        public static {className}Collection Instance
+        {
+            get
+            {
+                if (_ins == null)
+                {
+                    Load();
+                }
+                return _ins;
+            }
+        }
+
+		public {className} Get(string id)
+        {
+            {className} data = null;
+			_ins.mDict.TryGetValue(id, out data);
+            return data;
+        }
+
+		public {className} Get(Func<{className}, bool> predicate)
+        {
+            foreach (var item in _ins.mDict)
+            {
+                if (predicate(item.Value))
+                {
+                    return item.Value;
+                }
+            }
+            return null;
+        }
+
+        public ICollection<{className}> GetAll()
+        {
+            return mDict.Values;
+        }
+
+        private static void Load()
+        {
+            var bytes = Resources.Load<TextAsset>("Tables/{className}").bytes;
+            if({encrypt})
+			{
+				bytes = AesDecrypt(bytes);
+			}
+            var stream = new System.IO.MemoryStream(bytes);
+            var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            _ins = ({className}Collection)formatter.Deserialize(stream);
+            stream.Close();
+        }
+
+		private static byte[] AesDecrypt(byte[] bytes)
+        {
+			byte[] original = null;
+			Rijndael Aes = Rijndael.Create();
+			using (var Memory = new System.IO.MemoryStream(bytes))
+			{
+				var transform = Aes.CreateDecryptor(AesKey("{encryptKey}"), AesKey("{encryptIv}"));
+				using (CryptoStream Decryptor = new CryptoStream(Memory, transform, CryptoStreamMode.Read))
+				{
+					using (var originalMemory = new System.IO.MemoryStream())
+					{
+						byte[] Buffer = new byte[1024];
+						int readBytes = 0;
+						while ((readBytes = Decryptor.Read(Buffer, 0, Buffer.Length)) > 0)
+						{
+							originalMemory.Write(Buffer, 0, readBytes);
+						}
+						original = originalMemory.ToArray();
+					}
+				}
+                transform.Dispose();
+			}
+			return original;
+		}
+
+        private static byte[] AesKey(string key)
+        {
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(key);
+			byte[] keyBytes = new byte[16];
+			for (int i = 0; i < bytes.Length; i++)
+			{
+				keyBytes[i % 16] = (byte)(keyBytes[i % 16] ^ bytes[i]);
+			}
+			return keyBytes;
+        }
+    }
+
+    [Serializable]
+    public class {className}
+    {
+{properties}
+		public static {className} Get(string id)
+		{
+			return {className}Collection.Instance.Get(id);
+		}
+		
+		public static {className} Get(Func<{className}, bool> predicate)
+        {
+			return {className}Collection.Instance.Get(predicate);
+		}
+
+        public static ICollection<{className}> GetAll()
+        {
+            return {className}Collection.Instance.GetAll();
+        }
+    }
+}
