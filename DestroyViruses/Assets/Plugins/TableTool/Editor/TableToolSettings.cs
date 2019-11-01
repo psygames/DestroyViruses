@@ -17,6 +17,8 @@ public class TableToolSettings : ScriptableObject
     public string propertyTemplatePath = "Assets/Plugins/TableTool/Editor/TablePropertyTemplate.txt";
     [Header("字典属性模版 文件路径")]
     public string propertyDictionaryTemplatePath = "Assets/Plugins/TableTool/Editor/TablePropertyDictionaryTemplate.txt";
+    [Header("内置类型 文件路径")]
+    public string internalClassesPath = "Assets/Plugins/TableTool/Editor/TableInternalClasses.txt";
     [Header("Excel表格 目录路径")]
     public string excelFolderPath = "Assets/Tables/";
 

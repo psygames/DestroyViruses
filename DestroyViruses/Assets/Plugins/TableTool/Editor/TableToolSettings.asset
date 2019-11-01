@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: TableToolSettings
   m_EditorClassIdentifier: 
   assemblyName: Assembly-CSharp
-  _namespace: ZSanguo
+  _namespace: DestroyViruses
   classTemplatePath: Assets/Plugins/TableTool/Editor/TableClassTemplate.txt
   propertyTemplatePath: Assets/Plugins/TableTool/Editor/TablePropertyTemplate.txt
   propertyDictionaryTemplatePath: Assets/Plugins/TableTool/Editor/TablePropertyDictionaryTemplate.txt
+  internalClassesPath: Assets/Plugins/TableTool/Editor/TableInternalClasses.txt
   excelFolderPath: Assets/Tables/
   generateClassFolderPath: Assets/Scripts/Tables/
   generateAssetFolderPath: Assets/Resources/Tables/

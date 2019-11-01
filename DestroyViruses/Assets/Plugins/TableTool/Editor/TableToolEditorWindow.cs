@@ -66,6 +66,8 @@ public class TableToolEditorWindow : EditorWindow
                     EditorUtil.Text("命名空间", settings._namespace);
                     PathField("类模版 文件路径", settings.classTemplatePath);
                     PathField("属性模版 文件路径", settings.propertyTemplatePath);
+                    PathField("字典类模版 文件路径", settings.propertyDictionaryTemplatePath);
+                    PathField("内置类型 文件路径", settings.internalClassesPath);
                     PathField("Excel表格 目录路径", settings.excelFolderPath);
                     PathField("生成数据类 目录路径", settings.generateClassFolderPath);
                     PathField("生成数据文件 目录路径", settings.generateAssetFolderPath);
@@ -135,6 +137,10 @@ public class TableToolEditorWindow : EditorWindow
 
     private void GeneAllClasses()
     {
+        var internalClasses = File.ReadAllText(settings.internalClassesPath);
+        var icName = Path.GetFileNameWithoutExtension(settings.internalClassesPath);
+        File.WriteAllText(Path.Combine(settings.generateClassFolderPath, $"{icName}.cs"), internalClasses);
+
         var files = GetExcelList();
         int i = 0;
         foreach (var excelPath in files)
@@ -219,7 +225,7 @@ public class TableToolEditorWindow : EditorWindow
                 continue;
 
             var _tempStr = propertyTemplate;
-            if (p.type.StartsWith("Dictionary"))
+            if (p.type.StartsWith("Dictionary", StringComparison.Ordinal))
             {
                 _tempStr = propertyDictionaryTemplate;
                 var kvType = GetDictionaryKVType(p.type);
@@ -242,8 +248,6 @@ public class TableToolEditorWindow : EditorWindow
             _tempStr = _tempStr.Replace("{description}", p.description);
             _propertiesStr += _tempStr;
         }
-
-
 
         _classStr = _classStr.Replace("{namespace}", _namespace);
         _classStr = _classStr.Replace("{className}", className);
@@ -283,16 +287,15 @@ public class TableToolEditorWindow : EditorWindow
                 return typeof(double);
             default:
                 return assembly.GetType(stype);
-
         }
     }
 
     private Tuple<string, string> GetDictionaryKVType(string stype)
     {
-        var _st = stype.IndexOf("<") + 1;
-        var keyType = stype.Substring(_st, stype.IndexOf(",") - _st);
-        _st = stype.IndexOf(",") + 1;
-        var valueType = stype.Substring(_st, stype.IndexOf(">") - _st);
+        var _st = stype.IndexOf("<", StringComparison.Ordinal) + 1;
+        var keyType = stype.Substring(_st, stype.IndexOf(",", StringComparison.Ordinal) - _st);
+        _st = stype.IndexOf(",", StringComparison.Ordinal) + 1;
+        var valueType = stype.Substring(_st, stype.IndexOf(">", StringComparison.Ordinal) - _st);
         return Tuple.Create(keyType, valueType);
     }
 
@@ -305,10 +308,10 @@ public class TableToolEditorWindow : EditorWindow
         return generic.MakeGenericType(kt, vt);
     }
 
-    public object ParseData(string rawData, string stype)
+    private string TempCollectionText(string rawText)
     {
         int bracketsCount = 0;
-        var chars = rawData.ToCharArray();
+        var chars = rawText.ToCharArray();
         for (int i = 0; i < chars.Length; i++)
         {
             if (chars[i] == '(')
@@ -326,11 +329,18 @@ public class TableToolEditorWindow : EditorWindow
                 chars[i] = '_';
             }
         }
-
         var data = new string(chars);
+        return data;
+    }
+
+    public object ParseData(string rawData, string stype)
+    {
+        if (stype == "string")
+            return rawData;
 
         if (stype.EndsWith("[]", StringComparison.Ordinal))
         {
+            var data = TempCollectionText(rawData);
             data = data.Trim('[', ']');
             var items = data.Split(',');
             int length = items[0] == "" ? 0 : items.Length;
@@ -346,50 +356,31 @@ public class TableToolEditorWindow : EditorWindow
             }
             return array;
         }
-        else
+
+        if (stype.StartsWith("Dictionary", StringComparison.Ordinal))
         {
-            // 特殊类型
-            if (stype.StartsWith("Dictionary"))
+            var data = TempCollectionText(rawData);
+            data = data.Trim('[', ']');
+            var items = data.Split(',');
+            int length = items[0] == "" ? 0 : items.Length;
+            var dictType = GetDictionaryType(stype);
+            var kvType = GetDictionaryKVType(stype);
+            var dict = Activator.CreateInstance(dictType);
+            var addMethod = dictType.GetMethod("Add");
+            for (int i = 0; i < length; i++)
             {
-                data = data.Trim('[', ']');
-                var items = data.Split(',');
-                int length = items[0] == "" ? 0 : items.Length;
-                var dictType = GetDictionaryType(stype);
-                var kvType = GetDictionaryKVType(stype);
-                var dict = Activator.CreateInstance(dictType);
-                var addMethod = dictType.GetMethod("Add");
-                for (int i = 0; i < length; i++)
-                {
-                    var ii = items[i].Trim('(', ')').Split('_');
-                    var key = ParseData(ii[0], kvType.Item1);
-                    var value = ParseData(ii[1], kvType.Item2);
-                    addMethod.Invoke(dict, new object[] { key, value });
-                }
-                return dict;
+                var ii = items[i].Trim('(', ')').Split('_');
+                var key = ParseData(ii[0], kvType.Item1);
+                var value = ParseData(ii[1], kvType.Item2);
+                addMethod.Invoke(dict, new object[] { key, value });
             }
+            return dict;
+        }
 
-            // 内置类型 
-            switch (stype)
-            {
-                case "string":
-                    return data;
-                case "Vector2":
-                    var ii = data.Trim('(', ')').Split('_');
-                    return new Vector2(float.Parse(ii[0]), float.Parse(ii[1]));
-                case "Vector3":
-                    var iii = data.Trim('(', ')').Split('_');
-                    return new Vector3(float.Parse(iii[0]), float.Parse(iii[1]), float.Parse(iii[2]));
-                case "Vector4":
-                    var iiii = data.Trim('(', ')').Split('_');
-                    return new Vector4(float.Parse(iiii[0]), float.Parse(iiii[1]), float.Parse(iiii[2]), float.Parse(iiii[3]));
-                case "Color":
-                    Color color;
-                    ColorUtility.TryParseHtmlString(data, out color);
-                    return color;
-            }
-
-            // 自定义类型 or 基础类型
-            var type = GetType(stype);
+        // 自定义类型 or 基础类型
+        var type = GetType(stype);
+        if (type != null)
+        {
             var parseMethod = type.GetMethod("Parse", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic, null, new Type[] { typeof(string) }, null);
             if (parseMethod == null)
                 throw new Exception($"类型 {stype} 不存在静态 Parse 方法");

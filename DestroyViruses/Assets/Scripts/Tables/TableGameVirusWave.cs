@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 
-namespace ZSanguo
+namespace DestroyViruses
 {
 	[Serializable]
     public class TableGameVirusWaveCollection
@@ -51,7 +51,7 @@ namespace ZSanguo
         private static void Load()
         {
             var bytes = Resources.Load<TextAsset>("Tables/TableGameVirusWave").bytes;
-            if(true)
+            if(false)
 			{
 				bytes = AesDecrypt(bytes);
 			}
@@ -146,14 +146,14 @@ namespace ZSanguo
 		/// <summary>
 		/// 病毒血量范围
 		/// </summary>
-		private Vector2 _virusHpRange;
-		public Vector2 virusHpRange { get { return _virusHpRange; } private set { _virusHpRange = value; } }
+		private TVector2 _virusHpRange;
+		public TVector2 virusHpRange { get { return _virusHpRange; } private set { _virusHpRange = value; } }
 
 		/// <summary>
 		/// 病毒速度范围
 		/// </summary>
-		private Vector2 _virusSpeedRange;
-		public Vector2 virusSpeedRange { get { return _virusSpeedRange; } private set { _virusSpeedRange = value; } }
+		private TVector2 _virusSpeedRange;
+		public TVector2 virusSpeedRange { get { return _virusSpeedRange; } private set { _virusSpeedRange = value; } }
 
 
 		public static TableGameVirusWave Get(string id)

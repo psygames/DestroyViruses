@@ -95,11 +95,11 @@ namespace DestroyViruses
         private void UpdateProgress()
         {
             int total = 0;
-            var configLevel = ConfigGameLevel.Get(_ => _.level == GDM.ins.gameLevel);
+            var configLevel = TableGameLevel.Get(_ => _.level == GDM.ins.gameLevel);
             int spawnedTotal = mWaveModule.spawnIndex;
             for (int i = 0; i < mWaveModule.configLevel.waveID.Length; i++)
             {
-                var configWave = ConfigGameVirusWave.Get(mWaveModule.configLevel.waveID[i]);
+                var configWave = TableGameVirusWave.Get(mWaveModule.configLevel.waveID[i]);
                 var waveCount = (int)(configWave.spawnCount * configLevel.spawnCountFactor);
                 total += waveCount;
                 if (mWaveModule.waveIndex > i)
@@ -133,11 +133,11 @@ namespace DestroyViruses
 
 
         public class WaveModule
-        {
+        {   
             public const int waveClearVirusCount = 3;
 
-            public ConfigGameLevel configLevel { get; private set; }
-            public ConfigGameVirusWave configWave { get; private set; }
+            public TableGameLevel configLevel { get; private set; }
+            public TableGameVirusWave configWave { get; private set; }
             public int waveIndex { get; private set; }
             public bool isFinalWave { get { return waveIndex == configLevel.waveID.Length - 1; } }
             public bool isSpawnOver { get { return spawnIndex >= spawnCount; } }
@@ -153,7 +153,7 @@ namespace DestroyViruses
             public void Init(int gameLevel)
             {
                 Stop();
-                configLevel = ConfigGameLevel.Get(_ => _.level == gameLevel);
+                configLevel = TableGameLevel.Get(_ => _.level == gameLevel);
             }
 
             public void Start()
@@ -183,7 +183,7 @@ namespace DestroyViruses
                 this.waveIndex = waveIndex;
                 this.mSpawnCD = 0;
                 this.spawnIndex = 0;
-                configWave = ConfigGameVirusWave.Get(configLevel.waveID[waveIndex]);
+                configWave = TableGameVirusWave.Get(configLevel.waveID[waveIndex]);
             }
 
             public void Update(float deltaTime)
@@ -218,12 +218,12 @@ namespace DestroyViruses
                 var direction = Quaternion.AngleAxis(Random.Range(-80f, 80f), Vector3.forward) * Vector2.down;
                 var pos = new Vector2(Random.Range(VirusBase.radius, UIUtil.width - VirusBase.radius), UIUtil.height + VirusBase.radius);
 
-                var hpRange = configWave.virusHpRange * configLevel.virusHpFactor;
-                var hp = FormulaUtil.RandomInRanage(configWave.virusHpRange) * configLevel.virusHpFactor;
-                var speed = FormulaUtil.RandomInRanage(configWave.virusSpeedRange) * configLevel.virusSpeedFactor;
+                var hpRange = configWave.virusHpRange.value * configLevel.virusHpFactor;
+                var hp = FormulaUtil.RandomInRanage(configWave.virusHpRange.value) * configLevel.virusHpFactor;
+                var speed = FormulaUtil.RandomInRanage(configWave.virusSpeedRange.value) * configLevel.virusSpeedFactor;
 
                 var virusIndex = FormulaUtil.RandomIndexInProbArray(configWave.virusProb);
-                var virusType = "DestroyViruses." + ConfigVirus.Get(configWave.virus[virusIndex]).type;
+                var virusType = "DestroyViruses." + TableVirus.Get(configWave.virus[virusIndex]).type;
                 var virus = (VirusBase)EntityManager.Create(System.Type.GetType(virusType));
                 var size = configWave.virusSize[virusIndex];
 

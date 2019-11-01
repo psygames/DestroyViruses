@@ -97,13 +97,13 @@ namespace DestroyViruses
             else
             {
                 previousLevelText.text = (GDM.ins.gameLevel - 1).ToString();
-                previousBossTag.SetActive(ConfigGameLevel.Get(a => a.level == GDM.ins.gameLevel - 1).isBoss);
+                previousBossTag.SetActive(TableGameLevel.Get(a => a.level == GDM.ins.gameLevel - 1).isBoss);
             }
 
             currentLevelText.text = GDM.ins.gameLevel.ToString();
-            currentBossTag.SetActive(ConfigGameLevel.Get(a => a.level == GDM.ins.gameLevel).isBoss);
+            currentBossTag.SetActive(TableGameLevel.Get(a => a.level == GDM.ins.gameLevel).isBoss);
 
-            if (ConfigGameLevel.Get(a => a.level == GDM.ins.gameLevel) == null)
+            if (TableGameLevel.Get(a => a.level == GDM.ins.gameLevel) == null)
             {
                 nextLevelText.text = "-";
                 nextBossTag.SetActive(false);
@@ -111,7 +111,7 @@ namespace DestroyViruses
             else
             {
                 nextLevelText.text = (GDM.ins.gameLevel + 1).ToString();
-                nextBossTag.SetActive(ConfigGameLevel.Get(a => a.level == GDM.ins.gameLevel).isBoss);
+                nextBossTag.SetActive(TableGameLevel.Get(a => a.level == GDM.ins.gameLevel).isBoss);
             }
 
             if (GDM.ins.gameLevel + 1 > GDM.ins.unlockedGameLevel)

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 
-namespace ZSanguo
+namespace DestroyViruses
 {
 	[Serializable]
     public class TableAircraftCollection
@@ -51,7 +51,7 @@ namespace ZSanguo
         private static void Load()
         {
             var bytes = Resources.Load<TextAsset>("Tables/TableAircraft").bytes;
-            if(true)
+            if(false)
 			{
 				bytes = AesDecrypt(bytes);
 			}
