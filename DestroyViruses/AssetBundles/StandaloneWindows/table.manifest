@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 1309733432
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b0872ee0301fbf3b41e123d467d4170c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Tables/TableGameLevel.bytes
+- Assets/Resources/Tables/TableVirus.bytes
+- Assets/Resources/Tables/TableGameVirusWave.bytes
+- Assets/Resources/Tables/TableAircraft.bytes
+Dependencies: []

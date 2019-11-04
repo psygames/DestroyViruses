@@ -1,0 +1,13 @@
+ManifestFileVersion: 0
+CRC: 193569476
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: sprites
+      Dependencies: {}
+    Info_1:
+      Name: prefabs
+      Dependencies: {}
+    Info_2:
+      Name: table
+      Dependencies: {}
