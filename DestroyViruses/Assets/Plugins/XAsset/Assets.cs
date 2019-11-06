@@ -60,7 +60,8 @@ namespace Plugins.XAsset
                 DontDestroyOnLoad(instance.gameObject);
             }
 
-            if (string.IsNullOrEmpty(Utility.dataPath)) Utility.dataPath = Application.streamingAssetsPath;
+            // if (string.IsNullOrEmpty(Utility.dataPath))
+            Utility.dataPath = Application.streamingAssetsPath;
 
             Log(string.Format("Init->assetBundleMode {0} | dataPath {1}", Utility.assetBundleMode, Utility.dataPath));
 

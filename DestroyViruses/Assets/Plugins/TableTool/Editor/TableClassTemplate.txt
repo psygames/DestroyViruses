@@ -50,7 +50,7 @@ namespace {namespace}
 
         private static void Load()
         {
-            var bytes = Resources.Load<TextAsset>("Tables/{className}").bytes;
+            var bytes = ResourceUtil.Load<TextAsset>(PathUtil.Table("{className}")).bytes;
             if({encrypt})
 			{
 				bytes = AesDecrypt(bytes);

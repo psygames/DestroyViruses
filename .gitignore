@@ -6,3 +6,7 @@
 .vs/
 DestroyViruses/*.csproj
 DestroyViruses/*.sln
+DestroyViruses/AssetBundles/
+DestroyViruses/Assets/StreamingAssets.meta
+DestroyViruses/Assets/AssetBundles.meta
+DestroyViruses/Assets/StreamingAssets/

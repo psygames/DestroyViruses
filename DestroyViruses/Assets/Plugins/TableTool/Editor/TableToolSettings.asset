@@ -20,6 +20,6 @@ MonoBehaviour:
   internalClassesPath: Assets/Plugins/TableTool/Editor/TableInternalClasses.txt
   excelFolderPath: Assets/Tables/
   generateClassFolderPath: Assets/Scripts/Tables/
-  generateAssetFolderPath: Assets/Resources/Tables/
+  generateAssetFolderPath: Assets/AssetBundles/Tables/
   encrypt: 1
-  encryptKey: 
+  encryptKey: TABLE_SECURITY1

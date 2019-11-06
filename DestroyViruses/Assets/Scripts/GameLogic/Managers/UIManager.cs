@@ -83,7 +83,7 @@ namespace DestroyViruses
                 return panel;
             }
 
-            panel = ResourceUtil.Load<UIPanel>(PathUtil.GetPanel(panelType.Name));
+            panel = ResourceUtil.Load<UIPanel>(PathUtil.Panel(panelType.Name));
             panel = Instantiate(panel);
             panel.gameObject.SetActive(false);
             mCachedPanels.Add(panel);

@@ -47,23 +47,7 @@ namespace Plugins.XAsset.Editor
         private static void OnInitialize()
         {
             EditorUtility.ClearProgressBar();
-            var settings = BuildScript.GetSettings(); 
-            if (settings.localServer)
-            {
-                bool isRunning = LaunchLocalServer.IsRunning();
-                if (!isRunning)
-                {
-                    LaunchLocalServer.Run();
-                }
-            }
-            else
-            {
-                bool isRunning = LaunchLocalServer.IsRunning();
-                if (isRunning)
-                {
-                    LaunchLocalServer.KillRunningAssetBundleServer();
-                }
-            }
+            var settings = BuildScript.GetSettings();
             Utility.dataPath = System.Environment.CurrentDirectory;
             Utility.downloadURL = BuildScript.GetManifest().downloadURL;
             Utility.assetBundleMode = settings.runtimeMode;

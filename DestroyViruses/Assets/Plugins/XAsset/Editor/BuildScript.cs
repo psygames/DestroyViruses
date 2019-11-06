@@ -1,4 +1,4 @@
-//
+﻿//
 // BuildScript.cs
 //
 // Author:
@@ -206,7 +206,7 @@ namespace Plugins.XAsset.Editor
                 var paths = AssetDatabase.GetAssetPathsFromAssetBundle(bundles[i]);
                 foreach(var path in paths) 
                 {
-                    var dir = Path.GetDirectoryName(path);
+                    var dir = Path.GetDirectoryName(path).Replace("\\", "/");
                     var index = dirs.FindIndex((o)=>o.Equals(dir));
                     if(index == -1) 
                     {

@@ -6,18 +6,35 @@ namespace DestroyViruses
 {
     public static class PathUtil
     {
-        public const string ENTITY_PREFAB_ROOT = "Prefabs/Entities/";
-        public static string GetEntity(string entitiName)
+        private const string ASSET_ROOT = "Assets/AssetBundles/";
+
+        private const string ENTITY_PREFAB_ROOT = ASSET_ROOT + "Prefabs/Entities/";
+        public static string Entity(string entitiName)
         {
-            return ENTITY_PREFAB_ROOT + entitiName;
+            return ENTITY_PREFAB_ROOT + entitiName + ".prefab";
         }
 
-        public const string UI_PANEL_PREFAB_ROOT = "Prefabs/UI/Panel/";
-        public static string GetPanel(string panelName)
+        private const string UI_PANEL_PREFAB_ROOT = ASSET_ROOT + "Prefabs/UI/Panel/";
+        public static string Panel(string panelName)
         {
-            return UI_PANEL_PREFAB_ROOT + panelName;
+            return UI_PANEL_PREFAB_ROOT + panelName + ".prefab";
         }
 
-        public const string SPRITE_ATLAS_ROOT = "SpriteAtlas/";
+        private const string TABLE_ROOT = ASSET_ROOT + "Tables/";
+        public static string Table(string name)
+        {
+            return TABLE_ROOT + name + ".bytes";
+        }
+
+        private const string SPRITE_ATLAS_ROOT = ASSET_ROOT + "SpriteAtlas/";
+        public static string SpriteAtlas(string name)
+        {
+            return SPRITE_ATLAS_ROOT + name + ".spriteatlas";
+        }
+
+        public static string[] GetSpriteAtlasNames()
+        {
+            return new string[] { "common", "sundry", "virus" };
+        }
     }
 }

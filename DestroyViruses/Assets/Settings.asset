@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Settings
   m_EditorClassIdentifier: 
   runtimeMode: 1
-  localServer: 0
-  assetRootPath: Assets/Plugins/XAsset/Demo/
+  assetRootPath: Assets/AssetBundles/

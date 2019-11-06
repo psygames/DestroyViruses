@@ -17,7 +17,7 @@ namespace DestroyViruses
 
         void Start()
         {
-            ChangeState<LoadingState>();
+            ChangeState<SplashState>();
         }
 
         void Update()

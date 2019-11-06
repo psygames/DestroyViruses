@@ -50,8 +50,8 @@ namespace DestroyViruses
 
         private static void Load()
         {
-            var bytes = Resources.Load<TextAsset>("Tables/TableGameVirusWave").bytes;
-            if(false)
+            var bytes = ResourceUtil.Load<TextAsset>(PathUtil.Table("TableGameVirusWave")).bytes;
+            if(true)
 			{
 				bytes = AesDecrypt(bytes);
 			}
@@ -67,7 +67,7 @@ namespace DestroyViruses
 			Rijndael Aes = Rijndael.Create();
 			using (var Memory = new System.IO.MemoryStream(bytes))
 			{
-				var transform = Aes.CreateDecryptor(AesKey(""), AesKey("TableGameVirusWave"));
+				var transform = Aes.CreateDecryptor(AesKey("TABLE_SECURITY1"), AesKey("TableGameVirusWave"));
 				using (CryptoStream Decryptor = new CryptoStream(Memory, transform, CryptoStreamMode.Read))
 				{
 					using (var originalMemory = new System.IO.MemoryStream())

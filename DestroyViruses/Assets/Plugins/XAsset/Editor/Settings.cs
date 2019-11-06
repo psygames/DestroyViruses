@@ -1,4 +1,4 @@
-//
+﻿//
 // Settings.cs
 //
 // Author:
@@ -33,7 +33,6 @@ namespace Plugins.XAsset.Editor
     public class Settings : ScriptableObject
     {
         public bool runtimeMode = true;
-        public bool localServer = false;
         public string assetRootPath = "Assets/Plugins/XAsset/Demo/";
     }
 }

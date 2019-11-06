@@ -86,11 +86,17 @@ namespace DestroyViruses
         private static Dictionary<string, SpriteAtlas> sSpriteAtlasDict = null;
         private static void LoadAtlasAll()
         {
+
+
+
+
+
             if (sSpriteAtlasDict == null)
             {
                 sSpriteAtlasDict = new Dictionary<string, SpriteAtlas>();
-                foreach (var atlas in Resources.LoadAll<SpriteAtlas>(PathUtil.SPRITE_ATLAS_ROOT))
+                foreach (var atlasName in PathUtil.GetSpriteAtlasNames())
                 {
+                    var atlas = ResourceUtil.Load<SpriteAtlas>(PathUtil.SpriteAtlas(atlasName));
                     Sprite[] sprites = new Sprite[atlas.spriteCount];
                     atlas.GetSprites(sprites);
                     foreach (var sprite in sprites)
