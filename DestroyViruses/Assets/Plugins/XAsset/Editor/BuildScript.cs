@@ -362,32 +362,5 @@ namespace Plugins.XAsset.Editor
         {
             return GetAsset<AssetsManifest>(Utility.AssetsManifestAsset);
         }
-
-        public static string GetServerURL()
-        {
-            string downloadURL;
-            if (string.IsNullOrEmpty(overloadedDevelopmentServerURL) == false)
-            {
-                downloadURL = overloadedDevelopmentServerURL;
-            }
-            else
-            {
-                IPHostEntry host;
-                string localIP = "";
-                host = Dns.GetHostEntry(Dns.GetHostName());
-                foreach (IPAddress ip in host.AddressList)
-                {
-                    if (ip.AddressFamily == AddressFamily.InterNetwork)
-                    {
-                        localIP = ip.ToString();
-                        break;
-                    }
-                }
-
-                downloadURL = "http://" + localIP + ":7888/";
-            }
-
-            return downloadURL;
-        }
     }
 }

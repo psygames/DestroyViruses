@@ -22,4 +22,4 @@ MonoBehaviour:
   generateClassFolderPath: Assets/Scripts/Tables/
   generateAssetFolderPath: Assets/AssetBundles/Tables/
   encrypt: 1
-  encryptKey: TABLE_SECURITY1
+  encryptKey: TABLE_SECURITY

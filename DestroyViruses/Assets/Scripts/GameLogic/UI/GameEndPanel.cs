@@ -8,7 +8,7 @@ using UnibusEvent;
 
 namespace DestroyViruses
 {
-    public class GameEndPanel : UIPanel
+    public class GameEndPanel : PanelBase
     {
         public RectTransform coinTransform;
         public Button receiveBtns;

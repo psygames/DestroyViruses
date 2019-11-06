@@ -74,7 +74,7 @@ namespace Plugins.XAsset
         void WriteBuffer()
         {
             var buff = request.downloadHandler.data;
-            if (buff != null)
+            if (buff != null && buff.Length > index)
             {
                 var length = buff.Length - index;
                 fs.Write(buff, index, length);
@@ -83,7 +83,9 @@ namespace Plugins.XAsset
                 progress = len / (float)maxlen;
             }
         }
-
+#if UNITY_EDITOR
+        private float mTestDownloadLimitSpeed = 2f;
+#endif
         public void Update()
         {
             if (isDone)
@@ -94,7 +96,7 @@ namespace Plugins.XAsset
             switch (state)
             {
                 case State.HeadRequest:
-                    if (request.error != null)
+                    if (request.isHttpError || request.isNetworkError)
                     {
                         error = request.error;
                     }
@@ -109,7 +111,7 @@ namespace Plugins.XAsset
                         {
                             // ReSharper disable once AssignNullToNotNullAttribute
                             Directory.CreateDirectory(dir);
-                        } 
+                        }
                         fs = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.Write);
                         len = fs.Length;
                         var emptyVersion = string.IsNullOrEmpty(version);
@@ -117,19 +119,19 @@ namespace Plugins.XAsset
                         var emptyOldVersion = string.IsNullOrEmpty(oldVersion);
                         if (emptyVersion || emptyOldVersion || !oldVersion.Equals(version))
                         {
-                            Versions.Set(savePath, version); 
-                            len = 0; 
+                            Versions.Set(savePath, version);
+                            len = 0;
                         }
                         if (len < maxlen)
-                        { 
+                        {
                             fs.Seek(len, SeekOrigin.Begin);
                             request = UnityWebRequest.Get(url);
-                            request.SetRequestHeader("Range", "bytes=" + len + "-" + maxlen);
-                            #if UNITY_2017_1_OR_NEWER
+                            request.SetRequestHeader("Range", "bytes=" + len + "-");
+#if UNITY_2017_1_OR_NEWER
                             request.SendWebRequest();
-                            #else
+#else
                             request.Send();
-                            #endif
+#endif
                             index = 0;
                             state = State.BodyRequest;
                         }
@@ -141,12 +143,16 @@ namespace Plugins.XAsset
 
                     break;
                 case State.BodyRequest:
-                    if (request.error != null)
+                    if (request.isHttpError || request.isNetworkError)
                     {
                         error = request.error;
                     }
-
+#if UNITY_EDITOR
+                    mTestDownloadLimitSpeed -= Time.deltaTime;
+                    if (!request.isDone || mTestDownloadLimitSpeed > 0)
+#else
                     if (!request.isDone)
+#endif
                     {
                         WriteBuffer();
                     }
@@ -181,13 +187,16 @@ namespace Plugins.XAsset
         public void Start()
         {
             request = UnityWebRequest.Head(url);
-            #if UNITY_2017_1_OR_NEWER
+#if UNITY_2017_1_OR_NEWER
             request.SendWebRequest();
-            #else
+#else
             request.Send();
-            #endif
+#endif
             progress = 0;
             isDone = false;
+#if UNITY_EDITOR
+            mTestDownloadLimitSpeed = 0.1f;
+#endif
         }
 
         public void Stop()

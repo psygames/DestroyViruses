@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
-    public string resourePath = "Prefabs/UI/Panel/";
-
     public RectTransform bottomLayer;
     public RectTransform commonLayer;
     public RectTransform topLayer;
+
+    public Func<string, PanelBase> loadPanelFunc { get; set; }
 
     private readonly List<PanelBase> mCachedPanels = new List<PanelBase>();
 
@@ -70,7 +70,13 @@ public class UIManager : Singleton<UIManager>
             return panel;
         }
 
-        panel = Resources.Load<PanelBase>(resourePath + panelType.Name);
+        if (loadPanelFunc == null)
+        {
+            Debug.LogError("UIManager Must set panelLoadFunc");
+            return null;
+        }
+
+        panel = loadPanelFunc?.Invoke(panelType.Name);
         panel = Instantiate(panel);
         panel.gameObject.SetActive(false);
         mCachedPanels.Add(panel);

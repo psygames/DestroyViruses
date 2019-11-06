@@ -5,6 +5,7 @@ using System;
 public class StateManager : Singleton<StateManager>
 {
     public string startupState;
+    public StateMachine.State currentState => mStateMachine.currentState;
 
     private StateMachine.StateMachine<StateMachine.State> mStateMachine;
 
@@ -18,7 +19,7 @@ public class StateManager : Singleton<StateManager>
         if (!string.IsNullOrEmpty(startupState))
         {
             Type type = Assembly.Load("Assembly-CSharp").GetType(startupState);
-            Instance.mStateMachine.currentState = (StateMachine.State)Activator.CreateInstance(type);
+            mStateMachine.currentState = (StateMachine.State)Activator.CreateInstance(type);
         }
     }
 

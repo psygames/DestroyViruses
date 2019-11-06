@@ -8,7 +8,7 @@ using UnibusEvent;
 
 namespace DestroyViruses
 {
-    public class BattlePanel : UIPanel
+    public class BattlePanel : PanelBase
     {
         public UIEventListener inputListenser;
 

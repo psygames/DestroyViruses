@@ -11,6 +11,7 @@ namespace DestroyViruses
     {
         public enum State
         {
+            Init,
             Wait,
             Checking,
             Downloading,
@@ -22,14 +23,19 @@ namespace DestroyViruses
 
         public Action completed;
 
-        public Action<string, float> progress;
+        public Action<string, float> onProgress;
 
         public Action<string> onError;
+        public int downloadIndex => _downloadIndex;
+        public int downloadCount => _downloads.Count;
+        public string downloadUrl => _downloads[_downloadIndex].url;
+        public float progress => _progress;
 
         private Dictionary<string, string> _versions = new Dictionary<string, string>();
         private Dictionary<string, string> _serverVersions = new Dictionary<string, string>();
         private readonly List<Download> _downloads = new List<Download>();
         private int _downloadIndex;
+        private float _progress;
 
         private string versionsTxt = "versions.txt";
 
@@ -48,6 +54,7 @@ namespace DestroyViruses
 
         void OnProgress(string arg1, float arg2)
         {
+            _progress = (_downloadIndex + arg2) / _downloads.Count;
             message = string.Format("{0:F0}%:{1}({2}/{3})", arg2 * 100, arg1, _downloadIndex, _downloads.Count);
         }
 
@@ -73,43 +80,45 @@ namespace DestroyViruses
                 File.Delete(path);
         }
 
-        public void Check()
+        public void Init()
         {
+            state = State.Init;
+            Versions.Load();
             Assets.Initialize(delegate
             {
-                var path = Utility.GetRelativePath4Update(versionsTxt);
-                if (!File.Exists(path))
-                {
-                    var asset = Assets.LoadAsync(Utility.GetWebUrlFromDataPath(versionsTxt), typeof(TextAsset));
-                    asset.completed += delegate
-                    {
-                        if (asset.error != null)
-                        {
-                            OnError(asset.error);
-                            return;
-                        }
-
-                        var dir = Path.GetDirectoryName(path);
-                        if (!Directory.Exists(dir))
-                            Directory.CreateDirectory(dir);
-                        File.WriteAllText(path, asset.text);
-                        LoadVersions(asset.text);
-                        asset.Release();
-                    };
-                }
-                else
-                {
-                    LoadVersions(File.ReadAllText(path));
-                }
+                state = State.Wait;
             }, OnError);
-            progress += OnProgress;
-            state = State.Checking;
+            onProgress += OnProgress;
         }
 
-        public void Start()
+        public void Check()
         {
-            state = State.Wait;
-            Versions.Load();
+            var path = Utility.GetRelativePath4Update(versionsTxt);
+            if (!File.Exists(path))
+            {
+                var asset = Assets.LoadAsync(Utility.GetWebUrlFromDataPath(versionsTxt), typeof(TextAsset));
+                asset.completed += delegate
+                {
+                    if (asset.error != null)
+                    {
+                        OnError(asset.error);
+                        return;
+                    }
+
+                    var dir = Path.GetDirectoryName(path);
+                    if (!Directory.Exists(dir))
+                        Directory.CreateDirectory(dir);
+                    File.WriteAllText(path, asset.text);
+                    LoadVersions(asset.text);
+                    asset.Release();
+                };
+            }
+            else
+            {
+                LoadVersions(File.ReadAllText(path));
+            }
+
+            state = State.Checking;
         }
 
         public void Update()
@@ -134,9 +143,9 @@ namespace DestroyViruses
                     }
                     else
                     {
-                        if (progress != null)
+                        if (onProgress != null)
                         {
-                            progress.Invoke(download.url, download.progress);
+                            onProgress.Invoke(download.url, download.progress);
                         }
                     }
                 }

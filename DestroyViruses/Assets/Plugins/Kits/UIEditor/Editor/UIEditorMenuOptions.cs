@@ -64,6 +64,11 @@ static public class UIEditorMenuOptions
     {
         AddTPrefab("Button");
     }
+    [MenuItem("GameObject/CustomUI/Slider", false, 104)]
+    static public void AddSlider()
+    {
+        AddTPrefab("Slider");
+    }
     [MenuItem("GameObject/CustomUI/RawImage", false, 104)]
     static public void AddRawImage()
     {

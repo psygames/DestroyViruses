@@ -8,28 +8,24 @@ namespace DestroyViruses
 {
     public class GameManager : Singleton<GameManager>
     {
-        private StateMachine.StateMachine<StateMachine.State> mStateMachine;
-
-        void Awake()
+        static PanelBase LoadPanelFunc(string panelName)
         {
-            mStateMachine = new StateMachine.StateMachine<StateMachine.State>();
+            if (panelName.Equals(typeof(LoadingPanel).Name))
+            {
+                return Resources.Load<PanelBase>("Prefabs/" + panelName);
+            }
+            return ResourceUtil.Load<PanelBase>(PathUtil.Panel(panelName));
         }
 
         void Start()
         {
+            UIManager.Instance.loadPanelFunc = LoadPanelFunc;
             ChangeState<SplashState>();
         }
 
-        void Update()
-        {
-            mStateMachine.OnUpdate(Time.deltaTime);
-        }
-
-
         public static void ChangeState<T>() where T : StateMachine.State, new()
         {
-            Instance.mStateMachine.currentState = new T();
+            StateManager.ChangeState<T>();
         }
-
     }
 }

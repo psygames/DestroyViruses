@@ -15,5 +15,10 @@ namespace DestroyViruses
             }
             return asset.asset as T;
         }
+
+        public static Asset Load(string path)
+        {
+            return Assets.Load(path, typeof(Object));
+        }
     }
 }

@@ -67,7 +67,7 @@ namespace DestroyViruses
 			Rijndael Aes = Rijndael.Create();
 			using (var Memory = new System.IO.MemoryStream(bytes))
 			{
-				var transform = Aes.CreateDecryptor(AesKey("TABLE_SECURITY1"), AesKey("TableGameLevel"));
+				var transform = Aes.CreateDecryptor(AesKey("TABLE_SECURITY"), AesKey("TableGameLevel"));
 				using (CryptoStream Decryptor = new CryptoStream(Memory, transform, CryptoStreamMode.Read))
 				{
 					using (var originalMemory = new System.IO.MemoryStream())
