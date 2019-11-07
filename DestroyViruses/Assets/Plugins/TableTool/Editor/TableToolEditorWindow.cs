@@ -114,7 +114,7 @@ public class TableToolEditorWindow : EditorWindow
         }
     }
 
-    private void GeneAllAssets()
+    public void GeneAllAssets()
     {
         var files = GetExcelList();
         int i = 0;
@@ -135,7 +135,7 @@ public class TableToolEditorWindow : EditorWindow
         Debug.Log("生成数据文件完成");
     }
 
-    private void GeneAllClasses()
+    public void GeneAllClasses()
     {
         var internalClasses = File.ReadAllText(settings.internalClassesPath);
         var icName = Path.GetFileNameWithoutExtension(settings.internalClassesPath);

@@ -107,7 +107,7 @@ SpriteAtlas:
   - boss_wave_toast
   - button_normal_1
   - button_normal_4
-  - logo
+  - game_logo
   - game_level_next
   - game_level_split
   - button_game_end_receive

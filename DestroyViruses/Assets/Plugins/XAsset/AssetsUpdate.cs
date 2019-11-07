@@ -50,7 +50,7 @@ namespace DestroyViruses
             state = State.Error;
         }
 
-        private string message = "click Check to start.";
+        public string message { get; private set; } = "click Check to start.";
 
         void OnProgress(string arg1, float arg2)
         {

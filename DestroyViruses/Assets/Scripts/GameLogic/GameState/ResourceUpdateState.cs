@@ -14,27 +14,34 @@ namespace DestroyViruses
         public override void OnEnter()
         {
             progress = 0;
-            updater.onError += (msg) => { Debug.LogError(msg); };
             updater.Init();
             base.OnEnter();
         }
 
         private void UpdateMessage()
         {
-            if (updater.state == AssetsUpdate.State.Wait)
+            if (updater.state == AssetsUpdate.State.Error)
+            {
+                if(updater.message == "Cannot connect to destination host")
+                    message = $"连接资源服务器失败！";
+                else
+                    message = $"发生错误：{updater.message}";
+                progress = 0.1f;
+            }
+            else if (updater.state == AssetsUpdate.State.Wait)
             {
                 message = "资源热更新...";
-                progress = 0.1f;
+                progress = 0.05f;
             }
             else if (updater.state == AssetsUpdate.State.Checking)
             {
                 message = "检查需要更新的资源...";
-                progress = 0.2f;
+                progress = 0.1f;
             }
             else if (updater.state == AssetsUpdate.State.Downloading)
             {
                 message = $"下载资源：[{updater.downloadIndex}/{updater.downloadCount}]";
-                progress = updater.progress * 0.8f + 0.2f;
+                progress = updater.progress * 0.9f + 0.1f;
             }
         }
 
