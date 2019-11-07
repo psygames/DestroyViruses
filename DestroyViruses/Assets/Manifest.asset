@@ -16,32 +16,7 @@ MonoBehaviour:
   activeVariants: []
   bundles:
   - manifest
-  - prefabs/entities/aircraft
-  - prefabs/entities/bullet
-  - prefabs/entities/coin
-  - prefabs/entities/explosionbullet
-  - prefabs/entities/explosionvirus
-  - prefabs/entities/items/fire_1
-  - prefabs/entities/items/plane_1
-  - prefabs/entities/items/virus_base
-  - prefabs/entities/virusattach
-  - prefabs/entities/virusbase
-  - prefabs/entities/virusbomb
-  - prefabs/entities/viruscure
-  - prefabs/entities/virusdart
-  - prefabs/entities/virusdodge
-  - prefabs/entities/virusexpand
-  - prefabs/entities/virusinvincible
-  - prefabs/entities/virusrecover
-  - prefabs/entities/virusslower
-  - prefabs/entities/virusspeed
-  - prefabs/entities/virusswallow
-  - prefabs/entities/virustrack
-  - prefabs/entities/virustriangle
-  - prefabs/entities/virusvampire
-  - prefabs/ui/panel/battlepanel
-  - prefabs/ui/panel/gameendpanel
-  - prefabs/ui/panel/mainpanel
+  - prefabs
   - spriteatlas/common
   - spriteatlas/sundry
   - spriteatlas/virus
@@ -65,102 +40,102 @@ MonoBehaviour:
   - bundle: 1
     dir: 1
     name: Aircraft.prefab
-  - bundle: 2
+  - bundle: 1
     dir: 1
     name: Bullet.prefab
-  - bundle: 3
+  - bundle: 1
     dir: 1
     name: Coin.prefab
-  - bundle: 4
+  - bundle: 1
     dir: 1
     name: ExplosionBullet.prefab
-  - bundle: 5
+  - bundle: 1
     dir: 1
     name: ExplosionVirus.prefab
-  - bundle: 6
+  - bundle: 1
     dir: 2
     name: fire_1.prefab
-  - bundle: 7
+  - bundle: 1
     dir: 2
     name: plane_1.prefab
-  - bundle: 8
+  - bundle: 1
     dir: 2
     name: virus_base.prefab
-  - bundle: 9
+  - bundle: 1
     dir: 1
     name: VirusAttach.prefab
-  - bundle: 10
+  - bundle: 1
     dir: 1
     name: VirusBase.prefab
-  - bundle: 11
+  - bundle: 1
     dir: 1
     name: VirusBomb.prefab
-  - bundle: 12
+  - bundle: 1
     dir: 1
     name: VirusCure.prefab
-  - bundle: 13
+  - bundle: 1
     dir: 1
     name: VirusDart.prefab
-  - bundle: 14
+  - bundle: 1
     dir: 1
     name: VirusDodge.prefab
-  - bundle: 15
+  - bundle: 1
     dir: 1
     name: VirusExpand.prefab
-  - bundle: 16
+  - bundle: 1
     dir: 1
     name: VirusInvincible.prefab
-  - bundle: 17
+  - bundle: 1
     dir: 1
     name: VirusRecover.prefab
-  - bundle: 18
+  - bundle: 1
     dir: 1
     name: VirusSlower.prefab
-  - bundle: 19
+  - bundle: 1
     dir: 1
     name: VirusSpeed.prefab
-  - bundle: 20
+  - bundle: 1
     dir: 1
     name: VirusSwallow.prefab
-  - bundle: 21
+  - bundle: 1
     dir: 1
     name: VirusTrack.prefab
-  - bundle: 22
+  - bundle: 1
     dir: 1
     name: VirusTriangle.prefab
-  - bundle: 23
+  - bundle: 1
     dir: 1
     name: VirusVampire.prefab
-  - bundle: 24
+  - bundle: 1
     dir: 3
     name: BattlePanel.prefab
-  - bundle: 25
+  - bundle: 1
     dir: 3
     name: GameEndPanel.prefab
-  - bundle: 26
+  - bundle: 1
     dir: 3
     name: MainPanel.prefab
-  - bundle: 27
+  - bundle: 2
     dir: 4
     name: common.spriteatlas
-  - bundle: 28
+  - bundle: 3
     dir: 4
     name: sundry.spriteatlas
-  - bundle: 29
+  - bundle: 4
     dir: 4
     name: virus.spriteatlas
-  - bundle: 30
+  - bundle: 5
     dir: 5
     name: TableAircraft.bytes
-  - bundle: 31
+  - bundle: 6
     dir: 5
     name: TableGameLevel.bytes
-  - bundle: 32
+  - bundle: 7
     dir: 5
     name: TableGameVirusWave.bytes
-  - bundle: 33
+  - bundle: 8
     dir: 5
     name: TableVirus.bytes
-  - bundle: 34
+  - bundle: 9
     dir: 6
     name: bg.jpg

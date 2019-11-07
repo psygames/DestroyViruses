@@ -17,10 +17,9 @@ namespace DestroyViruses.Editor
             var mgr = target as GameManager;
             if (mgr != null)
             {
-                var sm = mgr.ReflectField<StateMachine.StateMachine<StateMachine.State>>("mStateMachine");
-                if (sm != null && sm.currentState != null)
+                if (Application.isPlaying)
                 {
-                    EditorGUILayout.LabelField("Current State", sm.currentState.GetType().Name);
+                    EditorGUILayout.LabelField("Current State", StateManager.Instance.currentState.GetType().Name);
                 }
             }
         }
