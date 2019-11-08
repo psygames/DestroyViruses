@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1cd05a3c6af421f90a9c6525845f35, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  runtimeMode: 1
+  runtimeMode: 0
   assetRootPath: Assets/AssetBundles/

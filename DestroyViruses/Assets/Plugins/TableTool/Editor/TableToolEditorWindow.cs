@@ -384,6 +384,8 @@ public class TableToolEditorWindow : EditorWindow
             var parseMethod = type.GetMethod("Parse", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic, null, new Type[] { typeof(string) }, null);
             if (parseMethod == null)
                 throw new Exception($"类型 {stype} 不存在静态 Parse 方法");
+            if (rawData == "")
+                return type.IsValueType ? Activator.CreateInstance(type) : null;
             return parseMethod.Invoke(null, new object[] { rawData });
         }
 

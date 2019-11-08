@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class TColor
+public struct TColor
 {
     private float r;
     private float g;
@@ -26,7 +26,7 @@ public class TColor
 }
 
 [Serializable]
-public class TQuaternion
+public struct TQuaternion
 {
     private float x;
     private float y;
@@ -48,7 +48,7 @@ public class TQuaternion
 }
 
 [Serializable]
-public class TVector3
+public struct TVector3
 {
     private float x;
     private float y;
@@ -70,7 +70,7 @@ public class TVector3
 }
 
 [Serializable]
-public class TVector2
+public struct TVector2
 {
     private float x;
     private float y;
