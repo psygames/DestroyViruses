@@ -10,47 +10,83 @@ namespace DestroyViruses
 {
     public class VirusBase : EntityBase
     {
-        public const float radius = 100f;
+        public const float baseRadius = 125f;
 
         public Text hpText;
         public Image glowImage;
 
-        protected float mHp;
-        protected float mHpTotal;
-        protected Vector2 mHpRange;
-        protected int mSize;
-        protected float mSpeed;
+        public int id { get; protected set; }
+        public TableVirus table { get; protected set; }
+        public float cd { get; protected set; }
+        public float hp { get; protected set; }
+        public float hpTotal { get; protected set; }
+        public Vector2 hpRange { get; protected set; }
+        public int size { get; protected set; }
+        public float speed { get; protected set; }
+        public Vector2 direction { get; protected set; }
+        public Vector2 position { get; protected set; }
+        public Vector2 shakeOffset { get; protected set; }
+        public bool isInvincible { get; protected set; }
+        public float radius { get; private set; }
+        public float scale { get; private set; }
 
-        protected Vector2 mDirection;
-        protected Vector2 mPosition;
-        protected Vector2 mShakeOffset;
-
+        private int mLastColorIndex = -1;
+        private float mLastHp = -1;
 
         private void OnEnable()
         {
             this.BindUntilDisable<EventBullet>(OnEventBullet);
         }
 
-        public virtual void Reset(float hp, int size, float speed, Vector2 pos, Vector2 direction, Vector2 hpRange)
+        public virtual void Reset(int id, float hp, int size, float speed, Vector2 pos, Vector2 direction, Vector2 hpRange)
         {
+            this.id = id;
+            table = TableVirus.Get(id);
+            cd = table.skillCD;
+            hpTotal = hp;
+            this.hp = hp;
+            this.size = size;
+            this.speed = speed;
+            this.hpRange = hpRange;
+            this.direction = direction;
             isAlive = true;
+            position = pos;
+            isInvincible = false;
+            rectTransform.anchoredPosition = pos;
+            shakeOffset = Vector2.zero;
+            scale = GetSizeScale(size);
+            radius = baseRadius * scale;
+            rectTransform.localScale = Vector3.one * scale;
+
             mLastColorIndex = -1;
             mLastHp = -1;
-            mHpTotal = hp;
-            mHp = hp;
-            mSize = size;
-            mSpeed = speed;
-            mHpRange = hpRange;
-            mDirection = direction;
-            mPosition = pos;
-            rectTransform.anchoredPosition = pos;
-            mShakeOffset = Vector2.zero;
-            rectTransform.localScale = Vector3.one * GetSizeScale(size);
+        }
+
+        public void SetDirection(Vector2 direction)
+        {
+            this.direction = direction;
+        }
+
+        public void SetHp(float hp)
+        {
+            this.hp = Mathf.Clamp(hp, 0, hpTotal);
+        }
+
+        public void SetInvincible(bool value)
+        {
+            this.isInvincible = value;
+        }
+
+        public void ForceRecycle()
+        {
+            hp = 0;
+            isAlive = false;
+            Recycle();
         }
 
         private float GetSizeScale(int size)
         {
-            return 1 / Mathf.Sqrt(5 - size);
+            return 1 / Mathf.Sqrt(6 - Mathf.Clamp(size, 0, 5));
         }
 
         private void OnEventBullet(EventBullet evt)
@@ -61,8 +97,8 @@ namespace DestroyViruses
             if (evt.action == EventBullet.Action.HIT)
             {
                 BeHit(evt.damage);
-                mHp = Mathf.Max(0, mHp - evt.damage);
-                if (mHp <= 0)
+                hp = Mathf.Max(0, hp - evt.damage);
+                if (hp <= 0)
                 {
                     BeDead();
                 }
@@ -78,19 +114,24 @@ namespace DestroyViruses
 
         private void PlayHit()
         {
-            mShakeOffset = Random.insideUnitCircle * Random.Range(0, 100);
+            // TODO: OPEN SHAKE?
+            // isShaked = true;
         }
 
-
+        bool isShaked = false;
         private void UpdateShake()
         {
-
+            if (isShaked)
+            {
+                shakeOffset = Random.insideUnitSphere * 5;
+                isShaked = false;
+            }
         }
 
         private void BeDead()
         {
             isAlive = false;
-            Unibus.Dispatch(EventVirus.Get(EventVirus.Action.DEAD, this, mHpTotal));
+            Unibus.Dispatch(EventVirus.Get(EventVirus.Action.DEAD, this, hpTotal));
             Recycle();
             PlayDead();
             Divide();
@@ -99,29 +140,29 @@ namespace DestroyViruses
         private void PlayDead()
         {
             int colorCount = 4;
-            int type = (int)((mHpTotal - mHpRange.x) / (mHpRange.y - mHpRange.x) * colorCount);
+            int type = (int)((hpTotal - hpRange.x) / (hpRange.y - hpRange.x) * colorCount);
             type = colorCount - Mathf.Clamp(type, 0, colorCount - 1);
             ExplosionVirus.Create().Reset(rectTransform.anchoredPosition, type);
         }
 
         private void Divide()
         {
-            if (mSize <= 1)
+            if (this.size <= 1)
                 return;
 
-            // 血量较少的不产生分裂
-            if ((mHpTotal - mHpRange.x) < (mHpRange.y - mHpRange.x) * 0.2f)
-                return;
+            // TODO: 血量较少的不产生分裂
+            // if ((hpTotal - hpRange.x) < (hpRange.y - hpRange.x) * 0.2f)
+            //    return;
 
-            var hp = mHpTotal * 0.5f;
-            var size = mSize - 1;
+            var hp = hpTotal * 0.5f;
+            var size = this.size - 1;
             var pos = transform.GetUIPos();
 
             Vector2 dirA = Quaternion.AngleAxis(Random.Range(-60, -80), Vector3.forward) * Vector2.up;
-            Create().Reset(hp, size, mSpeed, pos + dirA * radius * GetSizeScale(size), dirA, mHpRange);
+            Create().Reset(id, hp, size, speed, pos + dirA * baseRadius * GetSizeScale(size), dirA, hpRange);
 
             Vector2 dirB = Quaternion.AngleAxis(Random.Range(60, 80), Vector3.forward) * Vector2.up;
-            Create().Reset(hp, size, mSpeed, pos + dirB * radius * GetSizeScale(size), dirB, mHpRange);
+            Create().Reset(id, hp, size, speed, pos + dirB * baseRadius * GetSizeScale(size), dirB, hpRange);
         }
 
         protected VirusBase Create()
@@ -129,48 +170,68 @@ namespace DestroyViruses
             return EntityManager.Create(GetType()) as VirusBase;
         }
 
-        private float mLastHp = -1;
         protected virtual void UpdateHp()
         {
-            if (mLastHp != mHp)
+            if (mLastHp != hp)
             {
-                hpText.text = mHp.KMB();
-                mLastHp = mHp;
+                hpText.text = hp.KMB();
+                mLastHp = hp;
             }
         }
 
         protected virtual void UpdatePosition()
         {
+            if (!isAlive || isInvincible)
+                return;
+
             var uiPos = UIUtil.GetUIPos(rectTransform);
-            if (uiPos.y < -radius)
+            if (uiPos.y < -baseRadius)
             {
-                rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, UIUtil.height);
+                position = new Vector2(rectTransform.anchoredPosition.x, UIUtil.height);
             }
-            else if (uiPos.y > UIUtil.height - radius)
+            else if (uiPos.y > UIUtil.height - baseRadius)
             {
-                mDirection = new Vector2(mDirection.x, -Mathf.Abs(mDirection.y));
+                direction = new Vector2(direction.x, -Mathf.Abs(direction.y));
             }
-            if (uiPos.x < radius)
+            if (uiPos.x < baseRadius)
             {
-                mDirection = new Vector2(Mathf.Abs(mDirection.x), mDirection.y);
+                direction = new Vector2(Mathf.Abs(direction.x), direction.y);
             }
-            else if (uiPos.x > UIUtil.width - radius)
+            else if (uiPos.x > UIUtil.width - baseRadius)
             {
-                mDirection = new Vector2(-Mathf.Abs(mDirection.x), mDirection.y);
+                direction = new Vector2(-Mathf.Abs(direction.x), direction.y);
             }
-            rectTransform.anchoredPosition += mDirection * mSpeed * Time.deltaTime;
+            position += direction * speed * Time.deltaTime;
+            rectTransform.anchoredPosition = shakeOffset + position;
         }
 
-        private int mLastColorIndex = -1;
         protected virtual void UpdateColor()
         {
             int colorCount = 9;
-            int index = (int)((mHp - mHpRange.x) / (mHpRange.y - mHpRange.x) * colorCount);
+            int index = (int)((hp - hpRange.x) / (hpRange.y - hpRange.x) * colorCount);
             index = colorCount - Mathf.Clamp(index, 0, colorCount - 1) - 1;
             if (mLastColorIndex != index)
             {
                 OnColorChanged(index);
                 mLastColorIndex = index;
+            }
+        }
+
+        protected virtual void OnSkillTrigger()
+        {
+
+        }
+
+        protected virtual void UpdateCD()
+        {
+            if (table.skillCD <= 0)
+                return;
+
+            cd = this.UpdateCD(cd);
+            if (cd <= 0)
+            {
+                cd = table.skillCD;
+                OnSkillTrigger();
             }
         }
 
@@ -187,8 +248,15 @@ namespace DestroyViruses
             }
 
             UpdateHp();
+            UpdateShake();
             UpdatePosition();
             UpdateColor();
+            UpdateCD();
+        }
+
+        protected float GetDist(VirusBase virus)
+        {
+            return Mathf.Max(0, (position - virus.position).magnitude - radius - virus.radius);
         }
     }
 }

@@ -6,23 +6,22 @@ namespace DestroyViruses
     {
         public static float FirePower(int firePowerLevel)
         {
-            return 100f + firePowerLevel * 20f;
+            return TableFirePower.Get(firePowerLevel).power;
         }
 
         public static float FirePowerUpCost(int firePowerLevel)
         {
-            return firePowerLevel * 6240f;
+            return TableFirePower.Get(firePowerLevel).upcost;
         }
 
         public static float FireSpeed(int fireSpeedLevel)
         {
-            return 40 + fireSpeedLevel * 10f;
+            return TableFireSpeed.Get(fireSpeedLevel).fireSpeed;
         }
-
 
         public static float FireSpeedUpCost(int fireSpeedLevel)
         {
-            return fireSpeedLevel * 5130f;
+            return TableFireSpeed.Get(fireSpeedLevel).upcost;
         }
 
         public static T RandomInArray<T>(T[] probArray)
@@ -52,22 +51,6 @@ namespace DestroyViruses
                 }
             }
             return probArray.Length - 1;
-        }
-
-        public static int WaveVirusCount(int wave, int total)
-        {
-            if (wave == 1)
-                return (int)(total * 0.4f);
-            if (wave == 2)
-                return (int)(total * 0.4f);
-            if (wave == 3)
-                return (int)(total * 0.2f);
-            return 0;
-        }
-
-        public static float WaveSpawnInterval(int wave, float interval)
-        {
-            return interval / Mathf.Sqrt(wave);
         }
 
         public static float CoinConvert(float hp)

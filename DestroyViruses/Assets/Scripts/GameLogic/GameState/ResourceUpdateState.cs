@@ -14,6 +14,7 @@ namespace DestroyViruses
         public override void OnEnter()
         {
             progress = 0;
+            UIManager.Instance.Open<LoadingPanel>();
             updater.Init();
             base.OnEnter();
         }
@@ -53,8 +54,6 @@ namespace DestroyViruses
 
             if (updater.state == AssetsUpdate.State.Wait)
             {
-                Debug.Log("check resource update");
-                UIManager.Instance.Open<LoadingPanel>();
                 updater.Check();
             }
             else if (updater.state == AssetsUpdate.State.Completed)
@@ -66,7 +65,6 @@ namespace DestroyViruses
         public override void OnExit()
         {
             base.OnExit();
-
             UIManager.Instance.Close<LoadingPanel>();
         }
     }

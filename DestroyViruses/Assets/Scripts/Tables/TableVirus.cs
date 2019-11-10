@@ -8,7 +8,7 @@ namespace DestroyViruses
 	[Serializable]
     public class TableVirusCollection
     {
-        private Dictionary<string, TableVirus> mDict = null;
+        private Dictionary<int, TableVirus> mDict = null;
 
         [NonSerialized]
         private static TableVirusCollection _ins = null;
@@ -24,7 +24,7 @@ namespace DestroyViruses
             }
         }
 
-		public TableVirus Get(string id)
+		public TableVirus Get(int id)
         {
             TableVirus data = null;
 			_ins.mDict.TryGetValue(id, out data);
@@ -104,8 +104,8 @@ namespace DestroyViruses
 		/// <summary>
 		/// ID
 		/// </summary>
-		private string _id;
-		public string id { get { return _id; } private set { _id = value; } }
+		private int _id;
+		public int id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
 		/// virus type
@@ -113,8 +113,26 @@ namespace DestroyViruses
 		private string _type;
 		public string type { get { return _type; } private set { _type = value; } }
 
+		/// <summary>
+		/// skill触发间隔
+		/// </summary>
+		private float _skillCD;
+		public float skillCD { get { return _skillCD; } private set { _skillCD = value; } }
 
-		public static TableVirus Get(string id)
+		/// <summary>
+		/// 技能效果是数值1
+		/// </summary>
+		private float _effect1;
+		public float effect1 { get { return _effect1; } private set { _effect1 = value; } }
+
+		/// <summary>
+		/// 技能效果数值2
+		/// </summary>
+		private float _effect2;
+		public float effect2 { get { return _effect2; } private set { _effect2 = value; } }
+
+
+		public static TableVirus Get(int id)
 		{
 			return TableVirusCollection.Instance.Get(id);
 		}

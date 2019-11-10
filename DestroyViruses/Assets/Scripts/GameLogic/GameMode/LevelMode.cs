@@ -99,7 +99,7 @@ namespace DestroyViruses
             int spawnedTotal = mWaveModule.spawnIndex;
             for (int i = 0; i < mWaveModule.configLevel.waveID.Length; i++)
             {
-                var configWave = TableGameVirusWave.Get(mWaveModule.configLevel.waveID[i]);
+                var configWave = TableGameWave.Get(mWaveModule.configLevel.waveID[i]);
                 var waveCount = (int)(configWave.spawnCount * configLevel.spawnCountFactor);
                 total += waveCount;
                 if (mWaveModule.waveIndex > i)
@@ -133,11 +133,11 @@ namespace DestroyViruses
 
 
         public class WaveModule
-        {   
+        {
             public const int waveClearVirusCount = 3;
 
             public TableGameLevel configLevel { get; private set; }
-            public TableGameVirusWave configWave { get; private set; }
+            public TableGameWave configWave { get; private set; }
             public int waveIndex { get; private set; }
             public bool isFinalWave { get { return waveIndex == configLevel.waveID.Length - 1; } }
             public bool isSpawnOver { get { return spawnIndex >= spawnCount; } }
@@ -183,7 +183,7 @@ namespace DestroyViruses
                 this.waveIndex = waveIndex;
                 this.mSpawnCD = 0;
                 this.spawnIndex = 0;
-                configWave = TableGameVirusWave.Get(configLevel.waveID[waveIndex]);
+                configWave = TableGameWave.Get(configLevel.waveID[waveIndex]);
             }
 
             public void Update(float deltaTime)
@@ -216,18 +216,20 @@ namespace DestroyViruses
             private void SpawnVirus()
             {
                 var direction = Quaternion.AngleAxis(Random.Range(-80f, 80f), Vector3.forward) * Vector2.down;
-                var pos = new Vector2(Random.Range(VirusBase.radius, UIUtil.width - VirusBase.radius), UIUtil.height + VirusBase.radius);
-
-                var hpRange = configWave.virusHpRange.value * configLevel.virusHpFactor;
-                var hp = FormulaUtil.RandomInRanage(configWave.virusHpRange.value) * configLevel.virusHpFactor;
-                var speed = FormulaUtil.RandomInRanage(configWave.virusSpeedRange.value) * configLevel.virusSpeedFactor;
+                var pos = new Vector2(Random.Range(VirusBase.baseRadius, UIUtil.width - VirusBase.baseRadius), UIUtil.height + VirusBase.baseRadius);
 
                 var virusIndex = FormulaUtil.RandomIndexInProbArray(configWave.virusProb);
-                var virusType = "DestroyViruses." + TableVirus.Get(configWave.virus[virusIndex]).type;
+                var virusTable = TableVirus.Get(configWave.virus[virusIndex]);
+                var virusType = "DestroyViruses." + virusTable.type;
                 var virus = (VirusBase)EntityManager.Create(System.Type.GetType(virusType));
+
+                //TODO:RANGE
+                var hpRange = new Vector2(0.75f, 1.25f) * configWave.virusHp[virusIndex] * configLevel.virusHpFactor;
+                var hp = FormulaUtil.RandomInRanage(hpRange);
+                var speed = FormulaUtil.RandomInRanage(new Vector2(0.75f, 1.25f) * configWave.virusSpeed[virusIndex]) * configLevel.virusSpeedFactor;
                 var size = configWave.virusSize[virusIndex];
 
-                virus.Reset(hp, size, speed, pos, direction, hpRange);
+                virus.Reset(virusTable.id, hp, size, speed, pos, direction, hpRange);
             }
         }
     }

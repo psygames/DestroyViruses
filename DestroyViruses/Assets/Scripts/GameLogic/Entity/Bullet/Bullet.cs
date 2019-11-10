@@ -32,7 +32,7 @@ namespace DestroyViruses
             if (collider.tag == TagUtil.Virus)
             {
                 var virus = collider.GetComponent<VirusBase>();
-                if (virus != null && virus.isAlive)
+                if (virus != null && virus.isAlive && !virus.isInvincible)
                 {
                     Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, virus, mDamage));
                     PlayExplosion();

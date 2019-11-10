@@ -218,6 +218,7 @@ public class TableToolEditorWindow : EditorWindow
         }
 
         var _classStr = classTemplate;
+        var _idType = properties[0].type;
         var _propertiesStr = "";
         foreach (var p in properties)
         {
@@ -251,6 +252,7 @@ public class TableToolEditorWindow : EditorWindow
 
         _classStr = _classStr.Replace("{namespace}", _namespace);
         _classStr = _classStr.Replace("{className}", className);
+        _classStr = _classStr.Replace("{idType}", _idType);
         _classStr = _classStr.Replace("{properties}", _propertiesStr);
         _classStr = _classStr.Replace("{encrypt}", settings.encrypt.ToString().ToLower());
         _classStr = _classStr.Replace("{encryptKey}", settings.encryptKey);
@@ -472,17 +474,18 @@ public class TableToolEditorWindow : EditorWindow
         }
 
         var obj = assembly.CreateInstance(collectionClassType.FullName);
-        var dict = Activator.CreateInstance(GetDictionaryType($"Dictionary<string,{_namespace}.{className}>"));
+        var _idType = properties[0].type;
+        var dict = Activator.CreateInstance(GetDictionaryType($"Dictionary<{_idType},{_namespace}.{className}>"));
         var flag = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
-        var keys = new List<string>();
+        var keys = new List<object>();
         for (int i = 0; i < dataList.Count; i++)
         {
-            string id = (string)dataList[i].GetType().GetProperty("id", flag).GetValue(dataList[i]);
-            if (string.IsNullOrEmpty(id))
+            object id = dataList[i].GetType().GetProperty("id", flag).GetValue(dataList[i]);
+            if (string.IsNullOrEmpty(id.ToString()))
             {
                 continue;
             }
-            if (keys.Contains(id))
+            if (keys.Any(_=>_.ToString() == id.ToString()))
             {
                 Debug.LogError($"{className} Already has the same id {id}");
                 continue;

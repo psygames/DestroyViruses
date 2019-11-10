@@ -6,6 +6,8 @@ namespace DestroyViruses
 {
     public class Aircraft : EntityBase<Aircraft>
     {
+        public AircraftMovement movement { get { return mMovement; } }
+
         private AircraftInputHandle mInputHandle;
         private AircraftMovement mMovement;
         private AircraftFire mFire;

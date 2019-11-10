@@ -8,7 +8,7 @@ namespace DestroyViruses
 	[Serializable]
     public class TableGameLevelCollection
     {
-        private Dictionary<string, TableGameLevel> mDict = null;
+        private Dictionary<int, TableGameLevel> mDict = null;
 
         [NonSerialized]
         private static TableGameLevelCollection _ins = null;
@@ -24,7 +24,7 @@ namespace DestroyViruses
             }
         }
 
-		public TableGameLevel Get(string id)
+		public TableGameLevel Get(int id)
         {
             TableGameLevel data = null;
 			_ins.mDict.TryGetValue(id, out data);
@@ -104,8 +104,8 @@ namespace DestroyViruses
 		/// <summary>
 		/// ID
 		/// </summary>
-		private string _id;
-		public string id { get { return _id; } private set { _id = value; } }
+		private int _id;
+		public int id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
 		/// 关卡
@@ -114,10 +114,10 @@ namespace DestroyViruses
 		public int level { get { return _level; } private set { _level = value; } }
 
 		/// <summary>
-		/// 病毒进攻波，对应表ConfigGameVirusWave
+		/// 病毒进攻波，对应表TableGameVirusWave
 		/// </summary>
-		private string[] _waveID;
-		public string[] waveID { get { return _waveID; } private set { _waveID = value; } }
+		private int[] _waveID;
+		public int[] waveID { get { return _waveID; } private set { _waveID = value; } }
 
 		/// <summary>
 		/// 病毒产生间隔时间调节因素
@@ -150,7 +150,7 @@ namespace DestroyViruses
 		public bool isBoss { get { return _isBoss; } private set { _isBoss = value; } }
 
 
-		public static TableGameLevel Get(string id)
+		public static TableGameLevel Get(int id)
 		{
 			return TableGameLevelCollection.Instance.Get(id);
 		}

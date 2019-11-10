@@ -6,13 +6,13 @@ using System.Security.Cryptography;
 namespace DestroyViruses
 {
 	[Serializable]
-    public class TableGameVirusWaveCollection
+    public class TableGameWaveCollection
     {
-        private Dictionary<string, TableGameVirusWave> mDict = null;
+        private Dictionary<int, TableGameWave> mDict = null;
 
         [NonSerialized]
-        private static TableGameVirusWaveCollection _ins = null;
-        public static TableGameVirusWaveCollection Instance
+        private static TableGameWaveCollection _ins = null;
+        public static TableGameWaveCollection Instance
         {
             get
             {
@@ -24,14 +24,14 @@ namespace DestroyViruses
             }
         }
 
-		public TableGameVirusWave Get(string id)
+		public TableGameWave Get(int id)
         {
-            TableGameVirusWave data = null;
+            TableGameWave data = null;
 			_ins.mDict.TryGetValue(id, out data);
             return data;
         }
 
-		public TableGameVirusWave Get(Func<TableGameVirusWave, bool> predicate)
+		public TableGameWave Get(Func<TableGameWave, bool> predicate)
         {
             foreach (var item in _ins.mDict)
             {
@@ -43,21 +43,21 @@ namespace DestroyViruses
             return null;
         }
 
-        public ICollection<TableGameVirusWave> GetAll()
+        public ICollection<TableGameWave> GetAll()
         {
             return mDict.Values;
         }
 
         private static void Load()
         {
-            var bytes = ResourceUtil.Load<TextAsset>(PathUtil.Table("TableGameVirusWave")).bytes;
+            var bytes = ResourceUtil.Load<TextAsset>(PathUtil.Table("TableGameWave")).bytes;
             if(true)
 			{
 				bytes = AesDecrypt(bytes);
 			}
             var stream = new System.IO.MemoryStream(bytes);
             var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-            _ins = (TableGameVirusWaveCollection)formatter.Deserialize(stream);
+            _ins = (TableGameWaveCollection)formatter.Deserialize(stream);
             stream.Close();
         }
 
@@ -67,7 +67,7 @@ namespace DestroyViruses
 			Rijndael Aes = Rijndael.Create();
 			using (var Memory = new System.IO.MemoryStream(bytes))
 			{
-				var transform = Aes.CreateDecryptor(AesKey("TABLE_SECURITY"), AesKey("TableGameVirusWave"));
+				var transform = Aes.CreateDecryptor(AesKey("TABLE_SECURITY"), AesKey("TableGameWave"));
 				using (CryptoStream Decryptor = new CryptoStream(Memory, transform, CryptoStreamMode.Read))
 				{
 					using (var originalMemory = new System.IO.MemoryStream())
@@ -99,13 +99,13 @@ namespace DestroyViruses
     }
 
     [Serializable]
-    public class TableGameVirusWave
+    public class TableGameWave
     {
 		/// <summary>
 		/// ID
 		/// </summary>
-		private string _id;
-		public string id { get { return _id; } private set { _id = value; } }
+		private int _id;
+		public int id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
 		/// 波数标识
@@ -116,8 +116,8 @@ namespace DestroyViruses
 		/// <summary>
 		/// 产生病毒种类
 		/// </summary>
-		private string[] _virus;
-		public string[] virus { get { return _virus; } private set { _virus = value; } }
+		private int[] _virus;
+		public int[] virus { get { return _virus; } private set { _virus = value; } }
 
 		/// <summary>
 		/// <para>产生病毒种类概率,</para><para>对应virus列索引</para>
@@ -132,6 +132,18 @@ namespace DestroyViruses
 		public int[] virusSize { get { return _virusSize; } private set { _virusSize = value; } }
 
 		/// <summary>
+		/// 产生病毒的血量
+		/// </summary>
+		private int[] _virusHp;
+		public int[] virusHp { get { return _virusHp; } private set { _virusHp = value; } }
+
+		/// <summary>
+		/// 病毒移动速度
+		/// </summary>
+		private float[] _virusSpeed;
+		public float[] virusSpeed { get { return _virusSpeed; } private set { _virusSpeed = value; } }
+
+		/// <summary>
 		/// 病毒产生时间间隔
 		/// </summary>
 		private float _spawnInterval;
@@ -144,31 +156,31 @@ namespace DestroyViruses
 		public int spawnCount { get { return _spawnCount; } private set { _spawnCount = value; } }
 
 		/// <summary>
-		/// 病毒血量范围
+		/// 
 		/// </summary>
-		private TVector2 _virusHpRange;
-		public TVector2 virusHpRange { get { return _virusHpRange; } private set { _virusHpRange = value; } }
+		private bool _needClear;
+		public bool needClear { get { return _needClear; } private set { _needClear = value; } }
 
 		/// <summary>
-		/// 病毒速度范围
+		/// 
 		/// </summary>
-		private TVector2 _virusSpeedRange;
-		public TVector2 virusSpeedRange { get { return _virusSpeedRange; } private set { _virusSpeedRange = value; } }
+		private bool _bossWave;
+		public bool bossWave { get { return _bossWave; } private set { _bossWave = value; } }
 
 
-		public static TableGameVirusWave Get(string id)
+		public static TableGameWave Get(int id)
 		{
-			return TableGameVirusWaveCollection.Instance.Get(id);
+			return TableGameWaveCollection.Instance.Get(id);
 		}
 		
-		public static TableGameVirusWave Get(Func<TableGameVirusWave, bool> predicate)
+		public static TableGameWave Get(Func<TableGameWave, bool> predicate)
         {
-			return TableGameVirusWaveCollection.Instance.Get(predicate);
+			return TableGameWaveCollection.Instance.Get(predicate);
 		}
 
-        public static ICollection<TableGameVirusWave> GetAll()
+        public static ICollection<TableGameWave> GetAll()
         {
-            return TableGameVirusWaveCollection.Instance.GetAll();
+            return TableGameWaveCollection.Instance.GetAll();
         }
     }
 }

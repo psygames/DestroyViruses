@@ -8,7 +8,7 @@ namespace DestroyViruses
 	[Serializable]
     public class TableAircraftCollection
     {
-        private Dictionary<string, TableAircraft> mDict = null;
+        private Dictionary<int, TableAircraft> mDict = null;
 
         [NonSerialized]
         private static TableAircraftCollection _ins = null;
@@ -24,7 +24,7 @@ namespace DestroyViruses
             }
         }
 
-		public TableAircraft Get(string id)
+		public TableAircraft Get(int id)
         {
             TableAircraft data = null;
 			_ins.mDict.TryGetValue(id, out data);
@@ -104,17 +104,53 @@ namespace DestroyViruses
 		/// <summary>
 		/// ID
 		/// </summary>
-		private string _id;
-		public string id { get { return _id; } private set { _id = value; } }
+		private int _id;
+		public int id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
-		/// 等级
+		/// 程序用，副武器类型
 		/// </summary>
-		private int _level;
-		public int level { get { return _level; } private set { _level = value; } }
+		private string _tag;
+		public string tag { get { return _tag; } private set { _tag = value; } }
+
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private string _name;
+		public string name { get { return _name; } private set { _name = value; } }
+
+		/// <summary>
+		/// 解锁等级
+		/// </summary>
+		private int _unlockGameLevel;
+		public int unlockGameLevel { get { return _unlockGameLevel; } private set { _unlockGameLevel = value; } }
+
+		/// <summary>
+		/// 火力
+		/// </summary>
+		private float _power;
+		public float power { get { return _power; } private set { _power = value; } }
+
+		/// <summary>
+		/// 强度（暂时不清楚什么逻辑，好像是减少冷却时间？）
+		/// </summary>
+		private float _strength;
+		public float strength { get { return _strength; } private set { _strength = value; } }
+
+		/// <summary>
+		/// 冷却时间
+		/// </summary>
+		private float _cd;
+		public float cd { get { return _cd; } private set { _cd = value; } }
+
+		/// <summary>
+		/// 图标
+		/// </summary>
+		private string _icon;
+		public string icon { get { return _icon; } private set { _icon = value; } }
 
 
-		public static TableAircraft Get(string id)
+		public static TableAircraft Get(int id)
 		{
 			return TableAircraftCollection.Instance.Get(id);
 		}

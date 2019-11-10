@@ -82,6 +82,11 @@ namespace DestroyViruses
 
         public void Init()
         {
+            if (!Utility.assetBundleMode)
+            {
+                state = State.Completed;
+                return;
+            }
             state = State.Init;
             Versions.Load();
             Assets.Initialize(delegate

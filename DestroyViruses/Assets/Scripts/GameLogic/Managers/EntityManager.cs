@@ -80,7 +80,17 @@ namespace DestroyViruses
         {
             var type = typeof(T);
             if (!mInstanceDict.ContainsKey(type))
-                return null;
+            {
+                var list = new List<EntityBase>();
+                foreach (var kv in mInstanceDict)
+                {
+                    if (type.IsAssignableFrom(kv.Key))
+                    {
+                        list.AddRange(kv.Value);
+                    }
+                }
+                return list;
+            }
             return mInstanceDict[type];
         }
 
