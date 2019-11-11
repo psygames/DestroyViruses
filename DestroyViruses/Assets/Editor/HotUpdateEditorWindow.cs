@@ -1,16 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
-using ExcelDataReader;
-using System.Data;
 using System;
-using System.Reflection;
 using System.Text;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Security.Cryptography;
 
 public class HotUpdateEditorWindow : EditorWindow
 {
@@ -143,11 +136,6 @@ public class HotUpdateEditorWindow : EditorWindow
         }
 
 
-        // add trigger
-        if (!File.Exists(triggerFile))
-            File.Create(triggerFile).Close();
-
-
         // change process
         if (changeList.Count > 0)
         {
@@ -176,5 +164,9 @@ public class HotUpdateEditorWindow : EditorWindow
         if (!File.Exists(logFile))
             File.Create(logFile).Close();
         File.WriteAllText(logFile, log, Encoding.UTF8);
+
+        // add trigger
+        if (!File.Exists(triggerFile))
+            File.Create(triggerFile).Close();
     }
 }
