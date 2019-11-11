@@ -21,10 +21,12 @@ MonoBehaviour:
   - spriteatlas/sundry
   - spriteatlas/virus
   - tables/tableaircraft
+  - tables/tablebuff
+  - tables/tablefirepower
+  - tables/tablefirespeed
   - tables/tablegamelevel
-  - tables/tablegameviruswave
+  - tables/tablegamewave
   - tables/tablevirus
-  - textures/bg
   dirs:
   - Assets
   - Assets/AssetBundles/Prefabs/Entities
@@ -32,7 +34,6 @@ MonoBehaviour:
   - Assets/AssetBundles/Prefabs/UI/Panel
   - Assets/AssetBundles/SpriteAtlas
   - Assets/AssetBundles/Tables
-  - Assets/AssetBundles/Textures
   assets:
   - bundle: 0
     dir: 0
@@ -72,19 +73,22 @@ MonoBehaviour:
     name: VirusBomb.prefab
   - bundle: 1
     dir: 1
+    name: VirusCollider.prefab
+  - bundle: 1
+    dir: 1
     name: VirusCure.prefab
   - bundle: 1
     dir: 1
     name: VirusDart.prefab
   - bundle: 1
     dir: 1
+    name: VirusDefense.prefab
+  - bundle: 1
+    dir: 1
     name: VirusDodge.prefab
   - bundle: 1
     dir: 1
     name: VirusExpand.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusInvincible.prefab
   - bundle: 1
     dir: 1
     name: VirusRecover.prefab
@@ -129,13 +133,19 @@ MonoBehaviour:
     name: TableAircraft.bytes
   - bundle: 6
     dir: 5
-    name: TableGameLevel.bytes
+    name: TableBuff.bytes
   - bundle: 7
     dir: 5
-    name: TableGameVirusWave.bytes
+    name: TableFirePower.bytes
   - bundle: 8
     dir: 5
-    name: TableVirus.bytes
+    name: TableFireSpeed.bytes
   - bundle: 9
-    dir: 6
-    name: bg.jpg
+    dir: 5
+    name: TableGameLevel.bytes
+  - bundle: 10
+    dir: 5
+    name: TableGameWave.bytes
+  - bundle: 11
+    dir: 5
+    name: TableVirus.bytes
