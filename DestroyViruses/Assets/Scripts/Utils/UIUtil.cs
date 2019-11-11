@@ -84,7 +84,7 @@ namespace DestroyViruses
         }
 
         private static Dictionary<string, SpriteAtlas> sSpriteAtlasDict = null;
-        private static void LoadAtlasAll()
+        public static void LoadAtlasAll()
         {
             if (sSpriteAtlasDict == null)
             {

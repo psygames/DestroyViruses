@@ -10,6 +10,7 @@ namespace DestroyViruses
         public override void OnEnter()
         {
             m_waitSeconds = 0.1f;
+            UIUtil.LoadAtlasAll();
             base.OnEnter();
         }
 
