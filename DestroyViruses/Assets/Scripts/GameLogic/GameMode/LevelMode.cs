@@ -141,6 +141,7 @@ namespace DestroyViruses
             public int waveIndex { get; private set; }
             public bool isFinalWave { get { return waveIndex == configLevel.waveID.Length - 1; } }
             public bool isSpawnOver { get { return spawnIndex >= spawnCount; } }
+            public bool needClear { get { return configWave.needClear; } }
             public int spawnCount { get { return (int)(configWave.spawnCount * configLevel.spawnCountFactor); } }
             public float spawnInterval { get { return (configWave.spawnInterval * configLevel.spawnIntervalFactor); } }
             public int spawnIndex { get; private set; }
@@ -205,7 +206,7 @@ namespace DestroyViruses
                 else // 等待当前波结束结束
                 {
                     // 非最终波
-                    if (!isFinalWave && EntityManager.Count<VirusBase>() <= waveClearVirusCount)
+                    if (!isFinalWave && (!needClear || EntityManager.Count<VirusBase>() <= waveClearVirusCount))
                     {
                         SetWave(waveIndex + 1);
                     }
