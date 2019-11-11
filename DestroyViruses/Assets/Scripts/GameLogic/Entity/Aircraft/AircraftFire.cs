@@ -65,11 +65,11 @@ namespace DestroyViruses
                     mFireOnceCD = mFireOnceDuration;
                 }
 
-                if (mFireSoundCD <= 0)
-                {
-                    AudioManager.Instance.PlaySound("Sounds/hit");
-                    mFireSoundCD = fireSoundCD;
-                }
+                AudioManager.Instance.PlayFireMusic("Sounds/hit");
+            }
+            else
+            {
+                AudioManager.Instance.StopFireMusic();
             }
         }
     }

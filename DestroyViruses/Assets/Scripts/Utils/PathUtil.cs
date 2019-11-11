@@ -32,6 +32,12 @@ namespace DestroyViruses
             return SPRITE_ATLAS_ROOT + name + ".spriteatlas";
         }
 
+        private const string SOUND_ROOT = ASSET_ROOT + "Sounds/";
+        public static string Sound(string name)
+        {
+            return "Sounds/" + name;
+        }
+
         public static string[] GetSpriteAtlasNames()
         {
             return new string[] { "common", "sundry", "virus" };

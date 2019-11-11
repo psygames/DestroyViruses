@@ -65,26 +65,19 @@ namespace Plugins.XAsset.Editor
 
         public void OnPreprocessBuild(BuildTarget target, string path)
         {
-            //TODO:BuildProcess
-            return;
-            BuildScript.CopyAssetBundlesTo(Path.Combine(Application.streamingAssetsPath, Utility.AssetBundles));
+            // DNOT COPY
+            // BuildScript.CopyAssetBundlesTo(Path.Combine(Application.streamingAssetsPath, Utility.AssetBundles));
             var platformName = BuildScript.GetPlatformName();
-            var searchPath = Path.Combine(Path.Combine(Application.streamingAssetsPath, Utility.AssetBundles),
-                platformName);
-            if (!Directory.Exists(searchPath)) return;
-            var files = Directory.GetFiles(searchPath, "*.manifest", SearchOption.AllDirectories);
-            foreach (var file in files)
+            var srcRoot = Path.Combine(Utility.AssetBundles, platformName);
+            var destRoot = Path.Combine(Application.streamingAssetsPath, Utility.AssetBundles, platformName);
+            if (Directory.Exists(destRoot))
             {
-                var info = new FileInfo(file);
-                if (info.Exists) info.Delete();
+                FileUtil.DeleteFileOrDirectory(destRoot);
             }
-
-            files = Directory.GetFiles(searchPath, "*.meta", SearchOption.AllDirectories);
-            foreach (var item in files)
-            {
-                var info = new FileInfo(item);
-                info.Delete();
-            }
+            Directory.CreateDirectory(destRoot);
+            FileUtil.CopyFileOrDirectory(Path.Combine(srcRoot, "manifest"), Path.Combine(destRoot, "manifest"));
+            FileUtil.CopyFileOrDirectory(Path.Combine(srcRoot, platformName), Path.Combine(destRoot, platformName));
+            FileUtil.CopyFileOrDirectory(Path.Combine(srcRoot, "versions.txt"), Path.Combine(destRoot, "versions.txt"));
         }
 
         public int callbackOrder
