@@ -37,6 +37,7 @@ namespace Plugins.XAsset.Editor
     {
         public void OnPostprocessBuild(BuildTarget target, string path)
         {
+            return;
             if (target != BuildTarget.iOS || Environment.OSVersion.Platform != PlatformID.MacOSX) return;
             var searchPath = Path.Combine(Application.dataPath, "Plugins/XAsset/Editor/Shells");
             var shells = Directory.GetFiles(searchPath, "*.sh", SearchOption.AllDirectories);
@@ -63,6 +64,7 @@ namespace Plugins.XAsset.Editor
 
         public void OnPreprocessBuild(BuildTarget target, string path)
         {
+            return;
             BuildScript.CopyAssetBundlesTo(Path.Combine(Application.streamingAssetsPath, Utility.AssetBundles));
             var platformName = BuildScript.GetPlatformName();
             var searchPath = Path.Combine(Path.Combine(Application.streamingAssetsPath, Utility.AssetBundles),

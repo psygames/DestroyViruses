@@ -67,6 +67,7 @@ namespace DestroyViruses
             mTotalDrag = Vector2.zero;
             UIUtil.aircraftTransform.DOScale(Vector3.one * 1.3f, 0.5f).SetEase(Ease.OutQuad);
             RefreshUI();
+            AudioManager.Instance.PlayMusic($"Sounds/BGM{Random.Range(1, 3)}",1f);
         }
 
         private void OnDestroy()

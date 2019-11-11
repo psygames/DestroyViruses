@@ -37,6 +37,7 @@ namespace DestroyViruses
         {
             UIUtil.aircraftTransform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutQuad);
             lastWaveToast.SetActive(false);
+            AudioManager.Instance.PlayMusic($"Sounds/BGM{Random.Range(3, 5)}", 0.7f);
         }
 
         private void OnDestroy()

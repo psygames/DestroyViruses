@@ -7,11 +7,15 @@ namespace DestroyViruses
     {
         public Transform fireTransform;
 
+        const float fireSoundCD = 6;
+
         private float mFireOnceDuration;
         private float mFireOnceBullets;
         private float mFireOnceCD;
         private float mFirePower;
         private float mFireSpeed;
+
+        private float mFireSoundCD;
 
         public bool IsFiring { get; private set; }
 
@@ -52,12 +56,19 @@ namespace DestroyViruses
         private void Update()
         {
             mFireOnceCD = this.UpdateCD(mFireOnceCD);
+            mFireSoundCD = this.UpdateCD(mFireSoundCD);
             if (IsFiring)
             {
                 if (mFireOnceCD <= 0)
                 {
                     FireOnce();
                     mFireOnceCD = mFireOnceDuration;
+                }
+
+                if (mFireSoundCD <= 0)
+                {
+                    AudioManager.Instance.PlaySound("Sounds/hit");
+                    mFireSoundCD = fireSoundCD;
                 }
             }
         }
