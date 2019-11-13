@@ -48,9 +48,8 @@ namespace DestroyViruses
             return mDict.Values;
         }
 
-        private static void Load()
+        public static void Load(byte[] bytes)
         {
-            var bytes = ResourceUtil.Load<TextAsset>(PathUtil.Table("TableVirus")).bytes;
             if(true)
 			{
 				bytes = AesDecrypt(bytes);
@@ -59,6 +58,12 @@ namespace DestroyViruses
             var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
             _ins = (TableVirusCollection)formatter.Deserialize(stream);
             stream.Close();
+        }
+
+        private static void Load()
+        {
+            var bytes = ResourceUtil.Load<TextAsset>(PathUtil.Table("TableVirus")).bytes;
+            Load(bytes);
         }
 
 		private static byte[] AesDecrypt(byte[] bytes)
@@ -108,7 +113,7 @@ namespace DestroyViruses
 		public int id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
-		/// virus type
+		/// virus type（程序使用）
 		/// </summary>
 		private string _type;
 		public string type { get { return _type; } private set { _type = value; } }

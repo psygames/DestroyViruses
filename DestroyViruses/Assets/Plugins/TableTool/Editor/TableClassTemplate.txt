@@ -48,9 +48,8 @@ namespace {namespace}
             return mDict.Values;
         }
 
-        private static void Load()
+        public static void Load(byte[] bytes)
         {
-            var bytes = ResourceUtil.Load<TextAsset>(PathUtil.Table("{className}")).bytes;
             if({encrypt})
 			{
 				bytes = AesDecrypt(bytes);
@@ -59,6 +58,12 @@ namespace {namespace}
             var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
             _ins = ({className}Collection)formatter.Deserialize(stream);
             stream.Close();
+        }
+
+        private static void Load()
+        {
+            var bytes = ResourceUtil.Load<TextAsset>(PathUtil.Table("{className}")).bytes;
+            Load(bytes);
         }
 
 		private static byte[] AesDecrypt(byte[] bytes)

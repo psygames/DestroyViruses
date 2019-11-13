@@ -18,7 +18,7 @@ namespace DestroyViruses
             base.OnUpdate(deltaTime);
             m_waitSeconds -= deltaTime;
             if (m_waitSeconds <= 0)
-                GameManager.ChangeState<ResourceUpdateState>();
+                GameManager.ChangeState<HotUpdateState>();
         }
     }
 }

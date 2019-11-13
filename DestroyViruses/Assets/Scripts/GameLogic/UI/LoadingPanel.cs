@@ -16,10 +16,10 @@ namespace DestroyViruses
         private void Update()
         {
             var state = StateManager.Instance.currentState;
-            if(state is ResourceUpdateState)
+            if (state is HotUpdateState)
             {
-                var rus = state as ResourceUpdateState;
-                fill.value = rus.progress;
+                var rus = state as HotUpdateState;
+                fill.value = Mathf.Lerp(fill.value, rus.progress, Time.deltaTime * 15);
                 desc.text = rus.message;
             }
         }

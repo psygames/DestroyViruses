@@ -48,9 +48,8 @@ namespace DestroyViruses
             return mDict.Values;
         }
 
-        private static void Load()
+        public static void Load(byte[] bytes)
         {
-            var bytes = ResourceUtil.Load<TextAsset>(PathUtil.Table("TableGameWave")).bytes;
             if(true)
 			{
 				bytes = AesDecrypt(bytes);
@@ -59,6 +58,12 @@ namespace DestroyViruses
             var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
             _ins = (TableGameWaveCollection)formatter.Deserialize(stream);
             stream.Close();
+        }
+
+        private static void Load()
+        {
+            var bytes = ResourceUtil.Load<TextAsset>(PathUtil.Table("TableGameWave")).bytes;
+            Load(bytes);
         }
 
 		private static byte[] AesDecrypt(byte[] bytes)
