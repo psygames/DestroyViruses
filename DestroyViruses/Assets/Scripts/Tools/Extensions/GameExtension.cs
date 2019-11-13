@@ -33,7 +33,7 @@ public static class GameExtension
     {
         if (value < sKBMDivs[0])
         {
-            return ((int)value).ToString();
+            return Mathf.CeilToInt(value).ToString();
         }
 
         for (int i = 0; i < sKBMUnits.Length; i++)
@@ -41,10 +41,10 @@ public static class GameExtension
             if (value >= sKBMDivs[i] && value < sKBMDivs[i + 1])
             {
                 value = value / sKBMDivs[i];
-                int d1 = (int)(value * 10) % 10;
+                int d1 = Mathf.CeilToInt(value * 10) % 10;
                 if (d1 == 0)
-                    return ((int)value).ToString() + sKBMUnits[i];
-                return ((int)value).ToString() + "." + d1.ToString() + sKBMUnits[i];
+                    return (Mathf.CeilToInt(value)).ToString() + sKBMUnits[i];
+                return (Mathf.CeilToInt(value)).ToString() + "." + d1.ToString() + sKBMUnits[i];
             }
         }
         return "!KBM";
