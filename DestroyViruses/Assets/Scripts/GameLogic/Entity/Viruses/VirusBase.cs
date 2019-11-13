@@ -31,6 +31,16 @@ namespace DestroyViruses
         public bool isInvincible { get; protected set; }
         public float radius { get; private set; }
         public float scale { get; private set; }
+        public float slowDownFactor
+        {
+            get
+            {
+                if (!GlobalData.isBattleTouchOn)
+                    return ConstTable.table.noTouchSlowDown;
+                return 1f;
+            }
+        }
+        protected virtual float speedMul { get; set; } = 1f;
 
         private int mLastColorIndex = -1;
         private float mLastHp = -1;
@@ -93,7 +103,7 @@ namespace DestroyViruses
 
         private float GetSizeScale(int _size)
         {
-            return 1 / Mathf.Sqrt(6 - Mathf.Clamp(_size, 0, 5));
+            return ConstTable.table.virusSize[_size - 1];
         }
 
         private void OnEventBullet(EventBullet evt)
@@ -122,16 +132,20 @@ namespace DestroyViruses
         private void PlayHit()
         {
             // TODO: OPEN SHAKE?
-            // isShaked = true;
+            isShaked = true;
         }
 
         bool isShaked = false;
+        float shakeInterval = 0.1f;
+        float mLastShakeTime = 0;
+        float shakeDist = 5;
         private void UpdateShake()
         {
-            if (isShaked)
+            if (isShaked && Time.time - mLastShakeTime > shakeInterval)
             {
-                shakeOffset = Random.insideUnitSphere * 5;
+                shakeOffset = Random.insideUnitSphere * shakeDist;
                 isShaked = false;
+                mLastShakeTime = Time.time;
             }
         }
 
@@ -161,7 +175,7 @@ namespace DestroyViruses
             // if ((hpTotal - hpRange.x) < (hpRange.y - hpRange.x) * 0.2f)
             //    return;
 
-            var _hp = hpTotal * 0.5f;
+            var _hp = Mathf.Ceil(hpTotal * 0.5f);
             var _size = size - 1;
             var pos = transform.GetUIPos();
 
@@ -208,7 +222,7 @@ namespace DestroyViruses
             {
                 direction = new Vector2(-Mathf.Abs(direction.x), direction.y);
             }
-            position += direction * speed * Time.deltaTime;
+            position += direction * speed * slowDownFactor * speedMul * Time.deltaTime;
             rectTransform.anchoredPosition = shakeOffset + position;
         }
 

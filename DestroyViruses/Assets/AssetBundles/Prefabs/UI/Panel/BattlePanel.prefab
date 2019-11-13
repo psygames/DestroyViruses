@@ -754,6 +754,117 @@ MonoBehaviour:
   optionalRotationMode: 0
   optionalScrambleMode: 0
   optionalString: 
+--- !u!1 &2863296891176904776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2212932376920627478}
+  - component: {fileID: 7665780978890190851}
+  - component: {fileID: 6765559009955459729}
+  - component: {fileID: 695302308860932757}
+  - component: {fileID: 8450190662443804977}
+  m_Layer: 5
+  m_Name: SlowDownMask
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2212932376920627478
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863296891176904776}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7254845784173256005}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7665780978890190851
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863296891176904776}
+  m_CullTransparentMesh: 0
+--- !u!114 &6765559009955459729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863296891176904776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Texture: {fileID: 2800000, guid: 755a66ee46ca7d34c92214efe122fe12, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!225 &695302308860932757
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863296891176904776}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &8450190662443804977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863296891176904776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62eb50825e7a1846ad2b257a6948792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableFadeIn: 1
+  onEnableFadeIn: 0
+  fadeInDelay: 0
+  fadeInDuration: 0.2
+  fadeInMethod: 2
+  enableFadeOut: 1
+  outSetInactive: 1
+  fadeOutDelay: 0
+  fadeOutDuration: 0.05
+  fadeOutMethod: 3
+  autoFadeOut: 0
+  from: 0
+  to: 1
 --- !u!1 &2890829225509210701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2739,6 +2850,7 @@ RectTransform:
   - {fileID: 3955181708556828146}
   - {fileID: 8563067721546689059}
   - {fileID: 6362431365512560441}
+  - {fileID: 2212932376920627478}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2770,7 +2882,8 @@ MonoBehaviour:
   coinText: {fileID: 5266598509146965531}
   progressFill: {fileID: 3242510693747870031}
   progressText: {fileID: 6972375663961824667}
-  lastWaveToast: {fileID: 4303699759467666938}
+  bossWaveToast: {fileID: 4303699759467666938}
+  slowDownFade: {fileID: 8450190662443804977}
 --- !u!1 &7050663419693885816
 GameObject:
   m_ObjectHideFlags: 0

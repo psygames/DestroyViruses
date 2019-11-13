@@ -24,7 +24,9 @@ namespace DestroyViruses
         public Image progressFill;
         public Text progressText;
 
-        public GameObject lastWaveToast;
+        public GameObject bossWaveToast;
+        public FadeAlpha slowDownFade;
+
 
         private void Awake()
         {
@@ -36,7 +38,9 @@ namespace DestroyViruses
         protected override void OnOpen()
         {
             UIUtil.aircraftTransform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutQuad);
-            lastWaveToast.SetActive(false);
+            bossWaveToast.SetActive(false);
+            GlobalData.isBattleTouchOn = false;
+            slowDownFade.FadeInImmediately();
             AudioManager.Instance.PlayMusic($"Sounds/BGM{Random.Range(3, 5)}", 0.6f);
         }
 
@@ -52,10 +56,14 @@ namespace DestroyViruses
             inputListenser.onDown.AddListener((data) =>
             {
                 InputManager.Instance.Push(new InputData(InputType.Down, UIUtil.FormatToVirtual(data)));
+                GlobalData.isBattleTouchOn = true;
+                slowDownFade.FadeOut();
             });
             inputListenser.onUp.AddListener((data) =>
             {
                 InputManager.Instance.Push(new InputData(InputType.Up, UIUtil.FormatToVirtual(data)));
+                GlobalData.isBattleTouchOn = false;
+                slowDownFade.FadeIn();
             });
             inputListenser.onDrag.AddListener((data) =>
             {
@@ -132,10 +140,10 @@ namespace DestroyViruses
 
         private void ToastFinalWave()
         {
-            lastWaveToast.SetActive(true);
+            bossWaveToast.SetActive(true);
             Observable.Timer(5).Subscribe(_ =>
             {
-                lastWaveToast.SetActive(false);
+                bossWaveToast.SetActive(false);
             });
         }
 

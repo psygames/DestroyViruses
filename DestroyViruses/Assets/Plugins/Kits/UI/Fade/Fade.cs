@@ -7,14 +7,14 @@ public class Fade : MonoBehaviour, IFade
     public bool enableFadeIn = true;
     public bool onEnableFadeIn = false;
     public float fadeInDelay = 0f;
-    public float fadeInDuration = 0.3f;
-    public Ease fadeInMethod = Ease.OutSine;
+    public float fadeInDuration = 0.15f;
+    public Ease fadeInMethod = Ease.InSine;
     public event Action onFadeInComplete;
 
     public bool enableFadeOut = true;
     public bool outSetInactive = true;
     public float fadeOutDelay = 0f;
-    public float fadeOutDuration = 0.3f;
+    public float fadeOutDuration = 0.15f;
     public Ease fadeOutMethod = Ease.OutSine;
     public event Action onFadeOutComplete;
 
