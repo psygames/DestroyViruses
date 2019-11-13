@@ -154,6 +154,12 @@ namespace DestroyViruses
 		private bool _isBoss;
 		public bool isBoss { get { return _isBoss; } private set { _isBoss = value; } }
 
+		/// <summary>
+		/// 关卡病毒血量范围，影响病毒颜色
+		/// </summary>
+		private TRangeInt _hpRange;
+		public TRangeInt hpRange { get { return _hpRange; } private set { _hpRange = value; } }
+
 
 		public static TableGameLevel Get(int id)
 		{

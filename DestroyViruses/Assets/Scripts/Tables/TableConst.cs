@@ -121,32 +121,32 @@ namespace DestroyViruses
 		/// <summary>
 		/// 病毒产生间隔随机范围
 		/// </summary>
-		private TVector2 _spawnVirusInterval;
-		public TVector2 spawnVirusInterval { get { return _spawnVirusInterval; } private set { _spawnVirusInterval = value; } }
+		private TRange _spawnVirusInterval;
+		public TRange spawnVirusInterval { get { return _spawnVirusInterval; } private set { _spawnVirusInterval = value; } }
 
 		/// <summary>
 		/// 病毒产出方向范围(以下方向为0)
 		/// </summary>
-		private TVector2 _spawnVirusDirection;
-		public TVector2 spawnVirusDirection { get { return _spawnVirusDirection; } private set { _spawnVirusDirection = value; } }
+		private TRange _spawnVirusDirection;
+		public TRange spawnVirusDirection { get { return _spawnVirusDirection; } private set { _spawnVirusDirection = value; } }
 
 		/// <summary>
 		/// <para>分裂病毒方向范围（以上方向为0）</para><para>最多3个分裂方向</para>
 		/// </summary>
-		private TVector2[] _divideVirusDirection;
-		public TVector2[] divideVirusDirection { get { return _divideVirusDirection; } private set { _divideVirusDirection = value; } }
+		private TRange[] _divideVirusDirection;
+		public TRange[] divideVirusDirection { get { return _divideVirusDirection; } private set { _divideVirusDirection = value; } }
 
 		/// <summary>
 		/// 病毒血量随机范围
 		/// </summary>
-		private TVector2 _hpRandomRange;
-		public TVector2 hpRandomRange { get { return _hpRandomRange; } private set { _hpRandomRange = value; } }
+		private TRange _hpRandomRange;
+		public TRange hpRandomRange { get { return _hpRandomRange; } private set { _hpRandomRange = value; } }
 
 		/// <summary>
 		/// 病毒速度随机范围
 		/// </summary>
-		private TVector2 _speedRandomRange;
-		public TVector2 speedRandomRange { get { return _speedRandomRange; } private set { _speedRandomRange = value; } }
+		private TRange _speedRandomRange;
+		public TRange speedRandomRange { get { return _speedRandomRange; } private set { _speedRandomRange = value; } }
 
 		/// <summary>
 		/// 当前波怪物清空数量，（例如配置为2，当场上只剩下2个病毒时，则认为该波病毒已清空。）

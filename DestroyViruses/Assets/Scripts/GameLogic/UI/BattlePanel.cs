@@ -73,9 +73,9 @@ namespace DestroyViruses
 
         private void OnEventGameProcedure(EventGameProcedure procedure)
         {
-            if (procedure.action == EventGameProcedure.Action.FinalWave)
+            if (procedure.action == EventGameProcedure.Action.BossWave)
             {
-                ToastFinalWave();
+                ToastBossWave();
             }
             else if (procedure.action == EventGameProcedure.Action.GameEndWin)
             {
@@ -138,7 +138,7 @@ namespace DestroyViruses
             coinText.text = GDM.ins.battleGetCoin.KMB();
         }
 
-        private void ToastFinalWave()
+        private void ToastBossWave()
         {
             bossWaveToast.SetActive(true);
             Observable.Timer(5).Subscribe(_ =>

@@ -160,10 +160,8 @@ namespace DestroyViruses
 
         private void PlayDead()
         {
-            int colorCount = 4;
-            int type = (int)((hpTotal - hpRange.x) / (hpRange.y - hpRange.x) * colorCount);
-            type = colorCount - Mathf.Clamp(type, 0, colorCount - 1);
-            ExplosionVirus.Create().Reset(rectTransform.anchoredPosition, type);
+            var index = FormulaUtil.GetHpColorIndex(hpRange, hpTotal, 4);
+            ExplosionVirus.Create().Reset(rectTransform.anchoredPosition, index + 1);
         }
 
         private void Divide()
@@ -228,9 +226,7 @@ namespace DestroyViruses
 
         protected virtual void UpdateColor()
         {
-            int colorCount = 9;
-            int index = (int)((hp - hpRange.x) / (hpRange.y - hpRange.x) * colorCount);
-            index = colorCount - Mathf.Clamp(index, 0, colorCount - 1) - 1;
+            var index = FormulaUtil.GetHpColorIndex(hpRange, hp);
             if (mLastColorIndex != index)
             {
                 OnColorChanged(index);

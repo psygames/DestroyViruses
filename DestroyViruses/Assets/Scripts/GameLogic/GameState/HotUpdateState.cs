@@ -101,6 +101,12 @@ namespace DestroyViruses
 
         private void UpdateQuickHotUpdate()
         {
+            if (!Plugins.XAsset.Utility.assetBundleMode)
+            {
+                mQuickHotUpdateFinished = true;
+                return;
+            }
+
             if (mQuickHotUpdateIndex >= mQuickHotUpdateList.Count)
             {
                 mQuickHotUpdateFinished = true;

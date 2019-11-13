@@ -38,7 +38,7 @@ namespace DestroyViruses
                 total += probArray[i];
             }
 
-            if (Mathf.Approximately(total,0))
+            if (Mathf.Approximately(total, 0))
                 throw new System.Exception("Prob Array Total: 0");
 
             float cur = 0;
@@ -58,9 +58,12 @@ namespace DestroyViruses
             return hp * ConstTable.table.hpToCoin;
         }
 
-        public static float RandomInRanage(Vector2 range)
+        public static int GetHpColorIndex(Vector2 hpRange, float hp, int colorCount = 9)
         {
-            return Mathf.Lerp(range.x, range.y, Random.value);
+            float percent = Mathf.Sqrt((hp - hpRange.x) / (hpRange.y - hpRange.x));
+            int index = Mathf.Clamp((int)(percent * percent * colorCount), 0, colorCount - 1);
+            index = colorCount - index - 1; // 翻转
+            return index;
         }
     }
 }

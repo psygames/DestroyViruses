@@ -88,3 +88,39 @@ public struct TVector2
 
     public Vector2 value => new Vector2(x, y);
 }
+
+[Serializable]
+public struct TRange
+{
+    public float min { get; private set; }
+    public float max { get; private set; }
+    public float random { get { return UnityEngine.Random.Range(min, max); } }
+
+    public static TRange Parse(string str)
+    {
+        var sps = str.Trim('(', ')').Split('~', ',');
+        var data = new TRange();
+        data.min = float.Parse(sps[0]);
+        if (sps.Length <= 1) data.max = data.min;
+        else data.max = float.Parse(sps[1]);
+        return data;
+    }
+}
+
+[Serializable]
+public struct TRangeInt
+{
+    public int min { get; private set; }
+    public int max { get; private set; }
+    public int random { get { return UnityEngine.Random.Range(min, max); } }
+
+    public static TRangeInt Parse(string str)
+    {
+        var sps = str.Trim('(', ')').Split('~', ',');
+        var data = new TRangeInt();
+        data.min = int.Parse(sps[0]);
+        if (sps.Length <= 1) data.max = data.min;
+        else data.max = int.Parse(sps[1]);
+        return data;
+    }
+}

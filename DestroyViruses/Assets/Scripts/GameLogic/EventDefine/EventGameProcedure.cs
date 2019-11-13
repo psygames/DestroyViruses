@@ -11,7 +11,7 @@ namespace DestroyViruses
         public enum Action
         {
             GameBegin,
-            FinalWave,
+            BossWave,
             GameEndWin,
             GameEndLose,
         }

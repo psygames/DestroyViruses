@@ -133,20 +133,20 @@ namespace DestroyViruses
 		/// <summary>
 		/// <para>产生病毒种尺寸（范围1-4）,</para><para>对应virus列索引</para>
 		/// </summary>
-		private int[] _virusSize;
-		public int[] virusSize { get { return _virusSize; } private set { _virusSize = value; } }
+		private TRangeInt[] _virusSize;
+		public TRangeInt[] virusSize { get { return _virusSize; } private set { _virusSize = value; } }
 
 		/// <summary>
 		/// 产生病毒的血量
 		/// </summary>
-		private int[] _virusHp;
-		public int[] virusHp { get { return _virusHp; } private set { _virusHp = value; } }
+		private TRangeInt[] _virusHp;
+		public TRangeInt[] virusHp { get { return _virusHp; } private set { _virusHp = value; } }
 
 		/// <summary>
 		/// 病毒移动速度
 		/// </summary>
-		private float[] _virusSpeed;
-		public float[] virusSpeed { get { return _virusSpeed; } private set { _virusSpeed = value; } }
+		private TRangeInt[] _virusSpeed;
+		public TRangeInt[] virusSpeed { get { return _virusSpeed; } private set { _virusSpeed = value; } }
 
 		/// <summary>
 		/// 病毒产生时间间隔
@@ -161,13 +161,13 @@ namespace DestroyViruses
 		public int spawnCount { get { return _spawnCount; } private set { _spawnCount = value; } }
 
 		/// <summary>
-		/// 
+		/// 是否需要等待清除病毒后，才进入下一关
 		/// </summary>
 		private bool _needClear;
 		public bool needClear { get { return _needClear; } private set { _needClear = value; } }
 
 		/// <summary>
-		/// 
+		/// 是否弹出“病毒入侵”警告
 		/// </summary>
 		private bool _bossWave;
 		public bool bossWave { get { return _bossWave; } private set { _bossWave = value; } }
