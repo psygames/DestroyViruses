@@ -162,6 +162,8 @@ public class QuickHotUpdateTablesEditorWindow : EditorWindow
                         var fn = Path.GetFileNameWithoutExtension(fi) + ".bytes";
                         var src = Path.Combine(tableOutRoot, fn);
                         var dest = Path.Combine(quickHotUpdateRoot, fn);
+                        if (File.Exists(dest))
+                            File.Delete(dest);
                         FileUtil.CopyFileOrDirectory(src, dest);
                     }
                 }
