@@ -13,8 +13,9 @@ namespace DestroyViruses
 
         private bool mIsSlow = false;
         private Aircraft aircraft;
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             aircraft = EntityManager.GetAll<Aircraft>().First() as Aircraft;
         }
 

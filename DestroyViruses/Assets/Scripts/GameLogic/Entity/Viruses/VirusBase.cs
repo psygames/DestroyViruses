@@ -15,6 +15,8 @@ namespace DestroyViruses
         public Text hpText;
         public Image glowImage;
 
+        public new Collider2D collider2D { get; private set; }
+
         public int id { get; protected set; }
         public TableVirus table { get; protected set; }
         public float cd { get; protected set; }
@@ -33,7 +35,12 @@ namespace DestroyViruses
         private int mLastColorIndex = -1;
         private float mLastHp = -1;
 
-        private void OnEnable()
+        protected virtual void Awake()
+        {
+            collider2D = GetComponent<Collider2D>();
+        }
+
+        protected virtual void OnEnable()
         {
             this.BindUntilDisable<EventBullet>(OnEventBullet);
         }
@@ -84,9 +91,9 @@ namespace DestroyViruses
             Recycle();
         }
 
-        private float GetSizeScale(int size)
+        private float GetSizeScale(int _size)
         {
-            return 1 / Mathf.Sqrt(6 - Mathf.Clamp(size, 0, 5));
+            return 1 / Mathf.Sqrt(6 - Mathf.Clamp(_size, 0, 5));
         }
 
         private void OnEventBullet(EventBullet evt)
@@ -154,15 +161,15 @@ namespace DestroyViruses
             // if ((hpTotal - hpRange.x) < (hpRange.y - hpRange.x) * 0.2f)
             //    return;
 
-            var hp = hpTotal * 0.5f;
-            var size = this.size - 1;
+            var _hp = hpTotal * 0.5f;
+            var _size = size - 1;
             var pos = transform.GetUIPos();
 
             Vector2 dirA = Quaternion.AngleAxis(Random.Range(-60, -80), Vector3.forward) * Vector2.up;
-            Create().Reset(id, hp, size, speed, pos + dirA * baseRadius * GetSizeScale(size), dirA, hpRange);
+            Create().Reset(id, _hp, _size, speed, pos + dirA * baseRadius * GetSizeScale(_size), dirA, hpRange);
 
             Vector2 dirB = Quaternion.AngleAxis(Random.Range(60, 80), Vector3.forward) * Vector2.up;
-            Create().Reset(id, hp, size, speed, pos + dirB * baseRadius * GetSizeScale(size), dirB, hpRange);
+            Create().Reset(id, _hp, _size, speed, pos + dirB * baseRadius * GetSizeScale(_size), dirB, hpRange);
         }
 
         protected VirusBase Create()
@@ -172,7 +179,7 @@ namespace DestroyViruses
 
         protected virtual void UpdateHp()
         {
-            if (mLastHp != hp)
+            if (!Mathf.Approximately(mLastHp, hp))
             {
                 hpText.text = hp.KMB();
                 mLastHp = hp;
@@ -181,7 +188,7 @@ namespace DestroyViruses
 
         protected virtual void UpdatePosition()
         {
-            if (!isAlive || isInvincible)
+            if (!isAlive)
                 return;
 
             var uiPos = UIUtil.GetUIPos(rectTransform);

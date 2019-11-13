@@ -29,7 +29,6 @@ namespace DestroyViruses
         {
             base.Update();
             mEffectCD = this.UpdateCD(mEffectCD);
-            SetInvincible(mEffectCD > 0);
             hpText.gameObject.SetActive(!isInvincible);
         }
     }

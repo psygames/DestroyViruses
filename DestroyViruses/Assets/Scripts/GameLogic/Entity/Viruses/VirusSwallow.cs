@@ -32,6 +32,16 @@ namespace DestroyViruses
             mCheckCD = 0.2f;
         }
 
+        protected override void UpdatePosition()
+        {
+            if (mSwallowCD > 0)
+            {
+            }
+            else
+            {
+                base.UpdatePosition();
+            }
+        }
 
         protected override void Update()
         {
@@ -48,6 +58,7 @@ namespace DestroyViruses
             }
 
             SetInvincible(mSwallowCD > 0);
+            collider2D.enabled = mSwallowCD <= 0;
             hpText.gameObject.SetActive(!isInvincible);
         }
 
