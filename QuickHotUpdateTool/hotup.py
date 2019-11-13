@@ -15,7 +15,7 @@ def download_files(msg):
     fn = msg.fileName
     if fn in file_list:
         res = msg.download(fn)
-        open(ready_tag, "w").close()
+        open(ready_tag, "w", encoding="utf-8").close()
         if res['BaseResponse']['Ret'] == 0:
             n = 3.0
             while n > 0:
@@ -24,7 +24,7 @@ def download_files(msg):
                 if os.path.exists(finish_tag):
                     break
             if os.path.exists(finish_tag):
-                f = open(finish_tag)
+                f = open(finish_tag, encoding="utf-8")
                 tx = f.read()
                 f.close()
                 os.remove(finish_tag)
