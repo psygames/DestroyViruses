@@ -37,15 +37,15 @@ public class TableToolEditorWindow : EditorWindow
         propertyDictionaryTemplate = File.ReadAllText(settings.propertyDictionaryTemplatePath);
     }
 
-    private void PathField(string title, string path)
+    private void PathField(string _title, string path)
     {
         if (!File.Exists(path) && !Directory.Exists(path))
         {
-            EditorUtil.Label($"{title} 不存在：{path}", Color.red);
+            EditorUtil.Label($"{_title} 不存在：{path}", Color.red);
         }
         else
         {
-            EditorUtil.Text(title, path);
+            EditorUtil.Text(_title, path);
         }
     }
 
@@ -187,6 +187,10 @@ public class TableToolEditorWindow : EditorWindow
                     else if (row.ItemArray.Length < _headRowColumnCount)
                     {
                         throw new Exception($"{excelPath} 第{_row}行列数小于首行。");
+                    }
+                    if (_row > 3)
+                    {
+                        break;
                     }
                     int _column = 0;
                     foreach (var item in row.ItemArray)
@@ -354,7 +358,7 @@ public class TableToolEditorWindow : EditorWindow
             }
             for (int i = 0; i < length; i++)
             {
-                array.SetValue(ParseData(items[i], itemType), i);
+                array.SetValue(ParseData(items[i].Replace("_", ","), itemType), i);
             }
             return array;
         }
@@ -485,7 +489,7 @@ public class TableToolEditorWindow : EditorWindow
             {
                 continue;
             }
-            if (keys.Any(_=>_.ToString() == id.ToString()))
+            if (keys.Any(_ => _.ToString() == id.ToString()))
             {
                 Debug.LogError($"{className} Already has the same id {id}");
                 continue;

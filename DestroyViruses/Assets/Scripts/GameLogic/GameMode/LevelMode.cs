@@ -134,8 +134,6 @@ namespace DestroyViruses
 
         public class WaveModule
         {
-            public const int waveClearVirusCount = 3;
-
             public TableGameLevel configLevel { get; private set; }
             public TableGameWave configWave { get; private set; }
             public int waveIndex { get; private set; }
@@ -199,14 +197,15 @@ namespace DestroyViruses
                     {
                         SpawnVirus();
                         //随机CD
-                        mSpawnCD = Random.Range(spawnInterval / 0.8f, spawnInterval * 1.25f);
+                        var _range = ConstTable.table.spawnVirusInterval.value;
+                        mSpawnCD = Random.Range(spawnInterval * _range.x, spawnInterval * _range.y);
                         spawnIndex++;
                     }
                 }
                 else // 等待当前波结束结束
                 {
                     // 非最终波
-                    if (!isFinalWave && (!needClear || EntityManager.Count<VirusBase>() <= waveClearVirusCount))
+                    if (!isFinalWave && (!needClear || EntityManager.Count<VirusBase>() <= ConstTable.table.waveClearVirusCount))
                     {
                         SetWave(waveIndex + 1);
                     }
@@ -216,7 +215,8 @@ namespace DestroyViruses
 
             private void SpawnVirus()
             {
-                var direction = Quaternion.AngleAxis(Random.Range(-80f, 80f), Vector3.forward) * Vector2.down;
+                var _range = ConstTable.table.spawnVirusDirection.value;
+                var direction = Quaternion.AngleAxis(Random.Range(_range.x, _range.y), Vector3.forward) * Vector2.down;
                 var pos = new Vector2(Random.Range(VirusBase.baseRadius, UIUtil.width - VirusBase.baseRadius), UIUtil.height + VirusBase.baseRadius);
 
                 var virusIndex = FormulaUtil.RandomIndexInProbArray(configWave.virusProb);
@@ -225,9 +225,9 @@ namespace DestroyViruses
                 var virus = (VirusBase)EntityManager.Create(System.Type.GetType(virusType));
 
                 //TODO:RANGE
-                var hpRange = new Vector2(0.75f, 1.25f) * configWave.virusHp[virusIndex] * configLevel.virusHpFactor;
+                var hpRange = ConstTable.table.hpRandomRange.value * configWave.virusHp[virusIndex] * configLevel.virusHpFactor;
                 var hp = FormulaUtil.RandomInRanage(hpRange);
-                var speed = FormulaUtil.RandomInRanage(new Vector2(0.75f, 1.25f) * configWave.virusSpeed[virusIndex]) * configLevel.virusSpeedFactor;
+                var speed = FormulaUtil.RandomInRanage(ConstTable.table.speedRandomRange.value * configWave.virusSpeed[virusIndex]) * configLevel.virusSpeedFactor;
                 var size = configWave.virusSize[virusIndex];
 
                 virus.Reset(virusTable.id, hp, size, speed, pos, direction, hpRange);

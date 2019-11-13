@@ -38,7 +38,7 @@ namespace DestroyViruses
                 total += probArray[i];
             }
 
-            if (total == 0)
+            if (Mathf.Approximately(total,0))
                 throw new System.Exception("Prob Array Total: 0");
 
             float cur = 0;
@@ -55,12 +55,12 @@ namespace DestroyViruses
 
         public static float CoinConvert(float hp)
         {
-            return hp * 0.05f;
+            return hp * ConstTable.table.hpToCoin;
         }
 
         public static float RandomInRanage(Vector2 range)
         {
-            return Mathf.Lerp(range.x, range.y, UnityEngine.Random.value);
+            return Mathf.Lerp(range.x, range.y, Random.value);
         }
     }
 }
