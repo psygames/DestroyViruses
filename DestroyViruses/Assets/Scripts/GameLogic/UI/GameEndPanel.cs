@@ -31,9 +31,9 @@ namespace DestroyViruses
             GameManager.ChangeState<MainState>();
 
             // 注意放到最后
-            if (Mathf.Approximately(GDM.ins.battleGetCoin ,0))
+            if (!Mathf.Approximately(GDM.ins.battleGetCoin ,0))
             {
-                Coin.CreateGroup(coinTransform.GetUIPos(), UIUtil.COIN_POS, 15);
+                Coin.CreateGroup(coinTransform.GetUIPos(), UIUtil.COIN_POS, 20);
             }
         }
 

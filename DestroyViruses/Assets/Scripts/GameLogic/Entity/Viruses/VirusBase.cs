@@ -114,8 +114,8 @@ namespace DestroyViruses
             if (evt.action == EventBullet.Action.HIT)
             {
                 BeHit(evt.damage);
-                hp = Mathf.Max(0, hp - evt.damage);
-                if (hp <= 0)
+                hp = Mathf.Max(0f, hp - evt.damage);
+                if (Mathf.Approximately(hp, 0))
                 {
                     BeDead();
                 }
@@ -162,7 +162,9 @@ namespace DestroyViruses
         {
             var index = FormulaUtil.GetHpColorIndex(hpRange, hpTotal, 4);
             ExplosionVirus.Create().Reset(rectTransform.anchoredPosition, index + 1, scale * 2);
-            Handheld.Vibrate();
+#if UNITY_ANDROID && !UNITY_EDITOR
+            Vibration.Vibrate(50);
+#endif
         }
 
         private void Divide()

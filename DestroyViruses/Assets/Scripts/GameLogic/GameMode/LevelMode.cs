@@ -130,10 +130,10 @@ namespace DestroyViruses
                 // add coin
                 getCoin += FormulaUtil.CoinConvert(evt.virus.size, mWaveModule.configLevel.coinValueFactor);
                 mAddCoinCount += evt.virus.size * 0.1f;
-                if (Random.value > ConstTable.table.coinAddProb[evt.virus.size])
+                if (Random.value > ConstTable.table.coinAddProb[evt.virus.size - 1])
                 {
                     var pos = UIUtil.GetUIPos(evt.virus.rectTransform);
-                    int coinCount = Mathf.Clamp(1, 15, Mathf.CeilToInt(mAddCoinCount));
+                    int coinCount = Mathf.Clamp(Mathf.CeilToInt(mAddCoinCount), 1, 15);
                     Unibus.Dispatch(EventBattle.Get(EventBattle.Action.GET_COIN, coinCount, pos));
                     mAddCoinCount = 0;
                 }

@@ -14,7 +14,7 @@ namespace DestroyViruses
             rectTransform.anchoredPosition = from;
             rectTransform.DOAnchorPos(from + offset, 0.5f).SetEase(Ease.OutQuad).OnComplete(() =>
             {
-                float dura = (offset + from - to).magnitude * 0.001f;
+                float dura = (offset + from - to).magnitude * 0.0007f;
                 rectTransform.DOAnchorPos(to, dura).SetEase(Ease.Linear).OnComplete(() =>
                 {
                     Recycle();
