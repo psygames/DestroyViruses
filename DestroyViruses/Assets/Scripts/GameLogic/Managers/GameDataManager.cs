@@ -12,9 +12,13 @@ namespace DestroyViruses
         public int coin { get { return localData.coin; } }
         public int diamond { get { return localData.diamond; } }
         public int gameLevel { get { return localData.gameLevel; } }
+        public bool isGameLevelMax { get { return TableGameLevel.Get(gameLevel + 1) == null; } }
         public int unlockedGameLevel { get { return localData.unlockedGameLevel; } }
+        public bool isUnlockedGameLevelMax { get { return TableGameLevel.Get(unlockedGameLevel + 1) == null; } }
         public int firePowerLevel { get { return localData.firePowerLevel; } }
+        public bool isFirePowerLevelMax { get { return TableFirePower.Get(firePowerLevel + 1) == null; } }
         public int fireSpeedLevel { get { return localData.fireSpeedLevel; } }
+        public bool isFireSpeedLevelMax { get { return TableFireSpeed.Get(fireSpeedLevel + 1) == null; } }
 
         // 计算
         public float firePowerUpCost { get { return FormulaUtil.FirePowerUpCost(firePowerLevel); } }
@@ -50,6 +54,11 @@ namespace DestroyViruses
 
         public void FirePowerUp()
         {
+            if (isFirePowerLevelMax)
+            {
+                DispatchEvent(EventGameData.Action.Error, "已经升至满级");
+                return;
+            }
             if (coin < (int)firePowerUpCost)
             {
                 DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
@@ -64,6 +73,11 @@ namespace DestroyViruses
 
         public void FireSpeedUp()
         {
+            if (isFireSpeedLevelMax)
+            {
+                DispatchEvent(EventGameData.Action.Error, "已经升至满级");
+                return;
+            }
             if (coin < (int)fireSpeedUpCost)
             {
                 DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
