@@ -67,7 +67,7 @@ namespace DestroyViruses
             mTotalDrag = Vector2.zero;
             UIUtil.aircraftTransform.DOScale(Vector3.one * 1.3f, 0.5f).SetEase(Ease.OutQuad);
             RefreshUI();
-            AudioManager.Instance.PlayMusic($"Sounds/BGM{Random.Range(1, 3)}",1f);
+            AudioManager.Instance.PlayMusic($"Sounds/BGM{Random.Range(1, 3)}", 1f);
         }
 
         private void OnDestroy()
@@ -173,13 +173,13 @@ namespace DestroyViruses
             else
             {
                 previousLevelText.text = (GDM.ins.gameLevel - 1).ToString();
-                previousBossTag.SetActive(TableGameLevel.Get(a => a.level == GDM.ins.gameLevel - 1).isBoss);
+                previousBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel - 1).isBoss);
             }
 
             currentLevelText.text = GDM.ins.gameLevel.ToString();
-            currentBossTag.SetActive(TableGameLevel.Get(a => a.level == GDM.ins.gameLevel).isBoss);
+            currentBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel).isBoss);
 
-            if (TableGameLevel.Get(a => a.level == GDM.ins.gameLevel) == null)
+            if (TableGameLevel.Get(GDM.ins.gameLevel) == null)
             {
                 nextLevelText.text = "-";
                 nextBossTag.SetActive(false);
@@ -187,7 +187,7 @@ namespace DestroyViruses
             else
             {
                 nextLevelText.text = (GDM.ins.gameLevel + 1).ToString();
-                nextBossTag.SetActive(TableGameLevel.Get(a => a.level == GDM.ins.gameLevel + 1).isBoss);
+                nextBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel + 1).isBoss);
                 if (GDM.ins.gameLevel + 1 > GDM.ins.unlockedGameLevel)
                 {
                     nextLevelText.color = UIUtil.GRAY_COLOR;

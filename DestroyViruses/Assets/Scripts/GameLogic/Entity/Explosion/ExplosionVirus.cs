@@ -4,6 +4,7 @@ using UnityEngine;
 using UniRx;
 using System;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace DestroyViruses
 {
@@ -14,9 +15,11 @@ namespace DestroyViruses
 
         public Image[] pieces;
 
-        public void Reset(Vector2 pos, int type, int frames = 12)
+        public void Reset(Vector2 pos, int type, float scale, int frames = 12)
         {
             rectTransform.anchoredPosition = pos;
+            rectTransform.localScale = Vector3.one * scale * 0.3f;
+            rectTransform.DOScale(scale, 0.3f).SetEase(Ease.OutSine);
 
             image.SetSprite($"effect_explosion_virus_{type}_1");
             image.SetNativeSize();
@@ -36,6 +39,8 @@ namespace DestroyViruses
             }
 
             spriteAnimation.Restart();
+
+            AudioManager.Instance.PlaySound("Sounds/explosion");
         }
     }
 }

@@ -53,9 +53,9 @@ namespace DestroyViruses
             return probArray.Length - 1;
         }
 
-        public static float CoinConvert(float hp)
+        public static float CoinConvert(int size, float factor1 = 1, float factor2 = 1)
         {
-            return hp * ConstTable.table.hpToCoin;
+            return ConstTable.table.coinValue[size - 1] * factor1 * factor2;
         }
 
         public static int GetHpColorIndex(Vector2 hpRange, float hp, int colorCount = 9)

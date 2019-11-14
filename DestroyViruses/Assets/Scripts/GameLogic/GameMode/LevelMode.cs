@@ -95,12 +95,11 @@ namespace DestroyViruses
         private void UpdateProgress()
         {
             int total = 0;
-            var configLevel = TableGameLevel.Get(_ => _.level == GDM.ins.gameLevel);
             int spawnedTotal = mWaveModule.spawnIndex;
             for (int i = 0; i < mWaveModule.configLevel.waveID.Length; i++)
             {
                 var configWave = TableGameWave.Get(mWaveModule.configLevel.waveID[i]);
-                var waveCount = (int)(configWave.spawnCount * configLevel.spawnCountFactor);
+                var waveCount = (int)(configWave.spawnCount * mWaveModule.configLevel.spawnCountFactor);
                 total += waveCount;
                 if (mWaveModule.waveIndex > i)
                 {
@@ -123,14 +122,23 @@ namespace DestroyViruses
             }
         }
 
+        private float mAddCoinCount = 0;
         private void OnEventVirus(EventVirus evt)
         {
             if (evt.action == EventVirus.Action.DEAD)
             {
-                getCoin += FormulaUtil.CoinConvert(evt.value);
+                // add coin
+                getCoin += FormulaUtil.CoinConvert(evt.virus.size, mWaveModule.configLevel.coinValueFactor);
+                mAddCoinCount += evt.virus.size * 0.1f;
+                if (Random.value > ConstTable.table.coinAddProb[evt.virus.size])
+                {
+                    var pos = UIUtil.GetUIPos(evt.virus.rectTransform);
+                    int coinCount = Mathf.Clamp(1, 15, Mathf.CeilToInt(mAddCoinCount));
+                    Unibus.Dispatch(EventBattle.Get(EventBattle.Action.GET_COIN, coinCount, pos));
+                    mAddCoinCount = 0;
+                }
             }
         }
-
 
         public class WaveModule
         {
@@ -153,7 +161,7 @@ namespace DestroyViruses
             public void Init(int gameLevel)
             {
                 Stop();
-                configLevel = TableGameLevel.Get(_ => _.level == gameLevel);
+                configLevel = TableGameLevel.Get(gameLevel);
             }
 
             public void Start()

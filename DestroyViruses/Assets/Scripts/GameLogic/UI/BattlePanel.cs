@@ -32,7 +32,7 @@ namespace DestroyViruses
         {
             InputListenerInit();
             this.BindUntilDisable<EventGameProcedure>(OnEventGameProcedure);
-            this.BindUntilDisable<EventVirus>(OnEventVirus);
+            this.BindUntilDisable<EventBattle>(OnEventBattle);
         }
 
         protected override void OnOpen()
@@ -87,12 +87,12 @@ namespace DestroyViruses
             }
         }
 
-        private void OnEventVirus(EventVirus evt)
+        private void OnEventBattle(EventBattle evt)
         {
-            if (evt.action == EventVirus.Action.DEAD)
+            if (evt.action == EventBattle.Action.GET_COIN)
             {
-                float coin = FormulaUtil.CoinConvert(evt.value);
-                Coin.CreateGroup(evt.virus.rectTransform.anchoredPosition, coinTransform.GetUIPos(), coin);
+                Coin.CreateGroup(evt.position, coinTransform.GetUIPos(), evt.count);
+                coinText.text = GDM.ins.battleGetCoin.KMB();
             }
         }
 
@@ -106,13 +106,13 @@ namespace DestroyViruses
             else
             {
                 previousLevelText.text = (GDM.ins.gameLevel - 1).ToString();
-                previousBossTag.SetActive(TableGameLevel.Get(a => a.level == GDM.ins.gameLevel - 1).isBoss);
+                previousBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel - 1).isBoss);
             }
 
             currentLevelText.text = GDM.ins.gameLevel.ToString();
-            currentBossTag.SetActive(TableGameLevel.Get(a => a.level == GDM.ins.gameLevel).isBoss);
+            currentBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel).isBoss);
 
-            if (TableGameLevel.Get(a => a.level == GDM.ins.gameLevel) == null)
+            if (TableGameLevel.Get(GDM.ins.gameLevel) == null)
             {
                 nextLevelText.text = "-";
                 nextBossTag.SetActive(false);
@@ -120,7 +120,7 @@ namespace DestroyViruses
             else
             {
                 nextLevelText.text = (GDM.ins.gameLevel + 1).ToString();
-                nextBossTag.SetActive(TableGameLevel.Get(a => a.level == GDM.ins.gameLevel).isBoss);
+                nextBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel).isBoss);
             }
 
             if (GDM.ins.gameLevel + 1 > GDM.ins.unlockedGameLevel)
@@ -135,7 +135,6 @@ namespace DestroyViruses
             float progress = 1 - GDM.ins.battleProgress;
             progressFill.fillAmount = progress;
             progressText.text = $"剩余病毒:{(int)(progress * 100)}%";
-            coinText.text = GDM.ins.battleGetCoin.KMB();
         }
 
         private void ToastBossWave()
@@ -145,6 +144,7 @@ namespace DestroyViruses
             {
                 bossWaveToast.SetActive(false);
             });
+            AudioManager.Instance.PlaySound("Sounds/boss");
         }
 
         private void ShowGameEndPanel(bool isWin)

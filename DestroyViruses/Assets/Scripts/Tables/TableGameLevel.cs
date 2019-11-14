@@ -107,16 +107,10 @@ namespace DestroyViruses
     public class TableGameLevel
     {
 		/// <summary>
-		/// ID
+		/// ID（关卡）
 		/// </summary>
 		private int _id;
 		public int id { get { return _id; } private set { _id = value; } }
-
-		/// <summary>
-		/// 关卡
-		/// </summary>
-		private int _level;
-		public int level { get { return _level; } private set { _level = value; } }
 
 		/// <summary>
 		/// 病毒进攻波，对应表TableGameVirusWave
@@ -159,6 +153,12 @@ namespace DestroyViruses
 		/// </summary>
 		private TRangeInt _hpRange;
 		public TRangeInt hpRange { get { return _hpRange; } private set { _hpRange = value; } }
+
+		/// <summary>
+		/// 金币价值系数
+		/// </summary>
+		private float _coinValueFactor;
+		public float coinValueFactor { get { return _coinValueFactor; } private set { _coinValueFactor = value; } }
 
 
 		public static TableGameLevel Get(int id)

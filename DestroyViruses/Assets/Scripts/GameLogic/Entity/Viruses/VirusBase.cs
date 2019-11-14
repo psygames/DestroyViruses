@@ -161,7 +161,8 @@ namespace DestroyViruses
         private void PlayDead()
         {
             var index = FormulaUtil.GetHpColorIndex(hpRange, hpTotal, 4);
-            ExplosionVirus.Create().Reset(rectTransform.anchoredPosition, index + 1);
+            ExplosionVirus.Create().Reset(rectTransform.anchoredPosition, index + 1, scale * 2);
+            Handheld.Vibrate();
         }
 
         private void Divide()

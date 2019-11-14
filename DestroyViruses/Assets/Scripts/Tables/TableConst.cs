@@ -163,14 +163,14 @@ namespace DestroyViruses
 		/// <summary>
 		/// 战斗中，击杀[1-5]等级病毒触发金币特效概率。（其实击杀每个病毒都有增加金币，但是为了不过于频繁，需要间歇触发。）
 		/// </summary>
-		private float[] _coinEffectTriggerProb;
-		public float[] coinEffectTriggerProb { get { return _coinEffectTriggerProb; } private set { _coinEffectTriggerProb = value; } }
+		private float[] _coinAddProb;
+		public float[] coinAddProb { get { return _coinAddProb; } private set { _coinAddProb = value; } }
 
 		/// <summary>
-		/// 血量到金币转换比
+		/// 击杀[1-5]等级病毒金币价值
 		/// </summary>
-		private float _hpToCoin;
-		public float hpToCoin { get { return _hpToCoin; } private set { _hpToCoin = value; } }
+		private int[] _coinValue;
+		public int[] coinValue { get { return _coinValue; } private set { _coinValue = value; } }
 
 
 		public static TableConst Get(int id)
