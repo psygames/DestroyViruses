@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 3768306051
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f7aa82744847d8c518362f1af16f1700
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/Tables/TableConst.bytes
+Dependencies: []

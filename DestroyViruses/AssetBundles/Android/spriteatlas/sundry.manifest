@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 1919926012
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1997313a5eaae3e9a2fdc58cbbd72670
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8d614ba2bf78fe185c64b512c1591e5d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/SpriteAtlas/sundry.spriteatlas
+Dependencies: []
