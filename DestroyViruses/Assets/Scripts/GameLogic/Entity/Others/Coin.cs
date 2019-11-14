@@ -1,44 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using DG.Tweening;
 
 namespace DestroyViruses
 {
     public class Coin : EntityBase<Coin>
     {
-        private static float sLastSoundTime = 0;
-
         public void Reset(Vector2 from, Vector2 to, Vector2 offset)
         {
+            float dura = (offset + from - to).magnitude * 0.0015f;
             rectTransform.anchoredPosition = from;
-            rectTransform.DOAnchorPos(from + offset, 0.5f).SetEase(Ease.OutQuad).OnComplete(() =>
+            rectTransform.DOLocalPath(new Vector3[] { from + offset, to }, dura, PathType.CatmullRom)
+            .SetEase(Ease.Linear).OnComplete(() =>
             {
-                float dura = (offset + from - to).magnitude * 0.0007f;
-                rectTransform.DOAnchorPos(to, dura).SetEase(Ease.Linear).OnComplete(() =>
-                {
-                    Recycle();
-                    PlaySound();
-                });
+                PlaySound();
+                Recycle();
             });
         }
 
         public void PlaySound()
         {
-            if (Time.time - sLastSoundTime > 0.2f)
+            if (TimeUtil.CheckInterval("CoinSfx", ConstTable.table.coinSfxInterval))
             {
                 AudioManager.Instance.PlaySound("Sounds/coin");
-                sLastSoundTime = Time.time;
             }
         }
 
         public static void CreateGroup(Vector2 from, Vector2 to, int coinCount)
         {
-            int count = Mathf.Clamp(coinCount, 1, 12);
-            float radius = 400;
+            int count = Mathf.Clamp(coinCount, 1, 15);
+            float radius = 300;
             for (int i = 0; i < count; i++)
             {
-                Vector2 offset = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.forward) * Vector2.down * radius;
+                float angle = Random.Range(0, 360);
+                Vector2 offset = Quaternion.AngleAxis(angle, Vector3.forward) * Vector2.left * radius;
                 offset.x *= 0.7f;
                 Create().Reset(from, to, offset);
             }

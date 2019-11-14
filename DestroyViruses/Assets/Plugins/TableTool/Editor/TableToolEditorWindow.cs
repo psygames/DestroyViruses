@@ -177,8 +177,10 @@ public class TableToolEditorWindow : EditorWindow
             using (var reader = ExcelReaderFactory.CreateReader(stream))
             {
                 var result = reader.AsDataSet();
+                var table = result.Tables[0];
+                var vertical = table.Rows[0].ItemArray[0].ToString().EndsWith("(vertical)",StringComparison.OrdinalIgnoreCase);
                 int _row = 0;
-                foreach (DataRow row in result.Tables[0].Rows)
+                foreach (DataRow row in table.Rows)
                 {
                     if (_row == 0)
                     {
@@ -400,7 +402,7 @@ public class TableToolEditorWindow : EditorWindow
 
     private bool IsIgnoreColumn(PropertyData p)
     {
-        return p.name == "" || p.type == "" || p.type == "_";
+        return p.name == "" || p.type == "";
     }
 
     private void GenerateAssetFile(string excelPath)

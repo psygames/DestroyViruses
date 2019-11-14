@@ -163,9 +163,6 @@ namespace DestroyViruses
             //var index = FormulaUtil.GetHpColorIndex(hpRange, hpTotal, 4);
             var index = Random.Range(0, 4);
             ExplosionVirus.Create().Reset(rectTransform.anchoredPosition, index + 1, scale * 2);
-#if UNITY_ANDROID && !UNITY_EDITOR
-            Vibration.Vibrate(50);
-#endif
         }
 
         private void Divide()

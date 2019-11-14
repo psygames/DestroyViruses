@@ -172,6 +172,30 @@ namespace DestroyViruses
 		private int[] _coinValue;
 		public int[] coinValue { get { return _coinValue; } private set { _coinValue = value; } }
 
+		/// <summary>
+		/// 击杀震动时长
+		/// </summary>
+		private float _vibrateDuration;
+		public float vibrateDuration { get { return _vibrateDuration; } private set { _vibrateDuration = value; } }
+
+		/// <summary>
+		/// 击杀震动最小间隔
+		/// </summary>
+		private float _vibrateInterval;
+		public float vibrateInterval { get { return _vibrateInterval; } private set { _vibrateInterval = value; } }
+
+		/// <summary>
+		/// 击杀爆炸音效最小播放间隔
+		/// </summary>
+		private float _explosionSfxInterval;
+		public float explosionSfxInterval { get { return _explosionSfxInterval; } private set { _explosionSfxInterval = value; } }
+
+		/// <summary>
+		/// 金币音效最小间隔
+		/// </summary>
+		private float _coinSfxInterval;
+		public float coinSfxInterval { get { return _coinSfxInterval; } private set { _coinSfxInterval = value; } }
+
 
 		public static TableConst Get(int id)
 		{

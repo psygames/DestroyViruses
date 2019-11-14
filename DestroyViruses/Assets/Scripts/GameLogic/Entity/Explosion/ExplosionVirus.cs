@@ -39,8 +39,21 @@ namespace DestroyViruses
             }
 
             spriteAnimation.Restart();
+            if (TimeUtil.CheckInterval("ExplosionSfx", ConstTable.table.explosionSfxInterval))
+            {
+                AudioManager.Instance.PlaySound("Sounds/explosion");
+            }
+            Vibrate();
+        }
 
-            AudioManager.Instance.PlaySound("Sounds/explosion");
+        private void Vibrate()
+        {
+#if UNITY_ANDROID && !UNITY_EDITOR
+            if (TimeUtil.CheckInterval("Vibrate", ConstTable.table.vibrateInterval))
+            {
+                Vibration.Vibrate((int)(ConstTable.table.vibrateDuration * 1000));
+            }
+#endif
         }
     }
 }
