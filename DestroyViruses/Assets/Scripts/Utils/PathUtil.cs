@@ -14,7 +14,7 @@ namespace DestroyViruses
             return ENTITY_PREFAB_ROOT + entitiName + ".prefab";
         }
 
-        private const string UI_PANEL_PREFAB_ROOT = ASSET_ROOT + "Prefabs/UI/Panel/";
+        private const string UI_PANEL_PREFAB_ROOT = ASSET_ROOT + "Prefabs/UI/View/";
         public static string Panel(string panelName)
         {
             return UI_PANEL_PREFAB_ROOT + panelName + ".prefab";

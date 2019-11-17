@@ -43,7 +43,7 @@ namespace DestroyViruses
             if (_lastSCD > 0 && mSwallowCD <= 0)
             {
                 var newVirus = EntityManager.Create<VirusSwallow>();
-                newVirus.Reset(id, hp, size, mSwallowVirusSpeed, position, -direction, hpRange);
+                newVirus.Reset(id, hp, size, mSwallowVirusSpeed, position, -direction, hpRange, false);
             }
 
             SetInvincible(mSwallowCD > 0);

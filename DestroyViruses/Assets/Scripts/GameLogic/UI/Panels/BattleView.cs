@@ -8,7 +8,7 @@ using UnibusEvent;
 
 namespace DestroyViruses
 {
-    public class BattlePanel : PanelBase
+    public class BattleView : ViewBase
     {
         public UIEventListener inputListenser;
 
@@ -150,7 +150,7 @@ namespace DestroyViruses
         private void ShowGameEndPanel(bool isWin)
         {
             // TODO: game end
-            UIManager.Instance.Open<GameEndPanel>(UILayer.Top);
+            UIManager.Instance.Open<GameEndView>(UILayer.Top);
         }
     }
 }

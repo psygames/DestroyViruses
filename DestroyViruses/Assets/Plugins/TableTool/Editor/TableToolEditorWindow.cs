@@ -160,6 +160,54 @@ public class TableToolEditorWindow : EditorWindow
         Debug.Log("生成Class完成");
     }
 
+    private List<List<string>> ReadTable(string excelPath)
+    {
+        var datas = new List<List<string>>();
+        Action<int, int, string> add = (i, j, d) =>
+        {
+            if (datas.Count <= i)
+                datas.Add(new List<string>());
+            if (datas[i].Count <= j)
+                datas[i].Add(d);
+            else
+                datas[i][j] = d;
+        };
+        using (var stream = File.Open(excelPath, FileMode.Open, FileAccess.Read))
+        {
+            using (var reader = ExcelReaderFactory.CreateReader(stream))
+            {
+                var result = reader.AsDataSet();
+                var table = result.Tables[0];
+                var vertical = table.Rows[0].ItemArray[0].ToString().EndsWith("(vertical)", StringComparison.OrdinalIgnoreCase);
+                int _row = 0;
+                int _col = 0;
+                foreach (DataRow row in table.Rows)
+                {
+                    _col = 0;
+                    foreach (var item in row.ItemArray)
+                    {
+                        var _val = item.ToString();
+                        if (vertical)
+                        {
+                            if (_row == 0 && _col == 0)
+                            {
+                                _val = _val.Substring(0, _val.Length - "(vertical)".Length);
+                            }
+                            add(_col, _row, _val);
+                        }
+                        else
+                        {
+                            add(_row, _col, _val);
+                        }
+                        _col++;
+                    }
+                    _row++;
+                }
+            }
+        }
+        return datas;
+    }
+
     private void GenerateClassFile(string excelPath)
     {
         // 第一行属性名
@@ -172,55 +220,47 @@ public class TableToolEditorWindow : EditorWindow
         List<PropertyData> properties = new List<PropertyData>();
         int _headRowColumnCount = -1;
 
-        using (var stream = File.Open(excelPath, FileMode.Open, FileAccess.Read))
+        var datas = ReadTable(excelPath);
+        int _row = 0;
+        foreach (var row in datas)
         {
-            using (var reader = ExcelReaderFactory.CreateReader(stream))
+            if (_row == 0)
             {
-                var result = reader.AsDataSet();
-                var table = result.Tables[0];
-                var vertical = table.Rows[0].ItemArray[0].ToString().EndsWith("(vertical)",StringComparison.OrdinalIgnoreCase);
-                int _row = 0;
-                foreach (DataRow row in table.Rows)
-                {
-                    if (_row == 0)
-                    {
-                        _headRowColumnCount = row.ItemArray.Length;
-                    }
-                    else if (row.ItemArray.Length < _headRowColumnCount)
-                    {
-                        throw new Exception($"{excelPath} 第{_row}行列数小于首行。");
-                    }
-                    if (_row > 3)
-                    {
-                        break;
-                    }
-                    int _column = 0;
-                    foreach (var item in row.ItemArray)
-                    {
-                        if (_column >= _headRowColumnCount)
-                            break;
-                        switch (_row)
-                        {
-                            case 0:
-                                var p = new PropertyData
-                                {
-                                    name = item.ToString()
-                                };
-                                properties.Add(p);
-                                break;
-                            case 1:
-                                properties[_column].type = item.ToString();
-                                break;
-                            case 2:
-                                properties[_column].description = item.ToString();
-                                break;
-                        }
-
-                        _column++;
-                    }
-                    _row++;
-                }
+                _headRowColumnCount = row.Count;
             }
+            else if (row.Count < _headRowColumnCount)
+            {
+                throw new Exception($"{excelPath} 第{_row}行列数小于首行。");
+            }
+            if (_row > 3)
+            {
+                break;
+            }
+            int _column = 0;
+            foreach (var item in row)
+            {
+                if (_column >= _headRowColumnCount)
+                    break;
+                switch (_row)
+                {
+                    case 0:
+                        var p = new PropertyData
+                        {
+                            name = item.ToString()
+                        };
+                        properties.Add(p);
+                        break;
+                    case 1:
+                        properties[_column].type = item.ToString();
+                        break;
+                    case 2:
+                        properties[_column].description = item.ToString();
+                        break;
+                }
+
+                _column++;
+            }
+            _row++;
         }
 
         var _classStr = classTemplate;
@@ -420,63 +460,57 @@ public class TableToolEditorWindow : EditorWindow
         List<object> dataList = new List<object>();
         List<PropertyData> properties = new List<PropertyData>();
         int _headRowColumnCount = -1;
-        using (var stream = File.Open(excelPath, FileMode.Open, FileAccess.Read))
+        var datas = ReadTable(excelPath);
+        int _row = 0;
+        foreach (var row in datas)
         {
-            using (var reader = ExcelReaderFactory.CreateReader(stream))
+            if (_row == 0)
             {
-                var result = reader.AsDataSet();
-                int _row = 0;
-                foreach (DataRow row in result.Tables[0].Rows)
-                {
-                    if (_row == 0)
-                    {
-                        _headRowColumnCount = row.ItemArray.Length;
-                    }
-
-                    int _column = 0;
-                    object data = null;
-                    if (_row >= 3)
-                    {
-                        data = Activator.CreateInstance(classType);
-                    }
-                    foreach (var item in row.ItemArray)
-                    {
-                        if (_column >= _headRowColumnCount)
-                            break;
-
-                        if (_row == 0)
-                        {
-                            var p = new PropertyData
-                            {
-                                name = item.ToString()
-                            };
-                            properties.Add(p);
-                        }
-                        else if (_row == 1)
-                        {
-                            properties[_column].type = item.ToString();
-                        }
-                        else if (_row >= 3 && !IsIgnoreColumn(properties[_column]))
-                        {
-                            try
-                            {
-                                var cellData = ParseData(item.ToString(), properties[_column].type);
-                                data.GetType().GetProperty(properties[_column].name).SetValue(data, cellData);
-                            }
-                            catch (Exception e)
-                            {
-                                Debug.LogError($"{className} ParseData Error at cell {_row + 1}:{_column + 1}, type: {properties[_column].type}, value: {item.ToString()}\n{e.Message}\n{e.StackTrace}");
-                            }
-                        }
-                        _column++;
-                    }
-                    if (_row >= 3)
-                    {
-                        dataList.Add(data);
-                    }
-                    _row++;
-                }
+                _headRowColumnCount = row.Count;
             }
+
+            int _column = 0;
+            object data = null;
+            if (_row >= 3)
+            {
+                data = Activator.CreateInstance(classType);
+            }
+            foreach (var item in row)
+            {
+                if (_column >= _headRowColumnCount)
+                    break;
+
+                if (_row == 0)
+                {
+                    var p = new PropertyData
+                    {
+                        name = item
+                    };
+                    properties.Add(p);
+                }
+                else if (_row == 1)
+                {
+                    properties[_column].type = item;
+                }
+                else if (_row >= 3 && !IsIgnoreColumn(properties[_column]) && row[0] != "")
+                {
+                    try
+                    {
+                        var cellData = ParseData(item, properties[_column].type);
+                        data.GetType().GetProperty(properties[_column].name).SetValue(data, cellData);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogError($"{className} ParseData Error at cell {_row + 1}:{_column + 1}, type: {properties[_column].type}, value: {item.ToString()}\n{e.Message}\n{e.StackTrace}");
+                    }
+                }
+                _column++;
+            }
+            if (_row >= 3)
+            {
+                dataList.Add(data);
+            }
+            _row++;
         }
 
         var obj = assembly.CreateInstance(collectionClassType.FullName);
@@ -552,7 +586,8 @@ public class TableToolEditorWindow : EditorWindow
     private List<string> GetExcelList()
     {
         var files = Directory.GetFiles(settings.excelFolderPath)
-            .Where(a => { return a.EndsWith(".xls") || a.EndsWith(".xlsx"); }).ToList();
+            .Where(a => { return a.EndsWith(".xls", StringComparison.Ordinal) || a.EndsWith(".xlsx", StringComparison.Ordinal); })
+            .ToList();
         return files;
     }
 

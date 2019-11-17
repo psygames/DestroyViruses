@@ -106,7 +106,7 @@ namespace DestroyViruses
                     spawnedTotal += waveCount;
                 }
             }
-            int killed = spawnedTotal - EntityManager.Count<VirusBase>();
+            int killed = spawnedTotal - EntityManager.Count<VirusBase>(a => a.isMatrix);
             float _p = Mathf.Clamp01(1f * killed / total);
             if (_p > progress)
             {
@@ -236,7 +236,7 @@ namespace DestroyViruses
                 var speed = configWave.virusSpeed[virusIndex].random * configLevel.virusSpeedFactor * ConstTable.table.speedRandomRange.random;
                 var size = configWave.virusSize[virusIndex].random;
 
-                virus.Reset(virusTable.id, hp, size, speed, pos, direction, hpRange);
+                virus.Reset(virusTable.id, hp, size, speed, pos, direction, hpRange, true);
             }
         }
     }

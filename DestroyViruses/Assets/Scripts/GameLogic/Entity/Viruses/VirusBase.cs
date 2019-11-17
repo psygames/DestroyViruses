@@ -29,6 +29,7 @@ namespace DestroyViruses
         public Vector2 position { get; protected set; }
         public Vector2 shakeOffset { get; protected set; }
         public bool isInvincible { get; protected set; }
+        public bool isMatrix { get; protected set; }
         public float radius { get; private set; }
         public float scale { get; private set; }
         public float slowDownFactor
@@ -55,7 +56,7 @@ namespace DestroyViruses
             this.BindUntilDisable<EventBullet>(OnEventBullet);
         }
 
-        public virtual void Reset(int id, float hp, int size, float speed, Vector2 pos, Vector2 direction, Vector2 hpRange)
+        public virtual void Reset(int id, float hp, int size, float speed, Vector2 pos, Vector2 direction, Vector2 hpRange,bool isMatrix)
         {
             this.id = id;
             table = TableVirus.Get(id);
@@ -66,6 +67,7 @@ namespace DestroyViruses
             this.speed = speed;
             this.hpRange = hpRange;
             this.direction = direction;
+            this.isMatrix = isMatrix;
             isAlive = true;
             position = pos;
             isInvincible = false;
@@ -179,10 +181,10 @@ namespace DestroyViruses
             var pos = transform.GetUIPos();
 
             Vector2 dirA = Quaternion.AngleAxis(Random.Range(-60, -80), Vector3.forward) * Vector2.up;
-            Create().Reset(id, _hp, _size, speed, pos + dirA * baseRadius * GetSizeScale(_size), dirA, hpRange);
+            Create().Reset(id, _hp, _size, speed, pos + dirA * baseRadius * GetSizeScale(_size), dirA, hpRange,false);
 
             Vector2 dirB = Quaternion.AngleAxis(Random.Range(60, 80), Vector3.forward) * Vector2.up;
-            Create().Reset(id, _hp, _size, speed, pos + dirB * baseRadius * GetSizeScale(_size), dirB, hpRange);
+            Create().Reset(id, _hp, _size, speed, pos + dirB * baseRadius * GetSizeScale(_size), dirB, hpRange,false);
         }
 
         protected VirusBase Create()

@@ -38,7 +38,7 @@ namespace DestroyViruses
         public override void OnEnter()
         {
             progress = 0;
-            UIManager.Instance.Open<LoadingPanel>();
+            UIManager.Instance.Open<LoadingView>();
             updater.Init();
             InitQuickHotUpdate();
             base.OnEnter();
@@ -85,6 +85,10 @@ namespace DestroyViruses
             if (updater.state == AssetsUpdate.State.Wait)
             {
                 updater.Check();
+            }
+            if (updater.state == AssetsUpdate.State.Error && updater.message == "Cannot connect to destination host")
+            {
+                updater.state = AssetsUpdate.State.Completed;
             }
             else if (updater.state == AssetsUpdate.State.Completed)
             {
@@ -157,7 +161,7 @@ namespace DestroyViruses
         public override void OnExit()
         {
             base.OnExit();
-            UIManager.Instance.Close<LoadingPanel>();
+            UIManager.Instance.Close<LoadingView>();
         }
     }
 }

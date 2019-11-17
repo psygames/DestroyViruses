@@ -8,7 +8,7 @@ using UnibusEvent;
 
 namespace DestroyViruses
 {
-    public class MainPanel : PanelBase
+    public class MainView : ViewBase
     {
         // drag listener
         public UIEventListener inputListenser;

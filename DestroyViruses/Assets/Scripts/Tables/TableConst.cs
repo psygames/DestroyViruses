@@ -107,7 +107,7 @@ namespace DestroyViruses
     public class TableConst
     {
 		/// <summary>
-		/// <para>ID（正在使用 - 1）</para><para>可配置多套数据，通过修改id替换不同数据方案。</para>
+		/// ID（正在使用 - 1）
 		/// </summary>
 		private int _id;
 		public int id { get { return _id; } private set { _id = value; } }

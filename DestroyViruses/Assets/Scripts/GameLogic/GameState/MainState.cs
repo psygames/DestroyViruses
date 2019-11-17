@@ -10,7 +10,7 @@ namespace DestroyViruses
         {
             base.OnEnter();
             Aircraft.Create().Reset();
-            UIManager.Instance.Open<MainPanel>();
+            UIManager.Instance.Open<MainView>();
         }
 
         public override void OnUpdate(float deltaTime)
@@ -20,7 +20,7 @@ namespace DestroyViruses
         public override void OnExit()
         {
             base.OnExit();
-            UIManager.Instance.Close<MainPanel>();
+            UIManager.Instance.Close<MainView>();
             GDM.ins.SaveLocalData();
         }
     }

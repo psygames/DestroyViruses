@@ -94,18 +94,31 @@ namespace DestroyViruses
             return mInstanceDict[type];
         }
 
-        private int count<T>() where T : EntityBase
+        private int count<T>(Func<T, bool> predict = null) where T : EntityBase
         {
-            int count = 0;
+            int _count = 0;
             var type = typeof(T);
             foreach (var kv in mInstanceDict)
             {
                 if (type.IsAssignableFrom(kv.Key))
                 {
-                    count += kv.Value.Count;
+                    if (predict == null)
+                    {
+                        _count += kv.Value.Count;
+                    }
+                    else
+                    {
+                        foreach (var e in kv.Value)
+                        {
+                            if (predict.Invoke(e as T))
+                            {
+                                _count++;
+                            }
+                        }
+                    }
                 }
             }
-            return count;
+            return _count;
         }
 
 
@@ -130,9 +143,9 @@ namespace DestroyViruses
             return Instance.getAll<T>();
         }
 
-        public static int Count<T>() where T : EntityBase
+        public static int Count<T>(Func<T, bool> predict = null) where T : EntityBase
         {
-            return Instance.count<T>();
+            return Instance.count(predict);
         }
 
         public static void Clear()

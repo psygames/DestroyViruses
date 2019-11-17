@@ -11,7 +11,7 @@ namespace DestroyViruses
         public override void OnEnter()
         {
             base.OnEnter();
-            UIManager.Instance.Open<BattlePanel>();
+            UIManager.Instance.Open<BattleView>();
             GameModeManager.Instance.InitMode<LevelMode>();
             GameModeManager.Instance.Begin();
         }
@@ -24,7 +24,7 @@ namespace DestroyViruses
         public override void OnExit()
         {
             base.OnExit();
-            UIManager.Instance.Close<BattlePanel>();
+            UIManager.Instance.Close<BattleView>();
             EntityManager.Clear();
             GDM.ins.SaveLocalData();
             GDM.ins.newLevelUnlocked = false;

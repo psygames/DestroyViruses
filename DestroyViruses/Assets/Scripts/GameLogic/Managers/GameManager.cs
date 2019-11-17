@@ -8,18 +8,18 @@ namespace DestroyViruses
 {
     public class GameManager : Singleton<GameManager>
     {
-        static PanelBase LoadPanelFunc(string panelName)
+        static ViewBase LoadViewFunc(string panelName)
         {
-            if (panelName.Equals(typeof(LoadingPanel).Name))
+            if (panelName.Equals(typeof(LoadingView).Name))
             {
-                return Resources.Load<PanelBase>("Prefabs/" + panelName);
+                return Resources.Load<ViewBase>("Prefabs/" + panelName);
             }
-            return ResourceUtil.Load<PanelBase>(PathUtil.Panel(panelName));
+            return ResourceUtil.Load<ViewBase>(PathUtil.Panel(panelName));
         }
 
         void Start()
         {
-            UIManager.Instance.loadPanelFunc = LoadPanelFunc;
+            UIManager.Instance.loadViewFunc = LoadViewFunc;
             ChangeState<SplashState>();
         }
 

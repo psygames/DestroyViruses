@@ -8,7 +8,7 @@ public enum UILayer
     Bottom = 2,
 }
 
-public abstract class PanelBase : MonoBehaviour
+public abstract class ViewBase : MonoBehaviour
 {
     protected RectTransform mRectTransform;
     public RectTransform rectTransform

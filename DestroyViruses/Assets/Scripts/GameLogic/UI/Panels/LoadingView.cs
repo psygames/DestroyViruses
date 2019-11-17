@@ -8,7 +8,7 @@ using UnibusEvent;
 
 namespace DestroyViruses
 {
-    public class LoadingPanel : PanelBase
+    public class LoadingView : ViewBase
     {
         public Slider fill;
         public Text desc;
