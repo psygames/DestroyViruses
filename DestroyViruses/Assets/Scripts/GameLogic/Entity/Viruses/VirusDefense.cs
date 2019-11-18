@@ -28,7 +28,7 @@ namespace DestroyViruses
         protected override void Update()
         {
             base.Update();
-            mEffectCD = this.UpdateCD(mEffectCD);
+            mEffectCD = this.UpdateCD(mEffectCD, GlobalData.slowDownFactor);
             hpText.gameObject.SetActive(!isInvincible);
         }
     }

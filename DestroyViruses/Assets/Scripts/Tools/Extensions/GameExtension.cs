@@ -5,9 +5,9 @@ using DestroyViruses;
 
 public static class GameExtension
 {
-    public static float UpdateCD(this MonoBehaviour monoBehaviour, float value)
+    public static float UpdateCD(this MonoBehaviour monoBehaviour, float value,float scale = 1f)
     {
-        return Mathf.Max(0, value - Time.deltaTime);
+        return Mathf.Max(0, value - Time.deltaTime * scale);
     }
 
 

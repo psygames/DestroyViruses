@@ -14,6 +14,7 @@ namespace DestroyViruses
         public UIEventListener inputListenser;
 
         // panels
+        public LevelPanel levelPanel;
         public RadioObjects[] optionBtnRaido;
         public RadioObjects optionPanelRaido;
 
@@ -25,6 +26,7 @@ namespace DestroyViruses
         public Text coinText;
         public Text energyText;
         public Text diamondText;
+        public Button settingBtn;
 
         // game level
         public DOTweenTrigger gameLevelTweenTrigger;
@@ -47,7 +49,16 @@ namespace DestroyViruses
         {
             InputListenerInit();
             ButtonListenerInit();
+            SetMusic();
         }
+
+        private void SetMusic()
+        {
+            AudioManager.Instance.MusicPlayer.mute = !Option.music;
+            AudioManager.Instance.FireMusicPlayer.mute = !Option.sound;
+            AudioManager.Instance.SoundPlayer.mute = !Option.sound;
+        }
+
 
         private void OnEnable()
         {
@@ -61,7 +72,6 @@ namespace DestroyViruses
             UIUtil.aircraftTransform.DOScale(Vector3.one * 1.3f, 0.5f).SetEase(Ease.OutQuad);
             RefreshUI();
             AudioManager.Instance.PlayMusic($"Sounds/BGM{Random.Range(1, 3)}", 1f);
-            UIManager.Instance.Open<OptionView>(UILayer.Top);
         }
 
         private void OnDestroy()
@@ -92,6 +102,7 @@ namespace DestroyViruses
             baseOptionBtn.OnClick(() => { SelectOption(0); });
             aircraftOptionBtn.OnClick(() => { SelectOption(1); });
             coinOptionBtn.OnClick(() => { SelectOption(2); });
+            settingBtn.OnClick(() => { UIManager.Instance.Open<OptionView>(UILayer.Top); });
 
             previousLevelBtn.OnClick(() =>
             {
@@ -158,6 +169,8 @@ namespace DestroyViruses
                     nextLevelText.color = currentLevelText.color;
                 }
             }
+
+            levelPanel.SetData();
         }
 
         private void OnEventGameData(EventGameData evt)

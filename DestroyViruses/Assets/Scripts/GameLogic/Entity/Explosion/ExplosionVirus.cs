@@ -43,7 +43,10 @@ namespace DestroyViruses
             {
                 AudioManager.Instance.PlaySound("Sounds/explosion");
             }
-            Vibrate();
+            if (Option.vibration)
+            {
+                Vibrate();
+            }
         }
 
         private void Vibrate()

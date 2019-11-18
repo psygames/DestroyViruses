@@ -33,7 +33,7 @@ namespace DestroyViruses
         {
             base.Update();
             float last = mEffectCD;
-            mEffectCD = this.UpdateCD(mEffectCD);
+            mEffectCD = this.UpdateCD(mEffectCD, GlobalData.slowDownFactor);
             if (last > 0 && mEffectCD <= 0)
             {
                 fadeScale.FadeOut();

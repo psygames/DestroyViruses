@@ -32,15 +32,6 @@ namespace DestroyViruses
         public bool isMatrix { get; protected set; }
         public float radius { get; private set; }
         public float scale { get; private set; }
-        public float slowDownFactor
-        {
-            get
-            {
-                if (!GlobalData.isBattleTouchOn)
-                    return ConstTable.table.noTouchSlowDown;
-                return 1f;
-            }
-        }
         protected virtual float speedMul { get; set; } = 1f;
 
         private int mLastColorIndex = -1;
@@ -56,7 +47,7 @@ namespace DestroyViruses
             this.BindUntilDisable<EventBullet>(OnEventBullet);
         }
 
-        public virtual void Reset(int id, float hp, int size, float speed, Vector2 pos, Vector2 direction, Vector2 hpRange,bool isMatrix)
+        public virtual void Reset(int id, float hp, int size, float speed, Vector2 pos, Vector2 direction, Vector2 hpRange, bool isMatrix)
         {
             this.id = id;
             table = TableVirus.Get(id);
@@ -181,10 +172,10 @@ namespace DestroyViruses
             var pos = transform.GetUIPos();
 
             Vector2 dirA = Quaternion.AngleAxis(Random.Range(-60, -80), Vector3.forward) * Vector2.up;
-            Create().Reset(id, _hp, _size, speed, pos + dirA * baseRadius * GetSizeScale(_size), dirA, hpRange,false);
+            Create().Reset(id, _hp, _size, speed, pos + dirA * baseRadius * GetSizeScale(_size), dirA, hpRange, false);
 
             Vector2 dirB = Quaternion.AngleAxis(Random.Range(60, 80), Vector3.forward) * Vector2.up;
-            Create().Reset(id, _hp, _size, speed, pos + dirB * baseRadius * GetSizeScale(_size), dirB, hpRange,false);
+            Create().Reset(id, _hp, _size, speed, pos + dirB * baseRadius * GetSizeScale(_size), dirB, hpRange, false);
         }
 
         protected VirusBase Create()
@@ -223,7 +214,7 @@ namespace DestroyViruses
             {
                 direction = new Vector2(-Mathf.Abs(direction.x), direction.y);
             }
-            position += direction * speed * slowDownFactor * speedMul * Time.deltaTime;
+            position += direction * speed * GlobalData.slowDownFactor * speedMul * Time.deltaTime;
             rectTransform.anchoredPosition = shakeOffset + position;
         }
 
@@ -247,7 +238,7 @@ namespace DestroyViruses
             if (table.skillCD <= 0)
                 return;
 
-            cd = this.UpdateCD(cd);
+            cd = this.UpdateCD(cd, GlobalData.slowDownFactor);
             if (cd <= 0)
             {
                 cd = table.skillCD;

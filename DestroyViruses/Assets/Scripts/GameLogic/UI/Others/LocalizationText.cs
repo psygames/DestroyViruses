@@ -12,10 +12,16 @@ namespace DestroyViruses
 
         private void OnEnable()
         {
+            Validate();
+        }
+
+        public void Validate()
+        {
             if (mText == null)
                 mText = GetComponent<Text>();
+
             var prop = LT.table.GetType().GetProperty(key
-                , System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+                 , System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
             if (prop == null)
             {
                 mText.text = key;

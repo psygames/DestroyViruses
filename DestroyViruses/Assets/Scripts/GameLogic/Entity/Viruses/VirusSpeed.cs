@@ -27,7 +27,7 @@ namespace DestroyViruses
         protected override void Update()
         {
             base.Update();
-            mEffectCD = this.UpdateCD(mEffectCD);
+            mEffectCD = this.UpdateCD(mEffectCD, GlobalData.slowDownFactor);
             mRotSpeed = 90;
             if (mEffectCD > 0) mRotSpeed = 1000;
             rot1.rotation = Quaternion.AngleAxis(Time.deltaTime * mRotSpeed, Vector3.back) * rot1.rotation;

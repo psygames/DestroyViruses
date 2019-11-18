@@ -38,7 +38,7 @@ namespace DestroyViruses
 
             mCheckCD = this.UpdateCD(mCheckCD);
             var _lastSCD = mSwallowCD;
-            mSwallowCD = this.UpdateCD(mSwallowCD);
+            mSwallowCD = this.UpdateCD(mSwallowCD, GlobalData.slowDownFactor);
 
             if (_lastSCD > 0 && mSwallowCD <= 0)
             {

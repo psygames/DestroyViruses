@@ -18,23 +18,53 @@ namespace DestroyViruses
         {
             firePowerUpBtn.OnClick(() =>
             {
-                GameDataManager.Instance.FirePowerUp();
+                if (GDM.ins.isFirePowerLevelMax)
+                {
+
+                }
+                else
+                {
+                    GameDataManager.Instance.FirePowerUp();
+                }
             });
 
             fireSpeedUpBtn.OnClick(() =>
             {
-                GameDataManager.Instance.FireSpeedUp();
+                if (GDM.ins.isFireSpeedLevelMax)
+                {
+
+                }
+                else
+                {
+                    GameDataManager.Instance.FireSpeedUp();
+                }
             });
         }
 
         public void SetData()
         {
-            firePowerLevelText.text = $"LV.{GDM.ins.firePowerLevel}";
-            firePowerUpCostText.text = GDM.ins.firePowerUpCost.KMB();
-            fireSpeedLevelText.text = $"LV.{GDM.ins.fireSpeedLevel}";
-            fireSpeedUpCostText.text = GDM.ins.fireSpeedUpCost.KMB();
+            firePowerLevelText.text = $"{LT.table.LEVEL_DOT}{GDM.ins.firePowerLevel}";
+            fireSpeedLevelText.text = $"{LT.table.LEVEL_DOT}{GDM.ins.fireSpeedLevel}";
 
-            if (GDM.ins.firePowerUpCost > GDM.ins.coin)
+            if (GDM.ins.isFirePowerLevelMax)
+            {
+                firePowerUpCostText.text = LT.table.LEVEL_MAX;
+            }
+            else
+            {
+                firePowerUpCostText.text = GDM.ins.firePowerUpCost.KMB();
+            }
+
+            if (GDM.ins.isFireSpeedLevelMax)
+            {
+                fireSpeedUpCostText.text = LT.table.LEVEL_MAX;
+            }
+            else
+            {
+                fireSpeedUpCostText.text = GDM.ins.fireSpeedUpCost.KMB();
+            }
+
+            if (!GDM.ins.isFirePowerLevelMax && GDM.ins.firePowerUpCost > GDM.ins.coin)
             {
                 firePowerUpCostText.color = UIUtil.RED_COLOR;
             }
@@ -43,7 +73,7 @@ namespace DestroyViruses
                 firePowerUpCostText.color = Color.white;
             }
 
-            if (GDM.ins.fireSpeedUpCost > GDM.ins.coin)
+            if (!GDM.ins.isFireSpeedLevelMax && GDM.ins.fireSpeedUpCost > GDM.ins.coin)
             {
                 fireSpeedUpCostText.color = UIUtil.RED_COLOR;
             }
