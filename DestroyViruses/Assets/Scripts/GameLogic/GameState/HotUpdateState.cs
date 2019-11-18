@@ -48,30 +48,27 @@ namespace DestroyViruses
         {
             if (updater.state == AssetsUpdate.State.Error)
             {
-                if (updater.message == "Cannot connect to destination host")
-                    message = $"连接资源服务器失败！";
-                else
-                    message = $"发生错误：{updater.message}";
+                message = $"{"ERROR: "}{updater.message}";
                 progress = 0.1f;
             }
             else if (updater.state == AssetsUpdate.State.Wait)
             {
-                message = "准备热更新...";
+                message = LT.table.READY_UPDATE_RESOURCE;
                 progress = 0.05f;
             }
             else if (updater.state == AssetsUpdate.State.Checking)
             {
-                message = "检查热更资源...";
+                message = LT.table.CHECK_UPDATE_RESOURCE;
                 progress = 0.1f;
             }
             else if (updater.state == AssetsUpdate.State.Downloading)
             {
-                message = $"更新资源：[{updater.downloadIndex}/{updater.downloadCount}]";
+                message = $"{LT.table.UPDATE_RESOURCE}[{updater.downloadIndex}/{updater.downloadCount}]";
                 progress = updater.progress * 0.8f + 0.1f;
             }
             else if (updater.state == AssetsUpdate.State.Completed && !mQuickHotUpdateFinished)
             {
-                message = $"快速热更：[{mQuickHotUpdateIndex}/{mQuickHotUpdateList.Count}]";
+                message = $"{LT.table.QUICK_UPDATE_RESOURCE}[{mQuickHotUpdateIndex}/{mQuickHotUpdateList.Count}]";
                 progress = (1f * mQuickHotUpdateIndex / mQuickHotUpdateList.Count + mQuickHotUpdateProgress) * 0.1f + 0.9f;
             }
         }

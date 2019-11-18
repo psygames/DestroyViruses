@@ -134,7 +134,7 @@ namespace DestroyViruses
 
             float progress = 1 - GDM.ins.battleProgress;
             progressFill.fillAmount = progress;
-            progressText.text = $"剩余病毒:{(int)(progress * 100)}%";
+            progressText.text = $"{LT.table.REMAIN_VIRUS_COUNT}{(int)(progress * 100)}%";
         }
 
         private void ToastBossWave()
