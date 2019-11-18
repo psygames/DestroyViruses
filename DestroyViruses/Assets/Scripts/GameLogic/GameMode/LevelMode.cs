@@ -106,7 +106,7 @@ namespace DestroyViruses
                     spawnedTotal += waveCount;
                 }
             }
-            int killed = spawnedTotal - EntityManager.Count<VirusBase>(a => a.isMatrix);
+            int killed = spawnedTotal - EntityManager.Count<VirusBase>(a => a.isMatrix) - EntityManager.Count<VirusBase>(a => !a.isMatrix) / 4;
             float _p = Mathf.Clamp01(1f * killed / total);
             if (_p > progress)
             {

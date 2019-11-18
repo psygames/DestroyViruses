@@ -21,13 +21,6 @@ namespace DestroyViruses
         public Button aircraftOptionBtn;
         public Button coinOptionBtn;
 
-        public Button firePowerUpBtn;
-        public Text firePowerLevelText;
-        public Text firePowerUpCostText;
-        public Button fireSpeedUpBtn;
-        public Text fireSpeedLevelText;
-        public Text fireSpeedUpCostText;
-
         // top menu
         public Text coinText;
         public Text energyText;
@@ -99,16 +92,6 @@ namespace DestroyViruses
             aircraftOptionBtn.OnClick(() => { SelectOption(1); });
             coinOptionBtn.OnClick(() => { SelectOption(2); });
 
-            firePowerUpBtn.OnClick(() =>
-            {
-                GameDataManager.Instance.FirePowerUp();
-            });
-
-            fireSpeedUpBtn.OnClick(() =>
-            {
-                GameDataManager.Instance.FireSpeedUp();
-            });
-
             previousLevelBtn.OnClick(() =>
             {
                 GDM.ins.SelectGameLevel(GDM.ins.gameLevel - 1);
@@ -141,29 +124,6 @@ namespace DestroyViruses
             coinText.text = GDM.ins.coin.KMB();
             energyText.text = "100";
             diamondText.text = "0";
-
-            firePowerLevelText.text = $"LV.{GDM.ins.firePowerLevel}";
-            firePowerUpCostText.text = GDM.ins.firePowerUpCost.KMB();
-            fireSpeedLevelText.text = $"LV.{GDM.ins.fireSpeedLevel}";
-            fireSpeedUpCostText.text = GDM.ins.fireSpeedUpCost.KMB();
-
-            if (GDM.ins.firePowerUpCost > GDM.ins.coin)
-            {
-                firePowerUpCostText.color = UIUtil.RED_COLOR;
-            }
-            else
-            {
-                firePowerUpCostText.color = Color.white;
-            }
-
-            if (GDM.ins.fireSpeedUpCost > GDM.ins.coin)
-            {
-                fireSpeedUpCostText.color = UIUtil.RED_COLOR;
-            }
-            else
-            {
-                fireSpeedUpCostText.color = Color.white;
-            }
 
             if (GDM.ins.gameLevel - 1 <= 0)
             {
