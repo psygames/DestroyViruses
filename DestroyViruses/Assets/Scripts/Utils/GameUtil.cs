@@ -35,20 +35,20 @@ namespace DestroyViruses
                 if (Application.systemLanguage == SystemLanguage.Chinese
                 || Application.systemLanguage == SystemLanguage.ChineseSimplified
                 || Application.systemLanguage == SystemLanguage.ChineseTraditional)
-                    return "CH";
+                    return "zh-cn";
                 else if (Application.systemLanguage == SystemLanguage.Spanish)
-                    return "SP";
+                    return "sp";
                 else if (Application.systemLanguage == SystemLanguage.Russian)
-                    return "RU";
+                    return "ru";
                 else if (Application.systemLanguage == SystemLanguage.Korean)
-                    return "KO";
+                    return "ko";
                 else if (Application.systemLanguage == SystemLanguage.Japanese)
-                    return "JA";
+                    return "ja";
                 else if (Application.systemLanguage == SystemLanguage.French)
-                    return "FR";
+                    return "fr";
                 else if (Application.systemLanguage == SystemLanguage.German)
-                    return "GR";
-                else return "EN";
+                    return "ge";
+                else return "en";
             }
         }
     }

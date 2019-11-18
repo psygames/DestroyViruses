@@ -113,6 +113,12 @@ namespace DestroyViruses
 		public string id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
+		/// 名称
+		/// </summary>
+		private string _name;
+		public string name { get { return _name; } private set { _name = value; } }
+
+		/// <summary>
 		/// LV.
 		/// </summary>
 		private string _LEVEL_DOT;
@@ -201,6 +207,36 @@ namespace DestroyViruses
 		/// </summary>
 		private string _CLICK_TO_RECEIVE;
 		public string CLICK_TO_RECEIVE { get { return _CLICK_TO_RECEIVE; } private set { _CLICK_TO_RECEIVE = value; } }
+
+		/// <summary>
+		/// 设置
+		/// </summary>
+		private string _SETTING;
+		public string SETTING { get { return _SETTING; } private set { _SETTING = value; } }
+
+		/// <summary>
+		/// 射击震动
+		/// </summary>
+		private string _SETTING_VIBRATION;
+		public string SETTING_VIBRATION { get { return _SETTING_VIBRATION; } private set { _SETTING_VIBRATION = value; } }
+
+		/// <summary>
+		/// 音乐
+		/// </summary>
+		private string _SETTING_MUSIC;
+		public string SETTING_MUSIC { get { return _SETTING_MUSIC; } private set { _SETTING_MUSIC = value; } }
+
+		/// <summary>
+		/// 音效
+		/// </summary>
+		private string _SETTING_SOUND;
+		public string SETTING_SOUND { get { return _SETTING_SOUND; } private set { _SETTING_SOUND = value; } }
+
+		/// <summary>
+		/// 语言
+		/// </summary>
+		private string _SETTING_LANGUAGE;
+		public string SETTING_LANGUAGE { get { return _SETTING_LANGUAGE; } private set { _SETTING_LANGUAGE = value; } }
 
 
 		public static TableLanguage Get(string id)

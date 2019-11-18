@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: b2f03bcd009937c41bb886555a4fe0a0, type: 3}
-    totalSpriteSurfaceArea: 1022108
+    totalSpriteSurfaceArea: 1053427
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -76,7 +76,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: dc264359be62e274192ab4798bab5ddf, type: 3}
   - {fileID: 21300000, guid: d6167a0af69c47b4b9d49d2944b6e80a, type: 3}
   - {fileID: 21300000, guid: c81ec56a7c3e1ba4191cf9dbdb925c4d, type: 3}
+  - {fileID: 21300000, guid: 3299247a38826449ab63013a3dd9c909, type: 3}
   - {fileID: 21300000, guid: cb967ffaaa6b67a4cbcf65bfd6ba77ee, type: 3}
+  - {fileID: 21300000, guid: beced46b9a8ee420ea4a3080a64f7101, type: 3}
   - {fileID: 21300000, guid: 561df4cbafa7747418b8fcc145858e89, type: 3}
   - {fileID: 21300000, guid: 2cd7b22cb9562bb4ea981180938c79bd, type: 3}
   - {fileID: 21300000, guid: 6e47cd2cde52a614abec49288ec57ba2, type: 3}
@@ -117,7 +119,9 @@ SpriteAtlas:
   - icon_base_option
   - coin_frame_4
   - button_option_2
+  - option_title
   - icon_coin
+  - option_bg
   - boss_wave_border_v
   - button_option_3_selected
   - health_game_announce
