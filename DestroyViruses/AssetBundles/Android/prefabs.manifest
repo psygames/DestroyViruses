@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3919657885
+CRC: 1145744004
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 02b63d64ea32d6df5ffdb75defab66d7
+    Hash: 848daa4849326284a4fa23017712c6e5
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 5c37d1ccae0ef22a37c49c3f9360c317
+    Hash: 2b2337a6a512905c58ef03fab8871f93
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -44,6 +44,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 33cabbd370ac12942ab8045ab57cb240, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 7f45a1359f8900545985f63c79303d5d, type: 3}
@@ -55,6 +57,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 500da2d5d8ff2d2428bbdea3aebd81c3, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: ff55f0761076f564790db55d30fc4879, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 478f79d64d1455243b83b7defef2cbd4, type: 3}
 - Class: 114
@@ -100,7 +104,19 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 0d0b652f32a2cc243917e4028fa0f046, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 4c20847fa39a1454182a2e9340014078, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 425308844f8a7483ea3a55e7357bd88e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c9e382561367345199a909beac5521d3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 74ef7f009c6044adb9f13064a5673066, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b6f276b81fb874ef0b3722ad432f5e7d, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -118,7 +134,7 @@ ClassTypes:
 Assets:
 - Assets/AssetBundles/Prefabs/Entities/VirusSwallow.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusBomb.prefab
-- Assets/AssetBundles/Prefabs/UI/Panel/MainPanel.prefab
+- Assets/AssetBundles/Prefabs/UI/View/MainView.prefab
 - Assets/AssetBundles/Prefabs/Entities/Items/plane_1.prefab
 - Assets/AssetBundles/Prefabs/Entities/Coin.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusBase.prefab
@@ -131,16 +147,17 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/VirusTrack.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusAttach.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusSlower.prefab
-- Assets/AssetBundles/Prefabs/UI/Panel/BattlePanel.prefab
+- Assets/AssetBundles/Prefabs/UI/View/BattleView.prefab
 - Assets/AssetBundles/Prefabs/Entities/ExplosionVirus.prefab
 - Assets/AssetBundles/Prefabs/Entities/ExplosionBullet.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusRecover.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusVampire.prefab
 - Assets/AssetBundles/Prefabs/Entities/Aircraft.prefab
+- Assets/AssetBundles/Prefabs/UI/View/OptionView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusSpeed.prefab
 - Assets/AssetBundles/Prefabs/Entities/Items/virus_base.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusExpand.prefab
-- Assets/AssetBundles/Prefabs/UI/Panel/GameEndPanel.prefab
+- Assets/AssetBundles/Prefabs/UI/View/GameEndView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusCollider.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusTriangle.prefab
 Dependencies: []

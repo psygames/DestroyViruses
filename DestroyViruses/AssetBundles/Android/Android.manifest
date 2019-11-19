@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2035408502
+CRC: 2702297700
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -40,4 +40,7 @@ AssetBundleManifest:
       Dependencies: {}
     Info_12:
       Name: tables/tablevirus
+      Dependencies: {}
+    Info_13:
+      Name: tables/tablelanguage
       Dependencies: {}

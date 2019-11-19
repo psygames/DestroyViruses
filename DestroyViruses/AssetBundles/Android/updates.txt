@@ -12,3 +12,9 @@ tables/tablefirespeed
 tables/tablegamelevel
 tables/tablegamewave
 tables/tablevirus
+132186057394320890:
+manifest
+prefabs
+spriteatlas/common
+tables/tableconst
+tables/tablelanguage

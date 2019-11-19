@@ -27,12 +27,13 @@ MonoBehaviour:
   - tables/tablefirespeed
   - tables/tablegamelevel
   - tables/tablegamewave
+  - tables/tablelanguage
   - tables/tablevirus
   dirs:
   - Assets
   - Assets/AssetBundles/Prefabs/Entities
   - Assets/AssetBundles/Prefabs/Entities/Items
-  - Assets/AssetBundles/Prefabs/UI/Panel
+  - Assets/AssetBundles/Prefabs/UI/View
   - Assets/AssetBundles/SpriteAtlas
   - Assets/AssetBundles/Tables
   assets:
@@ -113,13 +114,16 @@ MonoBehaviour:
     name: VirusVampire.prefab
   - bundle: 1
     dir: 3
-    name: BattlePanel.prefab
+    name: BattleView.prefab
   - bundle: 1
     dir: 3
-    name: GameEndPanel.prefab
+    name: GameEndView.prefab
   - bundle: 1
     dir: 3
-    name: MainPanel.prefab
+    name: MainView.prefab
+  - bundle: 1
+    dir: 3
+    name: OptionView.prefab
   - bundle: 2
     dir: 4
     name: common.spriteatlas
@@ -151,5 +155,8 @@ MonoBehaviour:
     dir: 5
     name: TableGameWave.bytes
   - bundle: 12
+    dir: 5
+    name: TableLanguage.bytes
+  - bundle: 13
     dir: 5
     name: TableVirus.bytes
