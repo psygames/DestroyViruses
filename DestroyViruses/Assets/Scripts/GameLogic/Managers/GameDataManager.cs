@@ -21,8 +21,8 @@ namespace DestroyViruses
         public bool isFireSpeedLevelMax { get { return TableFireSpeed.Get(fireSpeedLevel + 1) == null; } }
 
         // 计算
-        public float firePowerUpCost { get { return FormulaUtil.FirePowerUpCost(firePowerLevel); } }
-        public float fireSpeedUpCost { get { return FormulaUtil.FireSpeedUpCost(fireSpeedLevel); } }
+        public int firePowerUpCost { get { return (int)FormulaUtil.FirePowerUpCost(firePowerLevel); } }
+        public int fireSpeedUpCost { get { return (int)FormulaUtil.FireSpeedUpCost(fireSpeedLevel); } }
 
         // 临时数据（外部可修改）
         public bool gameEndWin { get; set; }
@@ -78,13 +78,13 @@ namespace DestroyViruses
                 DispatchEvent(EventGameData.Action.Error, "已经升至满级");
                 return;
             }
-            if (coin < (int)fireSpeedUpCost)
+            if (coin < fireSpeedUpCost)
             {
                 DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
                 return;
             }
 
-            localData.coin -= (int)fireSpeedUpCost;
+            localData.coin -= fireSpeedUpCost;
             localData.fireSpeedLevel += 1;
             DispatchEvent(EventGameData.Action.DataChange);
             SaveLocalData();

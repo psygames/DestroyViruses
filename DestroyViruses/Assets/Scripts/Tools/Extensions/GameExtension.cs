@@ -27,27 +27,27 @@ public static class GameExtension
 
     // 数值单位转换
 
-    private static string[] sKBMUnits = { "K", "M", "B" };
-    private static float[] sKBMDivs = { 1000f, 1000000f, 1000000000f, 1000000000000f };
+    private static string[] sKMBUnits = { "K", "M", "B" };
+    private static float[] sKMBDivs = { 1000f, 1000000f, 1000000000f, 1000000000000f };
     public static string KMB(this float value)
     {
-        if (value < sKBMDivs[0])
+        if (value < sKMBDivs[0])
         {
             return Mathf.CeilToInt(value).ToString();
         }
 
-        for (int i = 0; i < sKBMUnits.Length; i++)
+        for (int i = 0; i < sKMBUnits.Length; i++)
         {
-            if (value >= sKBMDivs[i] && value < sKBMDivs[i + 1])
+            if (value >= sKMBDivs[i] && value < sKMBDivs[i + 1])
             {
-                value = value / sKBMDivs[i];
+                value = value / sKMBDivs[i];
                 int d1 = Mathf.CeilToInt(value * 10) % 10;
                 if (d1 == 0)
-                    return (Mathf.CeilToInt(value)).ToString() + sKBMUnits[i];
-                return (Mathf.CeilToInt(value)).ToString() + "." + d1.ToString() + sKBMUnits[i];
+                    return ((int)value).ToString() + sKMBUnits[i];
+                return ((int)value).ToString() + "." + d1.ToString() + sKMBUnits[i];
             }
         }
-        return "!KBM";
+        return "!KMB";
     }
 
     // 数值单位转换
