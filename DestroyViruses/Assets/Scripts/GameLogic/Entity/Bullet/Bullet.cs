@@ -8,9 +8,9 @@ namespace DestroyViruses
 {
     public class Bullet : EntityBase<Bullet>
     {
-        public const float BULLET_SPEED = 3500;  // px/s
-        public const float BULLET_HEIGH = 200;   // px
-        public const float BULLET_WIDTH = 30;   // px
+        public static float BULLET_SPEED => ConstTable.table.bulletSpeed;
+        public static float BULLET_HEIGH => ConstTable.table.bulletVDist;
+        public static float BULLET_WIDTH => ConstTable.table.bulletHDist;
 
         public float bornCD = 0.03f;
 
@@ -24,14 +24,14 @@ namespace DestroyViruses
             isAlive = true;
         }
 
-        private void OnTriggerEnter2D(Collider2D collider)
+        private void OnTriggerEnter2D(Collider2D _collider)
         {
             if (!isAlive)
                 return;
 
-            if (collider.tag == TagUtil.Virus)
+            if (_collider.tag == TagUtil.Virus)
             {
-                var virus = collider.GetComponent<VirusBase>();
+                var virus = _collider.GetComponent<VirusBase>();
                 if (virus != null && virus.isAlive)
                 {
                     Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, virus, mDamage));

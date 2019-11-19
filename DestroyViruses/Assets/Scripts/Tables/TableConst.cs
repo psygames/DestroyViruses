@@ -196,6 +196,30 @@ namespace DestroyViruses
 		private float _coinSfxInterval;
 		public float coinSfxInterval { get { return _coinSfxInterval; } private set { _coinSfxInterval = value; } }
 
+		/// <summary>
+		/// 子弹飞行速度
+		/// </summary>
+		private float _bulletSpeed;
+		public float bulletSpeed { get { return _bulletSpeed; } private set { _bulletSpeed = value; } }
+
+		/// <summary>
+		/// 子弹横向距离
+		/// </summary>
+		private float _bulletHDist;
+		public float bulletHDist { get { return _bulletHDist; } private set { _bulletHDist = value; } }
+
+		/// <summary>
+		/// 子弹纵向距离
+		/// </summary>
+		private float _bulletVDist;
+		public float bulletVDist { get { return _bulletVDist; } private set { _bulletVDist = value; } }
+
+		/// <summary>
+		/// 一次开火最大子弹数
+		/// </summary>
+		private int _bulletMaxCount;
+		public int bulletMaxCount { get { return _bulletMaxCount; } private set { _bulletMaxCount = value; } }
+
 
 		public static TableConst Get(int id)
 		{
