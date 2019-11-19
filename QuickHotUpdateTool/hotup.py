@@ -4,13 +4,14 @@ import time
 from itchat.content import *
 
 file_list = ["TableGameLevel.xlsx", "TableGameWave.xlsx", "TableVirus.xlsx", "TableFirePower.xlsx",
-             "TableFireSpeed.xlsx", "TableBuff.xlsx", "TableAircraft.xlsx", ]
+             "TableFireSpeed.xlsx", "TableBuff.xlsx", "TableAircraft.xlsx", "TableConst.xlsx",
+             "TableLanguage.xlsx"]
 
 ready_tag = "ready"
 finish_tag = "finish"
 
 
-@itchat.msg_register([ATTACHMENT])
+@itchat.msg_register([ATTACHMENT], isGroupChat=True, isFriendChat=True)
 def download_files(msg):
     fn = msg.fileName
     if fn in file_list:

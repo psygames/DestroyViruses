@@ -33,6 +33,7 @@ namespace DestroyViruses
             mFireSpeed = FormulaUtil.FireSpeed(GameDataManager.Instance.fireSpeedLevel);
             mFireOnceDuration = Bullet.BULLET_HEIGH / Bullet.BULLET_SPEED;
             mFireOnceBullets = Mathf.CeilToInt(mFireSpeed * mFireOnceDuration);
+            mFireOnceBullets = Mathf.Max(mFireOnceBullets, ConstTable.table.bulletMaxCount);
             mFireOnceDuration = mFireOnceBullets / mFireSpeed;
 
             for (int i = 0; i < mFireOnceBullets; i++)
