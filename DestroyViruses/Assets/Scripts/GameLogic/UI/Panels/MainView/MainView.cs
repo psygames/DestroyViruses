@@ -151,9 +151,10 @@ namespace DestroyViruses
             currentLevelText.text = GDM.ins.gameLevel.ToString();
             currentBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel).isBoss);
 
-            if (TableGameLevel.Get(GDM.ins.gameLevel) == null)
+            if (TableGameLevel.Get(GDM.ins.gameLevel + 1) == null)
             {
                 nextLevelText.text = "-";
+                nextLevelText.color = UIUtil.GRAY_COLOR;
                 nextBossTag.SetActive(false);
             }
             else

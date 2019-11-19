@@ -27,7 +27,7 @@ namespace DestroyViruses
             UIManager.Instance.Close<BattleView>();
             EntityManager.Clear();
             GDM.ins.SaveLocalData();
-            GDM.ins.newLevelUnlocked = false;
+            GDM.ins.gameEndWin = false;
         }
     }
 }

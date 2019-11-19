@@ -39,18 +39,12 @@ namespace DestroyViruses
         protected override void OnEnd(bool isWin)
         {
             base.OnEnd(isWin);
+            mWaveModule.Stop();
+            GDM.ins.BattleEnd(isWin);
             if (isWin)
                 Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.GameEndWin));
             else
                 Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.GameEndLose));
-
-            mWaveModule.Stop();
-
-            // 解锁新关卡
-            if (isWin && GDM.ins.gameLevel >= GDM.ins.unlockedGameLevel)
-            {
-                GDM.ins.UnlockNewLevel();
-            }
         }
 
 

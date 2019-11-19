@@ -25,7 +25,7 @@ namespace DestroyViruses
         public float fireSpeedUpCost { get { return FormulaUtil.FireSpeedUpCost(fireSpeedLevel); } }
 
         // 临时数据（外部可修改）
-        public bool newLevelUnlocked { get; set; }
+        public bool gameEndWin { get; set; }
 
         // 战斗数据
         public float battleGetCoin
@@ -96,11 +96,25 @@ namespace DestroyViruses
             DispatchEvent(EventGameData.Action.DataChange);
         }
 
+        public void BattleEnd(bool isWin)
+        {
+            gameEndWin = isWin;
+            // 解锁新关卡
+            if (isWin && GDM.ins.gameLevel >= GDM.ins.unlockedGameLevel)
+            {
+                UnlockNewLevel();
+                SelectGameLevel(unlockedGameLevel);
+            }
+        }
+
         public void UnlockNewLevel()
         {
+            if (isUnlockedGameLevelMax)
+            {
+                return;
+            }
             localData.unlockedGameLevel += 1;
             DispatchEvent(EventGameData.Action.DataChange);
-            newLevelUnlocked = true;
         }
 
         public void SelectGameLevel(int level)

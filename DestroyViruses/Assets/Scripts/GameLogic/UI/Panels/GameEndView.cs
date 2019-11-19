@@ -23,10 +23,6 @@ namespace DestroyViruses
         private void OnClickReceive()
         {
             GDM.ins.AddCoin((int)GDM.ins.battleGetCoin);
-            if (GDM.ins.newLevelUnlocked)
-            {
-                GDM.ins.SelectGameLevel(GDM.ins.unlockedGameLevel);
-            }
             Close();
             GameManager.ChangeState<MainState>();
 
@@ -40,7 +36,7 @@ namespace DestroyViruses
         protected override void OnOpen()
         {
             coinText.text = GDM.ins.battleGetCoin.KMB();
-            winLoseRadio.Radio(!GDM.ins.newLevelUnlocked);
+            winLoseRadio.Radio(!GDM.ins.gameEndWin);
         }
     }
 }
