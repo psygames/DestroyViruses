@@ -20,3 +20,7 @@ tables/tableconst
 tables/tablelanguage
 132186252837745350:
 tables/tableconst
+132187101366397200:
+tables/tableconst
+tables/tablefirepower
+tables/tablefirespeed
