@@ -119,6 +119,12 @@ namespace DestroyViruses
 		public float fireSpeed { get { return _fireSpeed; } private set { _fireSpeed = value; } }
 
 		/// <summary>
+		/// 子弹飞行速度 像素/秒
+		/// </summary>
+		private float _bulletSpeed;
+		public float bulletSpeed { get { return _bulletSpeed; } private set { _bulletSpeed = value; } }
+
+		/// <summary>
 		/// 升级消耗
 		/// </summary>
 		private int _upcost;

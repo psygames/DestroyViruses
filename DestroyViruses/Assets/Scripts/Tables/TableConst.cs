@@ -197,12 +197,6 @@ namespace DestroyViruses
 		public float coinSfxInterval { get { return _coinSfxInterval; } private set { _coinSfxInterval = value; } }
 
 		/// <summary>
-		/// 子弹飞行速度
-		/// </summary>
-		private float _bulletSpeed;
-		public float bulletSpeed { get { return _bulletSpeed; } private set { _bulletSpeed = value; } }
-
-		/// <summary>
 		/// 子弹横向距离
 		/// </summary>
 		private float _bulletHDist;

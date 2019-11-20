@@ -29,18 +29,19 @@ namespace DestroyViruses
 
         private void FireOnce()
         {
+            var bulletSpeed = TableFireSpeed.Get(GDM.ins.fireSpeedLevel).bulletSpeed;
             mFirePower = FormulaUtil.FirePower(GameDataManager.Instance.firePowerLevel);
             mFireSpeed = FormulaUtil.FireSpeed(GameDataManager.Instance.fireSpeedLevel);
-            mFireOnceDuration = Bullet.BULLET_HEIGH / Bullet.BULLET_SPEED;
-            mFireOnceBullets = Mathf.CeilToInt(mFireSpeed * mFireOnceDuration);
-            mFireOnceBullets = Mathf.Max(mFireOnceBullets, ConstTable.table.bulletMaxCount);
+            mFireOnceBullets = Mathf.RoundToInt(mFireSpeed * Bullet.BULLET_HEIGH / bulletSpeed);
+            mFireOnceBullets = Mathf.Min(mFireOnceBullets, ConstTable.table.bulletMaxCount);
+            bulletSpeed = Bullet.BULLET_HEIGH * mFireSpeed / mFireOnceBullets;
             mFireOnceDuration = mFireOnceBullets / mFireSpeed;
 
             for (int i = 0; i < mFireOnceBullets; i++)
             {
                 var x = Bullet.BULLET_WIDTH * (i - (mFireOnceBullets - 1) * 0.5f);
                 var bullet = Bullet.Create();
-                bullet.Reset(UIUtil.GetUIPos(fireTransform), x, mFirePower);
+                bullet.Reset(UIUtil.GetUIPos(fireTransform), x, mFirePower, bulletSpeed);
             }
         }
 

@@ -8,17 +8,18 @@ namespace DestroyViruses
 {
     public class Bullet : EntityBase<Bullet>
     {
-        public static float BULLET_SPEED => ConstTable.table.bulletSpeed;
         public static float BULLET_HEIGH => ConstTable.table.bulletVDist;
         public static float BULLET_WIDTH => ConstTable.table.bulletHDist;
 
         public float bornCD = 0.03f;
 
+        protected float mSpeed;
         protected float mDamage;
 
-        public void Reset(Vector2 position, float offsetX, float damage)
+        public void Reset(Vector2 position, float offsetX, float damage,float speed)
         {
             mDamage = damage;
+            mSpeed = speed;
             rectTransform.anchoredPosition = position;
             rectTransform.DOAnchorPos3DX(position.x + offsetX, bornCD);
             isAlive = true;
@@ -62,7 +63,7 @@ namespace DestroyViruses
                 isAlive = false;
             }
 
-            rectTransform.anchoredPosition += Vector2.up * BULLET_SPEED * Time.deltaTime;
+            rectTransform.anchoredPosition += Vector2.up * mSpeed * Time.deltaTime;
         }
     }
 }
