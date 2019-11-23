@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1145744004
+CRC: 3047916930
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 848daa4849326284a4fa23017712c6e5
+    Hash: 6d659df716f8d5b265a96c1e8d9600d0
   TypeTreeHash:
     serializedVersion: 2
-    Hash: e4d63f92d30c30640c4110e00f751337
+    Hash: f193014d146bc75308c8bb8723fdbc7c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -160,4 +160,5 @@ Assets:
 - Assets/AssetBundles/Prefabs/UI/View/GameEndView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusCollider.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusTriangle.prefab
-Dependencies: []
+Dependencies:
+- D:/workspace/DestroyViruses/DestroyViruses/AssetBundles/Android/spriteatlas/common

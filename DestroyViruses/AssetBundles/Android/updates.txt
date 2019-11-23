@@ -24,3 +24,12 @@ tables/tableconst
 tables/tableconst
 tables/tablefirepower
 tables/tablefirespeed
+132189733152720888:
+manifest
+prefabs
+spriteatlas/common
+spriteatlas/sundry
+spriteatlas/virus
+tables/tableconst
+tables/tablefirespeed
+tables/tablelanguage

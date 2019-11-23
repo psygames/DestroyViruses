@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1919926012
+CRC: 2980682391
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1997313a5eaae3e9a2fdc58cbbd72670
+    Hash: 5d8eb0c7d1a459e8415d18520c02b048
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8d614ba2bf78fe185c64b512c1591e5d
@@ -17,4 +17,5 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/AssetBundles/SpriteAtlas/sundry.spriteatlas
-Dependencies: []
+Dependencies:
+- D:/workspace/DestroyViruses/DestroyViruses/AssetBundles/Android/spriteatlas/common
