@@ -1,47 +1,45 @@
 ManifestFileVersion: 0
-CRC: 2773125222
+CRC: 3345025099
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: manifest
+      Name: prefabs
       Dependencies: {}
     Info_1:
-      Name: spriteatlas/sundry
-      Dependencies:
-        Dependency_0: spriteatlas/common
+      Name: manifest
+      Dependencies: {}
     Info_2:
-      Name: spriteatlas/common
+      Name: spriteatlas/sundry
       Dependencies: {}
     Info_3:
-      Name: spriteatlas/virus
+      Name: spriteatlas/common
       Dependencies: {}
     Info_4:
-      Name: tables/tablevirus
+      Name: spriteatlas/virus
       Dependencies: {}
     Info_5:
-      Name: tables/tablegamelevel
-      Dependencies: {}
-    Info_6:
       Name: tables/tableaircraft
       Dependencies: {}
-    Info_7:
-      Name: prefabs
-      Dependencies:
-        Dependency_0: spriteatlas/common
-    Info_8:
-      Name: tables/tablefirepower
-      Dependencies: {}
-    Info_9:
-      Name: tables/tablebuff
-      Dependencies: {}
-    Info_10:
-      Name: tables/tablegamewave
-      Dependencies: {}
-    Info_11:
+    Info_6:
       Name: tables/tablefirespeed
       Dependencies: {}
-    Info_12:
+    Info_7:
+      Name: tables/tablefirepower
+      Dependencies: {}
+    Info_8:
+      Name: tables/tablegamewave
+      Dependencies: {}
+    Info_9:
       Name: tables/tableconst
+      Dependencies: {}
+    Info_10:
+      Name: tables/tablegamelevel
+      Dependencies: {}
+    Info_11:
+      Name: tables/tablebuff
+      Dependencies: {}
+    Info_12:
+      Name: tables/tablevirus
       Dependencies: {}
     Info_13:
       Name: tables/tablelanguage

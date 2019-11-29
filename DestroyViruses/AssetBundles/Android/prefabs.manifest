@@ -1,19 +1,23 @@
 ManifestFileVersion: 0
-CRC: 3047916930
+CRC: 2449432268
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6d659df716f8d5b265a96c1e8d9600d0
+    Hash: 6fa3a5ae5b8d0531cba897fb063b8511
   TypeTreeHash:
     serializedVersion: 2
-    Hash: f193014d146bc75308c8bb8723fdbc7c
+    Hash: e522726aeeb9036043e84a699d6c01cd
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
 - Class: 28
+  Script: {instanceID: 0}
+- Class: 43
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
@@ -22,6 +26,14 @@ ClassTypes:
 - Class: 58
   Script: {instanceID: 0}
 - Class: 70
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 74ef7f009c6044adb9f13064a5673066, type: 3}
@@ -121,6 +133,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 128
   Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 - Class: 222
@@ -134,8 +148,10 @@ ClassTypes:
 Assets:
 - Assets/AssetBundles/Prefabs/Entities/VirusSwallow.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusBomb.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/Take 002.anim
 - Assets/AssetBundles/Prefabs/UI/View/MainView.prefab
 - Assets/AssetBundles/Prefabs/Entities/Items/plane_1.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/Plane007.mesh
 - Assets/AssetBundles/Prefabs/Entities/Coin.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusBase.prefab
 - Assets/AssetBundles/Prefabs/Entities/Bullet.prefab
@@ -148,7 +164,10 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/VirusAttach.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusSlower.prefab
 - Assets/AssetBundles/Prefabs/UI/View/BattleView.prefab
+- "Assets/AssetBundles/Prefabs/Entities3D/\u6CBB\u7597\u602A\u7269\u8D34\u56FE.png"
 - Assets/AssetBundles/Prefabs/Entities/ExplosionVirus.prefab
+- "Assets/AssetBundles/Prefabs/Entities3D/\u6CBB\u6108\u602A\u7269\u53D7\u51FB\u52A8\u4F5C.FBX"
+- Assets/AssetBundles/Prefabs/Entities3D/Material.mat
 - Assets/AssetBundles/Prefabs/Entities/ExplosionBullet.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusRecover.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusVampire.prefab
@@ -159,6 +178,11 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/VirusExpand.prefab
 - Assets/AssetBundles/Prefabs/UI/View/GameEndView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusCollider.prefab
+- "Assets/AssetBundles/Prefabs/Entities3D/\u6CBB\u6108\u602A\u7269\u53D7\u51FB\u52A8\u4F5C
+  (1).prefab"
+- Assets/AssetBundles/Prefabs/Entities3D/avatar.asset
+- Assets/AssetBundles/Prefabs/Entities3D/Take 001.anim
 - Assets/AssetBundles/Prefabs/Entities/VirusTriangle.prefab
-Dependencies:
-- D:/workspace/DestroyViruses/DestroyViruses/AssetBundles/Android/spriteatlas/common
+- Assets/AssetBundles/Prefabs/Entities3D/animatorController.controller
+- "Assets/AssetBundles/Prefabs/Entities3D/\u6CBB\u6108\u602A\u7269\u5F85\u673A\u52A8\u4F5C.FBX"
+Dependencies: []
