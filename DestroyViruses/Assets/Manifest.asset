@@ -33,6 +33,7 @@ MonoBehaviour:
   - Assets
   - Assets/AssetBundles/Prefabs/Entities
   - Assets/AssetBundles/Prefabs/Entities/Items
+  - Assets/AssetBundles/Prefabs/Entities3D
   - Assets/AssetBundles/Prefabs/UI/View
   - Assets/AssetBundles/SpriteAtlas
   - Assets/AssetBundles/Tables
@@ -114,49 +115,79 @@ MonoBehaviour:
     name: VirusVampire.prefab
   - bundle: 1
     dir: 3
+    name: animatorController.controller
+  - bundle: 1
+    dir: 3
+    name: avatar.asset
+  - bundle: 1
+    dir: 3
+    name: Material.mat
+  - bundle: 1
+    dir: 3
+    name: Plane007.mesh
+  - bundle: 1
+    dir: 3
+    name: Take 001.anim
+  - bundle: 1
+    dir: 3
+    name: Take 002.anim
+  - bundle: 1
+    dir: 3
+    name: "\u6CBB\u6108\u602A\u7269\u53D7\u51FB\u52A8\u4F5C (1).prefab"
+  - bundle: 1
+    dir: 3
+    name: "\u6CBB\u6108\u602A\u7269\u53D7\u51FB\u52A8\u4F5C.FBX"
+  - bundle: 1
+    dir: 3
+    name: "\u6CBB\u6108\u602A\u7269\u5F85\u673A\u52A8\u4F5C.FBX"
+  - bundle: 1
+    dir: 3
+    name: "\u6CBB\u7597\u602A\u7269\u8D34\u56FE.png"
+  - bundle: 1
+    dir: 4
     name: BattleView.prefab
   - bundle: 1
-    dir: 3
+    dir: 4
     name: GameEndView.prefab
   - bundle: 1
-    dir: 3
+    dir: 4
     name: MainView.prefab
   - bundle: 1
-    dir: 3
+    dir: 4
     name: OptionView.prefab
   - bundle: 2
-    dir: 4
+    dir: 5
     name: common.spriteatlas
   - bundle: 3
-    dir: 4
+    dir: 5
     name: sundry.spriteatlas
   - bundle: 4
-    dir: 4
+    dir: 5
     name: virus.spriteatlas
   - bundle: 5
-    dir: 5
+    dir: 6
     name: TableAircraft.bytes
   - bundle: 6
-    dir: 5
+    dir: 6
     name: TableBuff.bytes
   - bundle: 7
-    dir: 5
+    dir: 6
     name: TableConst.bytes
   - bundle: 8
-    dir: 5
+    dir: 6
     name: TableFirePower.bytes
   - bundle: 9
-    dir: 5
+    dir: 6
     name: TableFireSpeed.bytes
   - bundle: 10
-    dir: 5
+    dir: 6
     name: TableGameLevel.bytes
   - bundle: 11
-    dir: 5
+    dir: 6
     name: TableGameWave.bytes
   - bundle: 12
-    dir: 5
+    dir: 6
     name: TableLanguage.bytes
   - bundle: 13
-    dir: 5
+    dir: 6
     name: TableVirus.bytes
