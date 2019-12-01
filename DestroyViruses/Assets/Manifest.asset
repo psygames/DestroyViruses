@@ -20,6 +20,7 @@ MonoBehaviour:
   - spriteatlas/common
   - spriteatlas/sundry
   - spriteatlas/virus
+  - tables/tableads
   - tables/tableaircraft
   - tables/tablebuff
   - tables/tableconst
@@ -166,28 +167,31 @@ MonoBehaviour:
     name: virus.spriteatlas
   - bundle: 5
     dir: 6
-    name: TableAircraft.bytes
+    name: TableAds.bytes
   - bundle: 6
     dir: 6
-    name: TableBuff.bytes
+    name: TableAircraft.bytes
   - bundle: 7
     dir: 6
-    name: TableConst.bytes
+    name: TableBuff.bytes
   - bundle: 8
     dir: 6
-    name: TableFirePower.bytes
+    name: TableConst.bytes
   - bundle: 9
     dir: 6
-    name: TableFireSpeed.bytes
+    name: TableFirePower.bytes
   - bundle: 10
     dir: 6
-    name: TableGameLevel.bytes
+    name: TableFireSpeed.bytes
   - bundle: 11
     dir: 6
-    name: TableGameWave.bytes
+    name: TableGameLevel.bytes
   - bundle: 12
     dir: 6
-    name: TableLanguage.bytes
+    name: TableGameWave.bytes
   - bundle: 13
+    dir: 6
+    name: TableLanguage.bytes
+  - bundle: 14
     dir: 6
     name: TableVirus.bytes

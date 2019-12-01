@@ -41,3 +41,9 @@ spriteatlas/sundry
 spriteatlas/virus
 tables/tableconst
 tables/tablelanguage
+132196648096373500:
+manifest
+spriteatlas/common
+spriteatlas/sundry
+spriteatlas/virus
+tables/tableads

@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3345025099
+CRC: 1324737500
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -43,4 +43,7 @@ AssetBundleManifest:
       Dependencies: {}
     Info_13:
       Name: tables/tablelanguage
+      Dependencies: {}
+    Info_14:
+      Name: tables/tableads
       Dependencies: {}
