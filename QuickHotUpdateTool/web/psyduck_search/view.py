@@ -33,7 +33,7 @@ def save_file(obj):
 def resp(_content):
     print(_content)
     _temp = '<html><body><h1><p>{0}</p></h1></body></html>'
-    return HttpResponse('<html><body><h1><p>{0}</p></h1></body></html>'.format(_content))
+    return HttpResponse('<html><body><h1>热更结果</h1><p>{0}</p></body></html>'.format(_content.replace('\n', '<br>')))
 
 
 def check_file_name(_name):
