@@ -28,6 +28,8 @@ public class TableToolEditorWindow : EditorWindow
     private string propertyTemplate;
     private string propertyDictionaryTemplate;
 
+    public string GenAssetsErrorMessage { get; private set; }
+
     private void OnEnable()
     {
         settings = AssetDatabase.LoadAssetAtPath<TableToolSettings>("Assets/Plugins/TableTool/Editor/TableToolSettings.asset");
@@ -116,22 +118,34 @@ public class TableToolEditorWindow : EditorWindow
 
     public void GeneAllAssets()
     {
-        var files = GetExcelList();
-        int i = 0;
-        foreach (var excelPath in files)
+        GenAssetsErrorMessage = "";
+        try
         {
-            var excelName = Path.GetFileName(excelPath);
-            bool cancel = EditorUtility.DisplayCancelableProgressBar($"生成数据文件中...", excelName, 1f * i / files.Count);
-            if (cancel)
+            var files = GetExcelList();
+            int i = 0;
+            foreach (var excelPath in files)
             {
-                EditorUtility.ClearProgressBar();
-                break;
+                var excelName = Path.GetFileName(excelPath);
+                bool cancel = EditorUtility.DisplayCancelableProgressBar($"生成数据文件中...", excelName, 1f * i / files.Count);
+                if (cancel)
+                {
+                    EditorUtility.ClearProgressBar();
+                    break;
+                }
+                GenerateAssetFile(excelPath);
+                i++;
             }
-            GenerateAssetFile(excelPath);
-            i++;
         }
-        AssetDatabase.Refresh();
-        EditorUtility.ClearProgressBar();
+        catch (Exception e)
+        {
+            GenAssetsErrorMessage += e.Message + "\n";
+            Debug.LogError(e.Message + "\n" + e.StackTrace);
+        }
+        finally
+        {
+            AssetDatabase.Refresh();
+            EditorUtility.ClearProgressBar();
+        }
         Debug.Log("生成数据文件完成");
     }
 
@@ -501,7 +515,9 @@ public class TableToolEditorWindow : EditorWindow
                     }
                     catch (Exception e)
                     {
-                        Debug.LogError($"{className} ParseData Error at cell {_row + 1}:{_column + 1}, type: {properties[_column].type}, value: {item.ToString()}\n{e.Message}\n{e.StackTrace}");
+                        var errMsg = $"{className} ParseData Error at cell {_row + 1}:{_column + 1}, type: {properties[_column].type}, value: {item.ToString()}\n{e.Message}\n{e.StackTrace}";
+                        GenAssetsErrorMessage += errMsg + "\n";
+                        Debug.LogError(errMsg);
                     }
                 }
                 _column++;
@@ -527,7 +543,9 @@ public class TableToolEditorWindow : EditorWindow
             }
             if (keys.Any(_ => _.ToString() == id.ToString()))
             {
-                Debug.LogError($"{className} Already has the same id {id}");
+                var errMsg = $"{className} Already has the same id {id}";
+                GenAssetsErrorMessage += errMsg + "\n";
+                Debug.LogError(errMsg);
                 continue;
             }
             dict.GetType().GetMethod("Add", flag).Invoke(dict, new object[] { id, dataList[i] });

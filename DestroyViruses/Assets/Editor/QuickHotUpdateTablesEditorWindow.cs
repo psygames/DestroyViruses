@@ -154,7 +154,14 @@ public class QuickHotUpdateTablesEditorWindow : EditorWindow
                     var window = GetWindow(typeof(TableToolEditorWindow)) as TableToolEditorWindow;
                     window.titleContent = new GUIContent("配置表生成工具");
                     window.GeneAllAssets();
+                    var errMsg = window.GenAssetsErrorMessage;
                     window.Close();
+
+                    if (!string.IsNullOrEmpty(errMsg))
+                    {
+                        log += "ERRPR:\n" + errMsg;
+                    }
+
                     if (!Directory.Exists(quickHotUpdateRoot))
                         Directory.CreateDirectory(quickHotUpdateRoot);
                     foreach (var fi in changeList)
