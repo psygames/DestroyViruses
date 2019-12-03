@@ -32,7 +32,8 @@ def save_file(obj):
 
 def resp(_content):
     print(_content)
-    return HttpResponse(_content)
+    _temp = '<html><body><h1><p>{0}</p></h1></body></html>'
+    return HttpResponse('<html><body><h1><p>{0}</p></h1></body></html>'.format(_content))
 
 
 def check_file_name(_name):
