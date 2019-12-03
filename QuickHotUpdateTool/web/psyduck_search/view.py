@@ -4,11 +4,11 @@ from django.shortcuts import render, HttpResponse
 
 import os
 
-BASE_DIR = 'downloads/'
-FILE_NAME_DIR = 'downloads/'
+BASE_DIR = 'D:/DestroyViruses/QuickHotUpdateTool/'
+FILE_NAME_DIR = 'D:/DestroyViruses/DestroyViruses/Assets/Tables/'
 
-ready_tag = "../ready"
-finish_tag = "../finish"
+ready_tag = "D:/DestroyViruses/QuickHotUpdateTool/ready"
+finish_tag = "D:/DestroyViruses/QuickHotUpdateTool/finish"
 
 
 def upload(request):
@@ -27,6 +27,7 @@ def save_file(obj):
     for chunk in obj.chunks():
         f.write(chunk)
     f.close()
+    open(ready_tag, "w", encoding="utf-8").close()
 
 
 def resp(_content):
