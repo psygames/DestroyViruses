@@ -515,9 +515,9 @@ public class TableToolEditorWindow : EditorWindow
                     }
                     catch (Exception e)
                     {
-                        var errMsg = $"{className} ParseData Error at cell {_row + 1}:{_column + 1}, type: {properties[_column].type}, value: {item.ToString()}\n{e.Message}\n{e.StackTrace}";
+                        var errMsg = $"{className} ParseData Error at cell {_row + 1}:{_column + 1}, type: {properties[_column].type}, value: {item.ToString()}\n{e.Message}";
                         GenAssetsErrorMessage += errMsg + "\n";
-                        Debug.LogError(errMsg);
+                        Debug.LogError(errMsg + $"\n{e.StackTrace}");
                     }
                 }
                 _column++;
