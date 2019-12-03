@@ -5,6 +5,7 @@ from django.shortcuts import render, HttpResponse
 import os
 
 BASE_DIR = 'downloads/'
+FILE_NAME_DIR = 'downloads/'
 
 ready_tag = "../ready"
 finish_tag = "../finish"
@@ -13,15 +14,28 @@ finish_tag = "../finish"
 def upload(request):
     if request.method == 'POST':  # 获取对象
         obj = request.FILES.get('file_field')
-        # 上传文件的文件名
-        print("upload -> " + obj.name)
-        f = open(os.path.join(BASE_DIR, obj.name), 'wb')
-        for chunk in obj.chunks():
-            f.write(chunk)
-        f.close()
+        if not check_file_name(obj.name):
+            return resp("不支持的热更文件：" + obj.name)
+        save_file(obj)
         res = check_result()
-        return HttpResponse(res)
+        return resp(res)
     return render(request, 'index.html')
+
+
+def save_file(obj):
+    f = open(os.path.join(BASE_DIR, obj.name), 'wb')
+    for chunk in obj.chunks():
+        f.write(chunk)
+    f.close()
+
+
+def resp(_content):
+    print(_content)
+    return HttpResponse(_content)
+
+
+def check_file_name(_name):
+    return _name in os.listdir(FILE_NAME_DIR)
 
 
 def check_result():
@@ -37,8 +51,6 @@ def check_result():
         tx = f.read()
         f.close()
         os.remove(finish_tag)
-        print("热更完成：\n" + tx)
         return "热更完成：\n" + tx
     else:
-        print("热更失败，请联系管理员。")
         return "热更失败，请联系管理员。"
