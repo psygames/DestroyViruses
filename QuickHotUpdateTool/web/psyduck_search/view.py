@@ -14,6 +14,8 @@ finish_tag = "D:/DestroyViruses/QuickHotUpdateTool/finish"
 def upload(request):
     if request.method == 'POST':  # 获取对象
         obj = request.FILES.get('file_field')
+        if obj is None:
+            return render(request, 'index.html')
         if not check_file_name(obj.name):
             return resp("不支持的热更文件：" + obj.name)
         save_file(obj)
