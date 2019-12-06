@@ -8,3 +8,5 @@ DestroyViruses/*.csproj
 DestroyViruses/*.sln
 DestroyViruses/Assets/StreamingAssets.meta
 DestroyViruses/Assets/StreamingAssets/
+QuickHotUpdateTool/backup/
+QuickHotUpdateTool/web/psyduck_search/__pycache__/
