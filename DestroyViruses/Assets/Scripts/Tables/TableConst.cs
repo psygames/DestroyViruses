@@ -233,6 +233,12 @@ namespace DestroyViruses
 		public float hitVirusSlowdown { get { return _hitVirusSlowdown; } private set { _hitVirusSlowdown = value; } }
 
 		/// <summary>
+		/// 命中病毒减速作用时间
+		/// </summary>
+		private float _hitVirusSlowdownCD;
+		public float hitVirusSlowdownCD { get { return _hitVirusSlowdownCD; } private set { _hitVirusSlowdownCD = value; } }
+
+		/// <summary>
 		/// buff产生时方向范围(以下方向为0)
 		/// </summary>
 		private TRange _buffSpawnDirection;

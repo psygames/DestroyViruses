@@ -72,6 +72,7 @@ namespace DestroyViruses
             mLastColorIndex = -1;
             mLastHp = -1;
             mLastScale = 1f;
+            mLastHitSlowdownTime = 0;
         }
 
         public void SetDirection(Vector2 direction)
@@ -133,7 +134,8 @@ namespace DestroyViruses
 
         private void PlayHit()
         {
-            isShaked = true;
+            // isShaked = true;
+            isHitSlowdown = true;
         }
 
         bool isShaked = false;
@@ -147,6 +149,18 @@ namespace DestroyViruses
                 shakeOffset = Random.insideUnitSphere * shakeDist;
                 isShaked = false;
                 mLastShakeTime = Time.time;
+            }
+        }
+
+        bool isHitSlowdown = false;
+        float mLastHitSlowdownTime = 0;
+        private void UpdateHitSlowdown()
+        {
+            var _cd = ConstTable.table.hitVirusSlowdownCD;
+            if (isHitSlowdown && Time.time - mLastHitSlowdownTime > _cd)
+            {
+                isHitSlowdown = false;
+                mLastHitSlowdownTime = Time.time;
             }
         }
 
@@ -175,7 +189,7 @@ namespace DestroyViruses
             {
                 isGen = true;
                 var buffID = FormulaUtil.RandomInProbDict(_tab.buffTypePriority);
-                var _speed = -ConstTable.table.buffSpeedRange.random;
+                var _speed = ConstTable.table.buffSpeedRange.random;
                 var dir = Quaternion.AngleAxis(ConstTable.table.buffSpawnDirection.random, Vector3.forward) * Vector2.down;
                 Buff.Create().Reset(buffID, position, dir, _speed);
             }
@@ -239,16 +253,16 @@ namespace DestroyViruses
                 direction = new Vector2(-Mathf.Abs(direction.x), direction.y);
             }
 
-            float speedScale = GlobalData.slowDownFactor * BuffSpeedMul() * ShakeSpeedMul() * speedMul;
+            float speedScale = GlobalData.slowDownFactor * BuffSpeedMul() * HitSlowdownSpeedMul() * speedMul;
             position += direction * speed * speedScale * Time.deltaTime + Vector2.up * mKnockback;
             rectTransform.anchoredPosition = shakeOffset + position;
 
             mKnockback = 0;
         }
 
-        protected float ShakeSpeedMul()
+        protected float HitSlowdownSpeedMul()
         {
-            if (isShaked)
+            if (isHitSlowdown)
                 return ConstTable.table.hitVirusSlowdown;
             return 1;
         }
@@ -318,6 +332,7 @@ namespace DestroyViruses
 
             UpdateHp();
             UpdateShake();
+            UpdateHitSlowdown();
             UpdatePosition();
             UpdateScale();
             UpdateColor();
