@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 474877855
+CRC: 2054480094
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6241b7ccd000c9aa8b6871928e07146b
+    Hash: bf9df7b71c884eaaf7d9a02a7f946d60
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5ad585dd02dfb5016c0dad519eab8f49
@@ -12,5 +12,5 @@ ClassTypes:
 - Class: 49
   Script: {instanceID: 0}
 Assets:
-- Assets/AssetBundles/Tables/TableLanguage.bytes
+- Assets/AssetBundles/Tables/TableBuffAutoGen.bytes
 Dependencies: []

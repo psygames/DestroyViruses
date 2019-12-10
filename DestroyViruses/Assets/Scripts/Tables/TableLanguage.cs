@@ -238,6 +238,12 @@ namespace DestroyViruses
 		private string _SETTING_LANGUAGE;
 		public string SETTING_LANGUAGE { get { return _SETTING_LANGUAGE; } private set { _SETTING_LANGUAGE = value; } }
 
+		/// <summary>
+		/// 神秘大奖
+		/// </summary>
+		private string _GAME_END_BONUS;
+		public string GAME_END_BONUS { get { return _GAME_END_BONUS; } private set { _GAME_END_BONUS = value; } }
+
 
 		public static TableLanguage Get(string id)
 		{

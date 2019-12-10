@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 4134849691
+CRC: 3557541916
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -46,4 +46,10 @@ AssetBundleManifest:
       Dependencies: {}
     Info_14:
       Name: tables/tableads
+      Dependencies: {}
+    Info_15:
+      Name: tables/tablebuffkillgen
+      Dependencies: {}
+    Info_16:
+      Name: tables/tablebuffautogen
       Dependencies: {}

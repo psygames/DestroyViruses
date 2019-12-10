@@ -66,3 +66,8 @@ tables/tablefirespeed
 tables/tablegamelevel
 tables/tablegamewave
 tables/tablevirus
+132204192503262450:
+manifest
+tables/tablebuffautogen
+tables/tablebuffkillgen
+tables/tablelanguage
