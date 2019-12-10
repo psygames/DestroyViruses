@@ -71,3 +71,5 @@ manifest
 tables/tablebuffautogen
 tables/tablebuffkillgen
 tables/tablelanguage
+132204203399877340:
+tables/tableads
