@@ -160,6 +160,12 @@ namespace DestroyViruses
 		private float _coinValueFactor;
 		public float coinValueFactor { get { return _coinValueFactor; } private set { _coinValueFactor = value; } }
 
+		/// <summary>
+		/// 关卡火力限制，超过该值后，会提升病毒的血量，数量，已达到平衡难度效果。
+		/// </summary>
+		private float _firePowerLimitation;
+		public float firePowerLimitation { get { return _firePowerLimitation; } private set { _firePowerLimitation = value; } }
+
 
 		public static TableGameLevel Get(int id)
 		{

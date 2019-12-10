@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DestroyViruses
 {
@@ -29,9 +30,32 @@ namespace DestroyViruses
             return probArray[Random.Range(0, probArray.Length)];
         }
 
+        public static T RandomInProbDict<T>(Dictionary<T,float> dict)
+        {
+            float total = 0;
+            foreach (var kv in dict)
+            {
+                total += kv.Value;
+            }
+
+            if (Mathf.Approximately(total, 0))
+                throw new System.Exception("Prob Dict Total: 0");
+
+            var v = Random.value;
+            float cur = 0;
+            foreach (var kv in dict)
+            {
+                cur += kv.Value;
+                if (v <= cur / total)
+                {
+                    return kv.Key;
+                }
+            }
+            throw new System.Exception("Prob Dict Random Value Falut: " + v);
+        }
+
         public static int RandomIndexInProbArray(float[] probArray)
         {
-            var v = Random.value;
             float total = 0;
             for (int i = 0; i < probArray.Length; i++)
             {
@@ -41,6 +65,7 @@ namespace DestroyViruses
             if (Mathf.Approximately(total, 0))
                 throw new System.Exception("Prob Array Total: 0");
 
+            var v = Random.value;
             float cur = 0;
             for (int i = 0; i < probArray.Length; i++)
             {

@@ -95,6 +95,11 @@ public struct TRange
     public float min { get; private set; }
     public float max { get; private set; }
     public float random { get { return UnityEngine.Random.Range(min, max); } }
+    
+    public bool Contains(float value)
+    {
+        return value >= min && value <= max;
+    }
 
     public static TRange Parse(string str)
     {
@@ -113,7 +118,12 @@ public struct TRangeInt
     public int min { get; private set; }
     public int max { get; private set; }
     public int random { get { return UnityEngine.Random.Range(min, max); } }
-
+    
+    public bool Contains(int value)
+    {
+        return value >= min && value < max;
+    }
+    
     public static TRangeInt Parse(string str)
     {
         var sps = str.Trim('(', ')').Split('~', ',');

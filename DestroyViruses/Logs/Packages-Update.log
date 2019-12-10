@@ -90,3 +90,17 @@ Update Mode: updateDependencies
 The following packages were updated:
   com.unity.ide.rider from version 1.0.8 to 1.1.0
   com.unity.ide.vscode from version 1.0.7 to 1.1.2
+
+=== Tue Dec  3 00:58:33 2019
+
+Packages were changed.
+Update Mode: resetToDefaultDependencies
+
+The following packages were added:
+  com.unity.textmeshpro@2.0.1
+The following packages were updated:
+  com.unity.ide.vscode from version 1.1.2 to 1.0.7
+  com.unity.ide.rider from version 1.1.0 to 1.0.8
+The following packages were removed:
+  com.unity.2d.sprite@1.0.0
+  com.unity.xr.legacyinputhelpers@2.0.2

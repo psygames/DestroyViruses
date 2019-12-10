@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnibusEvent;
+using UnityEngine.UI;
 
 namespace DestroyViruses
 {
@@ -11,18 +12,32 @@ namespace DestroyViruses
         public static float BULLET_HEIGH => ConstTable.table.bulletVDist;
         public static float BULLET_WIDTH => ConstTable.table.bulletHDist;
 
+        public Image icon;
         public float bornCD = 0.03f;
 
         protected float mSpeed;
         protected float mDamage;
 
-        public void Reset(Vector2 position, float offsetX, float damage,float speed)
+        private void SetEffect()
+        {
+            var proxy = ProxyManager.GetProxy<BuffProxy>();
+            bool hasPower = proxy.Has_Effect_FirePower;
+            bool hasCoin = proxy.Has_Effect_Coin;
+            bool hasSpeed = proxy.Has_Effect_FireSpeed;
+            bool hasKnockback = proxy.Has_Effect_Knockback;
+            var _ico = $"bullet_{(hasKnockback ? 2 : (hasSpeed ? 1 : 0))}_{(hasCoin ? 1 : 0)}_{(hasPower ? 1 : 0)}";
+            icon.SetSprite(_ico);
+        }
+
+        public void Reset(Vector2 position, float offsetX, float damage, float speed)
         {
             mDamage = damage;
             mSpeed = speed;
             rectTransform.anchoredPosition = position;
             rectTransform.DOAnchorPos3DX(position.x + offsetX, bornCD);
             isAlive = true;
+
+            SetEffect();
         }
 
         private void OnTriggerEnter2D(Collider2D _collider)

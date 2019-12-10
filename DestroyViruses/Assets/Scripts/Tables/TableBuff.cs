@@ -113,46 +113,46 @@ namespace DestroyViruses
 		public int id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
-		/// 程序用，副武器类型
+		/// 多语言KEY
 		/// </summary>
-		private string _tag;
-		public string tag { get { return _tag; } private set { _tag = value; } }
+		private string _nameID;
+		public string nameID { get { return _nameID; } private set { _nameID = value; } }
 
 		/// <summary>
-		/// 名称
+		/// <para>1-增益buff</para><para>2-减益buff</para>
 		/// </summary>
-		private string _name;
-		public string name { get { return _name; } private set { _name = value; } }
-
-		/// <summary>
-		/// 解锁等级
-		/// </summary>
-		private int _unlockGameLevel;
-		public int unlockGameLevel { get { return _unlockGameLevel; } private set { _unlockGameLevel = value; } }
-
-		/// <summary>
-		/// 火力
-		/// </summary>
-		private float _power;
-		public float power { get { return _power; } private set { _power = value; } }
-
-		/// <summary>
-		/// 强度（暂时不清楚什么逻辑，好像是减少冷却时间？）
-		/// </summary>
-		private float _strength;
-		public float strength { get { return _strength; } private set { _strength = value; } }
-
-		/// <summary>
-		/// 冷却时间
-		/// </summary>
-		private float _cd;
-		public float cd { get { return _cd; } private set { _cd = value; } }
+		private int _type;
+		public int type { get { return _type; } private set { _type = value; } }
 
 		/// <summary>
 		/// 图标
 		/// </summary>
 		private string _icon;
 		public string icon { get { return _icon; } private set { _icon = value; } }
+
+		/// <summary>
+		/// 出现时间
+		/// </summary>
+		private float _appear;
+		public float appear { get { return _appear; } private set { _appear = value; } }
+
+		/// <summary>
+		/// 效果
+		/// </summary>
+		private string _effect;
+		public string effect { get { return _effect; } private set { _effect = value; } }
+
+		/// <summary>
+		/// 效果时间
+		/// </summary>
+		private float _effectDuration;
+		public float effectDuration { get { return _effectDuration; } private set { _effectDuration = value; } }
+
+		/// <summary>
+		/// 参数1
+		/// </summary>
+		private float _param1;
+		public float param1 { get { return _param1; } private set { _param1 = value; } }
 
 
 		public static TableBuff Get(int id)

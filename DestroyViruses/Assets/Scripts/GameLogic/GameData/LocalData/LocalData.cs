@@ -29,6 +29,11 @@ namespace DestroyViruses
                 return sInstance;
             }
         }
+
+        public static void Reload()
+        {
+            sInstance = Load();
+        }
     }
 
 }

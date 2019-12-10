@@ -47,6 +47,12 @@ MonoBehaviour:
     name: Aircraft.prefab
   - bundle: 1
     dir: 1
+    name: AircraftSupport.prefab
+  - bundle: 1
+    dir: 1
+    name: Buff.prefab
+  - bundle: 1
+    dir: 1
     name: Bullet.prefab
   - bundle: 1
     dir: 1
@@ -147,6 +153,9 @@ MonoBehaviour:
   - bundle: 1
     dir: 4
     name: BattleView.prefab
+  - bundle: 1
+    dir: 4
+    name: DebugView.prefab
   - bundle: 1
     dir: 4
     name: GameEndView.prefab

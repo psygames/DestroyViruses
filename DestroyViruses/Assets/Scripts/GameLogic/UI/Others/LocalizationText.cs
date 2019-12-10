@@ -19,17 +19,7 @@ namespace DestroyViruses
         {
             if (mText == null)
                 mText = GetComponent<Text>();
-
-            var prop = LT.table.GetType().GetProperty(key
-                 , System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
-            if (prop == null)
-            {
-                mText.text = key;
-            }
-            else
-            {
-                mText.text = prop.GetValue(LT.table) as string;
-            }
+            mText.text = LT.Get(key);
         }
     }
 }

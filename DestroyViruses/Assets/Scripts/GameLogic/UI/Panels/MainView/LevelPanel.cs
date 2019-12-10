@@ -24,7 +24,7 @@ namespace DestroyViruses
                 }
                 else
                 {
-                    GameDataManager.Instance.FirePowerUp();
+                    GDM.ins.FirePowerUp();
                 }
             });
 
@@ -36,7 +36,7 @@ namespace DestroyViruses
                 }
                 else
                 {
-                    GameDataManager.Instance.FireSpeedUp();
+                    GDM.ins.FireSpeedUp();
                 }
             });
         }

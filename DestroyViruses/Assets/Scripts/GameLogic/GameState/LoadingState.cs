@@ -11,6 +11,10 @@ namespace DestroyViruses
         {
             m_waitSeconds = 0.1f;
             UIUtil.LoadAtlasAll();
+            ProxyManager.Subscribe<AdProxy>();
+            Analytics.Event.Login(DeviceID.UUID);
+            GDM.ins.AnalyticsSetUserProperty();
+            Application.targetFrameRate = ConstTable.table.frameRate;
             base.OnEnter();
         }
 
@@ -19,7 +23,7 @@ namespace DestroyViruses
             base.OnUpdate(deltaTime);
             m_waitSeconds -= deltaTime;
             if (m_waitSeconds <= 0)
-                GameManager.ChangeState<MainState>();
+                StateManager.ChangeState<MainState>();
         }
     }
 }

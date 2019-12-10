@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2449432268
+CRC: 378302737
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6fa3a5ae5b8d0531cba897fb063b8511
+    Hash: 5c227e28f5122bfd8095e92abdc14fce
   TypeTreeHash:
     serializedVersion: 2
-    Hash: e522726aeeb9036043e84a699d6c01cd
+    Hash: 2b46d62bc6f334c9dc435ee564dd0d62
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -15,7 +15,11 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
 - Class: 28
+  Script: {instanceID: 0}
+- Class: 33
   Script: {instanceID: 0}
 - Class: 43
   Script: {instanceID: 0}
@@ -24,6 +28,8 @@ ClassTypes:
 - Class: 50
   Script: {instanceID: 0}
 - Class: 58
+  Script: {instanceID: 0}
+- Class: 64
   Script: {instanceID: 0}
 - Class: 70
   Script: {instanceID: 0}
@@ -96,6 +102,10 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: c7e633293c4495c42afd0361938a030a, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 2f68f53a0aacf8148b13266a2ab6a3fb, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 380c02aaaf1adee4a95b4512c0d9f2ea, type: 3}
@@ -103,6 +113,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 8028faca5801ede4c91d1f8ebdf5ca1a, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 12e3831b2edfde243a7edcc109903483, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3ef6d02b580694df1b661ebd4f7c1cf7, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 10f27e8bddc87db40b6ab370ec26d488, type: 3}
 - Class: 114
@@ -113,6 +125,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 4deeabbce48d3954c90d7330fd6b6b55, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 1a3e8a7d9ab76334094b9b551e02017f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cf0cf5adaa7b00e4ab588cbadc3e7ee5, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 4d0390bd8b8ffd640b34fe25065ff1df, type: 3}
 - Class: 114
@@ -129,11 +143,25 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 4c20847fa39a1454182a2e9340014078, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3b1a121160a444fcd91046623a3c053f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: bb079c10173f84e5e8e6b8ea3c8013aa, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 96e8c1f33fb64430ca620f6654deb64d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5ccc2f6e9607b46ceb7f2bf8ea5a0837, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 969d7263c23024dafb6f0460cc9eb610, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
   Script: {instanceID: 0}
 - Class: 137
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
@@ -154,6 +182,7 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities3D/Plane007.mesh
 - Assets/AssetBundles/Prefabs/Entities/Coin.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusBase.prefab
+- Assets/AssetBundles/Prefabs/UI/View/DebugView.prefab
 - Assets/AssetBundles/Prefabs/Entities/Bullet.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusCure.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDodge.prefab
@@ -163,7 +192,9 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/VirusTrack.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusAttach.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusSlower.prefab
+- Assets/AssetBundles/Prefabs/Entities/Buff.prefab
 - Assets/AssetBundles/Prefabs/UI/View/BattleView.prefab
+- Assets/AssetBundles/Prefabs/Entities/AircraftSupport.prefab
 - "Assets/AssetBundles/Prefabs/Entities3D/\u6CBB\u7597\u602A\u7269\u8D34\u56FE.png"
 - Assets/AssetBundles/Prefabs/Entities/ExplosionVirus.prefab
 - "Assets/AssetBundles/Prefabs/Entities3D/\u6CBB\u6108\u602A\u7269\u53D7\u51FB\u52A8\u4F5C.FBX"

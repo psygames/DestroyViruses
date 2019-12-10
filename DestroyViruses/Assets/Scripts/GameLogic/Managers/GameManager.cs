@@ -8,6 +8,12 @@ namespace DestroyViruses
 {
     public class GameManager : Singleton<GameManager>
     {
+        void Start()
+        {
+            UIManager.Instance.loadViewFunc = LoadViewFunc;
+            Application.logMessageReceived += LogCallback;
+        }
+
         static ViewBase LoadViewFunc(string panelName)
         {
             if (panelName.Equals(typeof(LoadingView).Name))
@@ -17,15 +23,12 @@ namespace DestroyViruses
             return ResourceUtil.Load<ViewBase>(PathUtil.Panel(panelName));
         }
 
-        void Start()
+        static void LogCallback(string condition, string stackTrace, LogType type)
         {
-            UIManager.Instance.loadViewFunc = LoadViewFunc;
-            ChangeState<SplashState>();
-        }
-
-        public static void ChangeState<T>() where T : StateMachine.State, new()
-        {
-            StateManager.ChangeState<T>();
+            if (type >= LogType.Log)
+            {
+                Analytics.Event.Log(type, condition);
+            }
         }
     }
 }

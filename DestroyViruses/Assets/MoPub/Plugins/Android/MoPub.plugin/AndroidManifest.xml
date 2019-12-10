@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.mopub.unityplugindemo" xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-sdk android:minSdkVersion="16"/>
+
+    <application android:usesCleartextTraffic="true" android:networkSecurityConfig="@xml/network_security_config">
+        <uses-library
+          android:name="org.apache.http.legacy"
+          android:required="false" />
+
+        <!-- MoPub SDK activities. -->
+        <activity android:name="com.mopub.mobileads.MoPubActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.mopub.mobileads.MraidActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.mopub.common.MoPubBrowser"
+                  android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.mopub.mobileads.MraidVideoPlayerActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.mopub.mobileads.RewardedMraidActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.mopub.common.privacy.ConsentDialogActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"/>
+
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-8519819059736938~5886118829"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="483878092240273"/>
+        <meta-data android:name="applovin.sdk.key" android:value="your_key" />
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+</manifest>

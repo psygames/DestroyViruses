@@ -25,6 +25,13 @@ public static class GameExtension
         }
     }
 
+    public static void SetAlpha(this Image image, float a)
+    {
+        var color = image.color;
+        color.a = a;
+        image.color = color;
+    }
+
     // 数值单位转换
 
     private static string[] sKMBUnits = { "K", "M", "B" };
@@ -51,7 +58,7 @@ public static class GameExtension
     }
 
     // 数值单位转换
-    public static string KMB(this int value)
+    public static string KMB(this long value)
     {
         return KMB((float)value);
     }

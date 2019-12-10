@@ -8,9 +8,9 @@ namespace DestroyViruses
         private RectTransform headRoot;
 
         private RectTransform mRectTransform;
-        public const float baseMoveSpeed = 100000;
         private Vector2 mTargetDelta = Vector2.zero;
 
+        public float baseMoveSpeed { get; set; } = 100000;
         public float moveSpeedRatio { get; set; } = 1;
         public Vector2 position { get { return mRectTransform.anchoredPosition; } }
         public Vector2 headPosition { get { return mRectTransform.anchoredPosition + headRoot.anchoredPosition; } }
@@ -22,7 +22,7 @@ namespace DestroyViruses
             if (headRoot == null)
                 headRoot = transform.Find("headRoot")?.GetComponent<RectTransform>();
             if (headRoot == null)
-                Debug.LogError("fireTransform is null, please take care of this!");
+                Debug.LogError("headRoot is null, please take care of this!");
         }
 
         public void Move(Vector2 delta)
@@ -36,12 +36,11 @@ namespace DestroyViruses
                 return;
 
             var moveSpeed = baseMoveSpeed;
-            if (!Mathf.Approximately(moveSpeedRatio, 1f))
-                moveSpeed = 1000 * moveSpeedRatio;
+            var scale = moveSpeedRatio * ProxyManager.GetProxy<BuffProxy>().Effect_MoveLimitation;
+            if (!Mathf.Approximately(scale, 1f))
+                moveSpeed = 1000 * scale;
 
             Vector2 climpDelta = Vector2.ClampMagnitude(mTargetDelta, moveSpeed * Time.deltaTime);
-            // mTargetDelta -= climpDelta;
-            // TODO: CLEAR?
             mTargetDelta = Vector2.zero;
             var targetPos = mRectTransform.anchoredPosition + climpDelta;
             targetPos.x = Mathf.Clamp(targetPos.x, 0, UIUtil.width);

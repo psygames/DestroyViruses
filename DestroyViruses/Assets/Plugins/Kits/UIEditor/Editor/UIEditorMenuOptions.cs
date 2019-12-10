@@ -84,5 +84,10 @@ static public class UIEditorMenuOptions
     {
         AddTPrefab("ToggleAGroup");
     }
+    [MenuItem("GameObject/CustomUI/InputField", false, 102)]
+    static public void AddInputField()
+    {
+        AddTPrefab("InputField");
+    }
     #endregion
 }

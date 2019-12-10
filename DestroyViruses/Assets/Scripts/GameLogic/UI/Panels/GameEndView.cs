@@ -14,20 +14,39 @@ namespace DestroyViruses
         public Button receiveBtns;
         public Text coinText;
         public RadioObjects winLoseRadio;
+        public Button gameEndBonusBtn;
 
         private void Awake()
         {
             receiveBtns.OnClickAsObservable().Subscribe(_ => OnClickReceive());
+            gameEndBonusBtn.OnClick(OnClickBonus);
         }
 
         private void OnClickReceive()
         {
             GDM.ins.AddCoin((int)GDM.ins.battleGetCoin);
+            RewardEnd();
+        }
+
+        private void OnClickBonus()
+        {
+            if (!AdProxy.Ins.ShowAd("revive_interstitial"))
+            {
+                //TODO:TOAST
+                return;
+            }
+
+            GDM.ins.AddCoin((int)GDM.ins.battleGetCoin * Random.Range(2, 10));
+            RewardEnd();
+        }
+
+        private void RewardEnd()
+        {
             Close();
-            GameManager.ChangeState<MainState>();
+            StateManager.ChangeState<MainState>();
 
             // 注意放到最后
-            if (!Mathf.Approximately(GDM.ins.battleGetCoin ,0))
+            if (!Mathf.Approximately(GDM.ins.battleGetCoin, 0))
             {
                 Coin.CreateGroup(coinTransform.GetUIPos(), UIUtil.COIN_POS, 20);
             }

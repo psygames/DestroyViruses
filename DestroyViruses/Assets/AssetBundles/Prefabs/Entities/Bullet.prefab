@@ -54,7 +54,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2046127225411256698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -74,6 +74,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6795419132070359971
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eddf45ea0d7833439d4489a31b792ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 7545202940171482954}
   bornCD: 0.15
 --- !u!70 &5407424687157170888
 CapsuleCollider2D:

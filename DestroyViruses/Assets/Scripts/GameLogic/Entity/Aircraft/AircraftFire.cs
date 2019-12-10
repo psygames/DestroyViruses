@@ -6,18 +6,15 @@ namespace DestroyViruses
     public class AircraftFire : MonoBehaviour
     {
         public Transform fireTransform;
-
-        const float fireSoundCD = 6;
-
         private float mFireOnceDuration;
         private float mFireOnceBullets;
         private float mFireOnceCD;
         private float mFirePower;
         private float mFireSpeed;
 
-        private float mFireSoundCD;
-
         public bool IsFiring { get; private set; }
+
+        private BuffProxy buffProxy { get { return ProxyManager.GetProxy<BuffProxy>(); } }
 
         private void Awake()
         {
@@ -30,11 +27,12 @@ namespace DestroyViruses
         private void FireOnce()
         {
             var bulletSpeed = TableFireSpeed.Get(GDM.ins.fireSpeedLevel).bulletSpeed;
-            mFirePower = FormulaUtil.FirePower(GameDataManager.Instance.firePowerLevel);
-            mFireSpeed = FormulaUtil.FireSpeed(GameDataManager.Instance.fireSpeedLevel);
+            mFirePower = GDM.ins.firePower * buffProxy.Effect_FirePower;
+            mFireSpeed = GDM.ins.fireSpeed * buffProxy.Effect_FireSpeed;
+            mFireSpeed = Mathf.Min(mFireSpeed, ConstTable.table.maxFireSpeed);
             var _bullets = mFireSpeed * Bullet.BULLET_HEIGH / bulletSpeed;
             mFireOnceBullets = Mathf.RoundToInt(_bullets);
-            mFireOnceBullets = Mathf.Clamp(mFireOnceBullets, 1, ConstTable.table.bulletMaxCount);
+            mFireOnceBullets = Mathf.Max(mFireOnceBullets, 1);
             if (_bullets > 1) bulletSpeed = Bullet.BULLET_HEIGH * mFireSpeed / mFireOnceBullets;
             mFireOnceDuration = mFireOnceBullets / mFireSpeed;
 
@@ -59,7 +57,6 @@ namespace DestroyViruses
         private void Update()
         {
             mFireOnceCD = this.UpdateCD(mFireOnceCD);
-            mFireSoundCD = this.UpdateCD(mFireSoundCD);
             if (IsFiring)
             {
                 if (mFireOnceCD <= 0)

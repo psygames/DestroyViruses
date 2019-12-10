@@ -8,7 +8,6 @@ using System;
 public class DeviceID
 {
     private string _uuid = "";
-    private string _macAddress = "";
 
     private static DeviceID s_instance;
 
@@ -24,7 +23,7 @@ public class DeviceID
 
     private DeviceID()
     {
-        _uuid = UnityEngine.SystemInfo.deviceUniqueIdentifier;
+        _uuid = SystemInfo.deviceUniqueIdentifier;
     }
 
     public static string UUID

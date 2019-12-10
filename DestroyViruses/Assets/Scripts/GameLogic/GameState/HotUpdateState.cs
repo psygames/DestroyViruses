@@ -26,13 +26,16 @@ namespace DestroyViruses
             mQuickHotUpdateFinished = false;
             mQuickHotUpdateIndex = 0;
             mQuickHotUpdateProgress = 0;
+            mQuickHotUpdateList.Add(typeof(TableAdsCollection));
             mQuickHotUpdateList.Add(typeof(TableAircraftCollection));
             mQuickHotUpdateList.Add(typeof(TableBuffCollection));
+            mQuickHotUpdateList.Add(typeof(TableConstCollection));
             mQuickHotUpdateList.Add(typeof(TableFirePowerCollection));
             mQuickHotUpdateList.Add(typeof(TableFireSpeedCollection));
-            mQuickHotUpdateList.Add(typeof(TableVirusCollection));
             mQuickHotUpdateList.Add(typeof(TableGameLevelCollection));
             mQuickHotUpdateList.Add(typeof(TableGameWaveCollection));
+            mQuickHotUpdateList.Add(typeof(TableLanguageCollection));
+            mQuickHotUpdateList.Add(typeof(TableVirusCollection));
         }
 
         public override void OnEnter()
@@ -83,7 +86,9 @@ namespace DestroyViruses
             {
                 updater.Check();
             }
-            if (updater.state == AssetsUpdate.State.Error && updater.message == "Cannot connect to destination host")
+            if (updater.state == AssetsUpdate.State.Error
+                && (updater.message == "Cannot connect to destination host"
+                || updater.message.Contains("404")))
             {
                 updater.state = AssetsUpdate.State.Completed;
             }

@@ -28,6 +28,17 @@ namespace DestroyViruses
             get { return TableLanguage.Get(Option.language); }
         }
 
+        public static string Get(string key)
+        {
+            var prop = table.GetType().GetProperty(key
+                 , System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+            if (prop == null)
+            {
+                return key;
+            }
+            return prop.GetValue(LT.table) as string;
+        }
+
         public static string systemLanguage
         {
             get

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "687854841413",
+    "firebase_url": "https://unionfun-pss.firebaseio.com",
+    "project_id": "unionfun-pss",
+    "storage_bucket": "unionfun-pss.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687854841413:android:743af7c818c9ef37247d2c",
+        "android_client_info": {
+          "package_name": "com.unionfun.pss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687854841413-07gtuiub7hs6mkmbuqjvin3cf8figkk1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFRagmB4LyH465P9ryMJ7aG1AL8sCke8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687854841413-07gtuiub7hs6mkmbuqjvin3cf8figkk1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

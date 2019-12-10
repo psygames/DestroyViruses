@@ -14,6 +14,7 @@ namespace DestroyViruses
         public UIEventListener inputListenser;
 
         // panels
+        public GameLevelPanel gameLevelPanel;
         public LevelPanel levelPanel;
         public RadioObjects[] optionBtnRaido;
         public RadioObjects optionPanelRaido;
@@ -27,18 +28,7 @@ namespace DestroyViruses
         public Text energyText;
         public Text diamondText;
         public Button settingBtn;
-
-        // game level
-        public DOTweenTrigger gameLevelTweenTrigger;
-        public Text previousLevelText;
-        public Text currentLevelText;
-        public Text nextLevelText;
-        public Button previousLevelBtn;
-        public Button currentLevelBtn;
-        public Button nextLevelBtn;
-        public GameObject previousBossTag;
-        public GameObject currentBossTag;
-        public GameObject nextBossTag;
+        public Button debugBtn;
 
         // private
         private Vector2 mTotalDrag = Vector2.zero;
@@ -87,7 +77,7 @@ namespace DestroyViruses
                 mTotalDrag += data;
                 if (mTotalDrag.magnitude > mDragBeginThreshold)
                 {
-                    GameManager.ChangeState<BattleState>();
+                    StateManager.ChangeState<BattleState>();
                 }
             });
 
@@ -103,23 +93,7 @@ namespace DestroyViruses
             aircraftOptionBtn.OnClick(() => { SelectOption(1); });
             coinOptionBtn.OnClick(() => { SelectOption(2); });
             settingBtn.OnClick(() => { UIManager.Instance.Open<OptionView>(UILayer.Top); });
-
-            previousLevelBtn.OnClick(() =>
-            {
-                GDM.ins.SelectGameLevel(GDM.ins.gameLevel - 1);
-                gameLevelTweenTrigger.DoTrigger();
-            });
-
-            currentLevelBtn.OnClick(() =>
-            {
-                gameLevelTweenTrigger.DoTrigger();
-            });
-
-            nextLevelBtn.OnClick(() =>
-            {
-                GDM.ins.SelectGameLevel(GDM.ins.gameLevel + 1);
-                gameLevelTweenTrigger.DoTrigger();
-            });
+            debugBtn.OnClick(() => { UIManager.Instance.Open<DebugView>(UILayer.Top); });
         }
 
         private void SelectOption(int optionIndex)
@@ -136,42 +110,8 @@ namespace DestroyViruses
             coinText.text = GDM.ins.coin.KMB();
             energyText.text = "100";
             diamondText.text = "0";
-
-            if (GDM.ins.gameLevel - 1 <= 0)
-            {
-                previousLevelText.text = "-";
-                previousBossTag.SetActive(false);
-            }
-            else
-            {
-                previousLevelText.text = (GDM.ins.gameLevel - 1).ToString();
-                previousBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel - 1).isBoss);
-            }
-
-            currentLevelText.text = GDM.ins.gameLevel.ToString();
-            currentBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel).isBoss);
-
-            if (TableGameLevel.Get(GDM.ins.gameLevel + 1) == null)
-            {
-                nextLevelText.text = "-";
-                nextLevelText.color = UIUtil.GRAY_COLOR;
-                nextBossTag.SetActive(false);
-            }
-            else
-            {
-                nextLevelText.text = (GDM.ins.gameLevel + 1).ToString();
-                nextBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel + 1).isBoss);
-                if (GDM.ins.gameLevel + 1 > GDM.ins.unlockedGameLevel)
-                {
-                    nextLevelText.color = UIUtil.GRAY_COLOR;
-                }
-                else
-                {
-                    nextLevelText.color = currentLevelText.color;
-                }
-            }
-
             levelPanel.SetData();
+            gameLevelPanel.SetData();
         }
 
         private void OnEventGameData(EventGameData evt)

@@ -11,6 +11,7 @@ namespace DestroyViruses
         public override void OnEnter()
         {
             base.OnEnter();
+            ProxyManager.Subscribe<BuffProxy>();
             UIManager.Instance.Open<BattleView>();
             GameModeManager.Instance.InitMode<LevelMode>();
             GameModeManager.Instance.Begin();
@@ -28,6 +29,7 @@ namespace DestroyViruses
             EntityManager.Clear();
             GDM.ins.SaveLocalData();
             GDM.ins.gameEndWin = false;
+            ProxyManager.Unsubscribe<BuffProxy>();
         }
     }
 }

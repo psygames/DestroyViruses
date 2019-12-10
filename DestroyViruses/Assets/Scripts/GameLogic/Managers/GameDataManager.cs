@@ -9,8 +9,8 @@ namespace DestroyViruses
     {
         private GameLocalData localData { get { return GameLocalData.Instance; } }
 
-        public int coin { get { return localData.coin; } }
-        public int diamond { get { return localData.diamond; } }
+        public long coin { get { return localData.coin; } }
+        public long diamond { get { return localData.diamond; } }
         public int gameLevel { get { return localData.gameLevel; } }
         public bool isGameLevelMax { get { return TableGameLevel.Get(gameLevel + 1) == null; } }
         public int unlockedGameLevel { get { return localData.unlockedGameLevel; } }
@@ -19,13 +19,19 @@ namespace DestroyViruses
         public bool isFirePowerLevelMax { get { return TableFirePower.Get(firePowerLevel + 1) == null; } }
         public int fireSpeedLevel { get { return localData.fireSpeedLevel; } }
         public bool isFireSpeedLevelMax { get { return TableFireSpeed.Get(fireSpeedLevel + 1) == null; } }
+        public int streak { get { return Mathf.Clamp(localData.streak, -6, 6); } }
 
         // 计算
-        public int firePowerUpCost { get { return (int)FormulaUtil.FirePowerUpCost(firePowerLevel); } }
-        public int fireSpeedUpCost { get { return (int)FormulaUtil.FireSpeedUpCost(fireSpeedLevel); } }
+        public long firePowerUpCost { get { return (long)FormulaUtil.FirePowerUpCost(firePowerLevel); } }
+        public long fireSpeedUpCost { get { return (long)FormulaUtil.FireSpeedUpCost(fireSpeedLevel); } }
+        public float firePower { get { return FormulaUtil.FirePower(firePowerLevel); } }
+        public float fireSpeed { get { return FormulaUtil.FireSpeed(fireSpeedLevel); } }
 
         // 临时数据（外部可修改）
         public bool gameEndWin { get; set; }
+        public bool adRevive { get; set; }
+
+        public int kills4Buff { get; set; }
 
         // 战斗数据
         public float battleGetCoin
@@ -39,6 +45,7 @@ namespace DestroyViruses
                 return 0;
             }
         }
+
         public float battleProgress
         {
             get
@@ -51,6 +58,15 @@ namespace DestroyViruses
             }
         }
 
+        public void AnalyticsSetUserProperty()
+        {
+            Analytics.UserProperty.Set("coin", coin);
+            Analytics.UserProperty.Set("diamond", diamond);
+            Analytics.UserProperty.Set("game_level", gameLevel);
+            Analytics.UserProperty.Set("unlocked_game_level", unlockedGameLevel);
+            Analytics.UserProperty.Level("fire_power", firePowerLevel);
+            Analytics.UserProperty.Level("fire_speed", fireSpeedLevel);
+        }
 
         public void FirePowerUp()
         {
@@ -59,16 +75,23 @@ namespace DestroyViruses
                 DispatchEvent(EventGameData.Action.Error, "已经升至满级");
                 return;
             }
-            if (coin < (int)firePowerUpCost)
+
+            var cost = firePowerUpCost;
+            if (coin < cost)
             {
                 DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
                 return;
             }
 
-            localData.coin -= (int)firePowerUpCost;
+            localData.coin -= cost;
             localData.firePowerLevel += 1;
             DispatchEvent(EventGameData.Action.DataChange);
             SaveLocalData();
+
+            Analytics.Event.Upgrade("fire_power", GDM.ins.firePowerLevel);
+            Analytics.UserProperty.Level("fire_power", firePowerLevel);
+            Analytics.Event.Cost("coin", cost);
+            Analytics.UserProperty.Set("coin", coin);
         }
 
         public void FireSpeedUp()
@@ -78,22 +101,32 @@ namespace DestroyViruses
                 DispatchEvent(EventGameData.Action.Error, "已经升至满级");
                 return;
             }
-            if (coin < fireSpeedUpCost)
+
+            var cost = fireSpeedUpCost;
+            if (coin < cost)
             {
                 DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
                 return;
             }
 
-            localData.coin -= fireSpeedUpCost;
+            localData.coin -= cost;
             localData.fireSpeedLevel += 1;
             DispatchEvent(EventGameData.Action.DataChange);
             SaveLocalData();
+
+            Analytics.Event.Upgrade("fire_speed", GDM.ins.fireSpeedLevel);
+            Analytics.UserProperty.Level("fire_speed", fireSpeedLevel);
+            Analytics.Event.Cost("coin", cost);
+            Analytics.UserProperty.Set("coin", coin);
         }
 
         public void AddCoin(int count)
         {
             localData.coin += count;
             DispatchEvent(EventGameData.Action.DataChange);
+
+            Analytics.Event.Gain("coin", count);
+            Analytics.UserProperty.Set("coin", coin);
         }
 
         public void BattleEnd(bool isWin)
@@ -105,6 +138,18 @@ namespace DestroyViruses
                 UnlockNewLevel();
                 SelectGameLevel(unlockedGameLevel);
             }
+            if (isWin && streak >= 0)
+            {
+                localData.streak += 1;
+            }
+            else if (!isWin && streak <= 0)
+            {
+                localData.streak -= 1;
+            }
+            else
+            {
+                localData.streak = 0;
+            }
         }
 
         public void UnlockNewLevel()
@@ -115,6 +160,8 @@ namespace DestroyViruses
             }
             localData.unlockedGameLevel += 1;
             DispatchEvent(EventGameData.Action.DataChange);
+
+            Analytics.UserProperty.Set("unlocked_game_level", unlockedGameLevel);
         }
 
         public void SelectGameLevel(int level)
@@ -133,6 +180,8 @@ namespace DestroyViruses
 
             localData.gameLevel = level;
             DispatchEvent(EventGameData.Action.DataChange);
+
+            Analytics.UserProperty.Set("game_level", level);
         }
 
         private void DispatchEvent(EventGameData.Action action, string errorMsg = "")

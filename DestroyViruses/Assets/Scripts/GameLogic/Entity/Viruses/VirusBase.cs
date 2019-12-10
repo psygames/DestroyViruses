@@ -36,6 +36,7 @@ namespace DestroyViruses
 
         private int mLastColorIndex = -1;
         private float mLastHp = -1;
+        private float mKnockback = 0;
 
         protected virtual void Awake()
         {
@@ -70,6 +71,7 @@ namespace DestroyViruses
 
             mLastColorIndex = -1;
             mLastHp = -1;
+            mLastScale = 1f;
         }
 
         public void SetDirection(Vector2 direction)
@@ -96,7 +98,8 @@ namespace DestroyViruses
 
         private float GetSizeScale(int _size)
         {
-            return ConstTable.table.virusSize[_size - 1];
+            var index = Mathf.Clamp(_size - 1, 0, ConstTable.table.virusSize.Length - 1);
+            return ConstTable.table.virusSize[index];
         }
 
         private void OnEventBullet(EventBullet evt)
@@ -115,16 +118,21 @@ namespace DestroyViruses
             }
         }
 
+        private void Knockback()
+        {
+            mKnockback = radius * ProxyManager.GetProxy<BuffProxy>().Effect_Knockback;
+        }
+
         private void BeHit(float damage)
         {
-            Unibus.Dispatch(EventVirus.Get(EventVirus.Action.BE_HIT, this, damage));
+            Knockback();
             PlayHit();
+            Unibus.Dispatch(EventVirus.Get(EventVirus.Action.BE_HIT, this, damage));
         }
 
 
         private void PlayHit()
         {
-            // TODO: OPEN SHAKE?
             isShaked = true;
         }
 
@@ -149,13 +157,32 @@ namespace DestroyViruses
             Recycle();
             PlayDead();
             Divide();
+            GenBuff();
         }
 
         private void PlayDead()
         {
-            //var index = FormulaUtil.GetHpColorIndex(hpRange, hpTotal, 4);
             var index = Random.Range(0, 4);
             ExplosionVirus.Create().Reset(rectTransform.anchoredPosition, index + 1, scale * 2);
+        }
+
+        private void GenBuff()
+        {
+            bool isGen = false;
+            var _tab = TableBuffKillGen.Get(a => a.gameLevel.Contains(GDM.ins.gameLevel) && a.streak == GDM.ins.streak);
+            float ratio = _tab.probability * GDM.ins.kills4Buff;
+            if (Random.value <= ratio)
+            {
+                isGen = true;
+                var buffID = FormulaUtil.RandomInProbDict(_tab.buffTypePriority);
+                var _speed = -ConstTable.table.buffSpeedRange.random;
+                Buff.Create().Reset(buffID, position, _speed);
+            }
+
+            if (isGen)
+            {
+                GDM.ins.kills4Buff = 0;
+            }
         }
 
         private void Divide()
@@ -163,19 +190,15 @@ namespace DestroyViruses
             if (this.size <= 1)
                 return;
 
-            // TODO: 血量较少的不产生分裂
-            // if ((hpTotal - hpRange.x) < (hpRange.y - hpRange.x) * 0.2f)
-            //    return;
-
             var _hp = Mathf.Ceil(hpTotal * 0.5f);
             var _size = size - 1;
             var pos = transform.GetUIPos();
 
-            Vector2 dirA = Quaternion.AngleAxis(Random.Range(-60, -80), Vector3.forward) * Vector2.up;
-            Create().Reset(id, _hp, _size, speed, pos + dirA * baseRadius * GetSizeScale(_size), dirA, hpRange, false);
+            Vector2 dirA = Quaternion.AngleAxis(ConstTable.table.divideVirusDirection[0].random, Vector3.forward) * Vector2.up;
+            Create().Reset(id, _hp, _size, speed, pos, dirA, hpRange, false);
 
-            Vector2 dirB = Quaternion.AngleAxis(Random.Range(60, 80), Vector3.forward) * Vector2.up;
-            Create().Reset(id, _hp, _size, speed, pos + dirB * baseRadius * GetSizeScale(_size), dirB, hpRange, false);
+            Vector2 dirB = Quaternion.AngleAxis(ConstTable.table.divideVirusDirection[1].random, Vector3.forward) * Vector2.up;
+            Create().Reset(id, _hp, _size, speed, pos, dirB, hpRange, false);
         }
 
         protected VirusBase Create()
@@ -214,8 +237,35 @@ namespace DestroyViruses
             {
                 direction = new Vector2(-Mathf.Abs(direction.x), direction.y);
             }
-            position += direction * speed * GlobalData.slowDownFactor * speedMul * Time.deltaTime;
+
+            float speedScale = GlobalData.slowDownFactor * BuffSpeedMul() * speedMul;
+            position += direction * speed * speedScale * Time.deltaTime + Vector2.up * mKnockback;
             rectTransform.anchoredPosition = shakeOffset + position;
+
+            mKnockback = 0;
+        }
+
+        protected float BuffSpeedMul()
+        {
+            var proxy = ProxyManager.GetProxy<BuffProxy>();
+            return proxy.Effect_Slowdown * proxy.Effect_LiveUpVirus;
+        }
+
+        protected float mLastScale = 1f;
+        protected void UpdateScale()
+        {
+            if (GetType() == typeof(VirusExpand))
+            {
+                return;
+            }
+
+            var proxy = ProxyManager.GetProxy<BuffProxy>();
+            var _scale = GetSizeScale((int)proxy.Effect_BoostVirus + size);
+            if (!Mathf.Approximately(mLastScale, _scale))
+            {
+                mLastScale = proxy.Effect_BoostVirus;
+                rectTransform.localScale = Vector3.one * _scale;
+            }
         }
 
         protected virtual void UpdateColor()
@@ -261,6 +311,7 @@ namespace DestroyViruses
             UpdateHp();
             UpdateShake();
             UpdatePosition();
+            UpdateScale();
             UpdateColor();
             UpdateCD();
         }

@@ -209,10 +209,22 @@ namespace DestroyViruses
 		public float bulletVDist { get { return _bulletVDist; } private set { _bulletVDist = value; } }
 
 		/// <summary>
-		/// 一次开火最大子弹数
+		/// 最大开火速度
 		/// </summary>
-		private int _bulletMaxCount;
-		public int bulletMaxCount { get { return _bulletMaxCount; } private set { _bulletMaxCount = value; } }
+		private float _maxFireSpeed;
+		public float maxFireSpeed { get { return _maxFireSpeed; } private set { _maxFireSpeed = value; } }
+
+		/// <summary>
+		/// buff速度范围
+		/// </summary>
+		private TRange _buffSpeedRange;
+		public TRange buffSpeedRange { get { return _buffSpeedRange; } private set { _buffSpeedRange = value; } }
+
+		/// <summary>
+		/// 游戏帧数，-1表示不限制。
+		/// </summary>
+		private int _frameRate;
+		public int frameRate { get { return _frameRate; } private set { _frameRate = value; } }
 
 
 		public static TableConst Get(int id)
