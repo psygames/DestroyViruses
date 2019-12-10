@@ -226,6 +226,24 @@ namespace DestroyViruses
 		private int _frameRate;
 		public int frameRate { get { return _frameRate; } private set { _frameRate = value; } }
 
+		/// <summary>
+		/// 命中病毒减速系数
+		/// </summary>
+		private float _hitVirusSlowdown;
+		public float hitVirusSlowdown { get { return _hitVirusSlowdown; } private set { _hitVirusSlowdown = value; } }
+
+		/// <summary>
+		/// buff产生时方向范围(以下方向为0)
+		/// </summary>
+		private TRange _buffSpawnDirection;
+		public TRange buffSpawnDirection { get { return _buffSpawnDirection; } private set { _buffSpawnDirection = value; } }
+
+		/// <summary>
+		/// 病毒爆炸震屏系数
+		/// </summary>
+		private float _virusBombShakeScreenRate;
+		public float virusBombShakeScreenRate { get { return _virusBombShakeScreenRate; } private set { _virusBombShakeScreenRate = value; } }
+
 
 		public static TableConst Get(int id)
 		{

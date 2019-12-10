@@ -73,3 +73,7 @@ tables/tablebuffkillgen
 tables/tablelanguage
 132204203399877340:
 tables/tableads
+132204401446362330:
+tables/tablebuff
+tables/tablebuffautogen
+tables/tableconst

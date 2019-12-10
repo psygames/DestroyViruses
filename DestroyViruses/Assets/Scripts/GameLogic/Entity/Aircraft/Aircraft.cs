@@ -53,7 +53,8 @@ namespace DestroyViruses
                 if (BuffProxy.Ins.Has_Effect_Support && (mSupport == null || !mSupport.isAlive))
                 {
                     mSupport = AircraftSupport.Create();
-                    mSupport.Reset(this, BuffProxy.Ins.Effect_Support);
+                    var buff = BuffProxy.Ins.GetBuff("support");
+                    mSupport.Reset(this, buff.param1, buff.param2);
                 }
                 else if (!BuffProxy.Ins.Has_Effect_Support && mSupport != null && mSupport.isAlive)
                 {

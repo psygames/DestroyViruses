@@ -176,7 +176,8 @@ namespace DestroyViruses
                 isGen = true;
                 var buffID = FormulaUtil.RandomInProbDict(_tab.buffTypePriority);
                 var _speed = -ConstTable.table.buffSpeedRange.random;
-                Buff.Create().Reset(buffID, position, _speed);
+                var dir = Quaternion.AngleAxis(ConstTable.table.buffSpawnDirection.random, Vector3.forward) * Vector2.down;
+                Buff.Create().Reset(buffID, position, dir, _speed);
             }
 
             if (isGen)
@@ -238,11 +239,18 @@ namespace DestroyViruses
                 direction = new Vector2(-Mathf.Abs(direction.x), direction.y);
             }
 
-            float speedScale = GlobalData.slowDownFactor * BuffSpeedMul() * speedMul;
+            float speedScale = GlobalData.slowDownFactor * BuffSpeedMul() * ShakeSpeedMul() * speedMul;
             position += direction * speed * speedScale * Time.deltaTime + Vector2.up * mKnockback;
             rectTransform.anchoredPosition = shakeOffset + position;
 
             mKnockback = 0;
+        }
+
+        protected float ShakeSpeedMul()
+        {
+            if (isShaked)
+                return ConstTable.table.hitVirusSlowdown;
+            return 1;
         }
 
         protected float BuffSpeedMul()

@@ -36,6 +36,8 @@ namespace DestroyViruses
             mQuickHotUpdateList.Add(typeof(TableGameWaveCollection));
             mQuickHotUpdateList.Add(typeof(TableLanguageCollection));
             mQuickHotUpdateList.Add(typeof(TableVirusCollection));
+            mQuickHotUpdateList.Add(typeof(TableBuffAutoGenCollection));
+            mQuickHotUpdateList.Add(typeof(TableBuffKillGenCollection));
         }
 
         public override void OnEnter()

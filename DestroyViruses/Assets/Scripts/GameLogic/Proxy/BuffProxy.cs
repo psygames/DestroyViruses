@@ -8,7 +8,7 @@ namespace DestroyViruses
     {
         public Dictionary<int, BuffData> buffs = new Dictionary<int, BuffData>();
 
-        private Dictionary<string, float> mEffectValues = new Dictionary<string, float>();
+        private Dictionary<string, BuffData> mEffectValues = new Dictionary<string, BuffData>();
 
         public void AddBuff(int id)
         {
@@ -42,7 +42,7 @@ namespace DestroyViruses
             mEffectValues.Clear();
             foreach (var kv in buffs)
             {
-                mEffectValues[kv.Value.effect] = kv.Value.param1;
+                mEffectValues[kv.Value.effect] = kv.Value;
             }
         }
 
@@ -52,10 +52,16 @@ namespace DestroyViruses
             base.OnDestroy();
         }
 
-        public float GetEffect(string effect, float defaultVal = 1f)
+        public BuffData GetBuff(string buffType)
+        {
+            mEffectValues.TryGetValue(buffType, out var val);
+            return val;
+        }
+
+        public float GetEffectValue(string effect, float defaultVal = 1f)
         {
             if (mEffectValues.TryGetValue(effect, out var val))
-                return val;
+                return val.param1;
             return defaultVal;
         }
 
@@ -64,16 +70,16 @@ namespace DestroyViruses
             return mEffectValues.TryGetValue(effect, out _);
         }
 
-        public float Effect_FireSpeed { get { return GetEffect("fire_speed"); } }
-        public float Effect_FirePower { get { return GetEffect("fire_power"); } }
-        public float Effect_Coin { get { return GetEffect("coin"); } }
-        public float Effect_Knockback { get { return GetEffect("knockback", 0f); } }
-        public float Effect_Support { get { return GetEffect("support", 0f); } }
-        public float Effect_Slowdown { get { return GetEffect("slowdown"); } }
-        public float Effect_WeaponUp { get { return GetEffect("weapon_up"); } }
-        public float Effect_BoostVirus { get { return GetEffect("boost_virus", 0); } }
-        public float Effect_MoveLimitation { get { return GetEffect("move_limitation"); } }
-        public float Effect_LiveUpVirus { get { return GetEffect("live_up_virus"); } }
+        public float Effect_FireSpeed { get { return GetEffectValue("fire_speed"); } }
+        public float Effect_FirePower { get { return GetEffectValue("fire_power"); } }
+        public float Effect_Coin { get { return GetEffectValue("coin"); } }
+        public float Effect_Knockback { get { return GetEffectValue("knockback", 0f); } }
+        public float Effect_Support { get { return GetEffectValue("support", 0f); } }
+        public float Effect_Slowdown { get { return GetEffectValue("slowdown"); } }
+        public float Effect_WeaponUp { get { return GetEffectValue("weapon_up"); } }
+        public float Effect_BoostVirus { get { return GetEffectValue("boost_virus", 0); } }
+        public float Effect_MoveLimitation { get { return GetEffectValue("move_limitation"); } }
+        public float Effect_LiveUpVirus { get { return GetEffectValue("live_up_virus"); } }
 
 
         public bool Has_Effect_FireSpeed { get { return HasEffect("fire_speed"); } }
@@ -97,6 +103,7 @@ namespace DestroyViruses
         public float progress { get { return Mathf.Clamp01((Time.time - startTime) / table.effectDuration); } }
         public string effect { get { return table.effect; } }
         public float param1 { get { return table.param1; } }
+        public Vector2 param2 { get { return table.param2.value; } }
         public string icon { get { return table.icon; } }
         public string uiIcon { get { return "ui_" + table.icon; } }
 

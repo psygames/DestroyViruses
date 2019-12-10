@@ -9,14 +9,18 @@ namespace DestroyViruses
         public DOTweenAnimation flickerAni;
         public Image icon;
 
+        protected Vector2 mDirection;
         protected float mSpeed;
         protected float mCD;
 
+        protected float flickerTime = 3f;
+        protected float radius = 30f;
         public int buffID { get; private set; }
 
-        public void Reset(int buffID, Vector2 position, float speed)
+        public void Reset(int buffID, Vector2 position, Vector2 direction, float speed)
         {
             this.buffID = buffID;
+            mDirection = direction;
             mSpeed = speed;
             var t = TableBuff.Get(buffID);
             icon.SetSprite(t.icon);
@@ -41,17 +45,22 @@ namespace DestroyViruses
                 return;
             }
 
-            Vector2 uiPos = UIUtil.GetUIPos(rectTransform);
-            var radius = 30;
-            var flickerTime = 3f;
-
-            if (uiPos.y >= UIUtil.height + radius)
+            var uiPos = UIUtil.GetUIPos(rectTransform);
+            if (uiPos.y < radius)
             {
-                mSpeed = -Mathf.Abs(mSpeed);
+                mDirection = new Vector2(mDirection.x, Mathf.Abs(mDirection.y));
             }
-            else if (uiPos.y <= -radius)
+            else if (uiPos.y > UIUtil.height - radius)
             {
-                rectTransform.anchoredPosition = Vector2.up * (radius + UIUtil.height);
+                mDirection = new Vector2(mDirection.x, -Mathf.Abs(mDirection.y));
+            }
+            if (uiPos.x < radius)
+            {
+                mDirection = new Vector2(Mathf.Abs(mDirection.x), mDirection.y);
+            }
+            else if (uiPos.x > UIUtil.width - radius)
+            {
+                mDirection = new Vector2(-Mathf.Abs(mDirection.x), mDirection.y);
             }
 
             var mLastCD = mCD;
@@ -65,7 +74,7 @@ namespace DestroyViruses
                 icon.DOFade(0, 0.4f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
             }
 
-            rectTransform.anchoredPosition += Vector2.up * mSpeed * Time.deltaTime;
+            rectTransform.anchoredPosition += mDirection * mSpeed * Time.deltaTime;
         }
     }
 }

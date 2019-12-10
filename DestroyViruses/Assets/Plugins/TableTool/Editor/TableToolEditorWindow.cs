@@ -604,7 +604,12 @@ public class TableToolEditorWindow : EditorWindow
     private List<string> GetExcelList()
     {
         var files = Directory.GetFiles(settings.excelFolderPath)
-            .Where(a => { return a.EndsWith(".xls", StringComparison.Ordinal) || a.EndsWith(".xlsx", StringComparison.Ordinal); })
+            .Where(a =>
+            {
+                return !Path.GetFileName(a).StartsWith(".~", StringComparison.Ordinal)
+                      && (a.EndsWith(".xls", StringComparison.Ordinal)
+                      || a.EndsWith(".xlsx", StringComparison.Ordinal));
+            })
             .ToList();
         return files;
     }
