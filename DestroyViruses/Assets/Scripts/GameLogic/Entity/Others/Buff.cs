@@ -74,7 +74,7 @@ namespace DestroyViruses
                 icon.DOFade(0, 0.4f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
             }
 
-            rectTransform.anchoredPosition += mDirection * mSpeed * Time.deltaTime;
+            rectTransform.anchoredPosition += mDirection * GlobalData.slowDownFactor * mSpeed * Time.deltaTime;
         }
     }
 }

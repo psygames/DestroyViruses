@@ -311,7 +311,7 @@ namespace DestroyViruses
             private void GenBuff()
             {
                 var buffID = FormulaUtil.RandomInProbDict(mTable.buffTypePriority);
-                var _speed = -ConstTable.table.buffSpeedRange.random;
+                var _speed = ConstTable.table.buffSpeedRange.random;
                 var pos = new Vector2(Random.Range(60, UIUtil.width - 60), UIUtil.height);
                 var dir = Quaternion.AngleAxis(ConstTable.table.buffSpawnDirection.random, Vector3.forward) * Vector2.down;
                 Buff.Create().Reset(buffID, pos, dir, _speed);

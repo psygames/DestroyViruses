@@ -136,6 +136,7 @@ namespace DestroyViruses
         {
             // isShaked = true;
             isHitSlowdown = true;
+            mLastHitSlowdownTime = Time.time;
         }
 
         bool isShaked = false;
@@ -160,7 +161,6 @@ namespace DestroyViruses
             if (isHitSlowdown && Time.time - mLastHitSlowdownTime > _cd)
             {
                 isHitSlowdown = false;
-                mLastHitSlowdownTime = Time.time;
             }
         }
 

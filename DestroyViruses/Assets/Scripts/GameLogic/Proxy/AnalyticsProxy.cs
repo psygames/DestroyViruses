@@ -239,7 +239,7 @@ namespace DestroyViruses
                     s_errorLogTimeDic[errorMsg] = Time.time;
                 }
 
-                var name = "log-" + type.ToString().ToLower();
+                var name = "log_" + type.ToString().ToLower();
                 proxy.LogEvent4Log(name, errorMsg);
             }
         }
