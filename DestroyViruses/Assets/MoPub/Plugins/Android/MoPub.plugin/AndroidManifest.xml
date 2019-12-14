@@ -2,7 +2,7 @@
 <manifest package="com.mopub.unityplugindemo" xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-sdk android:minSdkVersion="16"/>
 
-    <application android:usesCleartextTraffic="true" android:networkSecurityConfig="@xml/network_security_config">
+    <application android:networkSecurityConfig="@xml/network_security_config">
         <uses-library
           android:name="org.apache.http.legacy"
           android:required="false" />
