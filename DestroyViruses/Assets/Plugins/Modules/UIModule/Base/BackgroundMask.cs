@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BackgroundMask : MonoBehaviour
 {
-    public Color color = new Color(0f, 0f, 0f, 0.5f);
+    public Color color = new Color(0f, 0f, 0f, 0.8f);
     public bool closePanel = true;
 
     private RectTransform m_tranform;
@@ -34,6 +34,7 @@ public class BackgroundMask : MonoBehaviour
             DestroyGo();
 
             mMaskGo = new GameObject();
+            mMaskGo.name = this.name + "(MASK)";
             var trans = mMaskGo.AddComponent<RectTransform>();
             trans.SetParent(m_parentTransform);
             trans.anchoredPosition3D = Vector2.zero;

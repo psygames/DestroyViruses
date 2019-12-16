@@ -58,7 +58,7 @@ namespace DestroyViruses
             if (TableGameLevel.Get(GDM.ins.gameLevel + 1) == null)
             {
                 nextLevelText.text = "-";
-                nextLevelText.color = UIUtil.GRAY_COLOR;
+                // nextLevelText.color = UIUtil.GRAY_COLOR;
                 nextBossTag.SetActive(false);
             }
             else
@@ -67,11 +67,11 @@ namespace DestroyViruses
                 nextBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel + 1).isBoss);
                 if (GDM.ins.gameLevel + 1 > GDM.ins.unlockedGameLevel)
                 {
-                    nextLevelText.color = UIUtil.GRAY_COLOR;
+                    // nextLevelText.color = UIUtil.GRAY_COLOR;
                 }
                 else
                 {
-                    nextLevelText.color = currentLevelText.color;
+                    // nextLevelText.color = currentLevelText.color;
                 }
             }
         }

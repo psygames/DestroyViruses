@@ -15,20 +15,10 @@ namespace DestroyViruses
 
         // panels
         public GameLevelPanel gameLevelPanel;
-        public LevelPanel levelPanel;
-        public RadioObjects[] optionBtnRaido;
-        public RadioObjects optionPanelRaido;
 
         public Button baseOptionBtn;
         public Button aircraftOptionBtn;
         public Button coinOptionBtn;
-
-        // top menu
-        public Text coinText;
-        public Text energyText;
-        public Text diamondText;
-        public Button settingBtn;
-        public Button debugBtn;
 
         // private
         private Vector2 mTotalDrag = Vector2.zero;
@@ -57,17 +47,16 @@ namespace DestroyViruses
 
         protected override void OnOpen()
         {
-            SelectOption(-1);
             mTotalDrag = Vector2.zero;
             UIUtil.aircraftTransform.DOScale(Vector3.one * 1.3f, 0.5f).SetEase(Ease.OutQuad);
             RefreshUI();
             AudioManager.Instance.PlayMusic($"Sounds/BGM{Random.Range(1, 3)}", 1f);
+            NavigationView.BlackSetting(false);
         }
 
         private void OnDestroy()
         {
             inputListenser.onDrag.RemoveAllListeners();
-            inputListenser.onClick.RemoveAllListeners();
         }
 
         private void InputListenerInit()
@@ -80,11 +69,6 @@ namespace DestroyViruses
                     StateManager.ChangeState<BattleState>();
                 }
             });
-
-            inputListenser.onClick.AddListener(_ =>
-            {
-                SelectOption(-1);
-            });
         }
 
         private void ButtonListenerInit()
@@ -92,25 +76,18 @@ namespace DestroyViruses
             baseOptionBtn.OnClick(() => { SelectOption(0); });
             aircraftOptionBtn.OnClick(() => { SelectOption(1); });
             coinOptionBtn.OnClick(() => { SelectOption(2); });
-            settingBtn.OnClick(() => { UIManager.Instance.Open<OptionView>(UILayer.Top); });
-            debugBtn.OnClick(() => { UIManager.Instance.Open<DebugView>(UILayer.Top); });
         }
 
         private void SelectOption(int optionIndex)
         {
-            for (int i = 0; i < optionBtnRaido.Length; i++)
+            if (optionIndex == 0 || optionIndex == 1)
             {
-                optionBtnRaido[i].Radio(i == optionIndex);
+                UIManager.Instance.Open<UpgradeView>();
             }
-            optionPanelRaido.Radio(optionIndex);
         }
 
         private void RefreshUI()
         {
-            coinText.text = GDM.ins.coin.KMB();
-            energyText.text = "100";
-            diamondText.text = "0";
-            levelPanel.SetData();
             gameLevelPanel.SetData();
         }
 
@@ -119,11 +96,6 @@ namespace DestroyViruses
             if (evt.action == EventGameData.Action.DataChange)
             {
                 RefreshUI();
-            }
-            else if (evt.action == EventGameData.Action.Error)
-            {
-                //TODO: TOAST ERROR
-                Debug.Log(evt.errorMsg);
             }
         }
     }

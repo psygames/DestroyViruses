@@ -8,23 +8,35 @@ namespace DestroyViruses
     {
         public AircraftMovement movement { get; private set; }
         public AircraftFire firement { get; private set; }
-        private AircraftInputHandle mInputHandle;
+        public AircraftAnimation anima { get; private set; }
 
+        private AircraftInputHandle mInputHandle;
         private AircraftSupport mSupport;
+        private RectTransform mHeadRoot;
+
+        public Vector2 headPosition { get { return rectTransform.anchoredPosition + mHeadRoot.anchoredPosition; } }
 
         private void Awake()
         {
             mInputHandle = gameObject.GetOrAddComponent<AircraftInputHandle>();
             movement = gameObject.GetOrAddComponent<AircraftMovement>();
             firement = gameObject.GetOrAddComponent<AircraftFire>();
+            anima = gameObject.GetOrAddComponent<AircraftAnimation>();
             mInputHandle.onFire = firement.Fire;
             mInputHandle.onHoldFire = firement.HoldFire;
             mInputHandle.onMove = movement.Move;
+
+            if (mHeadRoot == null)
+                mHeadRoot = transform.Find("headRoot")?.GetComponent<RectTransform>();
+            if (mHeadRoot == null)
+                Debug.LogError("headRoot is null, please take care of this!");
         }
 
         public void Reset()
         {
-            rectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, 700, 0);
+            rectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, 600, 0);
+            rectTransform.localScale = Vector3.one;
+            anima.StopAll();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

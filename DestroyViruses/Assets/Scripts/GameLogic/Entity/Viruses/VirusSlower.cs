@@ -29,7 +29,7 @@ namespace DestroyViruses
         protected override void Update()
         {
             base.Update();
-            var dist = (aircraft.movement.headPosition - position).magnitude - radius;
+            var dist = (aircraft.headPosition - position).magnitude - radius;
             bool triggerSlow = dist <= table.effect2;
 
             if (!mIsSlow && triggerSlow)
@@ -45,7 +45,7 @@ namespace DestroyViruses
             if (mIsSlow)
             {
                 line.gameObject.SetActive(true);
-                var dir = aircraft.movement.headPosition - position;
+                var dir = aircraft.headPosition - position;
                 line.sizeDelta = new Vector2(line.sizeDelta.x, dir.magnitude / scale);
                 line.localRotation = Quaternion.FromToRotation(Vector2.down, dir);
             }
