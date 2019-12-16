@@ -16,8 +16,8 @@ namespace DestroyViruses
         protected override void OnInit()
         {
             base.OnInit();
-            mWaveModule.Init(GDM.ins.gameLevel, GDM.ins.firePower);
-            mBuffGenModule.Init(GDM.ins.gameLevel, GDM.ins.streak);
+            mWaveModule.Init(D.I.gameLevel, D.I.firePower);
+            mBuffGenModule.Init(D.I.gameLevel, D.I.streak);
             Unibus.Subscribe<EventAircraft>(OnEventAircraft);
             Unibus.Subscribe<EventVirus>(OnEventVirus);
         }
@@ -32,11 +32,11 @@ namespace DestroyViruses
         protected override void OnBegin()
         {
             base.OnBegin();
-            Analytics.Event.GameBegin(GDM.ins.gameLevel);
+            Analytics.Event.GameBegin(D.I.gameLevel);
             getCoin = 0;
             progress = 0;
             mLastWaveIndex = -1;
-            GDM.ins.adRevive = false;
+            D.I.adRevive = false;
             Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.GameBegin));
             mWaveModule.Start();
         }
@@ -44,9 +44,9 @@ namespace DestroyViruses
         protected override void OnEnd(bool isWin)
         {
             base.OnEnd(isWin);
-            Analytics.Event.GameEnd(GDM.ins.gameLevel, isWin, progress);
+            Analytics.Event.GameEnd(D.I.gameLevel, isWin, progress);
             mWaveModule.Stop();
-            GDM.ins.BattleEnd(isWin);
+            D.I.BattleEnd(isWin);
             if (isWin)
                 Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.GameEndWin));
             else
@@ -142,7 +142,7 @@ namespace DestroyViruses
                 }
 
                 // virus kills 4 buff
-                GDM.ins.kills4Buff += 1;
+                D.I.kills4Buff += 1;
             }
         }
 

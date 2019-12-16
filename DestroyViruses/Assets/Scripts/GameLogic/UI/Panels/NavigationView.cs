@@ -55,7 +55,7 @@ namespace DestroyViruses
 
         private void RefreshUI()
         {
-            coinText.text = GDM.ins.coin.KMB();
+            coinText.text = D.I.coin.KMB();
             energyText.text = "100";
             diamondText.text = "0";
         }

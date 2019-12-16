@@ -27,7 +27,6 @@ namespace DestroyViruses
             aircraft.anima.StopAll();
             UIManager.Instance.Close<MainView>();
             UIManager.Instance.Close<NavigationView>();
-            GDM.ins.SaveLocalData();
         }
     }
 }

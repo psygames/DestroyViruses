@@ -183,8 +183,8 @@ namespace DestroyViruses
         private void GenBuff()
         {
             bool isGen = false;
-            var _tab = TableBuffKillGen.Get(a => a.gameLevel.Contains(GDM.ins.gameLevel) && a.streak == GDM.ins.streak);
-            float ratio = _tab.probability * GDM.ins.kills4Buff;
+            var _tab = TableBuffKillGen.Get(a => a.gameLevel.Contains(D.I.gameLevel) && a.streak == D.I.streak);
+            float ratio = _tab.probability * D.I.kills4Buff;
             if (Random.value <= ratio)
             {
                 isGen = true;
@@ -196,7 +196,7 @@ namespace DestroyViruses
 
             if (isGen)
             {
-                GDM.ins.kills4Buff = 0;
+                D.I.kills4Buff = 0;
             }
         }
 

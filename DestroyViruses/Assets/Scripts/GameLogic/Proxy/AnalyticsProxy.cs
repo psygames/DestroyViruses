@@ -226,6 +226,19 @@ namespace DestroyViruses
                     );
             }
 
+            public static void DailySign(int days)
+            {
+                proxy.LogEvent("daily_sign",
+                    new Parameter("days", days)
+                    );
+            }
+
+            public static void UnlockVirus(int virusID)
+            {
+                proxy.LogEvent("unlock_virus",
+                    new Parameter("virus_id", virusID)
+                    );
+            }
 
             private static Dictionary<string, float> s_errorLogTimeDic = new Dictionary<string, float>();
             private static float s_errorLogRepeatedInterval = 10;

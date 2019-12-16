@@ -27,8 +27,7 @@ namespace DestroyViruses
             base.OnExit();
             UIManager.Instance.Close<BattleView>();
             EntityManager.Clear();
-            GDM.ins.SaveLocalData();
-            GDM.ins.gameEndWin = false;
+            D.I.gameEndWin = false;
             ProxyManager.Unsubscribe<BuffProxy>();
         }
     }

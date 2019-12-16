@@ -13,7 +13,7 @@ namespace DestroyViruses
             UIUtil.LoadAtlasAll();
             ProxyManager.Subscribe<AdProxy>();
             Analytics.Event.Login(DeviceID.UUID);
-            GDM.ins.AnalyticsSetUserProperty();
+            D.I.AnalyticsSetUserProperty();
             Application.targetFrameRate = ConstTable.table.frameRate;
             base.OnEnter();
         }

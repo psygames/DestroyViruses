@@ -26,9 +26,9 @@ namespace DestroyViruses
 
         private void FireOnce()
         {
-            var bulletSpeed = TableFireSpeed.Get(GDM.ins.fireSpeedLevel).bulletSpeed;
-            mFirePower = GDM.ins.firePower * buffProxy.Effect_FirePower;
-            mFireSpeed = GDM.ins.fireSpeed * buffProxy.Effect_FireSpeed;
+            var bulletSpeed = TableFireSpeed.Get(D.I.fireSpeedLevel).bulletSpeed;
+            mFirePower = D.I.firePower * buffProxy.Effect_FirePower;
+            mFireSpeed = D.I.fireSpeed * buffProxy.Effect_FireSpeed;
             mFireSpeed = Mathf.Min(mFireSpeed, ConstTable.table.maxFireSpeed);
             var _bullets = mFireSpeed * Bullet.BULLET_HEIGH / bulletSpeed;
             mFireOnceBullets = Mathf.RoundToInt(_bullets);

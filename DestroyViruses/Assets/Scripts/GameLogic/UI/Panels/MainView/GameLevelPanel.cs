@@ -23,7 +23,7 @@ namespace DestroyViruses
         {
             previousLevelBtn?.OnClick(() =>
             {
-                GDM.ins.SelectGameLevel(GDM.ins.gameLevel - 1);
+                D.I.SelectGameLevel(D.I.gameLevel - 1);
                 gameLevelTweenTrigger.DoTrigger();
             });
 
@@ -34,28 +34,28 @@ namespace DestroyViruses
 
             nextLevelBtn?.OnClick(() =>
             {
-                GDM.ins.SelectGameLevel(GDM.ins.gameLevel + 1);
+                D.I.SelectGameLevel(D.I.gameLevel + 1);
                 gameLevelTweenTrigger.DoTrigger();
             });
         }
 
         public void SetData()
         {
-            if (GDM.ins.gameLevel - 1 <= 0)
+            if (D.I.gameLevel - 1 <= 0)
             {
                 previousLevelText.text = "-";
                 previousBossTag.SetActive(false);
             }
             else
             {
-                previousLevelText.text = (GDM.ins.gameLevel - 1).ToString();
-                previousBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel - 1).isBoss);
+                previousLevelText.text = (D.I.gameLevel - 1).ToString();
+                previousBossTag.SetActive(TableGameLevel.Get(D.I.gameLevel - 1).isBoss);
             }
 
-            currentLevelText.text = GDM.ins.gameLevel.ToString();
-            currentBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel).isBoss);
+            currentLevelText.text = D.I.gameLevel.ToString();
+            currentBossTag.SetActive(TableGameLevel.Get(D.I.gameLevel).isBoss);
 
-            if (TableGameLevel.Get(GDM.ins.gameLevel + 1) == null)
+            if (TableGameLevel.Get(D.I.gameLevel + 1) == null)
             {
                 nextLevelText.text = "-";
                 // nextLevelText.color = UIUtil.GRAY_COLOR;
@@ -63,9 +63,9 @@ namespace DestroyViruses
             }
             else
             {
-                nextLevelText.text = (GDM.ins.gameLevel + 1).ToString();
-                nextBossTag.SetActive(TableGameLevel.Get(GDM.ins.gameLevel + 1).isBoss);
-                if (GDM.ins.gameLevel + 1 > GDM.ins.unlockedGameLevel)
+                nextLevelText.text = (D.I.gameLevel + 1).ToString();
+                nextBossTag.SetActive(TableGameLevel.Get(D.I.gameLevel + 1).isBoss);
+                if (D.I.gameLevel + 1 > D.I.unlockedGameLevel)
                 {
                     // nextLevelText.color = UIUtil.GRAY_COLOR;
                 }

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System;
 
 namespace DestroyViruses
 {
-    public class GameDataManager : Singleton<GameDataManager>
+    public class DataProxy : ProxyBase<DataProxy>
     {
         private GameLocalData localData { get { return GameLocalData.Instance; } }
 
@@ -20,6 +18,8 @@ namespace DestroyViruses
         public int fireSpeedLevel { get { return localData.fireSpeedLevel; } }
         public bool isFireSpeedLevelMax { get { return TableFireSpeed.Get(fireSpeedLevel + 1) == null; } }
         public int streak { get { return Mathf.Clamp(localData.streak, -6, 6); } }
+        public int signDays { get { return localData.signDays; } }
+        public int[] unlockedViruses { get { return localData.unlockedViruses; } }
 
         // 计算
         public long firePowerUpCost { get { return (long)FormulaUtil.FirePowerUpCost(firePowerLevel); } }
@@ -30,7 +30,6 @@ namespace DestroyViruses
         // 临时数据（外部可修改）
         public bool gameEndWin { get; set; }
         public bool adRevive { get; set; }
-
         public int kills4Buff { get; set; }
 
         // 战斗数据
@@ -46,6 +45,7 @@ namespace DestroyViruses
             }
         }
 
+        // 战斗进度
         public float battleProgress
         {
             get
@@ -66,6 +66,8 @@ namespace DestroyViruses
             Analytics.UserProperty.Set("unlocked_game_level", unlockedGameLevel);
             Analytics.UserProperty.Level("fire_power", firePowerLevel);
             Analytics.UserProperty.Level("fire_speed", fireSpeedLevel);
+            Analytics.UserProperty.Set("streak", streak);
+            Analytics.UserProperty.Set("daily_sign", signDays);
         }
 
         public void FirePowerUp()
@@ -85,10 +87,10 @@ namespace DestroyViruses
 
             localData.coin -= cost;
             localData.firePowerLevel += 1;
-            DispatchEvent(EventGameData.Action.DataChange);
             SaveLocalData();
+            DispatchEvent(EventGameData.Action.DataChange);
 
-            Analytics.Event.Upgrade("fire_power", GDM.ins.firePowerLevel);
+            Analytics.Event.Upgrade("fire_power", firePowerLevel);
             Analytics.UserProperty.Level("fire_power", firePowerLevel);
             Analytics.Event.Cost("coin", cost);
             Analytics.UserProperty.Set("coin", coin);
@@ -111,10 +113,10 @@ namespace DestroyViruses
 
             localData.coin -= cost;
             localData.fireSpeedLevel += 1;
-            DispatchEvent(EventGameData.Action.DataChange);
             SaveLocalData();
+            DispatchEvent(EventGameData.Action.DataChange);
 
-            Analytics.Event.Upgrade("fire_speed", GDM.ins.fireSpeedLevel);
+            Analytics.Event.Upgrade("fire_speed", fireSpeedLevel);
             Analytics.UserProperty.Level("fire_speed", fireSpeedLevel);
             Analytics.Event.Cost("coin", cost);
             Analytics.UserProperty.Set("coin", coin);
@@ -123,6 +125,7 @@ namespace DestroyViruses
         public void AddCoin(int count)
         {
             localData.coin += count;
+            SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
 
             Analytics.Event.Gain("coin", count);
@@ -133,7 +136,7 @@ namespace DestroyViruses
         {
             gameEndWin = isWin;
             // 解锁新关卡
-            if (isWin && GDM.ins.gameLevel >= GDM.ins.unlockedGameLevel)
+            if (isWin && gameLevel >= unlockedGameLevel)
             {
                 UnlockNewLevel();
                 SelectGameLevel(unlockedGameLevel);
@@ -150,6 +153,10 @@ namespace DestroyViruses
             {
                 localData.streak = 0;
             }
+            SaveLocalData();
+            DispatchEvent(EventGameData.Action.DataChange);
+
+            Analytics.UserProperty.Set("streak", streak);
         }
 
         public void UnlockNewLevel()
@@ -159,6 +166,7 @@ namespace DestroyViruses
                 return;
             }
             localData.unlockedGameLevel += 1;
+            SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
 
             Analytics.UserProperty.Set("unlocked_game_level", unlockedGameLevel);
@@ -179,29 +187,64 @@ namespace DestroyViruses
             }
 
             localData.gameLevel = level;
+            SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
 
             Analytics.UserProperty.Set("game_level", level);
+        }
+
+        public void DailySign(int days)
+        {
+            if (!CanDailySign())
+            {
+                DispatchEvent(EventGameData.Action.Error, "Can't Sign Now.");
+                return;
+            }
+
+            localData.signDays = days + 1;
+            localData.lastSignDateTicks = DateTime.Now.Date.Ticks;
+            DispatchEvent(EventGameData.Action.DataChange);
+
+            Analytics.Event.DailySign(days);
+            Analytics.UserProperty.Set("daily_sign", days);
+        }
+
+        public bool CanDailySign()
+        {
+            var last = new DateTime(localData.lastSignDateTicks);
+            return (DateTime.Now.Date - last).Days >= 1;
+        }
+
+        public void UnlockVirus(int virusID)
+        {
+            if (unlockedViruses.Any(a => a == virusID))
+            {
+                DispatchEvent(EventGameData.Action.Error, "Already Unlocked Virus " + virusID);
+                return;
+            }
+
+            int[] _virus = new int[unlockedViruses.Length+1];
+            Array.Copy(unlockedViruses, _virus, unlockedViruses.Length);
+            _virus[_virus.Length - 1] = virusID;
+            localData.unlockedViruses = _virus;
+            DispatchEvent(EventGameData.Action.DataChange);
+
+            Analytics.Event.UnlockVirus(virusID);
+        }
+
+        private void SaveLocalData()
+        {
+            localData.Save();
         }
 
         private void DispatchEvent(EventGameData.Action action, string errorMsg = "")
         {
             UnibusEvent.Unibus.Dispatch(EventGameData.Get(action, errorMsg));
         }
-
-        public void SaveLocalData()
-        {
-            localData.Save();
-        }
-
-        private void OnApplicationQuit()
-        {
-            SaveLocalData();
-        }
     }
 
-    public static class GDM
+    public static class D
     {
-        public static GameDataManager ins { get { return GameDataManager.Instance; } }
+        public static DataProxy I { get { return DataProxy.Ins; } }
     };
 }

@@ -24,7 +24,7 @@ namespace DestroyViruses
 
         private void OnClickReceive()
         {
-            GDM.ins.AddCoin((int)GDM.ins.battleGetCoin);
+            D.I.AddCoin((int)D.I.battleGetCoin);
             GameEnd();
         }
 
@@ -36,7 +36,7 @@ namespace DestroyViruses
                 return;
             }
 
-            GDM.ins.AddCoin((int)GDM.ins.battleGetCoin * Random.Range(2, 10));
+            D.I.AddCoin((int)D.I.battleGetCoin * Random.Range(2, 10));
             GameEnd();
         }
 
@@ -45,7 +45,7 @@ namespace DestroyViruses
             Close();
             StateManager.ChangeState<MainState>();
             // 注意放到最后
-            if (!Mathf.Approximately(GDM.ins.battleGetCoin, 0))
+            if (!Mathf.Approximately(D.I.battleGetCoin, 0))
             {
                 Coin.CreateGroup(coinTransform.GetUIPos(), UIUtil.COIN_POS, 20);
             }
@@ -53,13 +53,13 @@ namespace DestroyViruses
 
         protected override void OnOpen()
         {
-            coinText.text = GDM.ins.battleGetCoin.KMB();
-            winLoseRadio.Radio(!GDM.ins.gameEndWin);
+            coinText.text = D.I.battleGetCoin.KMB();
+            winLoseRadio.Radio(!D.I.gameEndWin);
             mRectTransform.localScale = Vector3.zero;
             mRectTransform.DOScale(1, 0.25f).SetDelay(1f);
 
             var aircraft = EntityManager.GetAll<Aircraft>().First() as Aircraft;
-            if (GDM.ins.gameEndWin)
+            if (D.I.gameEndWin)
             {
                 aircraft.anima.PlayFlyAway();
             }

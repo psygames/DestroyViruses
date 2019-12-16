@@ -86,13 +86,13 @@ namespace DestroyViruses
             if (evt.action == EventBattle.Action.GET_COIN)
             {
                 Coin.CreateGroup(evt.position, coinTransform.GetUIPos(), evt.count);
-                coinText.text = GDM.ins.battleGetCoin.KMB();
+                coinText.text = D.I.battleGetCoin.KMB();
             }
         }
 
         private void Update()
         {
-            float progress = 1 - GDM.ins.battleProgress;
+            float progress = 1 - D.I.battleProgress;
             progressFill.fillAmount = progress;
             progressText.text = $"{LT.table.REMAIN_VIRUS_COUNT}{Mathf.CeilToInt(progress * 100)}%";
         }

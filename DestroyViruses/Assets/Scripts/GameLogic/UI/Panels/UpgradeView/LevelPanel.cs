@@ -18,53 +18,53 @@ namespace DestroyViruses
         {
             firePowerUpBtn.OnClick(() =>
             {
-                if (GDM.ins.isFirePowerLevelMax)
+                if (D.I.isFirePowerLevelMax)
                 {
 
                 }
                 else
                 {
-                    GDM.ins.FirePowerUp();
+                    D.I.FirePowerUp();
                 }
             });
 
             fireSpeedUpBtn.OnClick(() =>
             {
-                if (GDM.ins.isFireSpeedLevelMax)
+                if (D.I.isFireSpeedLevelMax)
                 {
 
                 }
                 else
                 {
-                    GDM.ins.FireSpeedUp();
+                    D.I.FireSpeedUp();
                 }
             });
         }
 
         public void SetData()
         {
-            firePowerLevelText.text = $"{LT.table.FIRE_POWER} {LT.table.LEVEL_DOT}{GDM.ins.firePowerLevel}";
-            fireSpeedLevelText.text = $"{LT.table.FIRE_SPEED} {LT.table.LEVEL_DOT}{GDM.ins.fireSpeedLevel}";
+            firePowerLevelText.text = $"{LT.table.FIRE_POWER} {LT.table.LEVEL_DOT}{D.I.firePowerLevel}";
+            fireSpeedLevelText.text = $"{LT.table.FIRE_SPEED} {LT.table.LEVEL_DOT}{D.I.fireSpeedLevel}";
 
-            if (GDM.ins.isFirePowerLevelMax)
+            if (D.I.isFirePowerLevelMax)
             {
                 firePowerUpCostText.text = LT.table.LEVEL_MAX;
             }
             else
             {
-                firePowerUpCostText.text = GDM.ins.firePowerUpCost.KMB();
+                firePowerUpCostText.text = D.I.firePowerUpCost.KMB();
             }
 
-            if (GDM.ins.isFireSpeedLevelMax)
+            if (D.I.isFireSpeedLevelMax)
             {
                 fireSpeedUpCostText.text = LT.table.LEVEL_MAX;
             }
             else
             {
-                fireSpeedUpCostText.text = GDM.ins.fireSpeedUpCost.KMB();
+                fireSpeedUpCostText.text = D.I.fireSpeedUpCost.KMB();
             }
 
-            if (!GDM.ins.isFirePowerLevelMax && GDM.ins.firePowerUpCost > GDM.ins.coin)
+            if (!D.I.isFirePowerLevelMax && D.I.firePowerUpCost > D.I.coin)
             {
                 firePowerUpCostText.color = UIUtil.RED_COLOR;
             }
@@ -73,7 +73,7 @@ namespace DestroyViruses
                 firePowerUpCostText.color = Color.white;
             }
 
-            if (!GDM.ins.isFireSpeedLevelMax && GDM.ins.fireSpeedUpCost > GDM.ins.coin)
+            if (!D.I.isFireSpeedLevelMax && D.I.fireSpeedUpCost > D.I.coin)
             {
                 fireSpeedUpCostText.color = UIUtil.RED_COLOR;
             }

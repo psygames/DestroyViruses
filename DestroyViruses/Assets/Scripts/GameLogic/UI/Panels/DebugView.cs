@@ -54,7 +54,7 @@ namespace DestroyViruses
 
         protected override void OnOpen()
         {
-            gameLevelInput.text = GDM.ins.gameLevel.ToString();
+            gameLevelInput.text = D.I.gameLevel.ToString();
         }
     }
 }
