@@ -14,7 +14,7 @@ namespace DestroyViruses
         public GameLevelPanel gameLevelPanel;
         public RectTransform coinTransform;
         public Text coinText;
-        public Image progressFill;
+        public Slider progressFill;
         public Text progressText;
 
         public GameObject bossWaveToast;
@@ -93,7 +93,7 @@ namespace DestroyViruses
         private void Update()
         {
             float progress = 1 - D.I.battleProgress;
-            progressFill.fillAmount = progress;
+            progressFill.value = progress;
             progressText.text = $"{LT.table.REMAIN_VIRUS_COUNT}{Mathf.CeilToInt(progress * 100)}%";
         }
 

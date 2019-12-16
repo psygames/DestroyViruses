@@ -15,6 +15,7 @@ namespace DestroyViruses
             m_max = 1f;
 
             ProxyManager.Subscribe<AnalyticsProxy>();
+            ProxyManager.Subscribe<DataProxy>();
         }
 
         public override void OnUpdate(float deltaTime)

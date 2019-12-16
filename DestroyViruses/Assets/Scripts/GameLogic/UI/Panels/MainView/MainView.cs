@@ -20,6 +20,10 @@ namespace DestroyViruses
         public Button aircraftOptionBtn;
         public Button coinOptionBtn;
 
+        public GameObject canAircraftUp;
+        public GameObject canWeaponUp;
+        public GameObject canIncomeUp;
+
         // private
         private Vector2 mTotalDrag = Vector2.zero;
         private float mDragBeginThreshold = 100;
@@ -89,6 +93,10 @@ namespace DestroyViruses
         private void RefreshUI()
         {
             gameLevelPanel.SetData();
+            canAircraftUp.SetActive(!D.I.isFireSpeedLevelMax && D.I.coin >= D.I.fireSpeedUpCost
+                || !D.I.isFirePowerLevelMax && D.I.coin >= D.I.firePowerUpCost);
+            canWeaponUp.SetActive(false);
+            canIncomeUp.SetActive(false);
         }
 
         private void OnEventGameData(EventGameData evt)

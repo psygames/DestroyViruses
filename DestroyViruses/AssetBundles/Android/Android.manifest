@@ -1,55 +1,60 @@
 ManifestFileVersion: 0
-CRC: 1692447336
+CRC: 322997401
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: prefabs
-      Dependencies: {}
-    Info_1:
       Name: manifest
       Dependencies: {}
+    Info_1:
+      Name: tables/tablevirus
+      Dependencies: {}
     Info_2:
-      Name: spriteatlas/sundry
+      Name: tables/tablegamelevel
       Dependencies: {}
     Info_3:
-      Name: spriteatlas/common
-      Dependencies: {}
-    Info_4:
-      Name: spriteatlas/virus
-      Dependencies: {}
-    Info_5:
       Name: tables/tableaircraft
       Dependencies: {}
-    Info_6:
-      Name: tables/tablefirespeed
-      Dependencies: {}
-    Info_7:
+    Info_4:
+      Name: prefabs
+      Dependencies:
+        Dependency_0: assets/assetbundles/spriteatlas/common
+    Info_5:
       Name: tables/tablefirepower
       Dependencies: {}
-    Info_8:
+    Info_6:
+      Name: tables/tablebuff
+      Dependencies: {}
+    Info_7:
       Name: tables/tablegamewave
+      Dependencies: {}
+    Info_8:
+      Name: tables/tablefirespeed
       Dependencies: {}
     Info_9:
       Name: tables/tableconst
       Dependencies: {}
     Info_10:
-      Name: tables/tablegamelevel
-      Dependencies: {}
-    Info_11:
-      Name: tables/tablebuff
-      Dependencies: {}
-    Info_12:
-      Name: tables/tablevirus
-      Dependencies: {}
-    Info_13:
       Name: tables/tablelanguage
       Dependencies: {}
-    Info_14:
+    Info_11:
       Name: tables/tableads
       Dependencies: {}
-    Info_15:
+    Info_12:
       Name: tables/tablebuffkillgen
       Dependencies: {}
-    Info_16:
+    Info_13:
       Name: tables/tablebuffautogen
+      Dependencies: {}
+    Info_14:
+      Name: assets/assetbundles/spriteatlas/virus
+      Dependencies: {}
+    Info_15:
+      Name: assets/assetbundles/spriteatlas/sundry
+      Dependencies:
+        Dependency_0: assets/assetbundles/spriteatlas/common
+    Info_16:
+      Name: assets/assetbundles/spriteatlas/common
+      Dependencies: {}
+    Info_17:
+      Name: assets/assetbundles/spriteatlas/total
       Dependencies: {}

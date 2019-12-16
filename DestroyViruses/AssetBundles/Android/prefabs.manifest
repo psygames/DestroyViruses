@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3078315402
+CRC: 413647973
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5c227e28f5122bfd8095e92abdc14fce
+    Hash: a80766051379e55b93e6ec34eab11cd7
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ca5c96d978f8a3a3c3a5bda44d2bbe1a
+    Hash: 02d3774b716a9f5e5c8da471fce1d585
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -15,11 +15,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
-- Class: 23
-  Script: {instanceID: 0}
 - Class: 28
-  Script: {instanceID: 0}
-- Class: 33
   Script: {instanceID: 0}
 - Class: 43
   Script: {instanceID: 0}
@@ -28,8 +24,6 @@ ClassTypes:
 - Class: 50
   Script: {instanceID: 0}
 - Class: 58
-  Script: {instanceID: 0}
-- Class: 64
   Script: {instanceID: 0}
 - Class: 70
   Script: {instanceID: 0}
@@ -58,6 +52,10 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 8b771cb2b2039df4483b666d246654ca, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 3c17cdc26c2e982439f3dc51b3cabb08, type: 3}
@@ -65,6 +63,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: c7c2ecf2d2c9d5e4bae5a8429c84304c, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: eb87061308e2b514ea6200e2f1b64dc1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 34d6223369a30774d965353a54cfb2ef, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 969d7263c23024dafb6f0460cc9eb610, type: 3}
 - Class: 114
@@ -120,6 +120,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 8028faca5801ede4c91d1f8ebdf5ca1a, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 64f8a3da167195b4a8609043d2e54ca6, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 12e3831b2edfde243a7edcc109903483, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 3ef6d02b580694df1b661ebd4f7c1cf7, type: 3}
@@ -144,6 +146,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 5ccc2f6e9607b46ceb7f2bf8ea5a0837, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 4e5cf48e6a2a89144b4911a634cca500, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: f6a251ae008626c4bbfcbecdbe2fc767, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
@@ -153,15 +157,13 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 4c20847fa39a1454182a2e9340014078, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
   Script: {instanceID: 0}
 - Class: 137
-  Script: {instanceID: 0}
-- Class: 198
-  Script: {instanceID: 0}
-- Class: 199
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
@@ -174,6 +176,7 @@ ClassTypes:
 - Class: 687078895
   Script: {instanceID: 0}
 Assets:
+- Assets/AssetBundles/Prefabs/UI/View/UpgradeView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusSwallow.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusBomb.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/Take 002.anim
@@ -185,7 +188,9 @@ Assets:
 - Assets/AssetBundles/Prefabs/UI/View/DebugView.prefab
 - Assets/AssetBundles/Prefabs/Entities/Bullet.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusCure.prefab
+- Assets/AssetBundles/Prefabs/UI/View/NavigationView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDodge.prefab
+- Assets/AssetBundles/Prefabs/Entities/ExplosionCrash.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDart.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDefense.prefab
 - Assets/AssetBundles/Prefabs/Entities/Items/fire_1.prefab
@@ -216,4 +221,5 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/VirusTriangle.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/animatorController.controller
 - "Assets/AssetBundles/Prefabs/Entities3D/\u6CBB\u6108\u602A\u7269\u5F85\u673A\u52A8\u4F5C.FBX"
-Dependencies: []
+Dependencies:
+- C:/Users/Administrator.YIN-PC/Desktop/DestroyViruses/DestroyViruses/AssetBundles/Android/assets/assetbundles/spriteatlas/common

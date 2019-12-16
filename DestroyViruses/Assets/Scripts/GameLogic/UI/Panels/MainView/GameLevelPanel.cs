@@ -23,19 +23,19 @@ namespace DestroyViruses
         {
             previousLevelBtn?.OnClick(() =>
             {
-                D.I.SelectGameLevel(D.I.gameLevel - 1);
-                gameLevelTweenTrigger.DoTrigger();
+                //D.I.SelectGameLevel(D.I.gameLevel - 1);
+                //gameLevelTweenTrigger.DoTrigger();
             });
 
             currentLevelBtn?.OnClick(() =>
             {
-                gameLevelTweenTrigger.DoTrigger();
+                //gameLevelTweenTrigger.DoTrigger();
             });
 
             nextLevelBtn?.OnClick(() =>
             {
-                D.I.SelectGameLevel(D.I.gameLevel + 1);
-                gameLevelTweenTrigger.DoTrigger();
+                //D.I.SelectGameLevel(D.I.gameLevel + 1);
+                //gameLevelTweenTrigger.DoTrigger();
             });
         }
 
@@ -58,21 +58,12 @@ namespace DestroyViruses
             if (TableGameLevel.Get(D.I.gameLevel + 1) == null)
             {
                 nextLevelText.text = "-";
-                // nextLevelText.color = UIUtil.GRAY_COLOR;
                 nextBossTag.SetActive(false);
             }
             else
             {
                 nextLevelText.text = (D.I.gameLevel + 1).ToString();
                 nextBossTag.SetActive(TableGameLevel.Get(D.I.gameLevel + 1).isBoss);
-                if (D.I.gameLevel + 1 > D.I.unlockedGameLevel)
-                {
-                    // nextLevelText.color = UIUtil.GRAY_COLOR;
-                }
-                else
-                {
-                    // nextLevelText.color = currentLevelText.color;
-                }
             }
         }
     }

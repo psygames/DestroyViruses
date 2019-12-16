@@ -6501,6 +6501,9 @@ MonoBehaviour:
   baseOptionBtn: {fileID: 4628789882401632784}
   aircraftOptionBtn: {fileID: 6384928366683607687}
   coinOptionBtn: {fileID: 4488638959745632850}
+  canAircraftUp: {fileID: 4546075685872189621}
+  canWeaponUp: {fileID: 3531227909022613417}
+  canIncomeUp: {fileID: 25122907467563297}
 --- !u!1 &7262969889204076365
 GameObject:
   m_ObjectHideFlags: 0
@@ -6703,7 +6706,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 120.7, y: -32}
-  m_SizeDelta: {x: 31, y: 55}
+  m_SizeDelta: {x: 28, y: 56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7377832286938415221
 CanvasRenderer:
@@ -6731,7 +6734,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bfbaec273946c6b429fd7091e9aa699c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5e3bf4b8bca9594d87886d32fa72a74, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7849,7 +7852,7 @@ RectTransform:
   m_GameObject: {fileID: 8925573099200573298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 845982837874429595}
   m_RootOrder: 3
@@ -7857,7 +7860,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -119.79, y: -32}
-  m_SizeDelta: {x: 24, y: 44}
+  m_SizeDelta: {x: 28, y: 56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &694377424457910447
 CanvasRenderer:
@@ -7885,7 +7888,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c4ad6377a9e3864eb14794945b264d6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5e3bf4b8bca9594d87886d32fa72a74, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

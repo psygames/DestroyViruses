@@ -15,11 +15,12 @@ MonoBehaviour:
   downloadURL: http://39.105.150.229:8741/AssetBundles/
   activeVariants: []
   bundles:
+  - assets/assetbundles/spriteatlas/common
+  - assets/assetbundles/spriteatlas/sundry
+  - assets/assetbundles/spriteatlas/total
+  - assets/assetbundles/spriteatlas/virus
   - manifest
   - prefabs
-  - spriteatlas/common
-  - spriteatlas/sundry
-  - spriteatlas/virus
   - tables/tableads
   - tables/tableaircraft
   - tables/tablebuff
@@ -33,182 +34,194 @@ MonoBehaviour:
   - tables/tablelanguage
   - tables/tablevirus
   dirs:
+  - Assets/AssetBundles/SpriteAtlas
   - Assets
   - Assets/AssetBundles/Prefabs/Entities
   - Assets/AssetBundles/Prefabs/Entities/Items
   - Assets/AssetBundles/Prefabs/Entities3D
   - Assets/AssetBundles/Prefabs/UI/View
-  - Assets/AssetBundles/SpriteAtlas
   - Assets/AssetBundles/Tables
   assets:
   - bundle: 0
     dir: 0
-    name: Manifest.asset
-  - bundle: 1
-    dir: 1
-    name: Aircraft.prefab
-  - bundle: 1
-    dir: 1
-    name: AircraftSupport.prefab
-  - bundle: 1
-    dir: 1
-    name: Buff.prefab
-  - bundle: 1
-    dir: 1
-    name: Bullet.prefab
-  - bundle: 1
-    dir: 1
-    name: Coin.prefab
-  - bundle: 1
-    dir: 1
-    name: ExplosionBullet.prefab
-  - bundle: 1
-    dir: 1
-    name: ExplosionVirus.prefab
-  - bundle: 1
-    dir: 2
-    name: fire_1.prefab
-  - bundle: 1
-    dir: 2
-    name: plane_1.prefab
-  - bundle: 1
-    dir: 2
-    name: virus_base.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusAttach.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusBase.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusBomb.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusCollider.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusCure.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusDart.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusDefense.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusDodge.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusExpand.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusRecover.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusSlower.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusSpeed.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusSwallow.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusTrack.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusTriangle.prefab
-  - bundle: 1
-    dir: 1
-    name: VirusVampire.prefab
-  - bundle: 1
-    dir: 3
-    name: animatorController.controller
-  - bundle: 1
-    dir: 3
-    name: avatar.asset
-  - bundle: 1
-    dir: 3
-    name: Material.mat
-  - bundle: 1
-    dir: 3
-    name: Plane007.mesh
-  - bundle: 1
-    dir: 3
-    name: Take 001.anim
-  - bundle: 1
-    dir: 3
-    name: Take 002.anim
-  - bundle: 1
-    dir: 3
-    name: "\u6CBB\u6108\u602A\u7269\u53D7\u51FB\u52A8\u4F5C (1).prefab"
-  - bundle: 1
-    dir: 3
-    name: "\u6CBB\u6108\u602A\u7269\u53D7\u51FB\u52A8\u4F5C.FBX"
-  - bundle: 1
-    dir: 3
-    name: "\u6CBB\u6108\u602A\u7269\u5F85\u673A\u52A8\u4F5C.FBX"
-  - bundle: 1
-    dir: 3
-    name: "\u6CBB\u7597\u602A\u7269\u8D34\u56FE.png"
-  - bundle: 1
-    dir: 4
-    name: BattleView.prefab
-  - bundle: 1
-    dir: 4
-    name: DebugView.prefab
-  - bundle: 1
-    dir: 4
-    name: GameEndView.prefab
-  - bundle: 1
-    dir: 4
-    name: MainView.prefab
-  - bundle: 1
-    dir: 4
-    name: OptionView.prefab
-  - bundle: 2
-    dir: 5
     name: common.spriteatlas
-  - bundle: 3
-    dir: 5
+  - bundle: 1
+    dir: 0
     name: sundry.spriteatlas
-  - bundle: 4
-    dir: 5
+  - bundle: 2
+    dir: 0
+    name: total.spriteatlas
+  - bundle: 3
+    dir: 0
     name: virus.spriteatlas
+  - bundle: 4
+    dir: 1
+    name: Manifest.asset
   - bundle: 5
-    dir: 6
-    name: TableAds.bytes
+    dir: 2
+    name: Aircraft.prefab
+  - bundle: 5
+    dir: 2
+    name: AircraftSupport.prefab
+  - bundle: 5
+    dir: 2
+    name: Buff.prefab
+  - bundle: 5
+    dir: 2
+    name: Bullet.prefab
+  - bundle: 5
+    dir: 2
+    name: Coin.prefab
+  - bundle: 5
+    dir: 2
+    name: ExplosionBullet.prefab
+  - bundle: 5
+    dir: 2
+    name: ExplosionCrash.prefab
+  - bundle: 5
+    dir: 2
+    name: ExplosionVirus.prefab
+  - bundle: 5
+    dir: 3
+    name: fire_1.prefab
+  - bundle: 5
+    dir: 3
+    name: plane_1.prefab
+  - bundle: 5
+    dir: 3
+    name: virus_base.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusAttach.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusBase.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusBomb.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusCollider.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusCure.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusDart.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusDefense.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusDodge.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusExpand.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusRecover.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusSlower.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusSpeed.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusSwallow.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusTrack.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusTriangle.prefab
+  - bundle: 5
+    dir: 2
+    name: VirusVampire.prefab
+  - bundle: 5
+    dir: 4
+    name: animatorController.controller
+  - bundle: 5
+    dir: 4
+    name: avatar.asset
+  - bundle: 5
+    dir: 4
+    name: Material.mat
+  - bundle: 5
+    dir: 4
+    name: Plane007.mesh
+  - bundle: 5
+    dir: 4
+    name: Take 001.anim
+  - bundle: 5
+    dir: 4
+    name: Take 002.anim
+  - bundle: 5
+    dir: 4
+    name: "\u6CBB\u6108\u602A\u7269\u53D7\u51FB\u52A8\u4F5C (1).prefab"
+  - bundle: 5
+    dir: 4
+    name: "\u6CBB\u6108\u602A\u7269\u53D7\u51FB\u52A8\u4F5C.FBX"
+  - bundle: 5
+    dir: 4
+    name: "\u6CBB\u6108\u602A\u7269\u5F85\u673A\u52A8\u4F5C.FBX"
+  - bundle: 5
+    dir: 4
+    name: "\u6CBB\u7597\u602A\u7269\u8D34\u56FE.png"
+  - bundle: 5
+    dir: 5
+    name: BattleView.prefab
+  - bundle: 5
+    dir: 5
+    name: DebugView.prefab
+  - bundle: 5
+    dir: 5
+    name: GameEndView.prefab
+  - bundle: 5
+    dir: 5
+    name: MainView.prefab
+  - bundle: 5
+    dir: 5
+    name: NavigationView.prefab
+  - bundle: 5
+    dir: 5
+    name: OptionView.prefab
+  - bundle: 5
+    dir: 5
+    name: UpgradeView.prefab
   - bundle: 6
     dir: 6
-    name: TableAircraft.bytes
+    name: TableAds.bytes
   - bundle: 7
     dir: 6
-    name: TableBuff.bytes
+    name: TableAircraft.bytes
   - bundle: 8
     dir: 6
-    name: TableBuffAutoGen.bytes
+    name: TableBuff.bytes
   - bundle: 9
     dir: 6
-    name: TableBuffKillGen.bytes
+    name: TableBuffAutoGen.bytes
   - bundle: 10
     dir: 6
-    name: TableConst.bytes
+    name: TableBuffKillGen.bytes
   - bundle: 11
     dir: 6
-    name: TableFirePower.bytes
+    name: TableConst.bytes
   - bundle: 12
     dir: 6
-    name: TableFireSpeed.bytes
+    name: TableFirePower.bytes
   - bundle: 13
     dir: 6
-    name: TableGameLevel.bytes
+    name: TableFireSpeed.bytes
   - bundle: 14
     dir: 6
-    name: TableGameWave.bytes
+    name: TableGameLevel.bytes
   - bundle: 15
     dir: 6
-    name: TableLanguage.bytes
+    name: TableGameWave.bytes
   - bundle: 16
+    dir: 6
+    name: TableLanguage.bytes
+  - bundle: 17
     dir: 6
     name: TableVirus.bytes

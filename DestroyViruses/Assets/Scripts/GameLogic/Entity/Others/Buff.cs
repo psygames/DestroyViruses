@@ -6,7 +6,6 @@ namespace DestroyViruses
 {
     public class Buff : EntityBase<Buff>
     {
-        public DOTweenAnimation flickerAni;
         public Image icon;
 
         protected Vector2 mDirection;

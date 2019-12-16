@@ -14,6 +14,7 @@ namespace DestroyViruses
         public void SetData(BuffData buff)
         {
             bg.SetSprite(buff.uiIcon);
+            forward.SetSprite($"ui_buff_fill_{buff.table.type}");
             forward.fillAmount = 1f - buff.progress;
             nameText.text = buff.name;
         }
