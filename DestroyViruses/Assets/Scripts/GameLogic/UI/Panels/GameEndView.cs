@@ -30,7 +30,7 @@ namespace DestroyViruses
 
         private void OnClickBonus()
         {
-            if (!AdProxy.Ins.ShowAd("revive_interstitial"))
+            if (!AdProxy.Ins.ShowAd("revive"))
             {
                 //TODO:TOAST
                 return;

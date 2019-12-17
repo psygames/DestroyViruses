@@ -15,6 +15,7 @@ namespace DestroyViruses
         private RectTransform mHeadRoot;
 
         public Vector2 headPosition { get { return rectTransform.anchoredPosition + mHeadRoot.anchoredPosition; } }
+        public new Collider2D collider2D { get; private set; }
 
         private void Awake()
         {
@@ -25,6 +26,7 @@ namespace DestroyViruses
             mInputHandle.onFire = firement.Fire;
             mInputHandle.onHoldFire = firement.HoldFire;
             mInputHandle.onMove = movement.Move;
+            collider2D = GetComponent<Collider2D>();
 
             if (mHeadRoot == null)
                 mHeadRoot = transform.Find("headRoot")?.GetComponent<RectTransform>();
@@ -37,6 +39,14 @@ namespace DestroyViruses
             rectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, 600, 0);
             rectTransform.localScale = Vector3.one;
             anima.StopAll();
+        }
+
+        public void Revive()
+        {
+            float reviveDura = 3;
+            collider2D.enabled = false;
+            anima.PlayInvincible(reviveDura);
+            this.DelayDo(reviveDura, () => { collider2D.enabled = true; });
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

@@ -48,8 +48,8 @@ namespace DestroyViruses
             }
             else if (evt.action == EventGameData.Action.Error)
             {
-                //TODO: TOAST ERROR
                 Debug.Log(evt.errorMsg);
+                Toast.Show(evt.errorMsg);
             }
         }
 

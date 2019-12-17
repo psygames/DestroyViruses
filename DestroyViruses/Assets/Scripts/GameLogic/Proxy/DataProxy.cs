@@ -30,6 +30,7 @@ namespace DestroyViruses
         // 临时数据（外部可修改）
         public bool gameEndWin { get; set; }
         public bool adRevive { get; set; }
+        public int reviveCount { get; set; }
         public int kills4Buff { get; set; }
 
         // 战斗数据
@@ -132,6 +133,16 @@ namespace DestroyViruses
             Analytics.UserProperty.Set("coin", coin);
         }
 
+        public void AddDiamond(int count)
+        {
+            localData.diamond += count;
+            SaveLocalData();
+            DispatchEvent(EventGameData.Action.DataChange);
+
+            Analytics.Event.Gain("diamond", count);
+            Analytics.UserProperty.Set("diamond", diamond);
+        }
+
         public void BattleEnd(bool isWin)
         {
             gameEndWin = isWin;
@@ -193,7 +204,7 @@ namespace DestroyViruses
             Analytics.UserProperty.Set("game_level", level);
         }
 
-        public void DailySign(int days)
+        public void DailySign()
         {
             if (!CanDailySign())
             {
@@ -201,8 +212,12 @@ namespace DestroyViruses
                 return;
             }
 
+            var days = localData.signDays;
             localData.signDays = days + 1;
             localData.lastSignDateTicks = DateTime.Now.Date.Ticks;
+            var t = TableDailySign.Get(days);
+            if (t.type == 1) AddDiamond(t.count);
+            else if (t.type == 2) AddCoin(t.count);
             DispatchEvent(EventGameData.Action.DataChange);
 
             Analytics.Event.DailySign(days);
@@ -223,7 +238,7 @@ namespace DestroyViruses
                 return;
             }
 
-            int[] _virus = new int[unlockedViruses.Length+1];
+            int[] _virus = new int[unlockedViruses.Length + 1];
             Array.Copy(unlockedViruses, _virus, unlockedViruses.Length);
             _virus[_virus.Length - 1] = virusID;
             localData.unlockedViruses = _virus;

@@ -36,7 +36,7 @@ namespace DestroyViruses
             getCoin = 0;
             progress = 0;
             mLastWaveIndex = -1;
-            D.I.adRevive = false;
+            D.I.reviveCount = 1;
             Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.GameBegin));
             mWaveModule.Start();
         }
@@ -115,11 +115,33 @@ namespace DestroyViruses
             }
         }
 
+        public void DoRevive()
+        {
+            var aircraft = EntityManager.GetAll<Aircraft>().First() as Aircraft;
+            aircraft.Revive();
+            GameModeManager.Instance.Resume();
+        }
+
+        public void GiveUpRevive()
+        {
+            GameModeManager.Instance.Resume();
+            GameModeManager.Instance.End(false);
+        }
+
         private void OnEventAircraft(EventAircraft evt)
         {
             if (evt.action == EventAircraft.Action.Crash)
             {
-                GameModeManager.Instance.End(false);
+                if (D.I.reviveCount > 0)
+                {
+                    D.I.reviveCount -= 1;
+                    UIManager.Instance.Open<GameReviveView>(UILayer.Top);
+                    GameModeManager.Instance.Pause();
+                }
+                else
+                {
+                    GameModeManager.Instance.End(false);
+                }
             }
         }
 

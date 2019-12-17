@@ -43,6 +43,16 @@ namespace DestroyViruses
             mRectTransform.DOAnchorPos3D(new Vector3(UIUtil.width / 2, UIUtil.height + 400, 0), 1).SetEase(Ease.InQuad);
         }
 
+        public void PlayInvincible(float seconds)
+        {
+            float flash = 0.5f;
+            var canvas = gameObject.GetOrAddComponent<CanvasGroup>();
+            canvas.DOFade(0.2f, flash).SetLoops((int)(seconds / flash), LoopType.Yoyo).OnComplete(() =>
+            {
+                canvas.alpha = 1;
+            });
+        }
+
         public void StopAll()
         {
             tw?.Kill(true);

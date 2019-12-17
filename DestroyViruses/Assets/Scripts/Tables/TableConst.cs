@@ -250,6 +250,12 @@ namespace DestroyViruses
 		private float _virusBombShakeScreenRate;
 		public float virusBombShakeScreenRate { get { return _virusBombShakeScreenRate; } private set { _virusBombShakeScreenRate = value; } }
 
+		/// <summary>
+		/// 复活倒计时
+		/// </summary>
+		private int _reviveCountDown;
+		public int reviveCountDown { get { return _reviveCountDown; } private set { _reviveCountDown = value; } }
+
 
 		public static TableConst Get(int id)
 		{

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Reflection;
 
 namespace DestroyViruses
 {
@@ -10,6 +11,8 @@ namespace DestroyViruses
     {
         public Image targetImage;
         public Text targetText;
+        public string clickEvent;
+        public int clickEventID;
 
         private static Material sGreyMat;
 
@@ -20,6 +23,24 @@ namespace DestroyViruses
                 sGreyMat = ResourceUtil.Load<Material>("Materials/UIGrey");
             if (targetText != null)
                 mLastColor = targetText.color;
+
+            GetComponent<Button>().OnClick(OnClick);
+        }
+
+        private void OnClick()
+        {
+            if (string.IsNullOrEmpty(clickEvent))
+                return;
+            var view = GetComponentInParent<ViewBase>();
+            if (view == null)
+                return;
+            var method = view.GetType().GetMethod("OnClick" + clickEvent, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (method == null)
+                return;
+            if (method.GetParameters().Length == 1)
+                method.Invoke(view, new object[] { clickEventID });
+            else if (method.GetParameters().Length == 0)
+                method.Invoke(view, new object[] { });
         }
 
         public void SetGrey(bool isGrey)
