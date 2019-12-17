@@ -5,7 +5,7 @@ using DG.Tweening;
 public class FadeScale : Fade, IFade
 {
     public Vector2 from = Vector2.zero;
-    public Vector2 to = Vector2.zero;
+    public Vector2 to = Vector2.one;
 
     public override void FadeIn()
     {

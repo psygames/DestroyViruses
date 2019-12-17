@@ -13,10 +13,15 @@ namespace DestroyViruses
         public bool isGameLevelMax { get { return TableGameLevel.Get(gameLevel + 1) == null; } }
         public int unlockedGameLevel { get { return localData.unlockedGameLevel; } }
         public bool isUnlockedGameLevelMax { get { return TableGameLevel.Get(unlockedGameLevel + 1) == null; } }
+
         public int firePowerLevel { get { return localData.firePowerLevel; } }
-        public bool isFirePowerLevelMax { get { return TableFirePower.Get(firePowerLevel + 1) == null; } }
+        public int firePowerMaxLevel { get { return TableFirePower.GetAll().Max(a => a.id).id; } }
+        public bool isFirePowerLevelMax { get { return firePowerLevel >= firePowerMaxLevel; } }
+
         public int fireSpeedLevel { get { return localData.fireSpeedLevel; } }
-        public bool isFireSpeedLevelMax { get { return TableFireSpeed.Get(fireSpeedLevel + 1) == null; } }
+        public int fireSpeedMaxLevel { get { return TableFireSpeed.GetAll().Max(a => a.id).id; } }
+        public bool isFireSpeedLevelMax { get { return fireSpeedLevel >= fireSpeedMaxLevel; } }
+
         public int streak { get { return Mathf.Clamp(localData.streak, -6, 6); } }
         public int signDays { get { return localData.signDays; } }
         public int[] unlockedViruses { get { return localData.unlockedViruses; } }

@@ -19,16 +19,32 @@ namespace DestroyViruses
             mCountDown = ConstTable.table.reviveCountDown;
         }
 
+        private int mLast = -1;
         private void Update()
         {
-            countDownText.text = Mathf.CeilToInt(mCountDown).ToString();
             mCountDown = this.UpdateCD(mCountDown);
+
+            int cur = Mathf.CeilToInt(mCountDown);
+            if (mLast != cur)
+            {
+                countDownText.text = cur.ToString();
+                PlayAni();
+                mLast = cur;
+            }
+
             if (mCountDown <= 0)
             {
                 var mode = GameModeManager.Instance.currentMode as LevelMode;
                 mode?.GiveUpRevive();
                 Close();
             }
+        }
+
+        private void PlayAni()
+        {
+            countDownText.rectTransform.DOKill();
+            countDownText.rectTransform.localScale = new Vector3(-1, 1, 1);
+            countDownText.rectTransform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack);
         }
 
         private void OnClickRevive()
@@ -44,7 +60,7 @@ namespace DestroyViruses
 
         private void OnClickFastForward()
         {
-            mCountDown -= 1;
+            mCountDown = (int)mCountDown;
         }
     }
 }

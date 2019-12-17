@@ -41,96 +41,14 @@ SpriteAtlas:
       enableRotation: 1
       enableTightPacking: 0
     variantMultiplier: 1
-    packables:
-    - {fileID: 102900000, guid: b2f03bcd009937c41bb886555a4fe0a0, type: 3}
-    totalSpriteSurfaceArea: 1026703
+    packables: []
+    totalSpriteSurfaceArea: 0
     bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 40df142e9ac48461ceb701289667357e
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300000, guid: 12c48430722ab8541a343a43f37c993f, type: 3}
-  - {fileID: 21300000, guid: c467d0c095ed2b544ace0de0e20d6f76, type: 3}
-  - {fileID: 21300000, guid: be0d9c024ca03d949ae6b43d5b46c756, type: 3}
-  - {fileID: 21300000, guid: 85fb8b927861e714c92c1705e53ea977, type: 3}
-  - {fileID: 21300000, guid: 262334c2e68df52498573023b8159b06, type: 3}
-  - {fileID: 21300000, guid: c550a3d2bc959a743911da9cd6447631, type: 3}
-  - {fileID: 21300000, guid: d90bc6734534d3146a38c72deb882219, type: 3}
-  - {fileID: 21300000, guid: 8df94ac3e4b3dc74797394a9771460a7, type: 3}
-  - {fileID: 21300000, guid: e261bbf37c8583c4db50054a1a8fbb8a, type: 3}
-  - {fileID: 21300000, guid: 00c7d75422674554fba3cec7f1ea2c3b, type: 3}
-  - {fileID: 21300000, guid: 59520b847b3d27b4382d0f321f8083bb, type: 3}
-  - {fileID: 21300000, guid: c9cb3a9427b4bc84cbfc4ef3fc0fdc10, type: 3}
-  - {fileID: 21300000, guid: 00369b946ced1f14b964cf1e86ec367a, type: 3}
-  - {fileID: 21300000, guid: 75bcff95229f4cc43af0d303f2b8e5d2, type: 3}
-  - {fileID: 21300000, guid: 0e5dc5d50f00dbc448f7d336002843db, type: 3}
-  - {fileID: 21300000, guid: 474ad316eb83ed441a49e125bf05f134, type: 3}
-  - {fileID: 21300000, guid: e0056b16bc8363f46a75270b746d1fae, type: 3}
-  - {fileID: 21300000, guid: cd16e8a6efe86dc4e9095a9510142bc6, type: 3}
-  - {fileID: 21300000, guid: fdc4dbb61b56b9f4fa386a682ee09b11, type: 3}
-  - {fileID: 21300000, guid: ec9f8de68ce8c744a8dac243593ad6c2, type: 3}
-  - {fileID: 21300000, guid: bfbaec273946c6b429fd7091e9aa699c, type: 3}
-  - {fileID: 21300000, guid: 2c4ad6377a9e3864eb14794945b264d6, type: 3}
-  - {fileID: 21300000, guid: fb1f22f7fafb60b4ca54b5b2325f0939, type: 3}
-  - {fileID: 21300000, guid: 40a2f7286d3999448962ea6f186db2b5, type: 3}
-  - {fileID: 21300000, guid: f417a828e261b7d4e92b0281e5b78e27, type: 3}
-  - {fileID: 21300000, guid: 1f5178e832882074c887a176b54ec9b4, type: 3}
-  - {fileID: 21300000, guid: dc264359be62e274192ab4798bab5ddf, type: 3}
-  - {fileID: 21300000, guid: d6167a0af69c47b4b9d49d2944b6e80a, type: 3}
-  - {fileID: 21300000, guid: c81ec56a7c3e1ba4191cf9dbdb925c4d, type: 3}
-  - {fileID: 21300000, guid: 3299247a38826449ab63013a3dd9c909, type: 3}
-  - {fileID: 21300000, guid: cb967ffaaa6b67a4cbcf65bfd6ba77ee, type: 3}
-  - {fileID: 21300000, guid: beced46b9a8ee420ea4a3080a64f7101, type: 3}
-  - {fileID: 21300000, guid: 561df4cbafa7747418b8fcc145858e89, type: 3}
-  - {fileID: 21300000, guid: 2cd7b22cb9562bb4ea981180938c79bd, type: 3}
-  - {fileID: 21300000, guid: 6e47cd2cde52a614abec49288ec57ba2, type: 3}
-  - {fileID: 21300000, guid: cf49f07c9b1646d4b9c63316bab747cb, type: 3}
-  - {fileID: 21300000, guid: 6710e35dfffd7774c800b6ba6adc7b26, type: 3}
-  - {fileID: 21300000, guid: 6da62e6d9e656c642ac1d017ae043dc3, type: 3}
-  - {fileID: 21300000, guid: 55ad4ddd8ea463747bed3782e32daf9f, type: 3}
-  - {fileID: 21300000, guid: 62f1817e57bda2e4c90c86060f940d2d, type: 3}
-  - {fileID: 21300000, guid: e59db29e57ef5ed4793f47cdf5bfe74f, type: 3}
-  - {fileID: 21300000, guid: 4b3dfc2f527cd1f4c9bd541f36f2fe28, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - button_option_1_selected
-  - coin_frame_2
-  - game_progress_bg
-  - option_item_bg
-  - coin_frame_5
-  - game_level_bg
-  - icon_diamond
-  - coin_frame_3
-  - energy_fill_bg
-  - game_level_boss
-  - icon_setting
-  - button_normal_2
-  - circle_glow
-  - button_option_1
-  - coin_frame_1
-  - icon_energy
-  - boss_wave_toast
-  - button_normal_1
-  - button_normal_4
-  - game_logo
-  - game_level_next
-  - game_level_split
-  - button_game_end_receive
-  - button_normal_3
-  - button_normal_6
-  - energy_fill_fwd
-  - icon_base_option
-  - coin_frame_4
-  - button_option_2
-  - option_title
-  - icon_coin
-  - option_bg
-  - boss_wave_border_v
-  - button_option_3_selected
-  - health_game_announce
-  - coin_frame_6
-  - button_option_2_selected
-  - button_option_3
-  - icon_add
-  - game_progress_fwd
-  - button_normal_5
-  - boss_wave_border_h
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_Tag: common
   m_IsVariant: 0

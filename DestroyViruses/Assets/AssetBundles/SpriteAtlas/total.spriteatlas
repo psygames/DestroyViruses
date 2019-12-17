@@ -43,12 +43,17 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1827d5ad581044f08b470c56b841c4ab, type: 3}
-    totalSpriteSurfaceArea: 3332081
+    totalSpriteSurfaceArea: 4089273
     bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 00000000000000000000000000000000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: b1f962806f8e58244943c667298dbec8, type: 3}
+  - {fileID: 21300000, guid: c467d0c095ed2b544ace0de0e20d6f76, type: 3}
   - {fileID: 21300000, guid: beaaafd0ab9e9447382aa70467ed2517, type: 3}
+  - {fileID: 21300000, guid: 6dbb820152979a4408d785877f33702f, type: 3}
   - {fileID: 21300000, guid: 96a19b01744a4b3438ee6ea253a5f5b2, type: 3}
   - {fileID: 21300000, guid: c1b5f04150301174499d59d6328c7367, type: 3}
   - {fileID: 21300000, guid: 5d1dbb51bc5e54749bc44925383cf182, type: 3}
@@ -56,14 +61,17 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c71958d13a1dd0e4b856ffb056231b19, type: 3}
   - {fileID: 21300000, guid: f78ea822fbb47a149b486a9cebe757ea, type: 3}
   - {fileID: 21300000, guid: 9ae06db2449e2c04495c04fd07f38523, type: 3}
+  - {fileID: 21300000, guid: 262334c2e68df52498573023b8159b06, type: 3}
   - {fileID: 21300000, guid: b0c53333ac03f2f458501b8f65fd1c35, type: 3}
   - {fileID: 21300000, guid: f1b42c93ad6881a4da9c6d7831fee765, type: 3}
   - {fileID: 21300000, guid: 155023a33cec2a442877404063bfd1d1, type: 3}
   - {fileID: 21300000, guid: 0202b3c34a5970844a8a4ac7a1fee0a2, type: 3}
+  - {fileID: 21300000, guid: 8df94ac3e4b3dc74797394a9771460a7, type: 3}
   - {fileID: 21300000, guid: 3ab3eff3c54723b499de992e494cfebc, type: 3}
   - {fileID: 21300000, guid: 88294a142a84bce44bf0a726df7e9f25, type: 3}
   - {fileID: 21300000, guid: d4bd4f348542acc43b295f844c879979, type: 3}
   - {fileID: 21300000, guid: df563f849af95fa42aac90e9a2b9296b, type: 3}
+  - {fileID: 21300000, guid: 00369b946ced1f14b964cf1e86ec367a, type: 3}
   - {fileID: 21300000, guid: f007b9e4b99e4ae45933ef81e111586a, type: 3}
   - {fileID: 21300000, guid: 259ed135a3763ff41a5bd14d332b6a3a, type: 3}
   - {fileID: 21300000, guid: b915384541a793f4face9a6fb872a1ca, type: 3}
@@ -72,8 +80,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e3d9bd759ac5e0446af6cb0b259ad249, type: 3}
   - {fileID: 21300000, guid: ece7a895f2d062346b54aaf051a400da, type: 3}
   - {fileID: 21300000, guid: 13256da5682f05d4d99eec97bc0715ea, type: 3}
+  - {fileID: 21300000, guid: 0e5dc5d50f00dbc448f7d336002843db, type: 3}
   - {fileID: 21300000, guid: 3db159f577315f44f8cf2b1b91911fe6, type: 3}
   - {fileID: 21300000, guid: 96def7068f5274d4a8537264356af109, type: 3}
+  - {fileID: 21300000, guid: e0056b16bc8363f46a75270b746d1fae, type: 3}
   - {fileID: 21300000, guid: 442006565ec92024da569416f0ced41f, type: 3}
   - {fileID: 21300000, guid: 92d7d6a61a3767c4fa07b2120e4c2af3, type: 3}
   - {fileID: 21300000, guid: 3c04f0c6da713b341b3c580c0367b592, type: 3}
@@ -93,6 +103,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: afff0d99f35270e4791fcbdb4f302a33, type: 3}
   - {fileID: 21300000, guid: d2b75ac9362c38e41bdac33805d581fc, type: 3}
   - {fileID: 21300000, guid: 5219a1e9bf179e94e93fc748283be771, type: 3}
+  - {fileID: 21300000, guid: d6167a0af69c47b4b9d49d2944b6e80a, type: 3}
   - {fileID: 21300000, guid: 32c4403a158a0e6419b8d950536ddf9b, type: 3}
   - {fileID: 21300000, guid: 9b73a7ba1ff030e4ba70f6b7c88146b7, type: 3}
   - {fileID: 21300000, guid: aeff78ba0d2cf994daf58c8a0d3a3933, type: 3}
@@ -100,7 +111,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d5e3bf4b8bca9594d87886d32fa72a74, type: 3}
   - {fileID: 21300000, guid: 43f3056b35a7ff049b727463f37390d6, type: 3}
   - {fileID: 21300000, guid: 8b9442bba7c2494428329ca6f0f633d2, type: 3}
+  - {fileID: 21300000, guid: 561df4cbafa7747418b8fcc145858e89, type: 3}
+  - {fileID: 21300000, guid: c8bd87cb6a5b77c4493bacf9c041c1a5, type: 3}
   - {fileID: 21300000, guid: bf5f755c705b0404e8b7f956ec0bd3c2, type: 3}
+  - {fileID: 21300000, guid: cf49f07c9b1646d4b9c63316bab747cb, type: 3}
+  - {fileID: 21300000, guid: d08ec68cb7df5c1418f55a5cf67a23d4, type: 3}
   - {fileID: 21300000, guid: b433ec8c24a773342887b62f718635ac, type: 3}
   - {fileID: 21300000, guid: 36695ebced186ea4481e0d085d0cb658, type: 3}
   - {fileID: 21300000, guid: 55d1b3dca49f7534c836447853e77300, type: 3}
@@ -121,13 +136,16 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5ff11bae9d99e8145b24ec9ee3e97c4c, type: 3}
   - {fileID: 21300000, guid: 6409a2ce4ccfe0247a5c873d03e6198f, type: 3}
   - {fileID: 21300000, guid: e02837fee1461414784b2c2c12cfca9a, type: 3}
+  - {fileID: 21300000, guid: 4b3dfc2f527cd1f4c9bd541f36f2fe28, type: 3}
   - {fileID: 21300000, guid: 03aa7b3fab6581f449bf2a6140d6e7ea, type: 3}
   - {fileID: 21300000, guid: 192e485f2dce870489589b0d8e4c824c, type: 3}
   - {fileID: 21300000, guid: 8757336fe625f8249b9e01761be70d87, type: 3}
   - {fileID: 21300000, guid: 7269517f7f5b674409d0bc7a00bd91f0, type: 3}
   m_PackedSpriteNamesToIndex:
   - icon_up
+  - coin_frame_2
   - weapon_1
+  - button_1
   - ui_icon_buff_live_up_virus
   - ui_icon_buff_boost_virus
   - currency_bg
@@ -135,14 +153,17 @@ SpriteAtlas:
   - button_subtract
   - uprade_panel_close
   - upgrade_fill_fwd
+  - coin_frame_5
   - icon_buff_live_up_virus
   - icon_buff_coin
   - board_3
   - icon_buff_ns_arrow
+  - coin_frame_3
   - ui_icon_buff_support
   - board_2
   - icon_buff_move_limitation
   - icon_buff_16
+  - circle_glow
   - ui_icon_buff_fire_speed
   - arrow_down
   - game_level_selected
@@ -151,8 +172,10 @@ SpriteAtlas:
   - ui_icon_buff_coin
   - weapon_board_3
   - board_0
+  - coin_frame_1
   - icon_diamond
   - ui_icon_buff_slowdown
+  - boss_wave_toast
   - button_add
   - button_upgrade_1
   - icon_buff_fire_power
@@ -172,6 +195,7 @@ SpriteAtlas:
   - icon_currency_add
   - game_level_bg
   - icon_buff_knockback
+  - coin_frame_4
   - hp_boss_0
   - icon_aircraft
   - button_upgrade_0
@@ -179,7 +203,11 @@ SpriteAtlas:
   - game_level_next
   - icon_buff_ns_video
   - toggle_slider_fwd
+  - boss_wave_border_v
+  - board_6
   - icon_buff_06
+  - coin_frame_6
+  - button_xingyundajiang
   - button_receive
   - ui_icon_buff_knockback
   - button_reward_2
@@ -200,6 +228,7 @@ SpriteAtlas:
   - button_coin_bonus
   - button_reward_3
   - toggle_slider_bg
+  - boss_wave_border_h
   - icon_energy
   - icon_buff_support
   - function_item_bg_1

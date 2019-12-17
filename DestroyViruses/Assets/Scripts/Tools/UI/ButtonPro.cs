@@ -16,14 +16,12 @@ namespace DestroyViruses
 
         private static Material sGreyMat;
 
-        private Color mLastColor = Color.white;
         private void Awake()
         {
             if (sGreyMat == null)
-                sGreyMat = ResourceUtil.Load<Material>("Materials/UIGrey");
+                sGreyMat = Resources.Load<Material>("Materials/UIGrey");
             if (targetText != null)
-                mLastColor = targetText.color;
-
+                mOrginColor = targetText.color;
             GetComponent<Button>().OnClick(OnClick);
         }
 
@@ -43,30 +41,17 @@ namespace DestroyViruses
                 method.Invoke(view, new object[] { });
         }
 
+        private Color mOrginColor = Color.white;
         public void SetGrey(bool isGrey)
         {
             if (targetText != null)
             {
-                if (isGrey)
-                {
-                    targetText.color = UIUtil.RED_COLOR;
-                }
-                else
-                {
-                    targetText.color = mLastColor;
-                }
+                targetText.color = isGrey ? UIUtil.RED_COLOR : mOrginColor;
             }
 
             if (targetImage != null && sGreyMat != null)
             {
-                if (isGrey)
-                {
-                    targetImage.material = sGreyMat;
-                }
-                else
-                {
-                    targetImage.material = null;
-                }
+                targetImage.material = isGrey ? sGreyMat : null;
             }
         }
 

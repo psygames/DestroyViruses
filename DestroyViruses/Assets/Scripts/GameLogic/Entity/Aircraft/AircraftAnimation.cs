@@ -45,9 +45,9 @@ namespace DestroyViruses
 
         public void PlayInvincible(float seconds)
         {
-            float flash = 0.5f;
+            float flash = 0.25f;
             var canvas = gameObject.GetOrAddComponent<CanvasGroup>();
-            canvas.DOFade(0.2f, flash).SetLoops((int)(seconds / flash), LoopType.Yoyo).OnComplete(() =>
+            canvas.DOFade(0.2f, flash).SetEase(Ease.Linear).SetLoops((int)(seconds / flash), LoopType.Yoyo).OnComplete(() =>
             {
                 canvas.alpha = 1;
             });

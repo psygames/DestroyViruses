@@ -11,7 +11,8 @@ namespace DestroyViruses
 {
     public class DailySignView : ViewBase
     {
-        public DailySignItem[] items;
+        public ContentGroup day6Group;
+        public DailySignItem day7;
 
         public ButtonPro receiveBtn;
         public ButtonPro receiveBtn2;
@@ -19,21 +20,45 @@ namespace DestroyViruses
         protected override void OnOpen()
         {
             base.OnOpen();
-            for (int i = 0; i < items.Length; i++)
+            this.BindUntilDisable<EventGameData>(OnEventGameData);
+            RefreshUI();
+        }
+
+        private void OnEventGameData(EventGameData evt)
+        {
+            if (evt.action == EventGameData.Action.DataChange)
             {
-                items[i].SetData(i + 1);
+                RefreshUI();
             }
         }
 
-        private void OnClickReceive()
+        private void RefreshUI()
         {
-            if (D.I.CanDailySign())
-                D.I.DailySign();
-            else
-                Toast.Show("今日已签到");
+            day6Group.SetData<DailySignItem, int>(new int[] { 1, 2, 3, 4, 5, 6 },
+            (index, item, _data) =>
+            {
+                item.SetData(_data);
+            });
+            day7.SetData(7);
+
+            receiveBtn.SetGrey(!D.I.CanDailySign());
+            receiveBtn2.SetGrey(!D.I.CanDailySign());
         }
 
-        private void OnClickReceive2()
+        private void OnClickSign()
+        {
+            if (D.I.CanDailySign())
+            {
+                D.I.DailySign();
+            }
+            else
+            {
+                Toast.Show("今日已签到");
+                Close();
+            }
+        }
+
+        private void OnClickSign2()
         {
             if (D.I.CanDailySign())
             {
@@ -49,6 +74,7 @@ namespace DestroyViruses
             else
             {
                 Toast.Show("今日已签到");
+                Close();
             }
         }
     }

@@ -175,7 +175,7 @@ MonoBehaviour:
   onEnableFadeIn: 0
   fadeInDelay: 0
   fadeInDuration: 0.2
-  fadeInMethod: 2
+  fadeInMethod: 3
   enableFadeOut: 1
   outSetInactive: 1
   fadeOutDelay: 0
@@ -1623,9 +1623,11 @@ MonoBehaviour:
   firePowerUpBtn: {fileID: 4699978315268514238}
   firePowerLevelText: {fileID: 5275480752069709009}
   firePowerUpCostText: {fileID: 8525159286379505720}
+  firePowerFill: {fileID: 6443409906471339349}
   fireSpeedUpBtn: {fileID: 7100383054224517907}
   fireSpeedLevelText: {fileID: 4340618799922771507}
   fireSpeedUpCostText: {fileID: 2160393009054740439}
+  fireSpeedFill: {fileID: 5396742307267309989}
 --- !u!1 &2897186788624805374
 GameObject:
   m_ObjectHideFlags: 0

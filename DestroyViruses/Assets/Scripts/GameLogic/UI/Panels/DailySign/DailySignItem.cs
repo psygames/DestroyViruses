@@ -8,25 +8,29 @@ namespace DestroyViruses
     {
         public Text title;
         public Image image;
-        [Header("0-未领取, 1-待领取, 2-可领取, 3-已领取")]
+        public Text count;
+        [Header("0-未领取, 1-可领取, 2-已领取")]
         public RadioObjects stateRadio;
+        [Header("0-未领取, 1-可领取, 2-已领取")]
+        public RadioObjects bgRadio;
 
         public void SetData(int days)
         {
             var t = TableDailySign.Get(days);
             title.text = LT.Get(t?.nameID);
             image.SetSprite(t?.icon);
-
+            count.text = "x" + t?.count;
             if (days == D.I.signDays)
             {
-                if (D.I.CanDailySign()) stateRadio.Radio(2);
-                else stateRadio.Radio(1);
+                if (D.I.CanDailySign()) stateRadio.Radio(1);
+                else stateRadio.Radio(0);
             }
             else
             {
-                if (days < D.I.signDays) stateRadio.Radio(3);
+                if (days < D.I.signDays) stateRadio.Radio(2);
                 else stateRadio.Radio(0);
             }
+            bgRadio.Radio(stateRadio.index);
         }
     }
 }

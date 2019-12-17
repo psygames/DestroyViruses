@@ -56,6 +56,10 @@ namespace DestroyViruses
             RefreshUI();
             AudioManager.Instance.PlayMusic($"Sounds/BGM{Random.Range(1, 3)}", 1f);
             NavigationView.BlackSetting(false);
+            if (D.I.CanDailySign())
+            {
+                UIManager.Instance.Open<DailySignView>(UILayer.Top);
+            }
         }
 
         private void OnDestroy()
