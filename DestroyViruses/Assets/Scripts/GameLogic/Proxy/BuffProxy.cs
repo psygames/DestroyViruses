@@ -16,10 +16,9 @@ namespace DestroyViruses
             if (buff == null)
             {
                 buff = new BuffData();
-                buff.SetData(id, Time.time);
                 buffs.Add(id, buff);
             }
-            buff.SetData(id, Time.time);
+            buff.SetData(id, GameUtil.runningTime);
         }
 
         public BuffData GetBuff(int id)
@@ -100,7 +99,7 @@ namespace DestroyViruses
         public string name { get; private set; }
         public float startTime { get; private set; }
         public TableBuff table { get; private set; }
-        public float progress { get { return Mathf.Clamp01((Time.time - startTime) / table.effectDuration); } }
+        public float progress { get { return Mathf.Clamp01((GameUtil.runningTime - startTime) / table.effectDuration); } }
         public string effect { get { return table.effect; } }
         public float param1 { get { return table.param1; } }
         public Vector2 param2 { get { return table.param2.value; } }

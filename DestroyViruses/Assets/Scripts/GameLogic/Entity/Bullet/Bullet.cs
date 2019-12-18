@@ -58,13 +58,11 @@ namespace DestroyViruses
             }
         }
 
-        static float sNextPlayTime = 0;
         private void PlayExplosion()
         {
-            if (Time.time >= sNextPlayTime)
+            if (TimeUtil.CheckInterval("BulletExplosion", 0.1f))
             {
                 ExplosionBullet.Create().rectTransform.anchoredPosition = transform.GetUIPos() + Vector2.up * 10;
-                sNextPlayTime = Time.time + 0.1f;
             }
         }
 

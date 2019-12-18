@@ -16,7 +16,17 @@ namespace DestroyViruses
                 return GameModeManager.Instance.currentMode == null
                     || !GameModeManager.Instance.currentMode.isInit
                     || !GameModeManager.Instance.currentMode.isBegin
-                    || GameModeManager.Instance.currentMode.isPause;
+                    || !GameModeManager.Instance.currentMode.isRunning;
+            }
+        }
+
+        public static float runningTime
+        {
+            get
+            {
+                if (GameModeManager.Instance.currentMode == null)
+                    return 0;
+                return GameModeManager.Instance.currentMode.runningTime;
             }
         }
     }

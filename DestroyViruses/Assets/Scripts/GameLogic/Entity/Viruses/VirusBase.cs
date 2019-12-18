@@ -136,7 +136,7 @@ namespace DestroyViruses
         {
             // isShaked = true;
             isHitSlowdown = true;
-            mLastHitSlowdownTime = Time.time;
+            mLastHitSlowdownTime = GameUtil.runningTime;
         }
 
         bool isShaked = false;
@@ -145,11 +145,11 @@ namespace DestroyViruses
         float shakeDist = 5;
         private void UpdateShake()
         {
-            if (isShaked && Time.time - mLastShakeTime > shakeInterval)
+            if (isShaked && GameUtil.runningTime - mLastShakeTime > shakeInterval)
             {
                 shakeOffset = Random.insideUnitSphere * shakeDist;
                 isShaked = false;
-                mLastShakeTime = Time.time;
+                mLastShakeTime = GameUtil.runningTime;
             }
         }
 
@@ -158,7 +158,7 @@ namespace DestroyViruses
         private void UpdateHitSlowdown()
         {
             var _cd = ConstTable.table.hitVirusSlowdownCD;
-            if (isHitSlowdown && Time.time - mLastHitSlowdownTime > _cd)
+            if (isHitSlowdown && GameUtil.runningTime - mLastHitSlowdownTime > _cd)
             {
                 isHitSlowdown = false;
             }

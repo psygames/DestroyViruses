@@ -256,6 +256,30 @@ namespace DestroyViruses
 		private int _reviveCountDown;
 		public int reviveCountDown { get { return _reviveCountDown; } private set { _reviveCountDown = value; } }
 
+		/// <summary>
+		/// 复活后无敌时间
+		/// </summary>
+		private float _reviveInvincibleCD;
+		public float reviveInvincibleCD { get { return _reviveInvincibleCD; } private set { _reviveInvincibleCD = value; } }
+
+		/// <summary>
+		/// 病毒血量受关卡、火力值影响数值
+		/// </summary>
+		private float[] _formulaArgsVirusHpFix;
+		public float[] formulaArgsVirusHpFix { get { return _formulaArgsVirusHpFix; } private set { _formulaArgsVirusHpFix = value; } }
+
+		/// <summary>
+		/// 病毒产生数量受关卡、火力值影响数值
+		/// </summary>
+		private float[] _formulaArgsVirusSpawnCountFix;
+		public float[] formulaArgsVirusSpawnCountFix { get { return _formulaArgsVirusSpawnCountFix; } private set { _formulaArgsVirusSpawnCountFix = value; } }
+
+		/// <summary>
+		/// 金币受已解锁关卡，金币价值影响数值
+		/// </summary>
+		private float[] _formulaArgsCoinExchange;
+		public float[] formulaArgsCoinExchange { get { return _formulaArgsCoinExchange; } private set { _formulaArgsCoinExchange = value; } }
+
 
 		public static TableConst Get(int id)
 		{
