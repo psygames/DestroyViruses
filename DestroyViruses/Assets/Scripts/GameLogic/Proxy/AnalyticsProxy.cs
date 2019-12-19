@@ -202,7 +202,7 @@ namespace DestroyViruses
                     );
             }
 
-            public static void Gain(string name, long quantity)
+            public static void Gain(string name, string quantity)
             {
                 proxy.LogEvent("gain",
                     new Parameter("name", name),
@@ -210,7 +210,7 @@ namespace DestroyViruses
                     );
             }
 
-            public static void Cost(string name, long quantity)
+            public static void Cost(string name, string quantity)
             {
                 proxy.LogEvent("cost",
                     new Parameter("name", name),
@@ -230,6 +230,13 @@ namespace DestroyViruses
             {
                 proxy.LogEvent("daily_sign",
                     new Parameter("days", days)
+                    );
+            }
+
+            public static void CoinIncomeTake(string quantity)
+            {
+                proxy.LogEvent("coin_income_take",
+                    new Parameter(FirebaseAnalytics.ParameterQuantity, quantity)
                     );
             }
 

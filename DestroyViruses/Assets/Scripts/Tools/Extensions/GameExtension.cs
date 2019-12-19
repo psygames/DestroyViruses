@@ -5,7 +5,7 @@ using DestroyViruses;
 
 public static class GameExtension
 {
-    public static float UpdateCD(this MonoBehaviour monoBehaviour, float value,float scale = 1f)
+    public static float UpdateCD(this MonoBehaviour monoBehaviour, float value, float scale = 1f)
     {
         return Mathf.Max(0, value - Time.deltaTime * scale);
     }
@@ -33,15 +33,15 @@ public static class GameExtension
     }
 
     // 数值单位转换
-
-    private static string[] sKMBUnits = { "K", "M", "B" };
-    private static float[] sKMBDivs = { 1000f, 1000000f, 1000000000f, 1000000000000f };
+    private static string[] sKMBUnits = { "K", "M", "B", "T", "P", "E", "Z", "Y", "S" };
+    private static float[] sKMBDivs = { 1E3f, 1E6f, 1E9f, 1E12f, 1E15f, 1E18f, 1E21f, 1E24f, 1E27f };
     public static string KMB(this float value)
     {
+        if (Mathf.Approximately(0, value))
+            return "0";
+
         if (value < sKMBDivs[0])
-        {
             return Mathf.CeilToInt(value).ToString();
-        }
 
         for (int i = 0; i < sKMBUnits.Length; i++)
         {
@@ -50,16 +50,10 @@ public static class GameExtension
                 value = value / sKMBDivs[i];
                 int d1 = Mathf.CeilToInt(value * 10) % 10;
                 if (d1 == 0)
-                    return ((int)value).ToString() + sKMBUnits[i];
-                return ((int)value).ToString() + "." + d1.ToString() + sKMBUnits[i];
+                    return $"{(int)value}{sKMBUnits[i]}";
+                return $"{(int)value}.{d1}{sKMBUnits[i]}";
             }
         }
         return "!KMB";
-    }
-
-    // 数值单位转换
-    public static string KMB(this long value)
-    {
-        return KMB((float)value);
     }
 }

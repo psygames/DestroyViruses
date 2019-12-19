@@ -24,7 +24,7 @@ namespace DestroyViruses
 
         private void OnClickReceive()
         {
-            D.I.AddCoin((int)D.I.battleGetCoin);
+            D.I.AddCoin(D.I.battleGetCoin);
             GameEnd();
         }
 
@@ -36,7 +36,7 @@ namespace DestroyViruses
                 return;
             }
 
-            D.I.AddCoin((int)D.I.battleGetCoin * Random.Range(2, 10));
+            D.I.AddCoin(D.I.battleGetCoin * Random.Range(2, 10));
             GameEnd();
         }
 

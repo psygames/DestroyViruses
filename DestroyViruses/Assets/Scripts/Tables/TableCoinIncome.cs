@@ -6,13 +6,13 @@ using System.Security.Cryptography;
 namespace DestroyViruses
 {
 	[Serializable]
-    public class TableDailySignCollection
+    public class TableCoinIncomeCollection
     {
-        private Dictionary<int, TableDailySign> mDict = null;
+        private Dictionary<int, TableCoinIncome> mDict = null;
 
         [NonSerialized]
-        private static TableDailySignCollection _ins = null;
-        public static TableDailySignCollection Instance
+        private static TableCoinIncomeCollection _ins = null;
+        public static TableCoinIncomeCollection Instance
         {
             get
             {
@@ -24,14 +24,14 @@ namespace DestroyViruses
             }
         }
 
-		public TableDailySign Get(int id)
+		public TableCoinIncome Get(int id)
         {
-            TableDailySign data = null;
+            TableCoinIncome data = null;
 			_ins.mDict.TryGetValue(id, out data);
             return data;
         }
 
-		public TableDailySign Get(Func<TableDailySign, bool> predicate)
+		public TableCoinIncome Get(Func<TableCoinIncome, bool> predicate)
         {
             foreach (var item in _ins.mDict)
             {
@@ -43,7 +43,7 @@ namespace DestroyViruses
             return null;
         }
 
-        public ICollection<TableDailySign> GetAll()
+        public ICollection<TableCoinIncome> GetAll()
         {
             return mDict.Values;
         }
@@ -56,13 +56,13 @@ namespace DestroyViruses
 			}
             var stream = new System.IO.MemoryStream(bytes);
             var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-            _ins = (TableDailySignCollection)formatter.Deserialize(stream);
+            _ins = (TableCoinIncomeCollection)formatter.Deserialize(stream);
             stream.Close();
         }
 
         private static void Load()
         {
-            var bytes = ResourceUtil.Load<TextAsset>(PathUtil.Table("TableDailySign")).bytes;
+            var bytes = ResourceUtil.Load<TextAsset>(PathUtil.Table("TableCoinIncome")).bytes;
             Load(bytes);
         }
 
@@ -72,7 +72,7 @@ namespace DestroyViruses
 			Rijndael Aes = Rijndael.Create();
 			using (var Memory = new System.IO.MemoryStream(bytes))
 			{
-				var transform = Aes.CreateDecryptor(AesKey("TABLE_SECURITY"), AesKey("TableDailySign"));
+				var transform = Aes.CreateDecryptor(AesKey("TABLE_SECURITY"), AesKey("TableCoinIncome"));
 				using (CryptoStream Decryptor = new CryptoStream(Memory, transform, CryptoStreamMode.Read))
 				{
 					using (var originalMemory = new System.IO.MemoryStream())
@@ -104,52 +104,40 @@ namespace DestroyViruses
     }
 
     [Serializable]
-    public class TableDailySign
+    public class TableCoinIncome
     {
 		/// <summary>
-		/// DAYS
+		/// ID（等级）
 		/// </summary>
 		private int _id;
 		public int id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
-		/// 多语言KEY
+		/// 日常收益 每秒
 		/// </summary>
-		private string _nameID;
-		public string nameID { get { return _nameID; } private set { _nameID = value; } }
+		private float _income;
+		public float income { get { return _income; } private set { _income = value; } }
 
 		/// <summary>
-		/// <para>1 - 钻石</para><para>2 - 金币</para>
+		/// 需要金币
 		/// </summary>
-		private int _type;
-		public int type { get { return _type; } private set { _type = value; } }
-
-		/// <summary>
-		/// 图
-		/// </summary>
-		private string _icon;
-		public string icon { get { return _icon; } private set { _icon = value; } }
-
-		/// <summary>
-		/// 数量
-		/// </summary>
-		private float _count;
-		public float count { get { return _count; } private set { _count = value; } }
+		private float _upcost;
+		public float upcost { get { return _upcost; } private set { _upcost = value; } }
 
 
-		public static TableDailySign Get(int id)
+		public static TableCoinIncome Get(int id)
 		{
-			return TableDailySignCollection.Instance.Get(id);
+			return TableCoinIncomeCollection.Instance.Get(id);
 		}
 		
-		public static TableDailySign Get(Func<TableDailySign, bool> predicate)
+		public static TableCoinIncome Get(Func<TableCoinIncome, bool> predicate)
         {
-			return TableDailySignCollection.Instance.Get(predicate);
+			return TableCoinIncomeCollection.Instance.Get(predicate);
 		}
 
-        public static ICollection<TableDailySign> GetAll()
+        public static ICollection<TableCoinIncome> GetAll()
         {
-            return TableDailySignCollection.Instance.GetAll();
+            return TableCoinIncomeCollection.Instance.GetAll();
         }
     }
 }

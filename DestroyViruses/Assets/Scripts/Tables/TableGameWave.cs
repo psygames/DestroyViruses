@@ -139,14 +139,14 @@ namespace DestroyViruses
 		/// <summary>
 		/// 产生病毒的血量
 		/// </summary>
-		private TRangeInt[] _virusHp;
-		public TRangeInt[] virusHp { get { return _virusHp; } private set { _virusHp = value; } }
+		private TRange[] _virusHp;
+		public TRange[] virusHp { get { return _virusHp; } private set { _virusHp = value; } }
 
 		/// <summary>
 		/// 病毒移动速度
 		/// </summary>
-		private TRangeInt[] _virusSpeed;
-		public TRangeInt[] virusSpeed { get { return _virusSpeed; } private set { _virusSpeed = value; } }
+		private TRange[] _virusSpeed;
+		public TRange[] virusSpeed { get { return _virusSpeed; } private set { _virusSpeed = value; } }
 
 		/// <summary>
 		/// 病毒产生时间间隔

@@ -127,8 +127,8 @@ namespace DestroyViruses
 		/// <summary>
 		/// 升级消耗
 		/// </summary>
-		private int _upcost;
-		public int upcost { get { return _upcost; } private set { _upcost = value; } }
+		private float _upcost;
+		public float upcost { get { return _upcost; } private set { _upcost = value; } }
 
 
 		public static TableFireSpeed Get(int id)

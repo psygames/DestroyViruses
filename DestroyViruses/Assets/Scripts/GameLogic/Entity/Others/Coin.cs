@@ -25,9 +25,9 @@ namespace DestroyViruses
             }
         }
 
-        public static void CreateGroup(Vector2 from, Vector2 to, int coinCount)
+        public static void CreateGroup(Vector2 from, Vector2 to, int uiCoinCount)
         {
-            int count = Mathf.Clamp(coinCount, 1, 15);
+            int count = Mathf.Clamp(uiCoinCount, 1, 15);
             float radius = 300;
             for (int i = 0; i < count; i++)
             {

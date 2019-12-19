@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DestroyViruses
 {
@@ -17,17 +18,23 @@ namespace DestroyViruses
             signDays = 1;
             lastSignDateTicks = 0;
             unlockedViruses = new int[0];
+            coinValueLevel = 1;
+            coinIncomeLevel = 1;
+            lastTakeIncomeTicks = 0;
         }
 
         public int firePowerLevel;  //火力
         public int fireSpeedLevel;  //射速
         public int gameLevel;       //关卡
         public int unlockedGameLevel; //已解锁关卡
-        public long coin;   
-        public long diamond;
+        public float coin;   
+        public float diamond;
         public int streak;          //连胜/败
         public int signDays;        //签到天数
         public long lastSignDateTicks; //上次签到时间
         public int[] unlockedViruses;
+        public int coinValueLevel;
+        public int coinIncomeLevel;
+        public long lastTakeIncomeTicks;
     }
 }

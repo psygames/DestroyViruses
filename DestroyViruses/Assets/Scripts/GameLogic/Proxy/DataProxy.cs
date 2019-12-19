@@ -7,8 +7,8 @@ namespace DestroyViruses
     {
         private GameLocalData localData { get { return GameLocalData.Instance; } }
 
-        public long coin { get { return localData.coin; } }
-        public long diamond { get { return localData.diamond; } }
+        public float coin { get { return localData.coin; } }
+        public float diamond { get { return localData.diamond; } }
         public int gameLevel { get { return localData.gameLevel; } }
         public bool isGameLevelMax { get { return TableGameLevel.Get(gameLevel + 1) == null; } }
         public int unlockedGameLevel { get { return localData.unlockedGameLevel; } }
@@ -17,20 +17,44 @@ namespace DestroyViruses
         public int firePowerLevel { get { return localData.firePowerLevel; } }
         public int firePowerMaxLevel { get { return TableFirePower.GetAll().Max(a => a.id).id; } }
         public bool isFirePowerLevelMax { get { return firePowerLevel >= firePowerMaxLevel; } }
+        public float firePowerUpCost { get { return FormulaUtil.FirePowerUpCost(firePowerLevel); } }
+        public float firePower { get { return FormulaUtil.FirePower(firePowerLevel); } }
 
         public int fireSpeedLevel { get { return localData.fireSpeedLevel; } }
         public int fireSpeedMaxLevel { get { return TableFireSpeed.GetAll().Max(a => a.id).id; } }
         public bool isFireSpeedLevelMax { get { return fireSpeedLevel >= fireSpeedMaxLevel; } }
+        public float fireSpeedUpCost { get { return FormulaUtil.FireSpeedUpCost(fireSpeedLevel); } }
+        public float fireSpeed { get { return FormulaUtil.FireSpeed(fireSpeedLevel); } }
 
         public int streak { get { return Mathf.Clamp(localData.streak, -6, 6); } }
         public int signDays { get { return localData.signDays; } }
         public int[] unlockedViruses { get { return localData.unlockedViruses; } }
 
-        // 计算
-        public long firePowerUpCost { get { return (long)FormulaUtil.FirePowerUpCost(firePowerLevel); } }
-        public long fireSpeedUpCost { get { return (long)FormulaUtil.FireSpeedUpCost(fireSpeedLevel); } }
-        public float firePower { get { return FormulaUtil.FirePower(firePowerLevel); } }
-        public float fireSpeed { get { return FormulaUtil.FireSpeed(fireSpeedLevel); } }
+        public int coinValueLevel { get { return localData.coinValueLevel; } }
+        public float coinValue { get { return TableCoinValue.Get(coinValueLevel).value; } }
+        public float coinValueLevelUpCost { get { return TableCoinValue.Get(coinValueLevel).upcost; } }
+        public int coinValueMaxLevel { get { return TableCoinValue.GetAll().Max(a => a.id).id; } }
+        public bool isCoinValueLevelMax { get { return coinValueLevel >= coinValueMaxLevel; } }
+
+        public int coinIncomeLevel { get { return localData.coinIncomeLevel; } }
+        public float coinIncome { get { return TableCoinIncome.Get(coinIncomeLevel).income; } }
+        public float coinIncomeLevelUpCost { get { return TableCoinIncome.Get(coinIncomeLevel).upcost; } }
+        public int coinIncomeMaxLevel { get { return TableCoinIncome.GetAll().Max(a => a.id).id; } }
+        public bool isCoinIncomeLevelMax { get { return coinIncomeLevel >= coinIncomeMaxLevel; } }
+
+        public float coinIncomeTotal
+        {
+            get
+            {
+                if (localData.lastTakeIncomeTicks == 0)
+                {
+                    localData.lastTakeIncomeTicks = DateTime.Now.Ticks;
+                    SaveLocalData();
+                }
+                var span = DateTime.Now - new DateTime(localData.lastTakeIncomeTicks);
+                return (float)(span.TotalSeconds * coinIncome);
+            }
+        }
 
         // 临时数据（外部可修改）
         public bool gameEndWin { get; set; }
@@ -66,8 +90,8 @@ namespace DestroyViruses
 
         public void AnalyticsSetUserProperty()
         {
-            Analytics.UserProperty.Set("coin", coin);
-            Analytics.UserProperty.Set("diamond", diamond);
+            Analytics.UserProperty.Set("coin", coin.KMB());
+            Analytics.UserProperty.Set("diamond", diamond.KMB());
             Analytics.UserProperty.Set("game_level", gameLevel);
             Analytics.UserProperty.Set("unlocked_game_level", unlockedGameLevel);
             Analytics.UserProperty.Level("fire_power", firePowerLevel);
@@ -98,8 +122,8 @@ namespace DestroyViruses
 
             Analytics.Event.Upgrade("fire_power", firePowerLevel);
             Analytics.UserProperty.Level("fire_power", firePowerLevel);
-            Analytics.Event.Cost("coin", cost);
-            Analytics.UserProperty.Set("coin", coin);
+            Analytics.Event.Cost("coin", cost.KMB());
+            Analytics.UserProperty.Set("coin", coin.KMB());
         }
 
         public void FireSpeedUp()
@@ -124,28 +148,28 @@ namespace DestroyViruses
 
             Analytics.Event.Upgrade("fire_speed", fireSpeedLevel);
             Analytics.UserProperty.Level("fire_speed", fireSpeedLevel);
-            Analytics.Event.Cost("coin", cost);
-            Analytics.UserProperty.Set("coin", coin);
+            Analytics.Event.Cost("coin", cost.KMB());
+            Analytics.UserProperty.Set("coin", coin.KMB());
         }
 
-        public void AddCoin(int count)
+        public void AddCoin(float count)
         {
             localData.coin += count;
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
 
-            Analytics.Event.Gain("coin", count);
-            Analytics.UserProperty.Set("coin", coin);
+            Analytics.Event.Gain("coin", count.KMB());
+            Analytics.UserProperty.Set("coin", coin.KMB());
         }
 
-        public void AddDiamond(int count)
+        public void AddDiamond(float count)
         {
             localData.diamond += count;
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
 
-            Analytics.Event.Gain("diamond", count);
-            Analytics.UserProperty.Set("diamond", diamond);
+            Analytics.Event.Gain("diamond", count.KMB());
+            Analytics.UserProperty.Set("diamond", diamond.KMB());
         }
 
         public void BattleEnd(bool isWin)
@@ -232,7 +256,7 @@ namespace DestroyViruses
         public bool CanDailySign()
         {
             var last = new DateTime(localData.lastSignDateTicks);
-            return (DateTime.Now.Date - last).Days >= 1;
+            return (DateTime.Now.Date - last).TotalDays >= 1;
         }
 
         public void UnlockVirus(int virusID)
@@ -250,6 +274,68 @@ namespace DestroyViruses
             DispatchEvent(EventGameData.Action.DataChange);
 
             Analytics.Event.UnlockVirus(virusID);
+        }
+
+        public void TakeIncomeCoins()
+        {
+            var gain = coinIncomeTotal;
+            localData.lastTakeIncomeTicks = DateTime.Now.Ticks;
+            AddCoin(gain);
+            DispatchEvent(EventGameData.Action.DataChange);
+
+            Analytics.Event.CoinIncomeTake(gain.KMB());
+        }
+
+        public void CoinIncomeLevelUp()
+        {
+            if (isCoinIncomeLevelMax)
+            {
+                DispatchEvent(EventGameData.Action.Error, "已经升至满级");
+                return;
+            }
+
+            var cost = coinIncomeLevelUpCost;
+            if (coin < cost)
+            {
+                DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
+                return;
+            }
+
+            localData.coin -= cost;
+            localData.coinIncomeLevel += 1;
+            SaveLocalData();
+            DispatchEvent(EventGameData.Action.DataChange);
+
+            Analytics.Event.Upgrade("coin_income", coinIncomeLevel);
+            Analytics.UserProperty.Level("coin_income", coinIncomeLevel);
+            Analytics.Event.Cost("coin", cost.KMB());
+            Analytics.UserProperty.Set("coin", coin.KMB());
+        }
+
+        public void CoinValueLevelUp()
+        {
+            if (isCoinValueLevelMax)
+            {
+                DispatchEvent(EventGameData.Action.Error, "已经升至满级");
+                return;
+            }
+
+            var cost = coinValueLevelUpCost;
+            if (coin < cost)
+            {
+                DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
+                return;
+            }
+
+            localData.coin -= cost;
+            localData.coinValueLevel += 1;
+            SaveLocalData();
+            DispatchEvent(EventGameData.Action.DataChange);
+
+            Analytics.Event.Upgrade("coin_value", coinIncomeLevel);
+            Analytics.UserProperty.Level("coin_value", coinIncomeLevel);
+            Analytics.Event.Cost("coin", cost.KMB());
+            Analytics.UserProperty.Set("coin", coin.KMB());
         }
 
         private void SaveLocalData()

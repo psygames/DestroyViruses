@@ -43,11 +43,8 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1827d5ad581044f08b470c56b841c4ab, type: 3}
-    totalSpriteSurfaceArea: 4089273
+    totalSpriteSurfaceArea: 4058193
     bindAsDefault: 1
-    storedHash:
-      serializedVersion: 2
-      Hash: 951f5daad613965f89d5625951ce53bb
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: b1f962806f8e58244943c667298dbec8, type: 3}
@@ -74,7 +71,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 00369b946ced1f14b964cf1e86ec367a, type: 3}
   - {fileID: 21300000, guid: f007b9e4b99e4ae45933ef81e111586a, type: 3}
   - {fileID: 21300000, guid: 259ed135a3763ff41a5bd14d332b6a3a, type: 3}
-  - {fileID: 21300000, guid: b915384541a793f4face9a6fb872a1ca, type: 3}
   - {fileID: 21300000, guid: dc2f9255c808a2745917c63ab2fdad73, type: 3}
   - {fileID: 21300000, guid: fffc2a65785b85241a7a594b263437de, type: 3}
   - {fileID: 21300000, guid: e3d9bd759ac5e0446af6cb0b259ad249, type: 3}
@@ -166,7 +162,6 @@ SpriteAtlas:
   - circle_glow
   - ui_icon_buff_fire_speed
   - arrow_down
-  - game_level_selected
   - function_item_title_bg
   - button_reward
   - ui_icon_buff_coin

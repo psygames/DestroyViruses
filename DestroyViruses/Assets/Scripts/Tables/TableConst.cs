@@ -280,6 +280,12 @@ namespace DestroyViruses
 		private float[] _formulaArgsCoinExchange;
 		public float[] formulaArgsCoinExchange { get { return _formulaArgsCoinExchange; } private set { _formulaArgsCoinExchange = value; } }
 
+		/// <summary>
+		/// 金币收益刷新CD
+		/// </summary>
+		private float _coinIncomeRefreshCD;
+		public float coinIncomeRefreshCD { get { return _coinIncomeRefreshCD; } private set { _coinIncomeRefreshCD = value; } }
+
 
 		public static TableConst Get(int id)
 		{
