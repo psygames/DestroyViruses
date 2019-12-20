@@ -1,60 +1,67 @@
 ManifestFileVersion: 0
-CRC: 322997401
+CRC: 4257337937
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: manifest
+      Name: prefabs
       Dependencies: {}
     Info_1:
-      Name: tables/tablevirus
+      Name: manifest
       Dependencies: {}
     Info_2:
-      Name: tables/tablegamelevel
+      Name: spriteatlas/sundry
       Dependencies: {}
     Info_3:
-      Name: tables/tableaircraft
+      Name: spriteatlas/common
       Dependencies: {}
     Info_4:
-      Name: prefabs
-      Dependencies:
-        Dependency_0: assets/assetbundles/spriteatlas/common
+      Name: spriteatlas/virus
+      Dependencies: {}
     Info_5:
-      Name: tables/tablefirepower
+      Name: tables/tableaircraft
       Dependencies: {}
     Info_6:
-      Name: tables/tablebuff
+      Name: tables/tablefirespeed
       Dependencies: {}
     Info_7:
-      Name: tables/tablegamewave
+      Name: tables/tablefirepower
       Dependencies: {}
     Info_8:
-      Name: tables/tablefirespeed
+      Name: tables/tablegamewave
       Dependencies: {}
     Info_9:
       Name: tables/tableconst
       Dependencies: {}
     Info_10:
-      Name: tables/tablelanguage
+      Name: tables/tablegamelevel
       Dependencies: {}
     Info_11:
-      Name: tables/tableads
+      Name: tables/tablebuff
       Dependencies: {}
     Info_12:
-      Name: tables/tablebuffkillgen
+      Name: tables/tablevirus
       Dependencies: {}
     Info_13:
-      Name: tables/tablebuffautogen
+      Name: tables/tablelanguage
       Dependencies: {}
     Info_14:
-      Name: assets/assetbundles/spriteatlas/virus
+      Name: tables/tableads
       Dependencies: {}
     Info_15:
-      Name: assets/assetbundles/spriteatlas/sundry
-      Dependencies:
-        Dependency_0: assets/assetbundles/spriteatlas/common
+      Name: tables/tablebuffkillgen
+      Dependencies: {}
     Info_16:
-      Name: assets/assetbundles/spriteatlas/common
+      Name: tables/tablebuffautogen
       Dependencies: {}
     Info_17:
-      Name: assets/assetbundles/spriteatlas/total
+      Name: tables/tablecoinincome
+      Dependencies: {}
+    Info_18:
+      Name: tables/tabledailysign
+      Dependencies: {}
+    Info_19:
+      Name: tables/tablecoinvalue
+      Dependencies: {}
+    Info_20:
+      Name: spriteatlas/total
       Dependencies: {}

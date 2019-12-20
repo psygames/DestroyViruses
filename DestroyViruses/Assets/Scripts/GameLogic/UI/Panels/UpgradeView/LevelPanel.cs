@@ -20,7 +20,7 @@ namespace DestroyViruses
             D.I.FirePowerUp();
         }
 
-        private void OnClickFireSpeed()
+        private void OnClickFireSpeedUp()
         {
             D.I.FireSpeedUp();
         }

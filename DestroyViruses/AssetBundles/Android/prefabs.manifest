@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 413647973
+CRC: 1229419252
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a80766051379e55b93e6ec34eab11cd7
+    Hash: 7a72799400c517039429fdc304d7affe
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 02d3774b716a9f5e5c8da471fce1d585
+    Hash: 8da8e4f72a5768695266a6099f0c509f
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -24,6 +24,8 @@ ClassTypes:
 - Class: 50
   Script: {instanceID: 0}
 - Class: 58
+  Script: {instanceID: 0}
+- Class: 61
   Script: {instanceID: 0}
 - Class: 70
   Script: {instanceID: 0}
@@ -63,8 +65,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: c7c2ecf2d2c9d5e4bae5a8429c84304c, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: eb87061308e2b514ea6200e2f1b64dc1, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 34d6223369a30774d965353a54cfb2ef, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 969d7263c23024dafb6f0460cc9eb610, type: 3}
 - Class: 114
@@ -120,8 +120,6 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 8028faca5801ede4c91d1f8ebdf5ca1a, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 64f8a3da167195b4a8609043d2e54ca6, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 12e3831b2edfde243a7edcc109903483, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 3ef6d02b580694df1b661ebd4f7c1cf7, type: 3}
@@ -146,8 +144,6 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 5ccc2f6e9607b46ceb7f2bf8ea5a0837, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 4e5cf48e6a2a89144b4911a634cca500, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: f6a251ae008626c4bbfcbecdbe2fc767, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
@@ -159,6 +155,30 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 4c20847fa39a1454182a2e9340014078, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: be910aa109f9eca429318f2be0b409ce, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 34d6223369a30774d965353a54cfb2ef, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 64f8a3da167195b4a8609043d2e54ca6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e5cf48e6a2a89144b4911a634cca500, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6fb8947bd84b94fea9540326fadb7353, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f717845d2f74f4ce7b29db0c4a9d2cfe, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f1f01f703b64b4a1ebdda5c8171ca45d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ff3c3129f9f794cdca8fd71f6691cfa3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: da716f56ae0fa467486b7f008a1be355, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 773ebef3854631d4cb556d623102287c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3765ded9429bb504f94b12a84b2cf7fb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cabe3eab376681f4c80ab6bcc15b875d, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -179,47 +199,74 @@ Assets:
 - Assets/AssetBundles/Prefabs/UI/View/UpgradeView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusSwallow.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusBomb.prefab
-- Assets/AssetBundles/Prefabs/Entities3D/Take 002.anim
+- Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpand3D.prefab
 - Assets/AssetBundles/Prefabs/UI/View/MainView.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandAnimation_Idle.anim
 - Assets/AssetBundles/Prefabs/Entities/Items/plane_1.prefab
-- Assets/AssetBundles/Prefabs/Entities3D/Plane007.mesh
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderMaterial.mat
+- Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowAnimation_Idle.anim
 - Assets/AssetBundles/Prefabs/Entities/Coin.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusBase.prefab
 - Assets/AssetBundles/Prefabs/UI/View/DebugView.prefab
 - Assets/AssetBundles/Prefabs/Entities/Bullet.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandMaterial.mat
+- Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecover3D.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallow3D.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusCure.prefab
 - Assets/AssetBundles/Prefabs/UI/View/NavigationView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDodge.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureAnimator.controller
+- Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverRaw.FBX
 - Assets/AssetBundles/Prefabs/Entities/ExplosionCrash.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDart.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDefense.prefab
 - Assets/AssetBundles/Prefabs/Entities/Items/fire_1.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandTexture.png
+- Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandAnimation_Hurt.anim
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderRaw.FBX
 - Assets/AssetBundles/Prefabs/Entities/VirusTrack.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureMaterial.mat
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderAnimator.controller
 - Assets/AssetBundles/Prefabs/Entities/VirusAttach.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusSlower.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureAnimation_Hurt.anim
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCure3D.prefab
 - Assets/AssetBundles/Prefabs/Entities/Buff.prefab
 - Assets/AssetBundles/Prefabs/UI/View/BattleView.prefab
 - Assets/AssetBundles/Prefabs/Entities/AircraftSupport.prefab
-- "Assets/AssetBundles/Prefabs/Entities3D/\u6CBB\u7597\u602A\u7269\u8D34\u56FE.png"
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusCollider3D.prefab
+- Assets/AssetBundles/Prefabs/UI/View/DailySignView.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverAnimation_Hurt.anim
 - Assets/AssetBundles/Prefabs/Entities/ExplosionVirus.prefab
-- "Assets/AssetBundles/Prefabs/Entities3D/\u6CBB\u6108\u602A\u7269\u53D7\u51FB\u52A8\u4F5C.FBX"
-- Assets/AssetBundles/Prefabs/Entities3D/Material.mat
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureRaw.FBX
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderAnimation_Hurt.anim
+- Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowRaw.FBX
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureTexture.png
+- Assets/AssetBundles/Prefabs/UI/View/ToastView.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureAnimation_Idle.anim
+- Assets/AssetBundles/Prefabs/UI/View/CoinView.prefab
 - Assets/AssetBundles/Prefabs/Entities/ExplosionBullet.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusRecover.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusVampire.prefab
 - Assets/AssetBundles/Prefabs/Entities/Aircraft.prefab
+- Assets/AssetBundles/Prefabs/UI/View/GameReviveView.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverMaterial.mat
+- Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowAnimator.controller
+- Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverTexture.png
+- Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverAnimator.controller
+- Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowMaterial.mat
 - Assets/AssetBundles/Prefabs/UI/View/OptionView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusSpeed.prefab
 - Assets/AssetBundles/Prefabs/Entities/Items/virus_base.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandRaw.FBX
 - Assets/AssetBundles/Prefabs/Entities/VirusExpand.prefab
 - Assets/AssetBundles/Prefabs/UI/View/GameEndView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusCollider.prefab
-- "Assets/AssetBundles/Prefabs/Entities3D/\u6CBB\u6108\u602A\u7269\u53D7\u51FB\u52A8\u4F5C
-  (1).prefab"
-- Assets/AssetBundles/Prefabs/Entities3D/avatar.asset
-- Assets/AssetBundles/Prefabs/Entities3D/Take 001.anim
+- Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowAnimation_Hurt.anim
+- Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandAnimator.controller
+- Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowTexture.png
+- Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverAnimation_Idle.anim
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderTexture.png
 - Assets/AssetBundles/Prefabs/Entities/VirusTriangle.prefab
-- Assets/AssetBundles/Prefabs/Entities3D/animatorController.controller
-- "Assets/AssetBundles/Prefabs/Entities3D/\u6CBB\u6108\u602A\u7269\u5F85\u673A\u52A8\u4F5C.FBX"
-Dependencies:
-- C:/Users/Administrator.YIN-PC/Desktop/DestroyViruses/DestroyViruses/AssetBundles/Android/assets/assetbundles/spriteatlas/common
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderAnimation_Idle.anim
+Dependencies: []

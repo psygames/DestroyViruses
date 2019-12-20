@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 1204340033
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: cfc231a78a84573f3f3a3e366938afa6
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: bfb87d18134d160e3a907b7674713721
+HashAppended: 0
+ClassTypes:
+- Class: 687078895
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/SpriteAtlas/common.spriteatlas
+Dependencies: []

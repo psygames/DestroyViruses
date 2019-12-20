@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 3941263769
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c7463a0f1b1bfdf727e8e2acc1062804
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/Tables/TableDailySign.bytes
+Dependencies: []
