@@ -2778,9 +2778,11 @@ MonoBehaviour:
   firePowerUpBtn: {fileID: 3675364474031292584}
   firePowerLevelText: {fileID: 5879767608826096363}
   firePowerUpCostText: {fileID: 3083366385029697157}
+  firePowerFill: {fileID: 0}
   fireSpeedUpBtn: {fileID: 1599147020587919767}
   fireSpeedLevelText: {fileID: 5133931948675149441}
   fireSpeedUpCostText: {fileID: 4613079029528755172}
+  fireSpeedFill: {fileID: 0}
 --- !u!1 &2346896619419296084
 GameObject:
   m_ObjectHideFlags: 0
@@ -4370,7 +4372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2923117574861761060
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4390,7 +4392,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 418.99997, y: -123.69995}
+  m_AnchoredPosition: {x: 418.99997, y: -408}
   m_SizeDelta: {x: 168, y: 228}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5311291709304217525
