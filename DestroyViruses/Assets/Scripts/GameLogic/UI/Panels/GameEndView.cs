@@ -32,7 +32,7 @@ namespace DestroyViruses
         {
             if (!AdProxy.Ins.ShowAd("revive"))
             {
-                //TODO:TOAST
+                Toast.Show("广告播放失败");
                 return;
             }
 

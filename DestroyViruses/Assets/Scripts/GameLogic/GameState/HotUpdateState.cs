@@ -29,6 +29,10 @@ namespace DestroyViruses
             mQuickHotUpdateList.Add(typeof(TableAdsCollection));
             mQuickHotUpdateList.Add(typeof(TableAircraftCollection));
             mQuickHotUpdateList.Add(typeof(TableBuffCollection));
+            mQuickHotUpdateList.Add(typeof(TableBuffAutoGenCollection));
+            mQuickHotUpdateList.Add(typeof(TableBuffKillGenCollection));
+            mQuickHotUpdateList.Add(typeof(TableCoinIncomeCollection));
+            mQuickHotUpdateList.Add(typeof(TableCoinValueCollection));
             mQuickHotUpdateList.Add(typeof(TableConstCollection));
             mQuickHotUpdateList.Add(typeof(TableFirePowerCollection));
             mQuickHotUpdateList.Add(typeof(TableFireSpeedCollection));
@@ -36,8 +40,6 @@ namespace DestroyViruses
             mQuickHotUpdateList.Add(typeof(TableGameWaveCollection));
             mQuickHotUpdateList.Add(typeof(TableLanguageCollection));
             mQuickHotUpdateList.Add(typeof(TableVirusCollection));
-            mQuickHotUpdateList.Add(typeof(TableBuffAutoGenCollection));
-            mQuickHotUpdateList.Add(typeof(TableBuffKillGenCollection));
         }
 
         public override void OnEnter()

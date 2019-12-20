@@ -52,6 +52,7 @@ namespace DestroyViruses
             if (!AdProxy.Ins.ShowAd("revive"))
             {
                 Toast.Show("广告播放失败");
+                return;
             }
             var mode = GameModeManager.Instance.currentMode as LevelMode;
             mode?.DoRevive();

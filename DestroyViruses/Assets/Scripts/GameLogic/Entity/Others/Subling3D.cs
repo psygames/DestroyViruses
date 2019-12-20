@@ -14,7 +14,7 @@ namespace DestroyViruses
         public float zUnit = 0.3f;
 
         private int mLastSubling = -1;
-        private int mScale = 260;
+        private int mScale = 280;
         private int mRotY = 180;
 
         private void Awake()

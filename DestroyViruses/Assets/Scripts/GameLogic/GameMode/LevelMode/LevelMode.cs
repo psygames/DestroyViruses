@@ -159,7 +159,7 @@ namespace DestroyViruses
             {
                 // add coin
                 var factor = mTableGameLevel.coinValueFactor + ProxyManager.GetProxy<BuffProxy>().Effect_Coin;
-                getCoin += FormulaUtil.CoinConvert(evt.virus.size, factor);
+                getCoin += FormulaUtil.CoinConvert(evt.virus.size, factor, D.I.coinValue);
                 mAddCoinCount += evt.virus.size * 0.1f;
                 if (Random.value > ConstTable.table.coinAddProb[evt.virus.size - 1]
                     || ProxyManager.GetProxy<BuffProxy>().Has_Effect_Coin)
