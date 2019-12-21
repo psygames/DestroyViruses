@@ -13,7 +13,7 @@ namespace DestroyViruses
         public const float baseRadius = 125f;
 
         public Text hpText;
-        public Image glowImage;
+        public Animator animator;
 
         public new Collider2D collider2D { get; private set; }
 
@@ -27,7 +27,6 @@ namespace DestroyViruses
         public float speed { get; protected set; }
         public Vector2 direction { get; protected set; }
         public Vector2 position { get; protected set; }
-        public Vector2 shakeOffset { get; protected set; }
         public bool isInvincible { get; protected set; }
         public bool isMatrix { get; protected set; }
         public float radius { get; private set; }
@@ -64,7 +63,6 @@ namespace DestroyViruses
             position = pos;
             isInvincible = false;
             rectTransform.anchoredPosition = pos;
-            shakeOffset = Vector2.zero;
             scale = GetSizeScale(size);
             radius = baseRadius * scale;
             rectTransform.localScale = Vector3.one * scale;
@@ -126,31 +124,28 @@ namespace DestroyViruses
 
         private void BeHit(float damage)
         {
+            PlayHurt();
             Knockback();
-            PlayHit();
+            BeHitSlowDown();
             Unibus.Dispatch(EventVirus.Get(EventVirus.Action.BE_HIT, this, damage));
         }
 
 
-        private void PlayHit()
+        private void PlayHurt()
         {
-            // isShaked = true;
-            isHitSlowdown = true;
-            mLastHitSlowdownTime = GameUtil.runningTime;
+            if (animator != null
+            //    && TimeUtil.CheckInterval("virus_" + uid + "_hurt", 0.2f)
+                )
+            {
+                animator.SetTrigger("hurt");
+            }
         }
 
-        bool isShaked = false;
-        float shakeInterval = 0.1f;
-        float mLastShakeTime = 0;
-        float shakeDist = 5;
-        private void UpdateShake()
+
+        private void BeHitSlowDown()
         {
-            if (isShaked && GameUtil.runningTime - mLastShakeTime > shakeInterval)
-            {
-                shakeOffset = Random.insideUnitSphere * shakeDist;
-                isShaked = false;
-                mLastShakeTime = GameUtil.runningTime;
-            }
+            isHitSlowdown = true;
+            mLastHitSlowdownTime = GameUtil.runningTime;
         }
 
         bool isHitSlowdown = false;
@@ -255,7 +250,7 @@ namespace DestroyViruses
 
             float speedScale = GlobalData.slowDownFactor * BuffSpeedMul() * HitSlowdownSpeedMul() * speedMul;
             position += direction * speed * speedScale * Time.deltaTime + Vector2.up * mKnockback;
-            rectTransform.anchoredPosition = shakeOffset + position;
+            rectTransform.anchoredPosition = position;
 
             mKnockback = 0;
         }
@@ -320,7 +315,6 @@ namespace DestroyViruses
 
         protected virtual void OnColorChanged(int index)
         {
-            glowImage.SetSprite($"virus_glow_circle_{index}");
         }
 
         protected virtual void Update()
@@ -331,7 +325,6 @@ namespace DestroyViruses
             }
 
             UpdateHp();
-            UpdateShake();
             UpdateHitSlowdown();
             UpdatePosition();
             UpdateScale();

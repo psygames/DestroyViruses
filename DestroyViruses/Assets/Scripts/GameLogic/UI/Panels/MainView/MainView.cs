@@ -92,6 +92,10 @@ namespace DestroyViruses
             {
                 UIManager.Instance.Open<UpgradeView>();
             }
+            else if (optionIndex == 2)
+            {
+                UIManager.Instance.Open<CoinView>();
+            }
         }
 
         private void RefreshUI()

@@ -13,21 +13,6 @@ namespace DestroyViruses
     {
         public FadeGroup fadeGroup;
         public LevelPanel levelPanel;
-        public Button closeBtn;
-
-        void Awake()
-        {
-            ButtonListenerInit();
-        }
-
-        private void ButtonListenerInit()
-        {
-            closeBtn.OnClick(() =>
-            {
-                NavigationView.BlackSetting(false);
-                fadeGroup.FadeOut(Close);
-            });
-        }
 
         protected override void OnOpen()
         {
@@ -55,6 +40,11 @@ namespace DestroyViruses
                 RefreshUI();
             }
         }
-
+        
+        private void OnClickClose()
+        {
+            NavigationView.BlackSetting(false);
+            fadeGroup.FadeOut(Close);
+        }
     }
 }

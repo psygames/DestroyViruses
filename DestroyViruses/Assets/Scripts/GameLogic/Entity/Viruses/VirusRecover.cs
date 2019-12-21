@@ -8,8 +8,6 @@ namespace DestroyViruses
 {
     public class VirusRecover : VirusBase
     {
-        public Image circleImg;
-        public Image[] shapeImg;
         public Image[] buffs;
         public FadeGroup effectTrigger;
 
@@ -17,11 +15,6 @@ namespace DestroyViruses
         {
             base.OnColorChanged(index);
 
-            circleImg.SetSprite($"virus_shape_circle_{index}");
-            foreach (var img in shapeImg)
-            {
-                img.SetSprite($"virus_shape_recover_{index}");
-            }
             foreach (var buff in buffs)
             {
                 buff.SetSprite($"cure_buff_icon_{index}");

@@ -8,7 +8,6 @@ namespace DestroyViruses
 {
     public class VirusCure : VirusBase
     {
-        public Image[] shapes;
         public Image[] lines;
         public Image[] buffs;
 
@@ -19,10 +18,6 @@ namespace DestroyViruses
         protected override void OnColorChanged(int index)
         {
             base.OnColorChanged(index);
-            foreach (var shape in shapes)
-            {
-                shape.SetSprite($"virus_shape_cure_{index}");
-            }
             foreach (var line in lines)
             {
                 line.SetSprite($"cure_line_{index}");

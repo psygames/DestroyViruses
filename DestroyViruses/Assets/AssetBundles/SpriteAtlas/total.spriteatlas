@@ -43,8 +43,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1827d5ad581044f08b470c56b841c4ab, type: 3}
-    totalSpriteSurfaceArea: 4058193
+    totalSpriteSurfaceArea: 4059601
     bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 00000000000000000000000000000000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: b1f962806f8e58244943c667298dbec8, type: 3}
@@ -86,6 +89,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4117f8d6916344740a3a5095909d1fcd, type: 3}
   - {fileID: 21300000, guid: 18607d071361d1a4d830ef2feda90242, type: 3}
   - {fileID: 21300000, guid: b79b73175f204614eb4415c0995099f2, type: 3}
+  - {fileID: 21300000, guid: 41f8c227b61c48242b8490b3ca0c143f, type: 3}
   - {fileID: 21300000, guid: 83d0282757ae23e46a00df06a64f68c5, type: 3}
   - {fileID: 21300000, guid: c6624b476f96f7d449c5308fea1f0e7e, type: 3}
   - {fileID: 21300000, guid: 438e97573424f8a4c99ed7a463979a67, type: 3}
@@ -177,6 +181,7 @@ SpriteAtlas:
   - button_function
   - black_item_bg
   - ui_buff_fill_2
+  - icon_coin_star
   - baner_2
   - ui_icon_buff_fire_power
   - upgrade_panel_bg

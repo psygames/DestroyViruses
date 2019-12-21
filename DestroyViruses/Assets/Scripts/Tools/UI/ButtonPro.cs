@@ -42,24 +42,37 @@ namespace DestroyViruses
         }
 
         private Color mOrginColor = Color.white;
-        public void SetGrey(bool isGrey)
+        public void SetTextRed(bool isRed)
         {
             if (targetText != null)
-            {
-                targetText.color = isGrey ? UIUtil.RED_COLOR : mOrginColor;
-            }
-
-            if (targetImage != null && sGreyMat != null)
-            {
-                targetImage.material = isGrey ? sGreyMat : null;
-            }
+                targetText.color = isRed ? UIUtil.RED_COLOR : mOrginColor;
         }
 
-        public void SetData(string text, bool grey)
+        public void SetBtnGrey(bool isGrey)
+        {
+            if (targetImage != null && sGreyMat != null)
+                targetImage.material = isGrey ? sGreyMat : null;
+        }
+
+        public void SetText(string text)
         {
             if (targetText != null)
                 targetText.text = text;
-            SetGrey(grey);
+        }
+
+        public void SetData(string text, bool isBtnGrey, bool isTextRed)
+        {
+            SetText(text);
+            SetBtnGrey(isBtnGrey);
+            SetTextRed(isTextRed);
+        }
+
+        public void Set4LevelUp(float costCoin, bool isMax)
+        {
+            if (isMax) SetText(LT.table.LEVEL_MAX);
+            else SetText(costCoin.KMB());
+            SetBtnGrey(isMax || costCoin > D.I.coin);
+            SetTextRed(costCoin > D.I.coin);
         }
     }
 }

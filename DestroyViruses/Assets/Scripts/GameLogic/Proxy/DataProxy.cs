@@ -32,13 +32,13 @@ namespace DestroyViruses
 
         public int coinValueLevel { get { return localData.coinValueLevel; } }
         public float coinValue { get { return TableCoinValue.Get(coinValueLevel).value; } }
-        public float coinValueLevelUpCost { get { return TableCoinValue.Get(coinValueLevel).upcost; } }
+        public float coinValueUpCost { get { return TableCoinValue.Get(coinValueLevel).upcost; } }
         public int coinValueMaxLevel { get { return TableCoinValue.GetAll().Max(a => a.id).id; } }
         public bool isCoinValueLevelMax { get { return coinValueLevel >= coinValueMaxLevel; } }
 
         public int coinIncomeLevel { get { return localData.coinIncomeLevel; } }
         public float coinIncome { get { return TableCoinIncome.Get(coinIncomeLevel).income; } }
-        public float coinIncomeLevelUpCost { get { return TableCoinIncome.Get(coinIncomeLevel).upcost; } }
+        public float coinIncomeUpCost { get { return TableCoinIncome.Get(coinIncomeLevel).upcost; } }
         public int coinIncomeMaxLevel { get { return TableCoinIncome.GetAll().Max(a => a.id).id; } }
         public bool isCoinIncomeLevelMax { get { return coinIncomeLevel >= coinIncomeMaxLevel; } }
 
@@ -294,7 +294,7 @@ namespace DestroyViruses
                 return;
             }
 
-            var cost = coinIncomeLevelUpCost;
+            var cost = coinIncomeUpCost;
             if (coin < cost)
             {
                 DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
@@ -320,7 +320,7 @@ namespace DestroyViruses
                 return;
             }
 
-            var cost = coinValueLevelUpCost;
+            var cost = coinValueUpCost;
             if (coin < cost)
             {
                 DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");

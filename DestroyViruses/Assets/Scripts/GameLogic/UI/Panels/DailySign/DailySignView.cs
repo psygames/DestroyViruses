@@ -41,8 +41,8 @@ namespace DestroyViruses
             });
             day7.SetData(7);
 
-            receiveBtn.SetGrey(!D.I.CanDailySign());
-            receiveBtn2.SetGrey(!D.I.CanDailySign());
+            receiveBtn.SetBtnGrey(!D.I.CanDailySign());
+            receiveBtn2.SetBtnGrey(!D.I.CanDailySign());
         }
 
         private void OnClickSign()

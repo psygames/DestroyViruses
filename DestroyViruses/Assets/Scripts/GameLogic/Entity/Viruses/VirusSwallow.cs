@@ -8,9 +8,6 @@ namespace DestroyViruses
 {
     public class VirusSwallow : VirusBase
     {
-        public Image triangleImage1;
-        public Image triangleImage2;
-
         private float mCheckCD = 0;
         private float mSwallowCD = 0;
         private float mSwallowVirusSpeed = 0;
@@ -18,9 +15,6 @@ namespace DestroyViruses
         protected override void OnColorChanged(int index)
         {
             base.OnColorChanged(index);
-
-            triangleImage1.SetSprite($"virus_shape_swallow_{index}");
-            triangleImage2.SetSprite($"virus_shape_swallow_{index}");
         }
 
         protected override void OnSkillTrigger()

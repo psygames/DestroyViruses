@@ -8,7 +8,6 @@ namespace DestroyViruses
 {
     public class VirusExpand : VirusBase
     {
-        public Image triangleImage1;
         public FadeScale fadeScale;
 
         private float mEffectCD = 0;
@@ -16,8 +15,6 @@ namespace DestroyViruses
         protected override void OnColorChanged(int index)
         {
             base.OnColorChanged(index);
-
-            triangleImage1.SetSprite($"virus_shape_expand_{index}");
         }
 
         protected override void OnSkillTrigger()

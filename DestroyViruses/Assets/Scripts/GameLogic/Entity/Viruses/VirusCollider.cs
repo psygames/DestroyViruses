@@ -8,12 +8,9 @@ namespace DestroyViruses
 {
     public class VirusCollider : VirusBase
     {
-        public Image shapeImg1;
-
         protected override void OnColorChanged(int index)
         {
             base.OnColorChanged(index);
-            shapeImg1.SetSprite($"virus_shape_collider_{index}");
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
