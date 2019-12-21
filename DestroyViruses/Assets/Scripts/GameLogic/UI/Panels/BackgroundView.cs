@@ -21,13 +21,12 @@ namespace DestroyViruses
             Unibus.Subscribe<EventVirus>(OnEventVirus);
         }
 
-        Tweener shakeTweener = null;
         private void OnEventVirus(EventVirus evt)
         {
             if (evt.action == EventVirus.Action.DEAD
-                && (shakeTweener == null || !shakeTweener.IsPlaying()))
+                && TimeUtil.CheckInterval("BackgroundShake", 0.1f))
             {
-                shakeTweener = shakeRoot.DOShakeAnchorPos(0.1f, ConstTable.table.virusBombShakeScreenRate);
+                shakeRoot.DOShakeAnchorPos(0.1f, ConstTable.table.virusBombShakeScreenRate);
             }
         }
 
