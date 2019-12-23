@@ -25,9 +25,10 @@ namespace DestroyViruses
 
         static void LogCallback(string condition, string stackTrace, LogType type)
         {
-            if (type >= LogType.Log)
+            // log error or exception
+            if (type > LogType.Log)
             {
-                Analytics.Event.Log(type, condition);
+                Analytics.Event.Log(type, condition, stackTrace);
             }
         }
     }

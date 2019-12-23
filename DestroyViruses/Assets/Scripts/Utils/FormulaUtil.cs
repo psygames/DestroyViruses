@@ -176,9 +176,14 @@ namespace DestroyViruses
             return FormulaAB(firePower, tableGameLevel.firePowerLimitation, ConstTable.table.formulaArgsVirusHpFix);
         }
 
-        public static float CoinExchangeFix(int gameLevel, float coinValue)
+        public static float CoinExchangeFix(float baseCount, float coinValue)
         {
-            return FormulaAB(gameLevel, coinValue, ConstTable.table.formulaArgsCoinExchange);
+            return FormulaAB(baseCount, coinValue, ConstTable.table.formulaArgsCoinExchange);
+        }
+
+        public static float DailySignCoinFix(float baseCount, float coinValue)
+        {
+            return FormulaAB(baseCount, coinValue, ConstTable.table.formulaArgsDailySignCoin);
         }
     }
 }

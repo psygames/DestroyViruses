@@ -13,6 +13,7 @@ namespace DestroyViruses
         public Text targetText;
         public string clickEvent;
         public int clickEventID;
+        public bool downUpEvent;
 
         private static Material sGreyMat;
 
@@ -22,17 +23,51 @@ namespace DestroyViruses
                 sGreyMat = Resources.Load<Material>("Materials/UIGrey");
             if (targetText != null)
                 mOrginColor = targetText.color;
-            GetComponent<Button>().OnClick(OnClick);
+            GetComponent<Button>().onClick.AddListener(OnClick);
+            if (downUpEvent)
+            {
+                gameObject.GetOrAddComponent<UIEventListener>().onDown.AddListener(OnDown);
+                gameObject.GetOrAddComponent<UIEventListener>().onUp.AddListener(OnUp);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            GetComponent<Button>().onClick.RemoveAllListeners();
+            if (downUpEvent)
+            {
+                gameObject.GetOrAddComponent<UIEventListener>().onDown.RemoveAllListeners();
+                gameObject.GetOrAddComponent<UIEventListener>().onUp.RemoveAllListeners();
+            }
+        }
+
+        private void OnDown(Vector2 vec)
+        {
+            if (!downUpEvent)
+                return;
+            SendEvent("OnDown");
+        }
+
+        private void OnUp(Vector2 vec)
+        {
+            if (!downUpEvent)
+                return;
+            SendEvent("OnUp");
         }
 
         private void OnClick()
+        {
+            SendEvent("OnClick");
+        }
+
+        private void SendEvent(string header)
         {
             if (string.IsNullOrEmpty(clickEvent))
                 return;
             var view = GetComponentInParent<ViewBase>();
             if (view == null)
                 return;
-            var method = view.GetType().GetMethod("OnClick" + clickEvent, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            var method = view.GetType().GetMethod(header + clickEvent, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             if (method == null)
                 return;
             if (method.GetParameters().Length == 1)

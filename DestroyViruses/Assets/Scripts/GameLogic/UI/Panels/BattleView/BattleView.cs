@@ -10,7 +10,6 @@ namespace DestroyViruses
 {
     public class BattleView : ViewBase
     {
-        public UIEventListener inputListenser;
         public GameLevelPanel gameLevelPanel;
         public RectTransform coinTransform;
         public Text coinText;
@@ -20,10 +19,10 @@ namespace DestroyViruses
         public GameObject bossWaveToast;
         public FadeAlpha slowDownFade;
 
+        private bool mLastIsBattleTouchOn;
 
         private void Awake()
         {
-            InputListenerInit();
             this.BindUntilDisable<EventGameProcedure>(OnEventGameProcedure);
             this.BindUntilDisable<EventBattle>(OnEventBattle);
         }
@@ -32,37 +31,12 @@ namespace DestroyViruses
         {
             UIUtil.aircraftTransform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutQuad);
             bossWaveToast.SetActive(false);
-            GlobalData.isBattleTouchOn = false;
             slowDownFade.FadeInImmediately();
             AudioManager.Instance.PlayMusic($"Sounds/BGM{Random.Range(3, 5)}", 0.6f);
             gameLevelPanel.SetData();
-        }
-
-        private void OnDestroy()
-        {
-            inputListenser.onDown.RemoveAllListeners();
-            inputListenser.onUp.RemoveAllListeners();
-            inputListenser.onDrag.RemoveAllListeners();
-        }
-
-        private void InputListenerInit()
-        {
-            inputListenser.onDown.AddListener((data) =>
-            {
-                InputManager.Instance.Push(new InputData(InputType.Down, UIUtil.FormatToVirtual(data)));
-                GlobalData.isBattleTouchOn = true;
-                slowDownFade.FadeOut();
-            });
-            inputListenser.onUp.AddListener((data) =>
-            {
-                InputManager.Instance.Push(new InputData(InputType.Up, UIUtil.FormatToVirtual(data)));
-                GlobalData.isBattleTouchOn = false;
-                slowDownFade.FadeIn();
-            });
-            inputListenser.onDrag.AddListener((data) =>
-            {
-                InputManager.Instance.Push(new InputData(InputType.Drag, UIUtil.FormatToVirtual(data)));
-            });
+            mLastIsBattleTouchOn = GlobalData.isBattleTouchOn;
+            if(mLastIsBattleTouchOn) slowDownFade.FadeOutImmediately();
+            else slowDownFade.FadeInImmediately();
         }
 
         private void OnEventGameProcedure(EventGameProcedure procedure)
@@ -95,6 +69,13 @@ namespace DestroyViruses
             float progress = 1 - D.I.battleProgress;
             progressFill.value = progress;
             progressText.text = $"{LT.table.REMAIN_VIRUS_COUNT}{Mathf.CeilToInt(progress * 100)}%";
+
+            if (mLastIsBattleTouchOn != GlobalData.isBattleTouchOn)
+            {
+                if (GlobalData.isBattleTouchOn) slowDownFade.FadeOut();
+                else slowDownFade.FadeIn();
+                mLastIsBattleTouchOn = GlobalData.isBattleTouchOn;
+            }
         }
 
         private void ToastBossWave()

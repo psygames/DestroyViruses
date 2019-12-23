@@ -10,9 +10,6 @@ namespace DestroyViruses
 {
     public class MainView : ViewBase
     {
-        // drag listener
-        public UIEventListener inputListenser;
-
         // panels
         public GameLevelPanel gameLevelPanel;
 
@@ -24,14 +21,8 @@ namespace DestroyViruses
         public GameObject canWeaponUp;
         public GameObject canIncomeUp;
 
-        // private
-        private Vector2 mTotalDrag = Vector2.zero;
-        private float mDragBeginThreshold = 100;
-
-
         private void Awake()
         {
-            InputListenerInit();
             ButtonListenerInit();
             SetMusic();
         }
@@ -51,7 +42,6 @@ namespace DestroyViruses
 
         protected override void OnOpen()
         {
-            mTotalDrag = Vector2.zero;
             UIUtil.aircraftTransform.DOScale(Vector3.one * 1.3f, 0.5f).SetEase(Ease.OutQuad);
             RefreshUI();
             AudioManager.Instance.PlayMusic($"Sounds/BGM{Random.Range(1, 3)}", 1f);
@@ -60,23 +50,6 @@ namespace DestroyViruses
             {
                 UIManager.Instance.Open<DailySignView>(UILayer.Top);
             }
-        }
-
-        private void OnDestroy()
-        {
-            inputListenser.onDrag.RemoveAllListeners();
-        }
-
-        private void InputListenerInit()
-        {
-            inputListenser.onDrag.AddListener((data) =>
-            {
-                mTotalDrag += data;
-                if (mTotalDrag.magnitude > mDragBeginThreshold)
-                {
-                    StateManager.ChangeState<BattleState>();
-                }
-            });
         }
 
         private void ButtonListenerInit()

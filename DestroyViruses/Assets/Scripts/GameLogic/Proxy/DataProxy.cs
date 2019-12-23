@@ -41,6 +41,14 @@ namespace DestroyViruses
         public float coinIncomeUpCost { get { return TableCoinIncome.Get(coinIncomeLevel).upcost; } }
         public int coinIncomeMaxLevel { get { return TableCoinIncome.GetAll().Max(a => a.id).id; } }
         public bool isCoinIncomeLevelMax { get { return coinIncomeLevel >= coinIncomeMaxLevel; } }
+        public bool isCoinIncomePoolFull
+        {
+            get
+            {
+                var span = DateTime.Now - new DateTime(localData.lastTakeIncomeTicks);
+                return span.TotalSeconds >= ConstTable.table.coinIncomeMaxDuration;
+            }
+        }
 
         public float coinIncomeTotal
         {
@@ -52,7 +60,8 @@ namespace DestroyViruses
                     SaveLocalData();
                 }
                 var span = DateTime.Now - new DateTime(localData.lastTakeIncomeTicks);
-                return (float)(span.TotalSeconds * coinIncome);
+                var secMax = Mathf.Max(ConstTable.table.coinIncomeMaxDuration, (float)span.TotalSeconds);
+                return secMax * coinIncome;
             }
         }
 
@@ -121,9 +130,6 @@ namespace DestroyViruses
             DispatchEvent(EventGameData.Action.DataChange);
 
             Analytics.Event.Upgrade("fire_power", firePowerLevel);
-            Analytics.UserProperty.Level("fire_power", firePowerLevel);
-            Analytics.Event.Cost("coin", cost.KMB());
-            Analytics.UserProperty.Set("coin", coin.KMB());
         }
 
         public void FireSpeedUp()
@@ -147,29 +153,16 @@ namespace DestroyViruses
             DispatchEvent(EventGameData.Action.DataChange);
 
             Analytics.Event.Upgrade("fire_speed", fireSpeedLevel);
-            Analytics.UserProperty.Level("fire_speed", fireSpeedLevel);
-            Analytics.Event.Cost("coin", cost.KMB());
-            Analytics.UserProperty.Set("coin", coin.KMB());
         }
 
-        public void AddCoin(float count)
+        private void AddCoin(float count)
         {
             localData.coin += count;
-            SaveLocalData();
-            DispatchEvent(EventGameData.Action.DataChange);
-
-            Analytics.Event.Gain("coin", count.KMB());
-            Analytics.UserProperty.Set("coin", coin.KMB());
         }
 
-        public void AddDiamond(float count)
+        private void AddDiamond(float count)
         {
             localData.diamond += count;
-            SaveLocalData();
-            DispatchEvent(EventGameData.Action.DataChange);
-
-            Analytics.Event.Gain("diamond", count.KMB());
-            Analytics.UserProperty.Set("diamond", diamond.KMB());
         }
 
         public void BattleEnd(bool isWin)
@@ -195,8 +188,6 @@ namespace DestroyViruses
             }
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
-
-            Analytics.UserProperty.Set("streak", streak);
         }
 
         public void UnlockNewLevel()
@@ -208,8 +199,6 @@ namespace DestroyViruses
             localData.unlockedGameLevel += 1;
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
-
-            Analytics.UserProperty.Set("unlocked_game_level", unlockedGameLevel);
         }
 
         public void SelectGameLevel(int level)
@@ -229,8 +218,6 @@ namespace DestroyViruses
             localData.gameLevel = level;
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
-
-            Analytics.UserProperty.Set("game_level", level);
         }
 
         public void DailySign()
@@ -242,15 +229,15 @@ namespace DestroyViruses
             }
 
             var days = localData.signDays;
-            localData.signDays = days + 1;
+            localData.signDays = (days % 7) + 1;
             localData.lastSignDateTicks = DateTime.Now.Date.Ticks;
             var t = TableDailySign.Get(days);
             if (t.type == 1) AddDiamond(t.count);
-            else if (t.type == 2) AddCoin(t.count);
+            else if (t.type == 2) AddCoin(FormulaUtil.DailySignCoinFix(t.count, D.I.coinValue));
+            SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
 
             Analytics.Event.DailySign(days);
-            Analytics.UserProperty.Set("daily_sign", days);
         }
 
         public bool CanDailySign()
@@ -281,9 +268,15 @@ namespace DestroyViruses
             var gain = coinIncomeTotal;
             localData.lastTakeIncomeTicks = DateTime.Now.Ticks;
             AddCoin(gain);
+            SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
 
             Analytics.Event.CoinIncomeTake(gain.KMB());
+        }
+
+        public void GameEndReceive(float multiple)
+        {
+            AddCoin(D.I.battleGetCoin);
         }
 
         public void CoinIncomeLevelUp()
@@ -307,9 +300,6 @@ namespace DestroyViruses
             DispatchEvent(EventGameData.Action.DataChange);
 
             Analytics.Event.Upgrade("coin_income", coinIncomeLevel);
-            Analytics.UserProperty.Level("coin_income", coinIncomeLevel);
-            Analytics.Event.Cost("coin", cost.KMB());
-            Analytics.UserProperty.Set("coin", coin.KMB());
         }
 
         public void CoinValueLevelUp()
@@ -333,9 +323,21 @@ namespace DestroyViruses
             DispatchEvent(EventGameData.Action.DataChange);
 
             Analytics.Event.Upgrade("coin_value", coinIncomeLevel);
-            Analytics.UserProperty.Level("coin_value", coinIncomeLevel);
-            Analytics.Event.Cost("coin", cost.KMB());
-            Analytics.UserProperty.Set("coin", coin.KMB());
+        }
+
+        public void ExchangeCoin(float diamond)
+        {
+            if (diamond > this.diamond)
+            {
+                DispatchEvent(EventGameData.Action.Error, "钻石不足");
+                return;
+            }
+
+            localData.diamond -= diamond;
+            var addCoin = FormulaUtil.CoinExchangeFix(diamond, coinValue);
+            localData.coin += addCoin;
+
+
         }
 
         private void SaveLocalData()

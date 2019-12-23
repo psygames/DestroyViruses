@@ -113,6 +113,12 @@ namespace DestroyViruses
 		public int id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
+		/// 游戏帧数，-1表示不限制。
+		/// </summary>
+		private int _frameRate;
+		public int frameRate { get { return _frameRate; } private set { _frameRate = value; } }
+
+		/// <summary>
 		/// 病毒尺寸1~5
 		/// </summary>
 		private float[] _virusSize;
@@ -197,6 +203,24 @@ namespace DestroyViruses
 		public float coinSfxInterval { get { return _coinSfxInterval; } private set { _coinSfxInterval = value; } }
 
 		/// <summary>
+		/// 命中病毒减速系数
+		/// </summary>
+		private float _hitVirusSlowdown;
+		public float hitVirusSlowdown { get { return _hitVirusSlowdown; } private set { _hitVirusSlowdown = value; } }
+
+		/// <summary>
+		/// 命中病毒减速作用时间
+		/// </summary>
+		private float _hitVirusSlowdownCD;
+		public float hitVirusSlowdownCD { get { return _hitVirusSlowdownCD; } private set { _hitVirusSlowdownCD = value; } }
+
+		/// <summary>
+		/// 病毒爆炸震屏系数
+		/// </summary>
+		private float _virusBombShakeScreenRate;
+		public float virusBombShakeScreenRate { get { return _virusBombShakeScreenRate; } private set { _virusBombShakeScreenRate = value; } }
+
+		/// <summary>
 		/// 子弹横向距离
 		/// </summary>
 		private float _bulletHDist;
@@ -221,34 +245,10 @@ namespace DestroyViruses
 		public TRange buffSpeedRange { get { return _buffSpeedRange; } private set { _buffSpeedRange = value; } }
 
 		/// <summary>
-		/// 游戏帧数，-1表示不限制。
-		/// </summary>
-		private int _frameRate;
-		public int frameRate { get { return _frameRate; } private set { _frameRate = value; } }
-
-		/// <summary>
-		/// 命中病毒减速系数
-		/// </summary>
-		private float _hitVirusSlowdown;
-		public float hitVirusSlowdown { get { return _hitVirusSlowdown; } private set { _hitVirusSlowdown = value; } }
-
-		/// <summary>
-		/// 命中病毒减速作用时间
-		/// </summary>
-		private float _hitVirusSlowdownCD;
-		public float hitVirusSlowdownCD { get { return _hitVirusSlowdownCD; } private set { _hitVirusSlowdownCD = value; } }
-
-		/// <summary>
 		/// buff产生时方向范围(以下方向为0)
 		/// </summary>
 		private TRange _buffSpawnDirection;
 		public TRange buffSpawnDirection { get { return _buffSpawnDirection; } private set { _buffSpawnDirection = value; } }
-
-		/// <summary>
-		/// 病毒爆炸震屏系数
-		/// </summary>
-		private float _virusBombShakeScreenRate;
-		public float virusBombShakeScreenRate { get { return _virusBombShakeScreenRate; } private set { _virusBombShakeScreenRate = value; } }
 
 		/// <summary>
 		/// 复活倒计时
@@ -263,6 +263,18 @@ namespace DestroyViruses
 		public float reviveInvincibleCD { get { return _reviveInvincibleCD; } private set { _reviveInvincibleCD = value; } }
 
 		/// <summary>
+		/// 金币收益刷新CD
+		/// </summary>
+		private float _coinIncomeRefreshCD;
+		public float coinIncomeRefreshCD { get { return _coinIncomeRefreshCD; } private set { _coinIncomeRefreshCD = value; } }
+
+		/// <summary>
+		/// 金币收益最长间隔时间
+		/// </summary>
+		private float _coinIncomeMaxDuration;
+		public float coinIncomeMaxDuration { get { return _coinIncomeMaxDuration; } private set { _coinIncomeMaxDuration = value; } }
+
+		/// <summary>
 		/// 病毒血量受关卡、火力值影响数值
 		/// </summary>
 		private float[] _formulaArgsVirusHpFix;
@@ -275,16 +287,16 @@ namespace DestroyViruses
 		public float[] formulaArgsVirusSpawnCountFix { get { return _formulaArgsVirusSpawnCountFix; } private set { _formulaArgsVirusSpawnCountFix = value; } }
 
 		/// <summary>
-		/// 金币受已解锁关卡，金币价值影响数值
+		/// 兑换金币受已解锁关卡，金币价值影响数值
 		/// </summary>
 		private float[] _formulaArgsCoinExchange;
 		public float[] formulaArgsCoinExchange { get { return _formulaArgsCoinExchange; } private set { _formulaArgsCoinExchange = value; } }
 
 		/// <summary>
-		/// 金币收益刷新CD
+		/// 签到金币奖励受关卡，金币价值影响
 		/// </summary>
-		private float _coinIncomeRefreshCD;
-		public float coinIncomeRefreshCD { get { return _coinIncomeRefreshCD; } private set { _coinIncomeRefreshCD = value; } }
+		private float[] _formulaArgsDailySignCoin;
+		public float[] formulaArgsDailySignCoin { get { return _formulaArgsDailySignCoin; } private set { _formulaArgsDailySignCoin = value; } }
 
 
 		public static TableConst Get(int id)

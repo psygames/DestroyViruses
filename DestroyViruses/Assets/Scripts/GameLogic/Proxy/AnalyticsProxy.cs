@@ -119,11 +119,13 @@ namespace DestroyViruses
             FirebaseAnalytics.LogEvent(name, parameterName, parameterValue);
         }
 
-        public void LogEvent4Log(string name, string message)
+        public void LogEvent4Log(string name, string message, string stackTrack)
         {
             if (!isInit)
                 return;
-            FirebaseAnalytics.LogEvent(name, "message", message);
+            FirebaseAnalytics.LogEvent(name,
+                new Parameter("message", message),
+                new Parameter("stack_track", stackTrack));
         }
 
         public void LogEvent(string name, params Parameter[] parameters)
@@ -190,31 +192,15 @@ namespace DestroyViruses
 
             public static void GameBegin(int level)
             {
-                proxy.LogEvent(FirebaseAnalytics.EventLevelStart, FirebaseAnalytics.ParameterLevel, level);
+                proxy.LogEvent(FirebaseAnalytics.EventLevelStart, "game_level", level);
             }
 
             public static void GameEnd(int level, bool finish, float progress)
             {
                 proxy.LogEvent(FirebaseAnalytics.EventLevelEnd,
-                    new Parameter(FirebaseAnalytics.ParameterLevel, level),
+                    new Parameter("game_level", level),
                     new Parameter("finish", finish ? 1 : 0),
                     new Parameter("progress", progress)
-                    );
-            }
-
-            public static void Gain(string name, string quantity)
-            {
-                proxy.LogEvent("gain",
-                    new Parameter("name", name),
-                    new Parameter(FirebaseAnalytics.ParameterQuantity, quantity)
-                    );
-            }
-
-            public static void Cost(string name, string quantity)
-            {
-                proxy.LogEvent("cost",
-                    new Parameter("name", name),
-                    new Parameter(FirebaseAnalytics.ParameterQuantity, quantity)
                     );
             }
 
@@ -248,19 +234,19 @@ namespace DestroyViruses
             }
 
             private static Dictionary<string, float> s_errorLogTimeDic = new Dictionary<string, float>();
-            private static float s_errorLogRepeatedInterval = 10;
-            public static void Log(LogType type, string errorMsg)
+            private static float s_errorLogRepeatedInterval = 3600;
+            public static void Log(LogType type, string message, string stackTrack)
             {
                 if (type == LogType.Error || type == LogType.Exception)
                 {
-                    s_errorLogTimeDic.TryGetValue(errorMsg, out float _time);
+                    s_errorLogTimeDic.TryGetValue(message, out float _time);
                     if (Time.time - _time < s_errorLogRepeatedInterval)
                         return;
-                    s_errorLogTimeDic[errorMsg] = Time.time;
+                    s_errorLogTimeDic[message] = Time.time;
                 }
 
                 var name = "log_" + type.ToString().ToLower();
-                proxy.LogEvent4Log(name, errorMsg);
+                proxy.LogEvent4Log(name, message, stackTrack);
             }
         }
     }

@@ -606,12 +606,34 @@ public class TableToolEditorWindow : EditorWindow
         var files = Directory.GetFiles(settings.excelFolderPath)
             .Where(a =>
             {
-                return !Path.GetFileName(a).StartsWith(".~", StringComparison.Ordinal)
-                      && (a.EndsWith(".xls", StringComparison.Ordinal)
-                      || a.EndsWith(".xlsx", StringComparison.Ordinal));
+                var fileName = Path.GetFileNameWithoutExtension(a);
+                var ext = Path.GetExtension(a);
+                return IsValidClassName(fileName) && (ext == ".xlsx" || ext == ".xls");
             })
             .ToList();
         return files;
+    }
+
+    static bool IsValidClassName(string val)
+    {
+        if (string.IsNullOrEmpty(val))
+            return false;
+        var index = 0;
+        foreach (var c in val)
+        {
+            if (index == 0)
+            {
+                if (!(c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z' || c == '_'))
+                    return false;
+            }
+            else
+            {
+                if (!(c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z' || c == '_' || c >= '0' && c <= '9'))
+                    return false;
+            }
+            index++;
+        }
+        return true;
     }
 
 

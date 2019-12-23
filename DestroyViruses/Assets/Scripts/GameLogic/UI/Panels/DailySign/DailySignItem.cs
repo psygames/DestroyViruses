@@ -17,9 +17,12 @@ namespace DestroyViruses
         public void SetData(int days)
         {
             var t = TableDailySign.Get(days);
-            title.text = LT.Get(t?.nameID);
-            image.SetSprite(t?.icon);
-            count.text = "x" + t?.count;
+            title.text = LT.Get(t.nameID);
+            image.SetSprite(t.icon);
+            if (t.type == 0)
+                count.text = "x" + FormulaUtil.DailySignCoinFix(t.count, D.I.coinValue);
+            else if (t.type == 1)
+                count.text = "x" + t.count;
             if (days == D.I.signDays)
             {
                 if (D.I.CanDailySign()) stateRadio.Radio(1);
