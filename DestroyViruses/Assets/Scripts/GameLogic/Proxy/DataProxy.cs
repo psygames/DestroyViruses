@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Data;
 
 namespace DestroyViruses
 {
@@ -103,8 +104,8 @@ namespace DestroyViruses
             Analytics.UserProperty.Set("diamond", diamond.KMB());
             Analytics.UserProperty.Set("game_level", gameLevel);
             Analytics.UserProperty.Set("unlocked_game_level", unlockedGameLevel);
-            Analytics.UserProperty.Level("fire_power", firePowerLevel);
-            Analytics.UserProperty.Level("fire_speed", fireSpeedLevel);
+            Analytics.UserProperty.Set("fire_power_level", firePowerLevel);
+            Analytics.UserProperty.Set("fire_speed_level", fireSpeedLevel);
             Analytics.UserProperty.Set("streak", streak);
             Analytics.UserProperty.Set("daily_sign", signDays);
         }
@@ -220,7 +221,7 @@ namespace DestroyViruses
             DispatchEvent(EventGameData.Action.DataChange);
         }
 
-        public void DailySign()
+        public void DailySign(float multiple)
         {
             if (!CanDailySign())
             {
@@ -233,11 +234,11 @@ namespace DestroyViruses
             localData.lastSignDateTicks = DateTime.Now.Date.Ticks;
             var t = TableDailySign.Get(days);
             if (t.type == 1) AddDiamond(t.count);
-            else if (t.type == 2) AddCoin(FormulaUtil.DailySignCoinFix(t.count, D.I.coinValue));
+            else if (t.type == 2) AddCoin(t.count * multiple * FormulaUtil.Expresso(ConstTable.table.formulaArgsDailySignCoin));
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
 
-            Analytics.Event.DailySign(days);
+            Analytics.Event.DailySign(days, multiple);
         }
 
         public bool CanDailySign()
@@ -271,7 +272,7 @@ namespace DestroyViruses
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
 
-            Analytics.Event.CoinIncomeTake(gain.KMB());
+            Analytics.Event.CoinIncomeTake(gain);
         }
 
         public void GameEndReceive(float multiple)
@@ -334,10 +335,13 @@ namespace DestroyViruses
             }
 
             localData.diamond -= diamond;
-            var addCoin = FormulaUtil.CoinExchangeFix(diamond, coinValue);
+            var addCoin = diamond * FormulaUtil.Expresso(ConstTable.table.formulaArgsCoinExchange);
             localData.coin += addCoin;
 
+            SaveLocalData();
+            DispatchEvent(EventGameData.Action.DataChange);
 
+            Analytics.Event.Exchange(diamond, addCoin);
         }
 
         private void SaveLocalData()

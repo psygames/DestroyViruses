@@ -21,7 +21,7 @@ namespace DestroyViruses
             base.OnInit();
 
             mTableGameLevel = TableGameLevel.Get(D.I.gameLevel);
-            mSpawnCountFix = FormulaUtil.VirusSpawnCountFix(D.I.gameLevel, D.I.firePower);
+            mSpawnCountFix = FormulaUtil.Expresso(ConstTable.table.formulaArgsVirusSpawnCount);
 
             mWaveModule.Init();
             mBuffGenModule.Init();

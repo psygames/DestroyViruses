@@ -166,11 +166,6 @@ namespace DestroyViruses
             {
                 proxy.SetUserProperty(name, value);
             }
-
-            public static void Level(string name, int level)
-            {
-                proxy.SetUserProperty(name + "_level", level);
-            }
         }
 
         public static class Event
@@ -212,17 +207,18 @@ namespace DestroyViruses
                     );
             }
 
-            public static void DailySign(int days)
+            public static void DailySign(int days,float multiple)
             {
                 proxy.LogEvent("daily_sign",
-                    new Parameter("days", days)
+                    new Parameter("days", days),
+                    new Parameter("multiple", multiple)
                     );
             }
 
-            public static void CoinIncomeTake(string quantity)
+            public static void CoinIncomeTake(float quantity)
             {
                 proxy.LogEvent("coin_income_take",
-                    new Parameter(FirebaseAnalytics.ParameterQuantity, quantity)
+                    new Parameter(FirebaseAnalytics.ParameterQuantity, quantity.KMB())
                     );
             }
 
@@ -230,6 +226,14 @@ namespace DestroyViruses
             {
                 proxy.LogEvent("unlock_virus",
                     new Parameter("virus_id", virusID)
+                    );
+            }
+
+            public static void Exchange(float diamond, float coin)
+            {
+                proxy.LogEvent("coin_exchange",
+                    new Parameter("diamond", diamond.KMB()),
+                    new Parameter("coin", coin.KMB())
                     );
             }
 

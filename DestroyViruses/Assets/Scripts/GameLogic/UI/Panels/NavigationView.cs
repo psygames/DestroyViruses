@@ -53,11 +53,21 @@ namespace DestroyViruses
             }
         }
 
+        private void OnClickAddCoin()
+        {
+            UIManager.Instance.Open<ExchangeView>();
+        }
+
+        private void OnClickAddDiamond()
+        {
+            UIManager.Instance.Open<CoinView>();
+        }
+
         private void RefreshUI()
         {
             coinText.text = D.I.coin.KMB();
             energyText.text = "100";
-            diamondText.text = "0";
+            diamondText.text = D.I.diamond.KMB();
         }
 
         public static void BlackSetting(bool isOn)

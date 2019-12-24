@@ -122,8 +122,8 @@ namespace DestroyViruses
             }
             else
             {
-                mHpFixFactor = FormulaUtil.VirusHpFix(tableGameLevel.id, mFirePower);
-                mSpawnCountFixFactor = FormulaUtil.VirusSpawnCountFix(tableGameLevel.id, mFirePower);
+                mHpFixFactor = FormulaUtil.Expresso(ConstTable.table.formulaArgsVirusHp);
+                mSpawnCountFixFactor = FormulaUtil.Expresso(ConstTable.table.formulaArgsVirusSpawnCount);
                 mSpeedFixFactor = 1;
             }
         }

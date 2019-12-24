@@ -19,7 +19,7 @@ namespace DestroyViruses
         public Text gainText;
 
         private float mCurrent;
-        
+
         protected override void OnOpen()
         {
             mCurrent = 0;
@@ -29,44 +29,40 @@ namespace DestroyViruses
         private void Refresh()
         {
             costText.text = mCurrent.KMB();
-            var _cur = Mathf.Max(mCurrent, 1);
-            gainText.text = FormulaUtil.CoinExchangeFix(_cur, D.I.coinValue).KMB();
+            gainText.text = (mCurrent * FormulaUtil.Expresso(ConstTable.table.formulaArgsCoinExchange)).KMB();
 
-            if (_cur <= 1)
-            {
-                subBtn.SetBtnGrey(true);
-            }
-            if (mCurrent >= D.I.diamond)
-            {
-                addBtn.SetBtnGrey(true);
-            }
+            subBtn.SetBtnGrey(mCurrent <= 0);
+            addBtn.SetBtnGrey(mCurrent >= D.I.diamond);
 
-            exchangeBtn.SetBtnGrey(mCurrent <= 0 || mCurrent >= D.I.diamond);
+            exchangeBtn.SetBtnGrey(mCurrent <= 0);
         }
 
-        private void OnDownAdd()
+        private void OnClickAdd()
         {
-
+            mCurrent = Mathf.Min(D.I.diamond, mCurrent + Mathf.Max(1, D.I.diamond * 0.1f));
+            Refresh();
         }
 
-        private void OnUpAdd()
+        private void OnClickSub()
         {
-
-        }
-
-        private void OnDownSub()
-        {
-
-        }
-
-        private void OnUpSub()
-        {
-
+            mCurrent = Mathf.Max(0, mCurrent - Mathf.Max(1, D.I.diamond * 0.1f));
+            Refresh();
         }
 
         private void OnClickExchange()
         {
-
+            if (mCurrent > 0)
+            {
+                D.I.ExchangeCoin(mCurrent);
+                mCurrent = 0;
+                Refresh();
+                Coin.CreateGroup(UIUtil.center, UIUtil.COIN_POS, 10);
+                Close();
+            }
+            else
+            {
+                Toast.Show("钻石不足兑换");
+            }
         }
     }
 }

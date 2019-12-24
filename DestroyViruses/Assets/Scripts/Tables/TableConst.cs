@@ -275,28 +275,28 @@ namespace DestroyViruses
 		public float coinIncomeMaxDuration { get { return _coinIncomeMaxDuration; } private set { _coinIncomeMaxDuration = value; } }
 
 		/// <summary>
-		/// 病毒血量受关卡、火力值影响数值
+		/// 病毒血量受关卡火力值影响数值
 		/// </summary>
-		private float[] _formulaArgsVirusHpFix;
-		public float[] formulaArgsVirusHpFix { get { return _formulaArgsVirusHpFix; } private set { _formulaArgsVirusHpFix = value; } }
+		private string _formulaArgsVirusHp;
+		public string formulaArgsVirusHp { get { return _formulaArgsVirusHp; } private set { _formulaArgsVirusHp = value; } }
 
 		/// <summary>
-		/// 病毒产生数量受关卡、火力值影响数值
+		/// 病毒产生数量受关卡火力值影响数值
 		/// </summary>
-		private float[] _formulaArgsVirusSpawnCountFix;
-		public float[] formulaArgsVirusSpawnCountFix { get { return _formulaArgsVirusSpawnCountFix; } private set { _formulaArgsVirusSpawnCountFix = value; } }
+		private string _formulaArgsVirusSpawnCount;
+		public string formulaArgsVirusSpawnCount { get { return _formulaArgsVirusSpawnCount; } private set { _formulaArgsVirusSpawnCount = value; } }
 
 		/// <summary>
-		/// 兑换金币受已解锁关卡，金币价值影响数值
+		/// 兑换金币受金币价值影响数值
 		/// </summary>
-		private float[] _formulaArgsCoinExchange;
-		public float[] formulaArgsCoinExchange { get { return _formulaArgsCoinExchange; } private set { _formulaArgsCoinExchange = value; } }
+		private string _formulaArgsCoinExchange;
+		public string formulaArgsCoinExchange { get { return _formulaArgsCoinExchange; } private set { _formulaArgsCoinExchange = value; } }
 
 		/// <summary>
-		/// 签到金币奖励受关卡，金币价值影响
+		/// 签到金币受金币价值影响
 		/// </summary>
-		private float[] _formulaArgsDailySignCoin;
-		public float[] formulaArgsDailySignCoin { get { return _formulaArgsDailySignCoin; } private set { _formulaArgsDailySignCoin = value; } }
+		private string _formulaArgsDailySignCoin;
+		public string formulaArgsDailySignCoin { get { return _formulaArgsDailySignCoin; } private set { _formulaArgsDailySignCoin = value; } }
 
 
 		public static TableConst Get(int id)

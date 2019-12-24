@@ -91,99 +91,50 @@ namespace DestroyViruses
             return index;
         }
 
-        // clamp(pow( pow(a*f1,f6) + pow(b*f2,f7), f3),f4,f5)
-        private static float FormulaAB_Add(float a, float b, float[] args)
+        public static float Expresso(string expression, params float[] parameters)
         {
-            var fn = args.Length - 1;
-            if (fn < 2)
-                return a + b;
-            if (fn < 3)
-                return (a * args[1]) + (b * args[2]);
-            if (fn < 5)
-                return Mathf.Pow((a * args[1]) + (b * args[2]), args[3]);
-            if (fn < 7)
-                return Mathf.Clamp(Mathf.Pow((a * args[1]) + (b * args[2]), args[3]), args[4], args[5]);
-            return Mathf.Clamp(Mathf.Pow(Mathf.Pow(a * args[1], args[6]) + Mathf.Pow(b * args[2], args[7]), args[3]), args[4], args[5]);
-        }
+            System.Func<float, float> abs = (x) => Mathf.Abs(x);
+            System.Func<float, float> sqrt = (x) => Mathf.Sqrt(x);
+            System.Func<float, float> ceil = (x) => Mathf.Ceil(x);
+            System.Func<float, float> floor = (x) => Mathf.Floor(x);
+            System.Func<float, float> round = (x) => Mathf.Round(x);
+            System.Func<float, float, float> pow = (x, y) => Mathf.Pow(x, y);
+            System.Func<float, float, float> min = (x, y) => Mathf.Min(x, y);
+            System.Func<float, float, float> max = (x, y) => Mathf.Max(x, y);
+            System.Func<float, float, float, float> clamp = (a, x, y) => Mathf.Clamp(a, x, y);
+            DynamicExpresso.Interpreter interpreter = new DynamicExpresso.Interpreter();
 
-        // clamp(pow( pow(a*f1,f6) - pow(b*f2,f7), f3),f4,f5)
-        private static float FormulaAB_Subtract(float a, float b, float[] args)
-        {
-            var fn = args.Length - 1;
-            if (fn < 2)
-                return a - b;
-            if (fn < 3)
-                return (a * args[1]) - (b * args[2]);
-            if (fn < 5)
-                return Mathf.Pow((a * args[1]) - (b * args[2]), args[3]);
-            if (fn < 7)
-                return Mathf.Clamp(Mathf.Pow((a * args[1]) - (b * args[2]), args[3]), args[4], args[5]);
-            return Mathf.Clamp(Mathf.Pow(Mathf.Pow(a * args[1], args[6]) - Mathf.Pow(b * args[2], args[7]), args[3]), args[4], args[5]);
-        }
+            interpreter.SetFunction("abs", abs);
+            interpreter.SetFunction("sqrt", sqrt);
+            interpreter.SetFunction("ceil", ceil);
+            interpreter.SetFunction("floor", floor);
+            interpreter.SetFunction("round", round);
+            interpreter.SetFunction("pow", pow);
+            interpreter.SetFunction("min", min);
+            interpreter.SetFunction("max", max);
+            interpreter.SetFunction("clamp", clamp);
 
-        // clamp(pow( pow(a+f1,f6) * pow(b+f2,f7), f3), f4, f5)
-        private static float FormulaAB_Multiply(float a, float b, float[] args)
-        {
-            var fn = args.Length - 1;
-            if (fn < 2)
-                return a * b;
-            if (fn < 3)
-                return (a + args[1]) * (b + args[2]);
-            if (fn < 5)
-                return Mathf.Pow((a + args[1]) * (b + args[2]), args[3]);
-            if (fn < 7)
-                return Mathf.Clamp(Mathf.Pow((a + args[1]) * (b + args[2]), args[3]), args[4], args[5]);
-            return Mathf.Clamp(Mathf.Pow(Mathf.Pow(a + args[1], args[6]) * Mathf.Pow(b + args[2], args[7]), args[3]), args[4], args[5]);
-        }
-
-        // clamp(pow( pow(a+f1,f6) / pow(b+f2,f7), f3), f4, f5)
-        private static float FormulaAB_Divide(float a, float b, float[] args)
-        {
-            var fn = args.Length - 1;
-            if (fn < 2)
-                return a / b;
-            if (fn < 3)
-                return (a + args[1]) / (b + args[2]);
-            if (fn < 5)
-                return Mathf.Pow((a + args[1]) / (b + args[2]), args[3]);
-            if (fn < 7)
-                return Mathf.Clamp(Mathf.Pow((a + args[1]) / (b + args[2]), args[3]), args[4], args[5]);
-            return Mathf.Clamp(Mathf.Pow(Mathf.Pow(a + args[1], args[6]) / Mathf.Pow(b + args[2], args[7]), args[3]), args[4], args[5]);
-        }
-
-        public static float FormulaAB(float a, float b, float[] args = null)
-        {
-            if (Mathf.Approximately(args[0], 0))
-                return FormulaAB_Add(a, b, args);
-            if (Mathf.Approximately(args[0], 1))
-                return FormulaAB_Subtract(a, b, args);
-            if (Mathf.Approximately(args[0], 2))
-                return FormulaAB_Multiply(a, b, args);
-            if (Mathf.Approximately(args[0], 3))
-                return FormulaAB_Divide(a, b, args);
-            throw new System.ArgumentException("数值运算方式错误！");
-        }
-
-        public static float VirusSpawnCountFix(int gameLevel, float firePower)
-        {
-            var tableGameLevel = TableGameLevel.Get(gameLevel);
-            return FormulaAB(firePower, tableGameLevel.firePowerLimitation, ConstTable.table.formulaArgsVirusSpawnCountFix);
-        }
-
-        public static float VirusHpFix(int gameLevel, float firePower)
-        {
-            var tableGameLevel = TableGameLevel.Get(gameLevel);
-            return FormulaAB(firePower, tableGameLevel.firePowerLimitation, ConstTable.table.formulaArgsVirusHpFix);
-        }
-
-        public static float CoinExchangeFix(float baseCount, float coinValue)
-        {
-            return FormulaAB(baseCount, coinValue, ConstTable.table.formulaArgsCoinExchange);
-        }
-
-        public static float DailySignCoinFix(float baseCount, float coinValue)
-        {
-            return FormulaAB(baseCount, coinValue, ConstTable.table.formulaArgsDailySignCoin);
+            var pms = new List<DynamicExpresso.Parameter>();
+            pms.Add(new DynamicExpresso.Parameter("fp", D.I.firePower));
+            pms.Add(new DynamicExpresso.Parameter("fs", D.I.fireSpeed));
+            pms.Add(new DynamicExpresso.Parameter("cv", D.I.coinValue));
+            pms.Add(new DynamicExpresso.Parameter("ci", D.I.coinIncome));
+            pms.Add(new DynamicExpresso.Parameter("gl", D.I.gameLevel));
+            pms.Add(new DynamicExpresso.Parameter("fpl", TableGameLevel.Get(D.I.gameLevel).firePowerLimitation));
+            pms.Add(new DynamicExpresso.Parameter("ugl", D.I.unlockedGameLevel));
+            pms.Add(new DynamicExpresso.Parameter("sk", D.I.streak));
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                pms.Add(new DynamicExpresso.Parameter($"a{i}", parameters[i]));
+            }
+            var obj = interpreter.Eval(expression, pms.ToArray());
+            if (obj is int)
+                return (int)obj;
+            if (obj is double)
+                return (float)(double)obj;
+            if (obj is float)
+                return (float)obj;
+            throw new System.Exception($"Error Return Value type {obj.GetType()}");
         }
     }
 }

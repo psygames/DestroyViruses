@@ -130,18 +130,6 @@ namespace DestroyViruses
 		private string _type;
 		public string type { get { return _type; } private set { _type = value; } }
 
-		/// <summary>
-		/// 
-		/// </summary>
-		private string _effect;
-		public string effect { get { return _effect; } private set { _effect = value; } }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		private int _effectValue;
-		public int effectValue { get { return _effectValue; } private set { _effectValue = value; } }
-
 
 		public static TableAds Get(string id)
 		{

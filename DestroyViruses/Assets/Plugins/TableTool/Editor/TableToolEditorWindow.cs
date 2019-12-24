@@ -459,6 +459,11 @@ public class TableToolEditorWindow : EditorWindow
         return p.name == "" || p.type == "";
     }
 
+    private bool IsIgnoreRow(List<string> row)
+    {
+        return row.Count <= 0 || string.IsNullOrEmpty(row[0]);
+    }
+
     private void GenerateAssetFile(string excelPath)
     {
         // 第一行属性名
@@ -482,6 +487,8 @@ public class TableToolEditorWindow : EditorWindow
             {
                 _headRowColumnCount = row.Count;
             }
+            if (_row >= 3 && IsIgnoreRow(row))
+                continue;
 
             int _column = 0;
             object data = null;
@@ -506,7 +513,7 @@ public class TableToolEditorWindow : EditorWindow
                 {
                     properties[_column].type = item;
                 }
-                else if (_row >= 3 && !IsIgnoreColumn(properties[_column]) && row[0] != "")
+                else if (_row >= 3 && !IsIgnoreColumn(properties[_column]))
                 {
                     try
                     {
