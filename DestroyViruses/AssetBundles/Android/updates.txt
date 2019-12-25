@@ -132,3 +132,5 @@ tables/tablegamewave
 tables/tableweapon
 tables/tableweaponpowerlevel
 tables/tableweaponspeedlevel
+132217198514868230:
+tables/tableconst

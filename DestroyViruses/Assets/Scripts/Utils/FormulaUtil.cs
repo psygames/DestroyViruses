@@ -102,8 +102,8 @@ namespace DestroyViruses
             System.Func<float, float, float> min = (x, y) => Mathf.Min(x, y);
             System.Func<float, float, float> max = (x, y) => Mathf.Max(x, y);
             System.Func<float, float, float, float> clamp = (a, x, y) => Mathf.Clamp(a, x, y);
-            DynamicExpresso.Interpreter interpreter = new DynamicExpresso.Interpreter();
 
+            /*
             interpreter.SetFunction("abs", abs);
             interpreter.SetFunction("sqrt", sqrt);
             interpreter.SetFunction("ceil", ceil);
@@ -113,28 +113,25 @@ namespace DestroyViruses
             interpreter.SetFunction("min", min);
             interpreter.SetFunction("max", max);
             interpreter.SetFunction("clamp", clamp);
+            */
 
-            var pms = new List<DynamicExpresso.Parameter>();
-            pms.Add(new DynamicExpresso.Parameter("fp", D.I.firePower));
-            pms.Add(new DynamicExpresso.Parameter("fs", D.I.fireSpeed));
-            pms.Add(new DynamicExpresso.Parameter("cv", D.I.coinValue));
-            pms.Add(new DynamicExpresso.Parameter("ci", D.I.coinIncome));
-            pms.Add(new DynamicExpresso.Parameter("gl", D.I.gameLevel));
-            pms.Add(new DynamicExpresso.Parameter("fpl", TableGameLevel.Get(D.I.gameLevel).firePowerLimitation));
-            pms.Add(new DynamicExpresso.Parameter("ugl", D.I.unlockedGameLevel));
-            pms.Add(new DynamicExpresso.Parameter("sk", D.I.streak));
-            for (int i = 0; i < parameters.Length; i++)
+            Dictionary<string, float> args = new Dictionary<string, float>()
             {
-                pms.Add(new DynamicExpresso.Parameter($"a{i}", parameters[i]));
+                { "fp", D.I.firePower},
+                { "cv", D.I.coinValue},
+                { "ci", D.I.coinIncome},
+                { "gl", D.I.gameLevel},
+                { "fpl", TableGameLevel.Get(D.I.gameLevel).firePowerLimitation},
+                { "ugl", D.I.unlockedGameLevel},
+                { "sk", D.I.streak},
+            };
+
+            foreach (var kv in args)
+            {
+                expression = expression.Replace(kv.Key, kv.Value.ToString());
             }
-            var obj = interpreter.Eval(expression, pms.ToArray());
-            if (obj is int)
-                return (int)obj;
-            if (obj is double)
-                return (float)(double)obj;
-            if (obj is float)
-                return (float)obj;
-            throw new System.Exception($"Error Return Value type {obj.GetType()}");
+
+            return MtC.Tools.Evaluate.Evaluate.Eval(expression);
         }
     }
 }
