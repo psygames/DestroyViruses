@@ -119,3 +119,16 @@ tables/tablegamewave
 tables/tablelanguage
 132213130585931340:
 prefabs
+132217140054758150:
+manifest
+prefabs
+spriteatlas/total
+tables/tableads
+tables/tablebuffautogen
+tables/tablebuffkillgen
+tables/tableconst
+tables/tablegamelevel
+tables/tablegamewave
+tables/tableweapon
+tables/tableweaponpowerlevel
+tables/tableweaponspeedlevel

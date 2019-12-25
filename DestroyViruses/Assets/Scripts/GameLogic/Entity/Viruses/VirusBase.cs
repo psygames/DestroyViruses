@@ -171,8 +171,7 @@ namespace DestroyViruses
 
         private void PlayDead()
         {
-            var index = Random.Range(0, 4);
-            ExplosionVirus.Create().Reset(rectTransform.anchoredPosition, index + 1, scale);
+            ExplosionVirus.Create().Reset(rectTransform.anchoredPosition, table.id, scale);
         }
 
         private void GenBuff()

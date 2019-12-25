@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1229419252
+CRC: 3388818686
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7a72799400c517039429fdc304d7affe
+    Hash: 3ba843ca94efb9696ac43ec051c7ded1
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 8da8e4f72a5768695266a6099f0c509f
+    Hash: 12927bcbef09f147073c0d18d28bb50e
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -91,8 +91,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: ff55f0761076f564790db55d30fc4879, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 478f79d64d1455243b83b7defef2cbd4, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: b62eb50825e7a1846ad2b257a6948792, type: 3}
 - Class: 114
@@ -179,15 +177,27 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 3765ded9429bb504f94b12a84b2cf7fb, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: cabe3eab376681f4c80ab6bcc15b875d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4dbeb113e8e0b4770976a77961979827, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a9159b55254cc41e882bdc403359d777, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c86dd71d392cb894886b9153653359c1, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
   Script: {instanceID: 0}
 - Class: 137
   Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 - Class: 222
+  Script: {instanceID: 0}
+- Class: 223
   Script: {instanceID: 0}
 - Class: 224
   Script: {instanceID: 0}
@@ -220,7 +230,6 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/ExplosionCrash.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDart.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDefense.prefab
-- Assets/AssetBundles/Prefabs/Entities/Items/fire_1.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandTexture.png
 - Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandAnimation_Hurt.anim
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderRaw.FBX
@@ -243,6 +252,7 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowRaw.FBX
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureTexture.png
 - Assets/AssetBundles/Prefabs/UI/View/ToastView.prefab
+- Assets/AssetBundles/Prefabs/UI/View/ExchangeView.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureAnimation_Idle.anim
 - Assets/AssetBundles/Prefabs/UI/View/CoinView.prefab
 - Assets/AssetBundles/Prefabs/Entities/ExplosionBullet.prefab

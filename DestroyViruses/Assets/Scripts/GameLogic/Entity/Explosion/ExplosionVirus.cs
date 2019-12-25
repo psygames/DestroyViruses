@@ -11,20 +11,18 @@ namespace DestroyViruses
     {
         public ParticleSystem[] particles;
 
-        private void Awake()
-        {
-            foreach (var p in particles)
-            {
-                p.Stop(true);
-            }
-        }
-
         public void Reset(Vector2 pos, int type, float scale)
         {
             rectTransform.anchoredPosition = pos;
             rectTransform.localScale = Vector3.one * scale * 0.3f;
             rectTransform.DOScale(scale, 0.3f).SetEase(Ease.OutSine);
-            particles[Random.Range(0, particles.Length)].Play(true);
+
+            var index = Random.Range(0, particles.Length);
+            for (int i = 0; i < particles.Length; i++)
+            {
+                //TODO: set active
+                //particles[i].gameObject.SetActive(i == index);
+            }
 
             if (TimeUtil.CheckInterval("ExplosionSfx", ConstTable.table.explosionSfxInterval))
             {

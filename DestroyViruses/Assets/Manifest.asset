@@ -17,10 +17,7 @@ MonoBehaviour:
   bundles:
   - manifest
   - prefabs
-  - spriteatlas/common
-  - spriteatlas/sundry
   - spriteatlas/total
-  - spriteatlas/virus
   - tables/tableads
   - tables/tableaircraft
   - tables/tablebuff
@@ -36,6 +33,9 @@ MonoBehaviour:
   - tables/tablegamewave
   - tables/tablelanguage
   - tables/tablevirus
+  - tables/tableweapon
+  - tables/tableweaponpowerlevel
+  - tables/tableweaponspeedlevel
   dirs:
   - Assets
   - Assets/AssetBundles/Prefabs/Entities
@@ -76,9 +76,6 @@ MonoBehaviour:
   - bundle: 1
     dir: 1
     name: ExplosionVirus.prefab
-  - bundle: 1
-    dir: 2
-    name: fire_1.prefab
   - bundle: 1
     dir: 2
     name: plane_1.prefab
@@ -252,6 +249,9 @@ MonoBehaviour:
     name: DebugView.prefab
   - bundle: 1
     dir: 8
+    name: ExchangeView.prefab
+  - bundle: 1
+    dir: 8
     name: GameEndView.prefab
   - bundle: 1
     dir: 8
@@ -273,58 +273,58 @@ MonoBehaviour:
     name: UpgradeView.prefab
   - bundle: 2
     dir: 9
-    name: common.spriteatlas
-  - bundle: 3
-    dir: 9
-    name: sundry.spriteatlas
-  - bundle: 4
-    dir: 9
     name: total.spriteatlas
-  - bundle: 5
-    dir: 9
-    name: virus.spriteatlas
-  - bundle: 6
+  - bundle: 3
     dir: 10
     name: TableAds.bytes
-  - bundle: 7
+  - bundle: 4
     dir: 10
     name: TableAircraft.bytes
-  - bundle: 8
+  - bundle: 5
     dir: 10
     name: TableBuff.bytes
-  - bundle: 9
+  - bundle: 6
     dir: 10
     name: TableBuffAutoGen.bytes
-  - bundle: 10
+  - bundle: 7
     dir: 10
     name: TableBuffKillGen.bytes
-  - bundle: 11
+  - bundle: 8
     dir: 10
     name: TableCoinIncome.bytes
-  - bundle: 12
+  - bundle: 9
     dir: 10
     name: TableCoinValue.bytes
-  - bundle: 13
+  - bundle: 10
     dir: 10
     name: TableConst.bytes
-  - bundle: 14
+  - bundle: 11
     dir: 10
     name: TableDailySign.bytes
-  - bundle: 15
+  - bundle: 12
     dir: 10
     name: TableFirePower.bytes
-  - bundle: 16
+  - bundle: 13
     dir: 10
     name: TableFireSpeed.bytes
-  - bundle: 17
+  - bundle: 14
     dir: 10
     name: TableGameLevel.bytes
-  - bundle: 18
+  - bundle: 15
     dir: 10
     name: TableGameWave.bytes
-  - bundle: 19
+  - bundle: 16
     dir: 10
     name: TableLanguage.bytes
-  - bundle: 20
+  - bundle: 17
     dir: 10
     name: TableVirus.bytes
+  - bundle: 18
+    dir: 10
+    name: TableWeapon.bytes
+  - bundle: 19
+    dir: 10
+    name: TableWeaponPowerLevel.bytes
+  - bundle: 20
+    dir: 10
+    name: TableWeaponSpeedLevel.bytes
