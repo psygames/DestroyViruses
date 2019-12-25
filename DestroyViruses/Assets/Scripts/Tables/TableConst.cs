@@ -221,6 +221,12 @@ namespace DestroyViruses
 		public float virusBombShakeScreenRate { get { return _virusBombShakeScreenRate; } private set { _virusBombShakeScreenRate = value; } }
 
 		/// <summary>
+		/// 每日签到解锁关卡
+		/// </summary>
+		private int _dailySignUnlockLevel;
+		public int dailySignUnlockLevel { get { return _dailySignUnlockLevel; } private set { _dailySignUnlockLevel = value; } }
+
+		/// <summary>
 		/// 子弹横向距离
 		/// </summary>
 		private float _bulletHDist;

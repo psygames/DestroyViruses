@@ -117,12 +117,12 @@ namespace DestroyViruses
 
             Dictionary<string, float> args = new Dictionary<string, float>()
             {
+                { "fpl", TableGameLevel.Get(D.I.gameLevel).firePowerLimitation},
                 { "fp", D.I.firePower},
                 { "cv", D.I.coinValue},
                 { "ci", D.I.coinIncome},
-                { "gl", D.I.gameLevel},
-                { "fpl", TableGameLevel.Get(D.I.gameLevel).firePowerLimitation},
                 { "ugl", D.I.unlockedGameLevel},
+                { "gl", D.I.gameLevel},
                 { "sk", D.I.streak},
             };
 

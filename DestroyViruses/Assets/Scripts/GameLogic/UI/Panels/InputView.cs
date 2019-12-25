@@ -10,6 +10,7 @@ namespace DestroyViruses
 
         private bool isInHome { get { return StateManager.Instance.currentState.GetType() == typeof(MainState); } }
         private bool isInBattle { get { return StateManager.Instance.currentState.GetType() == typeof(BattleState); } }
+        private Aircraft aircraft { get { return EntityManager.GetAll<Aircraft>().First() as Aircraft; } }
 
         // private
         private Vector2 mTotalDrag = Vector2.zero;
@@ -47,6 +48,10 @@ namespace DestroyViruses
             {
                 BattleTouchDown(pos);
             }
+            else if (isInHome && aircraft != null)
+            {
+                aircraft.anima.StopAll();
+            }
         }
 
         private void OnUp(Vector2 pos)
@@ -59,6 +64,11 @@ namespace DestroyViruses
             {
                 BattleTouchUp(pos);
             }
+            else if (isInHome && aircraft != null)
+            {
+                aircraft.Reset();
+                aircraft.anima.PlayStandby();
+            }
         }
 
         private void OnDrag(Vector2 delta)
@@ -68,6 +78,10 @@ namespace DestroyViruses
                 if (mTotalDrag.magnitude > mDragBeginThreshold)
                 {
                     BattleStart();
+                }
+                if (aircraft != null)
+                {
+                    aircraft.rectTransform.anchoredPosition += UIUtil.FormatToVirtual(delta);
                 }
             }
             else if (isInBattle)

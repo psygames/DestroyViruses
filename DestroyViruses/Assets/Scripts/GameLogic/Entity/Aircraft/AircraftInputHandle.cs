@@ -9,7 +9,6 @@ namespace DestroyViruses
         private bool mHasFireAction;
         private bool mFireActionValue;
         private bool mHasMoveAction;
-        private bool mFrozen;
         private Vector2 moveActionValue = Vector2.zero;
 
         public Action<Vector2> onMove;

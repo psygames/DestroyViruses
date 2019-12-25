@@ -244,7 +244,12 @@ namespace DestroyViruses
         public bool CanDailySign()
         {
             var last = new DateTime(localData.lastSignDateTicks);
-            return (DateTime.Now.Date - last).TotalDays >= 1;
+            return IsDailySignUnlocked() && (DateTime.Now.Date - last).TotalDays >= 1;
+        }
+
+        public bool IsDailySignUnlocked()
+        {
+            return gameLevel >= ConstTable.table.dailySignUnlockLevel;
         }
 
         public void UnlockVirus(int virusID)

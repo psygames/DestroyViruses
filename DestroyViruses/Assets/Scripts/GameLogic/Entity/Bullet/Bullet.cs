@@ -78,7 +78,7 @@ namespace DestroyViruses
                 isAlive = false;
             }
 
-            rectTransform.anchoredPosition += Vector2.up * mSpeed * Time.deltaTime;
+            rectTransform.anchoredPosition += Vector2.up * mSpeed * GlobalData.slowDownFactor * Time.deltaTime;
         }
     }
 }

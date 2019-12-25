@@ -134,3 +134,10 @@ tables/tableweaponpowerlevel
 tables/tableweaponspeedlevel
 132217198514868230:
 tables/tableconst
+132217376067769700:
+tables/tableconst
+tables/tabledailysign
+tables/tablegamelevel
+tables/tableweapon
+tables/tableweaponpowerlevel
+tables/tableweaponspeedlevel
