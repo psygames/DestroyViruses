@@ -76,7 +76,7 @@ namespace DestroyViruses
                 {
                     mSupport = AircraftSupport.Create();
                     var buff = BuffProxy.Ins.GetBuff("support");
-                    mSupport.Reset(this, buff.param1, buff.param2);
+                    mSupport.Reset(this, buff.param1, new Vector2(buff.param2, buff.param3));
                 }
                 else if (!BuffProxy.Ins.Has_Effect_Support && mSupport != null && mSupport.isAlive)
                 {

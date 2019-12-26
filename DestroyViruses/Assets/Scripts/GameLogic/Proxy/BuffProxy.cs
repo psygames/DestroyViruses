@@ -71,11 +71,8 @@ namespace DestroyViruses
 
         public float Effect_FireSpeed { get { return GetEffectValue("fire_speed"); } }
         public float Effect_FirePower { get { return GetEffectValue("fire_power"); } }
-        public float Effect_Coin { get { return GetEffectValue("coin"); } }
         public float Effect_Knockback { get { return GetEffectValue("knockback", 0f); } }
-        public float Effect_Support { get { return GetEffectValue("support", 0f); } }
         public float Effect_Slowdown { get { return GetEffectValue("slowdown"); } }
-        public float Effect_WeaponUp { get { return GetEffectValue("weapon_up"); } }
         public float Effect_BoostVirus { get { return GetEffectValue("boost_virus", 0); } }
         public float Effect_MoveLimitation { get { return GetEffectValue("move_limitation"); } }
         public float Effect_LiveUpVirus { get { return GetEffectValue("live_up_virus"); } }
@@ -102,7 +99,8 @@ namespace DestroyViruses
         public float progress { get { return Mathf.Clamp01((GameUtil.runningTime - startTime) / table.effectDuration); } }
         public string effect { get { return table.effect; } }
         public float param1 { get { return table.param1; } }
-        public Vector2 param2 { get { return table.param2.value; } }
+        public float param2 { get { return table.param2; } }
+        public float param3 { get { return table.param3; } }
         public string icon { get { return table.icon; } }
         public string uiIcon { get { return "ui_" + table.icon; } }
 

@@ -157,8 +157,14 @@ namespace DestroyViruses
 		/// <summary>
 		/// 
 		/// </summary>
-		private TVector2 _param2;
-		public TVector2 param2 { get { return _param2; } private set { _param2 = value; } }
+		private float _param2;
+		public float param2 { get { return _param2; } private set { _param2 = value; } }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private float _param3;
+		public float param3 { get { return _param3; } private set { _param3 = value; } }
 
 
 		public static TableBuff Get(int id)

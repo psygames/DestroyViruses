@@ -162,11 +162,9 @@ namespace DestroyViruses
             if (evt.action == EventVirus.Action.DEAD)
             {
                 // add coin
-                var factor = mTableGameLevel.coinValueFactor + ProxyManager.GetProxy<BuffProxy>().Effect_Coin;
-                getCoin += FormulaUtil.CoinConvert(evt.virus.size, factor, D.I.coinValue);
+                getCoin += FormulaUtil.CoinConvert(evt.virus.size, mTableGameLevel.coinValueFactor, D.I.coinValue);
                 mAddCoinCount += evt.virus.size * 0.1f;
-                if (Random.value > ConstTable.table.coinAddProb[evt.virus.size - 1]
-                    || ProxyManager.GetProxy<BuffProxy>().Has_Effect_Coin)
+                if (Random.value > ConstTable.table.coinAddProb[evt.virus.size - 1])
                 {
                     var pos = UIUtil.GetUIPos(evt.virus.rectTransform);
                     int coinCount = Mathf.Clamp(Mathf.CeilToInt(mAddCoinCount), 1, 15);
@@ -176,6 +174,19 @@ namespace DestroyViruses
 
                 // virus kills 4 buff
                 D.I.kills4Buff += 1;
+            }
+            else if (evt.action == EventVirus.Action.BE_HIT)
+            {
+                if (BuffProxy.Ins.Has_Effect_Coin)
+                {
+                    var buff = BuffProxy.Ins.GetBuff("coin");
+                    if (buff != null && Random.value <= buff.param2)
+                    {
+                        getCoin += FormulaUtil.CoinConvert(evt.virus.size, mTableGameLevel.coinValueFactor * buff.param1, D.I.coinValue);
+                        var pos = UIUtil.GetUIPos(evt.virus.rectTransform);
+                        Unibus.Dispatch(EventBattle.Get(EventBattle.Action.GET_COIN, 1, pos));
+                    }
+                }
             }
         }
 

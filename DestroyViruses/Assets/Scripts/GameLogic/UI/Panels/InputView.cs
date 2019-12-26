@@ -14,8 +14,8 @@ namespace DestroyViruses
 
         // private
         private Vector2 mTotalDrag = Vector2.zero;
-        private float mHoldTime = 0;
-        private bool mIsDown = false;
+        private float mHoldTime;
+        private bool mIsDown;
 
 
         // battle begin
