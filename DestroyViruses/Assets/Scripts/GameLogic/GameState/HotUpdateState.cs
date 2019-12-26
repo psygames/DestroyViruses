@@ -34,12 +34,16 @@ namespace DestroyViruses
             mQuickHotUpdateList.Add(typeof(TableCoinIncomeCollection));
             mQuickHotUpdateList.Add(typeof(TableCoinValueCollection));
             mQuickHotUpdateList.Add(typeof(TableConstCollection));
+            mQuickHotUpdateList.Add(typeof(TableDailySignCollection));
             mQuickHotUpdateList.Add(typeof(TableFirePowerCollection));
             mQuickHotUpdateList.Add(typeof(TableFireSpeedCollection));
             mQuickHotUpdateList.Add(typeof(TableGameLevelCollection));
             mQuickHotUpdateList.Add(typeof(TableGameWaveCollection));
             mQuickHotUpdateList.Add(typeof(TableLanguageCollection));
             mQuickHotUpdateList.Add(typeof(TableVirusCollection));
+            mQuickHotUpdateList.Add(typeof(TableWeaponCollection));
+            mQuickHotUpdateList.Add(typeof(TableWeaponPowerLevelCollection));
+            mQuickHotUpdateList.Add(typeof(TableWeaponSpeedLevelCollection));
         }
 
         public override void OnEnter()

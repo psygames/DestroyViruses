@@ -15,7 +15,10 @@ namespace DestroyViruses
         public int clickEventID;
         public bool downUpEvent;
 
+        public string sound = "button_normal";
+
         private static Material sGreyMat;
+        private bool isGrey = false;
 
         private void Awake()
         {
@@ -57,6 +60,8 @@ namespace DestroyViruses
 
         private void OnClick()
         {
+            if (!isGrey)
+                AudioManager.Instance.PlaySound(sound);
             SendEvent("OnClick");
         }
 
@@ -87,6 +92,7 @@ namespace DestroyViruses
         {
             if (targetImage != null && sGreyMat != null)
                 targetImage.material = isGrey ? sGreyMat : null;
+            this.isGrey = isGrey;
         }
 
         public void SetText(string text)

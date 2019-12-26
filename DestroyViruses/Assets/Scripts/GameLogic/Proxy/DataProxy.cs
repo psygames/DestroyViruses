@@ -61,7 +61,7 @@ namespace DestroyViruses
                     SaveLocalData();
                 }
                 var span = DateTime.Now - new DateTime(localData.lastTakeIncomeTicks);
-                var secMax = Mathf.Max(ConstTable.table.coinIncomeMaxDuration, (float)span.TotalSeconds);
+                var secMax = Mathf.Min(ConstTable.table.coinIncomeMaxDuration, (float)span.TotalSeconds);
                 return secMax * coinIncome;
             }
         }

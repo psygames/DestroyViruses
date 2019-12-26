@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class EntityBase : MonoBehaviour
 {
-    public int uid { get; protected set; } = -1;
+    public long uid { get; set; } = -1;
     public bool isAlive { get; protected set; } = false;
 
     private RectTransform mRectTransform = null;

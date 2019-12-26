@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
-using System;
 using UnityEngine.UI;
 using DG.Tweening;
 
@@ -10,38 +9,26 @@ namespace DestroyViruses
 {
     public class ExplosionVirus : ExplosionBase<ExplosionVirus>
     {
-        public Image image;
-        public SpriteAnimation spriteAnimation;
+        public ParticleSystem[] particles;
 
-        public Image[] pieces;
+        private void Awake()
+        {
+            foreach (var p in particles)
+            {
+                p.Stop(true);
+            }
+        }
 
-        public void Reset(Vector2 pos, int type, float scale, int frames = 12)
+        public void Reset(Vector2 pos, int type, float scale)
         {
             rectTransform.anchoredPosition = pos;
             rectTransform.localScale = Vector3.one * scale * 0.3f;
             rectTransform.DOScale(scale, 0.3f).SetEase(Ease.OutSine);
+            particles[Random.Range(0, particles.Length)].Play(true);
 
-            image.SetSprite($"effect_explosion_virus_{type}_1");
-            image.SetNativeSize();
-
-            if (spriteAnimation.sprites.Length != frames)
-            {
-                spriteAnimation.sprites = new Sprite[frames];
-            }
-            for (int i = 0; i < frames; i++)
-            {
-                spriteAnimation.sprites[i] = UIUtil.GetSprite($"effect_explosion_virus_{type}_{i + 1}");
-            }
-
-            foreach (var p in pieces)
-            {
-                p.SetSprite($"effect_explosion_virus_piece_{type}");
-            }
-
-            spriteAnimation.Restart();
             if (TimeUtil.CheckInterval("ExplosionSfx", ConstTable.table.explosionSfxInterval))
             {
-                AudioManager.Instance.PlaySound("Sounds/explosion");
+                AudioManager.Instance.PlaySound("explosion");
             }
             if (Option.vibration)
             {

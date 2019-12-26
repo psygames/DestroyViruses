@@ -44,7 +44,7 @@ namespace DestroyViruses
                  , System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
             if (prop == null)
             {
-                return key;
+                return $"[{key}]";
             }
             return prop.GetValue(LT.table) as string;
         }

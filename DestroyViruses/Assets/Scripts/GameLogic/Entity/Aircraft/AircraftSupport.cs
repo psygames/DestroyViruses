@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace DestroyViruses
 {
@@ -17,7 +18,7 @@ namespace DestroyViruses
             mFire = gameObject.GetOrAddComponent<AircraftFire>();
         }
 
-        public void Reset(Aircraft target, float speed,Vector2 offset)
+        public void Reset(Aircraft target, float speed, Vector2 offset)
         {
             isAlive = true;
             this.target = target;
@@ -29,7 +30,8 @@ namespace DestroyViruses
         public void ForceRecycle()
         {
             isAlive = false;
-            Recycle();
+            rectTransform.DOAnchorPos3D(new Vector3(UIUtil.width / 2, -100, 0), 1)
+                .SetEase(Ease.InQuad).OnComplete(Recycle);
         }
 
         private void Update()

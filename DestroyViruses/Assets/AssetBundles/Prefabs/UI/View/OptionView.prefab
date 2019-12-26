@@ -2158,6 +2158,7 @@ GameObject:
   - component: {fileID: 2494159237380825834}
   - component: {fileID: 2948597902763074194}
   - component: {fileID: 6427905036446492908}
+  - component: {fileID: 4905035823613501760}
   m_Layer: 5
   m_Name: collider
   m_TagString: Untagged
@@ -2263,6 +2264,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4905035823613501760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6446999457646803758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be910aa109f9eca429318f2be0b409ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 2948597902763074194}
+  targetText: {fileID: 0}
+  clickEvent: 
+  clickEventID: 0
+  downUpEvent: 0
+  sound: button_normal
 --- !u!1 &6633282725953176246
 GameObject:
   m_ObjectHideFlags: 0
@@ -2767,6 +2786,7 @@ GameObject:
   - component: {fileID: 2277708182001248932}
   - component: {fileID: 5312285755083885731}
   - component: {fileID: 6817151564793792519}
+  - component: {fileID: 143925107865803722}
   m_Layer: 5
   m_Name: collider
   m_TagString: Untagged
@@ -2872,6 +2892,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &143925107865803722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7569664773010924701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be910aa109f9eca429318f2be0b409ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 5312285755083885731}
+  targetText: {fileID: 0}
+  clickEvent: 
+  clickEventID: 0
+  downUpEvent: 0
+  sound: button_normal
 --- !u!1 &7618046483567858604
 GameObject:
   m_ObjectHideFlags: 0

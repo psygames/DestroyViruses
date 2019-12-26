@@ -20,7 +20,7 @@ namespace DestroyViruses
         {
             if (mLastMusic != name || !MusicPlayer.isPlaying)
             {
-                AudioClip clip = Resources.Load<AudioClip>(name);
+                AudioClip clip = Resources.Load<AudioClip>("Sounds/" + name);
                 MusicPlayer.clip = clip;
                 MusicPlayer.loop = loop;
                 MusicPlayer.volume = volume;
@@ -41,7 +41,7 @@ namespace DestroyViruses
         {
             if (mLastFireMusic != name || !FireMusicPlayer.isPlaying)
             {
-                AudioClip clip = Resources.Load<AudioClip>(name);
+                AudioClip clip = Resources.Load<AudioClip>("Sounds/" + name);
                 FireMusicPlayer.clip = clip;
                 FireMusicPlayer.loop = loop;
                 FireMusicPlayer.volume = volume;
@@ -59,7 +59,7 @@ namespace DestroyViruses
         //播放音效
         public void PlaySound(string name)
         {
-            AudioClip clip = Resources.Load<AudioClip>(name);
+            AudioClip clip = Resources.Load<AudioClip>("Sounds/" + name);
             SoundPlayer.clip = clip;
             SoundPlayer.PlayOneShot(clip);
         }

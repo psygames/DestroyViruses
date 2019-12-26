@@ -51,18 +51,20 @@ namespace DestroyViruses
                 if (virus != null && virus.isAlive)
                 {
                     Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, virus, mDamage));
-                    PlayExplosion();
+                    PlayExplosion(virus.rectTransform.GetUIPos(), virus.radius);
                     Recycle();
                     isAlive = false;
                 }
             }
         }
 
-        private void PlayExplosion()
+        private void PlayExplosion(Vector2 pos, float radius)
         {
             if (TimeUtil.CheckInterval("BulletExplosion", 0.1f))
             {
-                ExplosionBullet.Create().rectTransform.anchoredPosition = transform.GetUIPos() + Vector2.up * 10;
+                var _aPos = rectTransform.GetUIPos();
+                var posY = pos.y - (radius + Random.Range(0, radius - Mathf.Abs(pos.x - _aPos.x))) * 0.5f;
+                ExplosionBullet.Create().Reset(new Vector2(_aPos.x, posY));
             }
         }
 

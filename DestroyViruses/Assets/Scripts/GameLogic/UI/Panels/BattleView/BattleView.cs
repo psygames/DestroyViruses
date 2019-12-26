@@ -32,7 +32,7 @@ namespace DestroyViruses
             UIUtil.aircraftTransform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutQuad);
             bossWaveToast.SetActive(false);
             slowDownFade.FadeInImmediately();
-            AudioManager.Instance.PlayMusic($"Sounds/BGM{Random.Range(3, 5)}", 0.6f);
+            AudioManager.Instance.PlayMusic($"BGM{Random.Range(3, 5)}", 0.6f);
             gameLevelPanel.SetData();
             mLastIsBattleTouchOn = GlobalData.isBattleTouchOn;
             if(mLastIsBattleTouchOn) slowDownFade.FadeOutImmediately();
@@ -85,7 +85,7 @@ namespace DestroyViruses
             {
                 bossWaveToast.SetActive(false);
             });
-            AudioManager.Instance.PlaySound("Sounds/boss");
+            AudioManager.Instance.PlaySound("boss");
         }
 
         private void ShowGameEndPanel(bool isWin)

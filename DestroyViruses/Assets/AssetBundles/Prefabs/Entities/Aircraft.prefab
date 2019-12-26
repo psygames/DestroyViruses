@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bindTarget: {fileID: 0}
-  sortingOrder: -10
+  sortingOrder: -20
   zOffset: 0
   zUnit: 0
 --- !u!1 &1907664642511467363
@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 6976001840631866043}
   - component: {fileID: 6768659251289090382}
   - component: {fileID: 7704776733412665015}
+  - component: {fileID: 3663371394456552444}
   m_Layer: 5
   m_Name: Aircraft
   m_TagString: Aircraft
@@ -178,6 +179,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 3
+--- !u!223 &3663371394456552444
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907664642511467363}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -10
+  m_TargetDisplay: 0
 --- !u!1 &2044198870683052041
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bindTarget: {fileID: 0}
-  sortingOrder: 1
+  sortingOrder: -1
   zOffset: 0
   zUnit: 0
 --- !u!1001 &766790102213519719
@@ -332,17 +354,17 @@ PrefabInstance:
     - target: {fileID: 199861431178752568, guid: cc46c3228e0a7a242b06929d0a32f57e,
         type: 3}
       propertyPath: m_SortingOrder
-      value: -10
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 199120881273587670, guid: cc46c3228e0a7a242b06929d0a32f57e,
         type: 3}
       propertyPath: m_SortingOrder
-      value: -10
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 199974163024548322, guid: cc46c3228e0a7a242b06929d0a32f57e,
         type: 3}
       propertyPath: m_SortingOrder
-      value: -10
+      value: -20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc46c3228e0a7a242b06929d0a32f57e, type: 3}
@@ -549,17 +571,17 @@ PrefabInstance:
     - target: {fileID: 199021167646175732, guid: 6ff10e4c4dab1724e8798d9bcbe258d9,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 199740184551395972, guid: 6ff10e4c4dab1724e8798d9bcbe258d9,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 199400130095986476, guid: 6ff10e4c4dab1724e8798d9bcbe258d9,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199740184551395972, guid: 6ff10e4c4dab1724e8798d9bcbe258d9,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ff10e4c4dab1724e8798d9bcbe258d9, type: 3}

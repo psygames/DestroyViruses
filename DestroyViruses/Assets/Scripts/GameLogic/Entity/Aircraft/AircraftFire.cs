@@ -65,7 +65,7 @@ namespace DestroyViruses
                     mFireOnceCD = mFireOnceDuration;
                 }
 
-                AudioManager.Instance.PlayFireMusic("Sounds/hit");
+                AudioManager.Instance.PlayFireMusic("hit");
             }
             else
             {

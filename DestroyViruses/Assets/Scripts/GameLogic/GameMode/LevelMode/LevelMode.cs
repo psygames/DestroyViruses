@@ -63,9 +63,13 @@ namespace DestroyViruses
 
         protected override void OnUpdate(float deltaTime)
         {
+            deltaTime *= GlobalData.slowDownFactor;
             base.OnUpdate(deltaTime);
-            mBuffGenModule.Update(progress);
-            mWaveModule.Update(deltaTime);
+            if (isBegin)
+            {
+                mBuffGenModule.Update(progress);
+                mWaveModule.Update(deltaTime);
+            }
             CheckGameState();
             UpdateProgress();
         }

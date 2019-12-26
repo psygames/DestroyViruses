@@ -48,7 +48,7 @@ public static class GameExtension
             if (value >= sKMBDivs[i] && value < sKMBDivs[i + 1])
             {
                 value = value / sKMBDivs[i];
-                int d1 = Mathf.CeilToInt(value * 10) % 10;
+                int d1 = (int)(value * 10) % 10;
                 if (d1 == 0)
                     return $"{(int)value}{sKMBUnits[i]}";
                 return $"{(int)value}.{d1}{sKMBUnits[i]}";

@@ -40,7 +40,7 @@ namespace DestroyViruses
 
         public static string[] GetSpriteAtlasNames()
         {
-            return new string[] { "common", "sundry", "virus", "total" };
+            return new string[] { "total" };
         }
     }
 }

@@ -44,7 +44,7 @@ namespace DestroyViruses
         {
             UIUtil.aircraftTransform.DOScale(Vector3.one * 1.3f, 0.5f).SetEase(Ease.OutQuad);
             RefreshUI();
-            AudioManager.Instance.PlayMusic($"Sounds/BGM{Random.Range(1, 3)}", 1f);
+            AudioManager.Instance.PlayMusic($"BGM{Random.Range(1, 3)}", 1f);
             NavigationView.BlackSetting(false);
             if (D.I.CanDailySign())
             {

@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 8399462504654578510}
   - component: {fileID: 368018410561762240}
   - component: {fileID: 1990645621729746380}
+  - component: {fileID: 7795713519343830566}
   m_Layer: 5
   m_Name: bonus
   m_TagString: Untagged
@@ -187,6 +188,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7795713519343830566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074164330916578218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be910aa109f9eca429318f2be0b409ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 368018410561762240}
+  targetText: {fileID: 0}
+  clickEvent: 
+  clickEventID: 0
+  downUpEvent: 0
+  sound: collect_coin
 --- !u!1 &2660017652773378633
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,6 +796,7 @@ GameObject:
   - component: {fileID: 2544618177860080130}
   - component: {fileID: 7446131949279492153}
   - component: {fileID: 6515246150323539607}
+  - component: {fileID: 7314202081030900679}
   m_Layer: 5
   m_Name: receive
   m_TagString: Untagged
@@ -885,6 +905,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7314202081030900679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621097690602286975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be910aa109f9eca429318f2be0b409ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 7446131949279492153}
+  targetText: {fileID: 0}
+  clickEvent: 
+  clickEventID: 0
+  downUpEvent: 0
+  sound: collect_coin
 --- !u!1 &8544746143190342595
 GameObject:
   m_ObjectHideFlags: 0

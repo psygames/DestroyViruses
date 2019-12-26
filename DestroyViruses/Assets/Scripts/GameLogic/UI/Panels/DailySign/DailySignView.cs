@@ -50,6 +50,7 @@ namespace DestroyViruses
             if (D.I.CanDailySign())
             {
                 D.I.DailySign(1);
+                // AudioManager.Instance.PlaySound("collect_coin");
             }
             else
             {
@@ -65,6 +66,7 @@ namespace DestroyViruses
                 if (AdProxy.Ins.ShowAd("daily_sign"))
                 {
                     D.I.DailySign(2);
+                    // AudioManager.Instance.PlaySound("collect_coin");
                 }
                 else
                 {

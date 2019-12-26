@@ -22,7 +22,8 @@ namespace DestroyViruses
                     var pos = GetComponent<RectTransform>().GetUIPos();
                     Coin.CreateGroup(pos, UIUtil.COIN_POS, uiCoinCount);
                     D.I.TakeIncomeCoins();
-                    countText.text = D.I.coinIncomeTotal.KMB();
+                    mRefreshCD = 0;
+                    AudioManager.Instance.PlaySound("collect_coin");
                 }
             });
         }
@@ -40,7 +41,10 @@ namespace DestroyViruses
             if (mRefreshCD <= 0)
             {
                 mRefreshCD = ConstTable.table.coinIncomeRefreshCD;
-                countText.text = D.I.coinIncomeTotal.KMB();
+                if (D.I.coinIncomeTotal < 1)
+                    countText.text = "0";
+                else
+                    countText.text = D.I.coinIncomeTotal.KMB();
             }
         }
     }

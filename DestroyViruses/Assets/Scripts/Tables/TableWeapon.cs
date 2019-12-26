@@ -119,6 +119,12 @@ namespace DestroyViruses
 		public string icon { get { return _icon; } private set { _icon = value; } }
 
 		/// <summary>
+		/// 解锁等级
+		/// </summary>
+		private int _unlockLevel;
+		public int unlockLevel { get { return _unlockLevel; } private set { _unlockLevel = value; } }
+
+		/// <summary>
 		/// 技能效果数值1
 		/// </summary>
 		private float _effect1;

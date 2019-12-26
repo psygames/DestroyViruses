@@ -789,8 +789,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Texture: {fileID: 2800000, guid: 512ee478a69e73b42a513884a098d652, type: 3}
   m_UVRect:
     serializedVersion: 2
@@ -815,7 +813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 752561759}
-  - component: {fileID: 752561760}
+  - component: {fileID: 752561761}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -837,7 +835,7 @@ Transform:
   m_Father: {fileID: 1541754765}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &752561760
+--- !u!114 &752561761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -846,7 +844,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 752561758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7707d41cf795bd4db0c555db70e2f75, type: 3}
+  m_Script: {fileID: 11500000, guid: 2910f45bbac163f408ef5f0b46ce5d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pooledPrefabs:
@@ -1362,8 +1360,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1410,7 +1406,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100280893}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 100}
+  m_LocalPosition: {x: 0, y: 0, z: 500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 856633957}

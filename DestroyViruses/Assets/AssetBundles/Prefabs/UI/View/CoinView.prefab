@@ -1122,6 +1122,8 @@ MonoBehaviour:
   targetText: {fileID: 8525159286379505720}
   clickEvent: CoinValueUp
   clickEventID: 0
+  downUpEvent: 0
+  sound: level_up
 --- !u!1 &2426157578940091004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,7 +1616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 540, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4952341221584928758
@@ -2028,6 +2030,8 @@ MonoBehaviour:
   targetText: {fileID: 0}
   clickEvent: Close
   clickEventID: 0
+  downUpEvent: 0
+  sound: button_normal
 --- !u!1 &4836348698811837481
 GameObject:
   m_ObjectHideFlags: 0
@@ -2405,6 +2409,8 @@ MonoBehaviour:
   targetText: {fileID: 2160393009054740439}
   clickEvent: CoinIncomeUp
   clickEventID: 0
+  downUpEvent: 0
+  sound: level_up
 --- !u!1 &5494991525239161227
 GameObject:
   m_ObjectHideFlags: 0

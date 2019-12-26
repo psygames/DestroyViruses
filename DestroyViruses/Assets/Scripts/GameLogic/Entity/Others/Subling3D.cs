@@ -10,8 +10,9 @@ namespace DestroyViruses
     public class Subling3D : MonoBehaviour
     {
         public RectTransform bindTarget;
-        public float zOffset = 0.3f;
-        public float zUnit = 0.3f;
+
+        private float zOffset = 90f;
+        private float zUnit = -0.5f;
 
         private int mLastSubling = -1;
         private int mScale = 280;
