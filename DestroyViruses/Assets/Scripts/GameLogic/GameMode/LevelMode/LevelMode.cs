@@ -140,6 +140,9 @@ namespace DestroyViruses
 
         private void OnEventAircraft(EventAircraft evt)
         {
+            if (!isInit || !isBegin || !isRunning)
+                return;
+
             if (evt.action == EventAircraft.Action.Crash)
             {
                 if (D.I.reviveCount > 0)
