@@ -26,11 +26,11 @@ namespace DestroyViruses
 
     public class InputManager : Singleton<InputManager>
     {
-        private Stack<InputData> mInputStack = new Stack<InputData>();
+        private Queue<InputData> mInputStack = new Queue<InputData>();
 
-        public void Push(InputData inputData)
+        public void Enqueue(InputData inputData)
         {
-            mInputStack.Push(inputData);
+            mInputStack.Enqueue(inputData);
         }
 
         public InputData Peek()
@@ -43,9 +43,9 @@ namespace DestroyViruses
             return mInputStack.Count <= 0;
         }
 
-        public InputData Pop()
+        public InputData Dequeue()
         {
-            return mInputStack.Pop();
+            return mInputStack.Dequeue();
         }
 
         public void Clear()

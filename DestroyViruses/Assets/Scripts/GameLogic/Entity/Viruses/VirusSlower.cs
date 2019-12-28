@@ -12,12 +12,7 @@ namespace DestroyViruses
         public Image triangleImage1;
 
         private bool mIsSlow = false;
-        private Aircraft aircraft;
-        protected override void Awake()
-        {
-            base.Awake();
-            aircraft = EntityManager.GetAll<Aircraft>().First() as Aircraft;
-        }
+        private Aircraft aircraft { get { return Aircraft.ins; } }
 
         protected override void OnColorChanged(int index)
         {

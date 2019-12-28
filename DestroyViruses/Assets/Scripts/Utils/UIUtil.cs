@@ -28,14 +28,6 @@ namespace DestroyViruses
             }
         }
 
-        public static Transform aircraftTransform
-        {
-            get
-            {
-                return EntityManager.GetAll<Aircraft>()[0].transform;
-            }
-        }
-
         private static CanvasScaler s_canvasScaler = null;
         public static CanvasScaler canvasScaler
         {

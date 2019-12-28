@@ -6,6 +6,8 @@ namespace DestroyViruses
 {
     public class Aircraft : EntityBase<Aircraft>
     {
+        public static Aircraft ins { get; private set; } = null;
+
         public AircraftMovement movement { get; private set; }
         public AircraftFire firement { get; private set; }
         public AircraftAnimation anima { get; private set; }
@@ -19,6 +21,7 @@ namespace DestroyViruses
 
         private void Awake()
         {
+            ins = this;
             mInputHandle = gameObject.GetOrAddComponent<AircraftInputHandle>();
             movement = gameObject.GetOrAddComponent<AircraftMovement>();
             firement = gameObject.GetOrAddComponent<AircraftFire>();
@@ -35,10 +38,11 @@ namespace DestroyViruses
 
         public void Reset()
         {
-            rectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, 600, 0);
+            rectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, 0, 0);
             rectTransform.localScale = Vector3.one;
             isInvincible = false;
-            anima.StopAll();
+            firement.HoldFire();
+            anima.KillAll();
         }
 
         public void Revive()

@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1018189489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 478f79d64d1455243b83b7defef2cbd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 065a8216cbf7b4978a0d96d629685ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1018189492
@@ -1388,7 +1388,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1100280894}
   - component: {fileID: 1100280895}
-  - component: {fileID: 1100280897}
   - component: {fileID: 1100280896}
   - component: {fileID: 1100280898}
   m_Layer: 5
@@ -1456,19 +1455,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: -100
   m_TargetDisplay: 0
---- !u!114 &1100280897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1100280893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 065a8216cbf7b4978a0d96d629685ad7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputListener: {fileID: 1018189491}
 --- !u!114 &1100280898
 MonoBehaviour:
   m_ObjectHideFlags: 0

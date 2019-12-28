@@ -29,7 +29,7 @@ namespace DestroyViruses
             moveActionValue = Vector2.zero;
             while (!InputManager.Instance.IsEmpty())
             {
-                HandleInput(InputManager.Instance.Pop());
+                HandleInput(InputManager.Instance.Dequeue());
             }
         }
 

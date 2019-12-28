@@ -29,7 +29,7 @@ namespace DestroyViruses
 
         protected override void OnOpen()
         {
-            UIUtil.aircraftTransform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutQuad);
+            Aircraft.ins.anima.PlayHomeOut();
             bossWaveToast.SetActive(false);
             slowDownFade.FadeInImmediately();
             AudioManager.Instance.PlayMusic($"BGM{Random.Range(3, 5)}", 0.6f);

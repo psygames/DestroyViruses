@@ -14,11 +14,11 @@ namespace DestroyViruses
             mRectTransform = GetComponent<RectTransform>();
         }
 
-        private Tweener tw;
+        Tweener standByTweener = null;
         public void PlayStandby()
         {
             path = new Vector3[13];
-            var dist = 20;
+            var dist = 30;
             for (int i = 0; i < 13; i++)
             {
                 var dir = Quaternion.AngleAxis(360 * i / 10, -Vector3.forward) * Vector3.left;
@@ -27,7 +27,13 @@ namespace DestroyViruses
             path[4] = mRectTransform.anchoredPosition3D;
             path[7] = mRectTransform.anchoredPosition3D;
             path[12] = mRectTransform.anchoredPosition3D;
-            tw = mRectTransform.DOLocalPath(path, 10, PathType.CatmullRom, PathMode.Full3D, 5).SetLoops(-1).SetEase(Ease.Linear);
+            standByTweener = mRectTransform.DOLocalPath(path, 10, PathType.CatmullRom, PathMode.Full3D, 5).SetLoops(-1).SetEase(Ease.Linear);
+        }
+
+        public void StopStandBy()
+        {
+            if (standByTweener != null)
+                standByTweener.Kill(true);
         }
 
         public void PlayCrash()
@@ -40,7 +46,23 @@ namespace DestroyViruses
         public void PlayFlyAway()
         {
             AudioManager.Instance.PlaySound("flyaway");
-            mRectTransform.DOAnchorPos3D(new Vector3(UIUtil.width / 2, UIUtil.height + 400, 0), 1).SetEase(Ease.InQuad);
+            mRectTransform.DOAnchorPos3D(new Vector3(UIUtil.width * 0.5f, UIUtil.height + 400, 0), 1).SetEase(Ease.InQuad);
+        }
+
+        public void PlayHomeIn()
+        {
+            mRectTransform.DOAnchorPos3D(new Vector3(UIUtil.width * 0.5f, 600, 0), 0.3f);
+            mRectTransform.DOScale(1.5f, 0.5f).SetDelay(0.3f).OnComplete(() => PlayStandby());
+        }
+
+        public void PlayHomeOut()
+        {
+            mRectTransform.DOScale(1f, 0.5f);
+        }
+
+        public void KillAll()
+        {
+            mRectTransform.DOKill(true);
         }
 
         public void PlayInvincible(float seconds)
@@ -51,16 +73,6 @@ namespace DestroyViruses
             {
                 canvas.alpha = 1;
             });
-        }
-
-        public void StopAll()
-        {
-            tw?.Kill(true);
-        }
-
-        private void OnDisable()
-        {
-            StopAll();
         }
     }
 }

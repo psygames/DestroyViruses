@@ -32,10 +32,9 @@ namespace DestroyViruses
 
         private void Update()
         {
-            Aircraft aircraft = EntityManager.GetAll<Aircraft>().First() as Aircraft;
-            if (aircraft == null)
+            if (Aircraft.ins == null)
                 return;
-            var uiPos = aircraft.rectTransform.GetUIPos();
+            var uiPos = Aircraft.ins.rectTransform.GetUIPos();
             var xf = 1 - uiPos.x / UIUtil.width;
             var yf = 1 - uiPos.y / UIUtil.height;
             var tarPos = new Vector2(Mathf.Lerp(moveMin.x, moveMax.x, xf), Mathf.Lerp(moveMin.y, moveMax.y, yf));

@@ -1,78 +1,64 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace DestroyViruses
 {
-    public class InputView : MonoBehaviour
+    public class InputView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
     {
-        public UIEventListener inputListener;
-
         private bool isInHome { get { return StateManager.Instance.currentState.GetType() == typeof(MainState); } }
         private bool isInBattle { get { return StateManager.Instance.currentState.GetType() == typeof(BattleState); } }
-        private Aircraft aircraft { get { return EntityManager.GetAll<Aircraft>().First() as Aircraft; } }
+        private Aircraft aircraft { get { return Aircraft.ins; } }
 
         // private
         private Vector2 mTotalDrag = Vector2.zero;
         private float mHoldTime;
-        private bool mIsDown;
+        private bool mIsDown { get { foreach (var d in mDowns) if (d.Value) return true; return false; } }
 
 
         // battle begin
-        private float mDragBeginThreshold = 100;
-        private float mHoldBeginThreshold = 1f;
+        private float mDragBeginThreshold = 20f;
+        private float mHoldBeginThreshold = 0.5f;
+
+        private Dictionary<int, bool> mDowns = new Dictionary<int, bool>();
 
 
-        private void Awake()
+        public void OnPointerDown(PointerEventData eventData)
         {
-            inputListener.onDrag.AddListener(OnDrag);
-            inputListener.onDown.AddListener(OnDown);
-            inputListener.onUp.AddListener(OnUp);
-        }
+            if (aircraft == null)
+                return;
 
-        private void OnDestroy()
-        {
-            inputListener.onDrag.RemoveAllListeners();
-            inputListener.onDown.RemoveAllListeners();
-            inputListener.onUp.RemoveAllListeners();
-        }
-
-
-        private void OnDown(Vector2 pos)
-        {
             mTotalDrag = Vector2.zero;
-            mIsDown = true;
+            mDowns[eventData.pointerId] = true;
             mHoldTime = 0;
 
-            if (isInBattle)
+            if (isInHome)
             {
-                BattleTouchDown(pos);
-            }
-            else if (isInHome && aircraft != null)
-            {
-                aircraft.anima.StopAll();
+                aircraft.anima.StopStandBy();
             }
         }
 
-        private void OnUp(Vector2 pos)
+        public void OnPointerUp(PointerEventData eventData)
         {
-            mTotalDrag = Vector2.zero;
-            mIsDown = false;
-            mHoldTime = 0;
+            if (aircraft == null)
+                return;
 
-            if (isInBattle)
+            mTotalDrag = Vector2.zero;
+            mDowns[eventData.pointerId] = false;
+            mHoldTime = 0;
+            if (isInHome)
             {
-                BattleTouchUp(pos);
-            }
-            else if (isInHome && aircraft != null)
-            {
-                aircraft.Reset();
                 aircraft.anima.PlayStandby();
             }
         }
 
-        private void OnDrag(Vector2 delta)
+        public void OnDrag(PointerEventData eventData)
         {
+            Vector2 delta = UIUtil.FormatToVirtual(eventData.delta);
+            if (aircraft == null || !mIsDown)
+                return;
+
             if (isInHome)
             {
                 if (mTotalDrag.magnitude > mDragBeginThreshold)
@@ -81,19 +67,22 @@ namespace DestroyViruses
                 }
                 if (aircraft != null)
                 {
-                    aircraft.rectTransform.anchoredPosition += UIUtil.FormatToVirtual(delta);
+                    aircraft.rectTransform.anchoredPosition += delta;
                 }
+                mTotalDrag += delta;
             }
             else if (isInBattle)
             {
                 BattleDrag(delta);
             }
-
-            mTotalDrag += UIUtil.FormatToVirtual(delta);
         }
 
+        private bool mLastBattleDown = false;
         private void Update()
         {
+            if (aircraft == null)
+                return;
+
             if (mIsDown)
                 mHoldTime += Time.deltaTime;
 
@@ -105,30 +94,31 @@ namespace DestroyViruses
             if (isInBattle)
             {
                 GlobalData.isBattleTouchOn = mIsDown;
+                if (mLastBattleDown != mIsDown)
+                {
+                    if (mIsDown)
+                    {
+                        InputManager.Instance.Enqueue(new InputData(InputType.Down, Vector2.zero));
+                    }
+                    else
+                    {
+                        InputManager.Instance.Enqueue(new InputData(InputType.Up, Vector2.zero));
+                    }
+
+                    mLastBattleDown = mIsDown;
+                }
             }
         }
 
         private void BattleStart()
         {
+            mLastBattleDown = false;
             StateManager.ChangeState<BattleState>();
-
-            InputManager.Instance.Push(new InputData(InputType.Down, UIUtil.FormatToVirtual(Vector2.zero)));
         }
 
         private void BattleDrag(Vector2 delta)
         {
-            InputManager.Instance.Push(new InputData(InputType.Drag, UIUtil.FormatToVirtual(delta)));
-        }
-
-        private void BattleTouchDown(Vector2 pos)
-        {
-
-            InputManager.Instance.Push(new InputData(InputType.Down, UIUtil.FormatToVirtual(pos)));
-        }
-
-        private void BattleTouchUp(Vector2 pos)
-        {
-            InputManager.Instance.Push(new InputData(InputType.Up, UIUtil.FormatToVirtual(pos)));
+            InputManager.Instance.Enqueue(new InputData(InputType.Drag, delta));
         }
     }
 }

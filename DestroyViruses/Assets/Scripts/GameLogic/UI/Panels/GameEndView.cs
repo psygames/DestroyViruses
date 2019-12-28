@@ -58,14 +58,13 @@ namespace DestroyViruses
             mRectTransform.localScale = Vector3.zero;
             mRectTransform.DOScale(1, 0.25f).SetDelay(1f);
 
-            var aircraft = EntityManager.GetAll<Aircraft>().First() as Aircraft;
             if (D.I.gameEndWin)
             {
-                aircraft.anima.PlayFlyAway();
+                Aircraft.ins.anima.PlayFlyAway();
             }
             else
             {
-                aircraft.anima.PlayCrash();
+                Aircraft.ins.anima.PlayCrash();
             }
         }
     }

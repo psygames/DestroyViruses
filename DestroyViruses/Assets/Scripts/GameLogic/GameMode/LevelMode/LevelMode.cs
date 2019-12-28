@@ -128,8 +128,7 @@ namespace DestroyViruses
 
         public void DoRevive()
         {
-            var aircraft = EntityManager.GetAll<Aircraft>().First() as Aircraft;
-            aircraft.Revive();
+            Aircraft.ins.Revive();
             GameModeManager.Instance.Resume();
         }
 
