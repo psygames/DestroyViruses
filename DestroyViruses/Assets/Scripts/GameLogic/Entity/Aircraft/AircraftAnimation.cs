@@ -17,6 +17,7 @@ namespace DestroyViruses
         Tweener standByTweener = null;
         public void PlayStandby()
         {
+            mRectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, 600, 0);
             path = new Vector3[13];
             var dist = 30;
             for (int i = 0; i < 13; i++)
@@ -33,7 +34,7 @@ namespace DestroyViruses
         public void StopStandBy()
         {
             if (standByTweener != null)
-                standByTweener.Kill(true);
+                standByTweener.Kill();
         }
 
         public void PlayCrash()
@@ -51,6 +52,8 @@ namespace DestroyViruses
 
         public void PlayHomeIn()
         {
+            mRectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, 0, 0);
+            mRectTransform.localScale = Vector3.one;
             mRectTransform.DOAnchorPos3D(new Vector3(UIUtil.width * 0.5f, 600, 0), 0.3f);
             mRectTransform.DOScale(1.5f, 0.5f).SetDelay(0.3f).OnComplete(() => PlayStandby());
         }
@@ -62,7 +65,7 @@ namespace DestroyViruses
 
         public void KillAll()
         {
-            mRectTransform.DOKill(true);
+            mRectTransform.DOKill(false);
         }
 
         public void PlayInvincible(float seconds)

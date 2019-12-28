@@ -38,8 +38,6 @@ namespace DestroyViruses
 
         public void Reset()
         {
-            rectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, 0, 0);
-            rectTransform.localScale = Vector3.one;
             isInvincible = false;
             firement.HoldFire();
             anima.KillAll();
