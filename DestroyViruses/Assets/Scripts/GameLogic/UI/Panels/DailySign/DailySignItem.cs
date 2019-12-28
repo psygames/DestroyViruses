@@ -9,6 +9,7 @@ namespace DestroyViruses
         public Text title;
         public Image image;
         public Text count;
+        public ButtonPro btn;
         [Header("0-未领取, 1-可领取, 2-已领取")]
         public RadioObjects stateRadio;
         [Header("0-未领取, 1-可领取, 2-已领取")]
@@ -34,6 +35,7 @@ namespace DestroyViruses
                 else stateRadio.Radio(0);
             }
             bgRadio.Radio(stateRadio.index);
+            btn.clickEventID = days;
         }
     }
 }

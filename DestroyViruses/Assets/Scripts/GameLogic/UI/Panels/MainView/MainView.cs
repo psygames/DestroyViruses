@@ -47,7 +47,7 @@ namespace DestroyViruses
             NavigationView.BlackSetting(false);
             if (D.I.CanDailySign())
             {
-                UIManager.Instance.Open<DailySignView>(UILayer.Top);
+                UIManager.Open<DailySignView>(UILayer.Top);
             }
         }
 
@@ -62,11 +62,11 @@ namespace DestroyViruses
         {
             if (optionIndex == 0 || optionIndex == 1)
             {
-                UIManager.Instance.Open<UpgradeView>();
+                UIManager.Open<UpgradeView>();
             }
             else if (optionIndex == 2)
             {
-                UIManager.Instance.Open<CoinView>();
+                UIManager.Open<CoinView>();
             }
         }
 

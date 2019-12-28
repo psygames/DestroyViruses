@@ -49,7 +49,7 @@ namespace DestroyViruses
         public override void OnEnter()
         {
             progress = 0;
-            UIManager.Instance.Open<LoadingView>();
+            UIManager.Open<LoadingView>();
             updater.Init();
             InitQuickHotUpdate();
             base.OnEnter();
@@ -171,7 +171,7 @@ namespace DestroyViruses
         public override void OnExit()
         {
             base.OnExit();
-            UIManager.Instance.Close<LoadingView>();
+            UIManager.Close<LoadingView>();
         }
     }
 }

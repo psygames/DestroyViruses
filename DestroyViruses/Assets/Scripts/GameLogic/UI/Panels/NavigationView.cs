@@ -29,8 +29,8 @@ namespace DestroyViruses
 
         private void ButtonListenerInit()
         {
-            settingBtn.OnClick(() => { UIManager.Instance.Open<OptionView>(UILayer.Top); });
-            debugBtn.OnClick(() => { UIManager.Instance.Open<DebugView>(UILayer.Top); });
+            settingBtn.OnClick(() => { UIManager.Open<OptionView>(UILayer.Top); });
+            debugBtn.OnClick(() => { UIManager.Open<DebugView>(UILayer.Top); });
         }
 
         protected override void OnOpen()
@@ -55,12 +55,12 @@ namespace DestroyViruses
 
         private void OnClickAddCoin()
         {
-            UIManager.Instance.Open<ExchangeView>();
+            UIManager.Open<ExchangeView>();
         }
 
         private void OnClickAddDiamond()
         {
-            UIManager.Instance.Open<CoinView>();
+            UIManager.Open<CoinView>();
         }
 
         private void RefreshUI()

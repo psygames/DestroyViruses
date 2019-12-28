@@ -11,8 +11,8 @@ namespace DestroyViruses
             base.OnEnter();
             Aircraft.Create().Reset();
             Aircraft.ins.anima.PlayHomeIn();
-            UIManager.Instance.Open<MainView>();
-            UIManager.Instance.Open<NavigationView>(UILayer.Top);
+            UIManager.Open<MainView>();
+            UIManager.Open<NavigationView>(UILayer.Top);
         }
 
         public override void OnUpdate(float deltaTime)
@@ -23,8 +23,8 @@ namespace DestroyViruses
         {
             base.OnExit();
             Aircraft.ins.anima.KillAll();
-            UIManager.Instance.Close<MainView>();
-            UIManager.Instance.Close<NavigationView>();
+            UIManager.Close<MainView>();
+            UIManager.Close<NavigationView>();
         }
     }
 }

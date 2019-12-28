@@ -16,6 +16,14 @@ public class EntityManager : Singleton<EntityManager>
 
     private Dictionary<Type, List<EntityBase>> mInstanceDict = new Dictionary<Type, List<EntityBase>>();
 
+    private void warmPoolAll(int perSize)
+    {
+        foreach (var p in pooledPrefabs)
+        {
+            PoolManager.WarmPool(p.prefab, perSize);
+        }
+    }
+
     private EntityBase create(Type t)
     {
         if (!typeof(EntityBase).IsAssignableFrom(t))
@@ -57,7 +65,7 @@ public class EntityManager : Singleton<EntityManager>
         return entity;
     }
 
-    static long sUidCounter = 0;
+    static long sUidCounter;
     private T create<T>() where T : EntityBase
     {
         var entity = create(typeof(T)) as T;
@@ -153,6 +161,11 @@ public class EntityManager : Singleton<EntityManager>
     {
         Instance.mInstanceDict.Clear();
         PoolManager.ReleaseAll();
+    }
+
+    public static void WarmPoolAll(int size = 1)
+    {
+        Instance.warmPoolAll(size);
     }
     #endregion
 }

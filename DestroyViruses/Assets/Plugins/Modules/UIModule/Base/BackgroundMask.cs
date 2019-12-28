@@ -56,7 +56,7 @@ public class BackgroundMask : MonoBehaviour
                 var panel = p.GetComponent<ViewBase>();
                 if (panel != null)
                 {
-                    UIManager.Instance.Close(panel.GetType());
+                    UIManager.Close(panel.GetType());
                     break;
                 }
                 p = p.parent;

@@ -95,6 +95,7 @@ namespace UniPool
         private GameObject InstantiatePrefab(GameObject prefab)
         {
             var go = Instantiate(prefab) as GameObject;
+            go.SetActive(false);
             if (root != null) go.transform.SetParent(root);
             return go;
         }

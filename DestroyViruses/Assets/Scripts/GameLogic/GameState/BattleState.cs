@@ -12,7 +12,7 @@ namespace DestroyViruses
         {
             base.OnEnter();
             ProxyManager.Subscribe<BuffProxy>();
-            UIManager.Instance.Open<BattleView>();
+            UIManager.Open<BattleView>();
             GameModeManager.Instance.InitMode<LevelMode>();
             GameModeManager.Instance.Begin();
         }
@@ -25,7 +25,7 @@ namespace DestroyViruses
         public override void OnExit()
         {
             base.OnExit();
-            UIManager.Instance.Close<BattleView>();
+            UIManager.Close<BattleView>();
             EntityManager.Clear();
             D.I.gameEndWin = false;
             ProxyManager.Unsubscribe<BuffProxy>();

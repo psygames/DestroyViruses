@@ -24,6 +24,6 @@ public abstract class ViewBase : MonoBehaviour
     protected virtual void OnClose() { }
     protected void Close()
     {
-        UIManager.Instance.Close(GetType());
+        UIManager.Close(GetType());
     }
 }

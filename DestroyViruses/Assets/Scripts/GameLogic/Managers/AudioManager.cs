@@ -7,6 +7,8 @@ namespace DestroyViruses
 {
     public class AudioManager : Singleton<AudioManager>
     {
+        Dictionary<string, AudioClip> mCached = new Dictionary<string, AudioClip>();
+
         //音乐播放器
         public AudioSource MusicPlayer;
         //开火音乐
@@ -20,7 +22,7 @@ namespace DestroyViruses
         {
             if (mLastMusic != name || !MusicPlayer.isPlaying)
             {
-                AudioClip clip = Resources.Load<AudioClip>("Sounds/" + name);
+                AudioClip clip = GetClip(name);
                 MusicPlayer.clip = clip;
                 MusicPlayer.loop = loop;
                 MusicPlayer.volume = volume;
@@ -41,7 +43,7 @@ namespace DestroyViruses
         {
             if (mLastFireMusic != name || !FireMusicPlayer.isPlaying)
             {
-                AudioClip clip = Resources.Load<AudioClip>("Sounds/" + name);
+                AudioClip clip = GetClip(name);
                 FireMusicPlayer.clip = clip;
                 FireMusicPlayer.loop = loop;
                 FireMusicPlayer.volume = volume;
@@ -59,7 +61,7 @@ namespace DestroyViruses
         //播放音效
         public void PlaySound(string name)
         {
-            AudioClip clip = Resources.Load<AudioClip>("Sounds/" + name);
+            AudioClip clip = GetClip(name);
             SoundPlayer.clip = clip;
             SoundPlayer.PlayOneShot(clip);
         }
@@ -67,6 +69,23 @@ namespace DestroyViruses
         public void StopSound()
         {
             SoundPlayer.Stop();
+        }
+
+        private AudioClip GetClip(string name)
+        {
+            var path = "Sounds/" + name;
+            if (!mCached.TryGetValue(path, out AudioClip clip))
+            {
+                clip = Resources.Load<AudioClip>(path);
+                mCached.Add(path, clip);
+            }
+            return clip;
+
+        }
+
+        public static void Preload(string name)
+        {
+            Instance.GetClip(name);
         }
     }
 }

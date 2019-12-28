@@ -14,7 +14,7 @@ public class UIManager : Singleton<UIManager>
 
     private readonly List<ViewBase> mCachedViews = new List<ViewBase>();
 
-    private ViewBase GetView(Type type)
+    private ViewBase getView(Type type)
     {
         foreach (var p in mCachedViews)
         {
@@ -26,7 +26,7 @@ public class UIManager : Singleton<UIManager>
         return null;
     }
 
-    private void SetLayer(ViewBase view, UILayer layer)
+    private void setLayer(ViewBase view, UILayer layer)
     {
         if (view == null)
             return;
@@ -56,7 +56,7 @@ public class UIManager : Singleton<UIManager>
         view.rectTransform.offsetMax = offsetMax;
     }
 
-    public ViewBase Load(Type viewType)
+    private ViewBase load(Type viewType)
     {
         if (!typeof(ViewBase).IsAssignableFrom(viewType))
         {
@@ -64,7 +64,7 @@ public class UIManager : Singleton<UIManager>
             return null;
         }
 
-        var view = GetView(viewType);
+        var view = getView(viewType);
         if (view != null)
         {
             return view;
@@ -83,14 +83,14 @@ public class UIManager : Singleton<UIManager>
         return view;
     }
 
-    public T Load<T>() where T : ViewBase
+    private T load<T>() where T : ViewBase
     {
-        return Load(typeof(T)) as T;
+        return load(typeof(T)) as T;
     }
 
-    public T Open<T>(UILayer layer = UILayer.Common) where T : ViewBase
+    private T open<T>(UILayer layer = UILayer.Common) where T : ViewBase
     {
-        ViewBase view = GetView(typeof(T));
+        ViewBase view = getView(typeof(T));
 
         if (view == null)
         {
@@ -98,27 +98,50 @@ public class UIManager : Singleton<UIManager>
         }
 
         view.gameObject.SetActive(true);
-        SetLayer(view, layer);
+        setLayer(view, layer);
         view.Invoke("OnOpen", 0f);
         return view as T;
     }
 
-    public void Close<T>() where T : ViewBase
+    private void close<T>() where T : ViewBase
     {
-        ViewBase view = GetView(typeof(T));
+        ViewBase view = getView(typeof(T));
         view.gameObject.SetActive(false);
         view.Invoke("OnClose", 0);
     }
 
-    public void Close(Type type)
+    private void close(Type type)
     {
         if (!typeof(ViewBase).IsAssignableFrom(type))
         {
             Debug.LogError($"{type.Name} is not a UIView based Type");
             return;
         }
-        ViewBase view = GetView(type);
+        ViewBase view = getView(type);
         view.gameObject.SetActive(false);
         view.Invoke("OnClose", 0);
     }
+
+
+    #region API
+    public static T Load<T>() where T : ViewBase
+    {
+        return Instance.load<T>();
+    }
+
+    public static T Open<T>(UILayer layer = UILayer.Common) where T : ViewBase
+    {
+        return Instance.open<T>(layer);
+    }
+
+    public static void Close<T>() where T : ViewBase
+    {
+        Instance.close<T>();
+    }
+
+    public static void Close(Type type)
+    {
+        Instance.close(type);
+    }
+    #endregion
 }

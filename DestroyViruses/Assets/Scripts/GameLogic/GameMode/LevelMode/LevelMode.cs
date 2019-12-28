@@ -148,7 +148,7 @@ namespace DestroyViruses
                 if (D.I.reviveCount > 0)
                 {
                     D.I.reviveCount -= 1;
-                    UIManager.Instance.Open<GameReviveView>(UILayer.Top);
+                    UIManager.Open<GameReviveView>(UILayer.Top);
                     GameModeManager.Instance.Pause();
                 }
                 else

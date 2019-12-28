@@ -49,13 +49,20 @@ namespace DestroyViruses
         {
             if (D.I.CanDailySign())
             {
-                D.I.DailySign(1);
-                // AudioManager.Instance.PlaySound("collect_coin");
+                Sign(1);
             }
             else
             {
                 Toast.Show("今日已签到");
                 Close();
+            }
+        }
+
+        private void OnClickSignDay(int day)
+        {
+            if (day == D.I.signDays)
+            {
+                Sign(1);
             }
         }
 
@@ -65,8 +72,7 @@ namespace DestroyViruses
             {
                 if (AdProxy.Ins.ShowAd("daily_sign"))
                 {
-                    D.I.DailySign(2);
-                    // AudioManager.Instance.PlaySound("collect_coin");
+                    Sign(2);
                 }
                 else
                 {
@@ -78,6 +84,12 @@ namespace DestroyViruses
                 Toast.Show("今日已签到");
                 Close();
             }
+        }
+
+        private void Sign(float multiple)
+        {
+            D.I.DailySign(multiple);
+            AudioManager.Instance.PlaySound("revive_count_down");
         }
     }
 }

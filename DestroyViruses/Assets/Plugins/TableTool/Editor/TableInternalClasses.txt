@@ -117,11 +117,11 @@ public struct TRangeInt
 {
     public int min { get; private set; }
     public int max { get; private set; }
-    public int random { get { return UnityEngine.Random.Range(min, max); } }
+    public int random { get { return UnityEngine.Random.Range(min, max + 1); } }
     
     public bool Contains(int value)
     {
-        return value >= min && value < max;
+        return value >= min && value <= max;
     }
     
     public static TRangeInt Parse(string str)
