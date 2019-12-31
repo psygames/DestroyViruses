@@ -17,9 +17,9 @@ namespace DestroyViruses
         Tweener standByTweener = null;
         public void PlayStandby()
         {
-            mRectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, 600, 0);
+            mRectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, ConstTable.table.aircraftHomePosY, 0);
             path = new Vector3[13];
-            var dist = 30;
+            var dist = ConstTable.table.aircraftHomeAnimaDist;
             for (int i = 0; i < 13; i++)
             {
                 var dir = Quaternion.AngleAxis(360 * i / 10, -Vector3.forward) * Vector3.left;
@@ -54,13 +54,22 @@ namespace DestroyViruses
         {
             mRectTransform.anchoredPosition3D = new Vector3(UIUtil.width * 0.5f, 0, 0);
             mRectTransform.localScale = Vector3.one;
-            mRectTransform.DOAnchorPos3D(new Vector3(UIUtil.width * 0.5f, 600, 0), 0.3f);
-            mRectTransform.DOScale(1.5f, 0.5f).SetDelay(0.3f).OnComplete(() => PlayStandby());
+            mRectTransform.DOAnchorPos3D(new Vector3(UIUtil.width * 0.5f, ConstTable.table.aircraftHomePosY + 100, 0), 0.5f);
+            if (BackgroundView.Ins != null)
+            {
+                BackgroundView.Ins.rectTransform.DOScale(Mathf.Sqrt(ConstTable.table.aircraftHomeScale), 0.5f).SetDelay(1f);
+            }
+            mRectTransform.DOAnchorPos3D(new Vector3(UIUtil.width * 0.5f, ConstTable.table.aircraftHomePosY, 0), 0.5f).SetDelay(1);
+            mRectTransform.DOScale(ConstTable.table.aircraftHomeScale, 0.5f).SetDelay(1f).OnComplete(() => PlayStandby());
         }
 
         public void PlayHomeOut()
         {
             mRectTransform.DOScale(1f, 0.5f);
+            if (BackgroundView.Ins != null)
+            {
+                BackgroundView.Ins.rectTransform.DOScale(1, 0.5f);
+            }
         }
 
         public void KillAll()

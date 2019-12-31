@@ -8,24 +8,14 @@ namespace DestroyViruses
 {
     public class VirusCure : VirusBase
     {
-        public Image[] lines;
-        public Image[] buffs;
-
+        public ContentGroup linesGroup;
         public FadeGroup effectTrigger;
-
         private List<VirusBase> mViruses = new List<VirusBase>();
 
-        protected override void OnColorChanged(int index)
+        public override void Reset(int id, float hp, int size, float speed, Vector2 pos, Vector2 direction, Vector2 hpRange, bool isMatrix)
         {
-            base.OnColorChanged(index);
-            foreach (var line in lines)
-            {
-                line.SetSprite($"cure_line_{index}");
-            }
-            foreach (var buff in buffs)
-            {
-                buff.SetSprite($"cure_buff_icon_{index}");
-            }
+            base.Reset(id, hp, size, speed, pos, direction, hpRange, isMatrix);
+            Update();
         }
 
         protected override void OnSkillTrigger()
@@ -33,12 +23,12 @@ namespace DestroyViruses
             base.OnSkillTrigger();
             foreach (var v in mViruses)
             {
-                if (v != null && v.isAlive)
+                if (v != null && v.isAlive && !v.isHpFull)
                 {
                     v.SetHp(v.hp + table.effect1 * v.hpTotal);
+                    v.PlayCure();
                 }
             }
-            effectTrigger.FadeIn();
         }
 
         protected override void Update()
@@ -56,26 +46,10 @@ namespace DestroyViruses
                 }
             }
 
-            for (int i = 0; i < lines.Length; i++)
+            linesGroup.SetData<CureLine, VirusBase>(mViruses, (index, item, data) =>
             {
-                if (i < mViruses.Count)
-                {
-                    lines[i].gameObject.SetActive(true);
-                    SetLine(lines[i], mViruses[i]);
-                }
-                else
-                {
-                    lines[i].gameObject.SetActive(false);
-                }
-            }
-        }
-
-        private void SetLine(Image img, VirusBase v)
-        {
-            var rec = img.rectTransform;
-            var dir = v.position - position;
-            rec.sizeDelta = new Vector2(dir.magnitude / scale, rec.sizeDelta.y);
-            rec.localRotation = Quaternion.FromToRotation(Vector2.right, dir);
+                item.SetData(colorIndex, data.colorIndex, (data.position - position) / scale);
+            });
         }
     }
 }

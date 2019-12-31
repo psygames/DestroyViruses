@@ -83,12 +83,11 @@ namespace DestroyViruses
             return ConstTable.table.coinValue[size - 1] * factor1 * factor2;
         }
 
-        public static int GetHpColorIndex(Vector2 hpRange, float hp, int colorCount = 9)
+        public static int GetHpColorIndex(Vector2 hpRange, float hp, int colorCount = 6)
         {
-            float percent = Mathf.Sqrt((hp - hpRange.x) / (hpRange.y - hpRange.x));
-            int index = Mathf.Clamp((int)(percent * percent * colorCount), 0, colorCount - 1);
-            index = colorCount - index - 1; // 翻转
-            return index;
+            float percent = (hp - hpRange.x) / (hpRange.y - hpRange.x);
+            int index = (int)(percent * colorCount);
+            return Mathf.Clamp(index, 0, colorCount - 1);
         }
 
         public static float Expresso(string expression, params float[] parameters)

@@ -16,8 +16,11 @@ namespace DestroyViruses
 
         public RectTransform shakeRoot;
 
+        public static BackgroundView Ins;
+
         private void Awake()
         {
+            Ins = this;
             Unibus.Subscribe<EventVirus>(OnEventVirus);
         }
 

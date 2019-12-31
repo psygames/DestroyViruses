@@ -16,11 +16,13 @@ namespace DestroyViruses
         public Animator animator;
 
         public new Collider2D collider2D { get; private set; }
+        public ParticleSystem cureEffect { get; private set; }
 
         public int id { get; protected set; }
         public TableVirus table { get; protected set; }
         public float cd { get; protected set; }
         public float hp { get; protected set; }
+        public bool isHpFull { get { return hp >= hpTotal; } }
         public float hpTotal { get; protected set; }
         public Vector2 hpRange { get; protected set; }
         public int size { get; protected set; }
@@ -31,7 +33,9 @@ namespace DestroyViruses
         public bool isMatrix { get; protected set; }
         public float radius { get; private set; }
         public float scale { get; private set; }
+        public int colorIndex { get; private set; }
         protected virtual float speedMul { get; set; } = 1f;
+
 
         private int mLastColorIndex = -1;
         private float mLastHp = -1;
@@ -40,6 +44,8 @@ namespace DestroyViruses
         protected virtual void Awake()
         {
             collider2D = GetComponent<Collider2D>();
+            cureEffect = transform.Find("virus_base/cure_buff").GetComponent<ParticleSystem>();
+            cureEffect.Stop(true);
         }
 
         protected virtual void OnEnable()
@@ -286,11 +292,11 @@ namespace DestroyViruses
 
         protected virtual void UpdateColor()
         {
-            var index = FormulaUtil.GetHpColorIndex(hpRange, hp);
-            if (mLastColorIndex != index)
+            colorIndex = FormulaUtil.GetHpColorIndex(hpRange, hp);
+            if (mLastColorIndex != colorIndex)
             {
-                OnColorChanged(index);
-                mLastColorIndex = index;
+                OnColorChanged(colorIndex);
+                mLastColorIndex = colorIndex;
             }
         }
 
@@ -314,6 +320,11 @@ namespace DestroyViruses
 
         protected virtual void OnColorChanged(int index)
         {
+            if (animator != null)
+            {
+                animator.GetComponentInChildren<SkinnedMeshRenderer>().material.mainTexture
+                    = ResourceUtil.Load<Texture2D>(PathUtil.Texture($"{GetType().Name}Texture_{index + 1}.png"));
+            }
         }
 
         protected virtual void Update()
@@ -334,6 +345,12 @@ namespace DestroyViruses
         protected float GetDist(VirusBase virus)
         {
             return Mathf.Max(0, (position - virus.position).magnitude - radius - virus.radius);
+        }
+
+        public void PlayCure()
+        {
+            if (cureEffect != null)
+                cureEffect.Play(true);
         }
     }
 }

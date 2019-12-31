@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3388818686
+CRC: 3740174504
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3ba843ca94efb9696ac43ec051c7ded1
+    Hash: bf563c119dd460053f913100775f2d5b
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 164af8808037920abe999d221acf6e6e
+    Hash: 28e6c1625a71cbe709ff507098fd0cba
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -225,16 +225,17 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/VirusCure.prefab
 - Assets/AssetBundles/Prefabs/UI/View/NavigationView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDodge.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle/VirusTriangleAnimator.controller
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureAnimator.controller
 - Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverRaw.FBX
 - Assets/AssetBundles/Prefabs/Entities/ExplosionCrash.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDart.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDefense.prefab
-- Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandTexture.png
 - Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandAnimation_Hurt.anim
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderRaw.FBX
 - Assets/AssetBundles/Prefabs/Entities/VirusTrack.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureMaterial.mat
+- Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle/VirusTriangleAnimation_Idle.anim
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderAnimator.controller
 - Assets/AssetBundles/Prefabs/Entities/VirusAttach.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusSlower.prefab
@@ -246,11 +247,11 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusCollider3D.prefab
 - Assets/AssetBundles/Prefabs/UI/View/DailySignView.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverAnimation_Hurt.anim
+- Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle/VirusTriangleAnimation_Hurt.anim
 - Assets/AssetBundles/Prefabs/Entities/ExplosionVirus.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureRaw.FBX
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderAnimation_Hurt.anim
 - Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowRaw.FBX
-- Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureTexture.png
 - Assets/AssetBundles/Prefabs/UI/View/ToastView.prefab
 - Assets/AssetBundles/Prefabs/UI/View/ExchangeView.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureAnimation_Idle.anim
@@ -260,23 +261,25 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/VirusVampire.prefab
 - Assets/AssetBundles/Prefabs/Entities/Aircraft.prefab
 - Assets/AssetBundles/Prefabs/UI/View/GameReviveView.prefab
+- Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle/VirusTriangle3D.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverMaterial.mat
 - Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowAnimator.controller
-- Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverTexture.png
 - Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverAnimator.controller
 - Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowMaterial.mat
 - Assets/AssetBundles/Prefabs/UI/View/OptionView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusSpeed.prefab
 - Assets/AssetBundles/Prefabs/Entities/Items/virus_base.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandRaw.FBX
+- Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle/VirusTriangleRaw.FBX
+- Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderAnimation_Idle.anim
 - Assets/AssetBundles/Prefabs/Entities/VirusExpand.prefab
 - Assets/AssetBundles/Prefabs/UI/View/GameEndView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusCollider.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowAnimation_Hurt.anim
 - Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandAnimator.controller
-- Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowTexture.png
+- Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle/VirusTriangleMaterial.mat
 - Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverAnimation_Idle.anim
-- Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderTexture.png
 - Assets/AssetBundles/Prefabs/Entities/VirusTriangle.prefab
-- Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderAnimation_Idle.anim
-Dependencies: []
+Dependencies:
+- C:/Users/Administrator.YIN-PC/Desktop/DestroyViruses/DestroyViruses/AssetBundles/Android/textures/virustriangletexture_1
+- C:/Users/Administrator.YIN-PC/Desktop/DestroyViruses/DestroyViruses/AssetBundles/Android/textures/viruscollidertexture_3

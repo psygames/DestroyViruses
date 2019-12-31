@@ -35,7 +35,13 @@ namespace DestroyViruses
         private const string SOUND_ROOT = ASSET_ROOT + "Sounds/";
         public static string Sound(string name)
         {
-            return "Sounds/" + name;
+            return SOUND_ROOT + name;
+        }
+
+        private const string TEXTURE_ROOT = ASSET_ROOT + "Textures/";
+        public static string Texture(string name)
+        {
+            return TEXTURE_ROOT + name;
         }
 
         public static string[] GetSpriteAtlasNames()

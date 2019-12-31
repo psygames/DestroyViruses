@@ -227,6 +227,24 @@ namespace DestroyViruses
 		public int dailySignUnlockLevel { get { return _dailySignUnlockLevel; } private set { _dailySignUnlockLevel = value; } }
 
 		/// <summary>
+		/// 大厅飞船待机动画移动距离
+		/// </summary>
+		private float _aircraftHomeAnimaDist;
+		public float aircraftHomeAnimaDist { get { return _aircraftHomeAnimaDist; } private set { _aircraftHomeAnimaDist = value; } }
+
+		/// <summary>
+		/// 大厅飞船位置（距底边）
+		/// </summary>
+		private float _aircraftHomePosY;
+		public float aircraftHomePosY { get { return _aircraftHomePosY; } private set { _aircraftHomePosY = value; } }
+
+		/// <summary>
+		/// 大厅飞船缩放
+		/// </summary>
+		private float _aircraftHomeScale;
+		public float aircraftHomeScale { get { return _aircraftHomeScale; } private set { _aircraftHomeScale = value; } }
+
+		/// <summary>
 		/// 子弹横向距离
 		/// </summary>
 		private float _bulletHDist;

@@ -7,7 +7,18 @@ namespace DestroyViruses
     {
         public static T Load<T>(string path) where T : Object
         {
-            var asset = Assets.Load(path, typeof(Object));
+            Asset asset;
+            if (typeof(T) == typeof(Texture2D)
+                || typeof(T) == typeof(AudioClip)
+                || typeof(T) == typeof(TextAsset))
+            {
+                asset = Assets.Load(path, typeof(T));
+            }
+            else
+            {
+                asset = Assets.Load(path, typeof(Object));
+            }
+
             if (asset.asset is GameObject)
             {
                 var go = asset.asset as GameObject;
