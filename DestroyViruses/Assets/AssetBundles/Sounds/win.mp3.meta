@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f78c3afafafd8434c8b2cad2d7151ba9
+guid: 59ace936bd846c346beca46f06ddbfd4
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -18,5 +18,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: 
+  assetBundleName: sounds/win
   assetBundleVariant: 

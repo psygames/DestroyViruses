@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 666f833fb3ae6471e9f15fe60bad17aa
+guid: e56dac04935c74047b90a3f22768755a
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -18,5 +18,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: 
+  assetBundleName: sounds/coin
   assetBundleVariant: 

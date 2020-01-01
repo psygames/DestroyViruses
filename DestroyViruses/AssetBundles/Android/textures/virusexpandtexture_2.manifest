@@ -1,17 +1,15 @@
 ManifestFileVersion: 0
-CRC: 417187680
+CRC: 920624195
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a4adebbbff5bbc29f62b5780a2197ea0
+    Hash: 8071e057f3b42a167c9378261d21f5be
   TypeTreeHash:
     serializedVersion: 2
-    Hash: cb3f6df5cbc4a2990c44c2787bc9553a
+    Hash: f19fbf085e00d23fbc8d6cf7b345590b
 HashAppended: 0
 ClassTypes:
 - Class: 28
-  Script: {instanceID: 0}
-- Class: 213
   Script: {instanceID: 0}
 Assets:
 - Assets/AssetBundles/Textures/VirusExpandTexture_2.png

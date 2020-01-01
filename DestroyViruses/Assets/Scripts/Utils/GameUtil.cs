@@ -38,7 +38,7 @@ namespace DestroyViruses
             get { return TableLanguage.Get(Option.language); }
         }
 
-        public static string Get(string key)
+        public static string Get(string key, params object[] args)
         {
             var prop = table.GetType().GetProperty(key
                  , System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
@@ -46,7 +46,9 @@ namespace DestroyViruses
             {
                 return $"[{key}]";
             }
-            return prop.GetValue(LT.table) as string;
+            if (args == null)
+                return prop.GetValue(LT.table) as string;
+            return string.Format(prop.GetValue(LT.table) as string, args);
         }
 
         public static string systemLanguage

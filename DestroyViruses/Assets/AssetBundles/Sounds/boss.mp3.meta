@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c36f4ebf8470348d8a6f8d8fd4d2f0db
+guid: 067774ed2b9669d47afe159b943d4b44
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -18,5 +18,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: 
+  assetBundleName: sounds/boss
   assetBundleVariant: 

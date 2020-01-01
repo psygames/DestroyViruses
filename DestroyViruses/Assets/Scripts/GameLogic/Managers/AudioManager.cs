@@ -71,16 +71,14 @@ namespace DestroyViruses
             SoundPlayer.Stop();
         }
 
-        private AudioClip GetClip(string name)
+        private AudioClip GetClip(string clipName)
         {
-            var path = "Sounds/" + name;
-            if (!mCached.TryGetValue(path, out AudioClip clip))
+            if (!mCached.TryGetValue(clipName, out AudioClip clip))
             {
-                clip = Resources.Load<AudioClip>(path);
-                mCached.Add(path, clip);
+                clip = ResourceUtil.Load<AudioClip>(PathUtil.Sound(clipName));
+                mCached.Add(clipName, clip);
             }
             return clip;
-
         }
 
         public static void Preload(string name)

@@ -1,17 +1,15 @@
 ManifestFileVersion: 0
-CRC: 307966161
+CRC: 714110679
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 67ac5eb8d75e37222445cc51fef6e027
+    Hash: b7e85e5394f3181576af6bc2c320bb86
   TypeTreeHash:
     serializedVersion: 2
-    Hash: cb3f6df5cbc4a2990c44c2787bc9553a
+    Hash: f19fbf085e00d23fbc8d6cf7b345590b
 HashAppended: 0
 ClassTypes:
 - Class: 28
-  Script: {instanceID: 0}
-- Class: 213
   Script: {instanceID: 0}
 Assets:
 - Assets/AssetBundles/Textures/VirusRecoverTexture_5.png

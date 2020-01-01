@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1aaa08fc13fbc4906ad0350c8ad6c6c6
+guid: 666f833fb3ae6471e9f15fe60bad17aa
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -18,5 +18,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: 
+  assetBundleName: sounds/revive_count_down
   assetBundleVariant: 

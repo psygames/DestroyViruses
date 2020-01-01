@@ -1,17 +1,15 @@
 ManifestFileVersion: 0
-CRC: 459882275
+CRC: 2567605854
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: abd6490200e1376b3de56cb6ed06f767
+    Hash: e4e9bf913168fb8d18a6642fa11142d6
   TypeTreeHash:
     serializedVersion: 2
-    Hash: cb3f6df5cbc4a2990c44c2787bc9553a
+    Hash: f19fbf085e00d23fbc8d6cf7b345590b
 HashAppended: 0
 ClassTypes:
 - Class: 28
-  Script: {instanceID: 0}
-- Class: 213
   Script: {instanceID: 0}
 Assets:
 - Assets/AssetBundles/Textures/VirusTriangleTexture_2.png

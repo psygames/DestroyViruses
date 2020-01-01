@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1108a23277d757245b95e76d7e6c512f
+guid: f78c3afafafd8434c8b2cad2d7151ba9
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -18,5 +18,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: 
+  assetBundleName: sounds/explosion
   assetBundleVariant: 

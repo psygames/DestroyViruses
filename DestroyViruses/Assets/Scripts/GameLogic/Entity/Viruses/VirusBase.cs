@@ -323,7 +323,7 @@ namespace DestroyViruses
             if (animator != null)
             {
                 animator.GetComponentInChildren<SkinnedMeshRenderer>().material.mainTexture
-                    = ResourceUtil.Load<Texture2D>(PathUtil.Texture($"{GetType().Name}Texture_{index + 1}.png"));
+                    = ResourceUtil.Load<Texture2D>(PathUtil.Texture($"{GetType().Name}Texture_{index + 1}"));
             }
         }
 

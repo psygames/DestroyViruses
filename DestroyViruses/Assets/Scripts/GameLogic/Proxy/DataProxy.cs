@@ -7,6 +7,7 @@ namespace DestroyViruses
     public class DataProxy : ProxyBase<DataProxy>
     {
         private GameLocalData localData { get { return GameLocalData.Instance; } }
+        private BookData bookData { get { return BookData.Instance; } }
 
         public float coin { get { return localData.coin; } }
         public float diamond { get { return localData.diamond; } }
@@ -29,7 +30,6 @@ namespace DestroyViruses
 
         public int streak { get { return Mathf.Clamp(localData.streak, -6, 6); } }
         public int signDays { get { return localData.signDays; } }
-        public int[] unlockedViruses { get { return localData.unlockedViruses; } }
 
         public int coinValueLevel { get { return localData.coinValueLevel; } }
         public float coinValue { get { return TableCoinValue.Get(coinValueLevel).value; } }
@@ -188,6 +188,7 @@ namespace DestroyViruses
                 localData.streak = 0;
             }
             SaveLocalData();
+            SaveBookData();
             DispatchEvent(EventGameData.Action.DataChange);
         }
 
@@ -250,23 +251,6 @@ namespace DestroyViruses
         public bool IsDailySignUnlocked()
         {
             return gameLevel >= ConstTable.table.dailySignUnlockLevel;
-        }
-
-        public void UnlockVirus(int virusID)
-        {
-            if (unlockedViruses.Any(a => a == virusID))
-            {
-                DispatchEvent(EventGameData.Action.Error, "Already Unlocked Virus " + virusID);
-                return;
-            }
-
-            int[] _virus = new int[unlockedViruses.Length + 1];
-            Array.Copy(unlockedViruses, _virus, unlockedViruses.Length);
-            _virus[_virus.Length - 1] = virusID;
-            localData.unlockedViruses = _virus;
-            DispatchEvent(EventGameData.Action.DataChange);
-
-            Analytics.Event.UnlockVirus(virusID);
         }
 
         public void TakeIncomeCoins()
@@ -349,9 +333,58 @@ namespace DestroyViruses
             Analytics.Event.Exchange(diamond, addCoin);
         }
 
+        #region Virus Book
+        public void BookAddCollectCount(int virusID)
+        {
+            if (!bookData.virusCount.ContainsKey(virusID))
+            {
+                bookData.virusCount[virusID] = 0;
+            }
+            bookData.virusCount[virusID]++;
+        }
+
+        public int BookGetCollectCount(int virusID)
+        {
+            bookData.virusCount.TryGetValue(virusID, out int count);
+            return count;
+        }
+
+        public bool BoolIsUnlock(int virusID)
+        {
+            return bookData.virusCount.TryGetValue(virusID, out _);
+        }
+
+        public void BookCollect(int virusID)
+        {
+            if(!bookData.virusCount.ContainsKey(virusID))
+            {
+                DispatchEvent(EventGameData.Action.Error, "怪物尚未解锁");
+                return;
+            }
+            if (bookData.virusCount[virusID] < ConstTable.table.bookVirusCollectKillCount)
+            {
+                DispatchEvent(EventGameData.Action.Error, "数量不足");
+                return;
+            }
+
+            bookData.virusCount[virusID] -= ConstTable.table.bookVirusCollectKillCount;
+            AddDiamond(ConstTable.table.bookVirusCollectRewardDiamond);
+
+            SaveLocalData();
+            SaveBookData();
+            DispatchEvent(EventGameData.Action.DataChange);
+        }
+
+        #endregion
+
         private void SaveLocalData()
         {
             localData.Save();
+        }
+
+        private void SaveBookData()
+        {
+            bookData.Save();
         }
 
         private void DispatchEvent(EventGameData.Action action, string errorMsg = "")

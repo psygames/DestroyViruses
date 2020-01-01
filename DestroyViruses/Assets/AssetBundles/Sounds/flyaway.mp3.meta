@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59ace936bd846c346beca46f06ddbfd4
+guid: 91d3e13af140f9144a6ad5bbb09f3d57
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -18,5 +18,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: 
+  assetBundleName: sounds/flyaway
   assetBundleVariant: 

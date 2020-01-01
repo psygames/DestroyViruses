@@ -43,11 +43,8 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1827d5ad581044f08b470c56b841c4ab, type: 3}
-    totalSpriteSurfaceArea: 4131873
+    totalSpriteSurfaceArea: 4135423
     bindAsDefault: 1
-    storedHash:
-      serializedVersion: 2
-      Hash: 8c88e6910e36c21e8969ba1d2e0b6088
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 6870294071e48e44dabfca1db9e2384a, type: 3}
@@ -78,6 +75,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 259ed135a3763ff41a5bd14d332b6a3a, type: 3}
   - {fileID: 21300000, guid: dc2f9255c808a2745917c63ab2fdad73, type: 3}
   - {fileID: 21300000, guid: fffc2a65785b85241a7a594b263437de, type: 3}
+  - {fileID: 21300000, guid: 4fcffa75c15bf453fbdaf1fb4c8cc430, type: 3}
   - {fileID: 21300000, guid: e3d9bd759ac5e0446af6cb0b259ad249, type: 3}
   - {fileID: 21300000, guid: ece7a895f2d062346b54aaf051a400da, type: 3}
   - {fileID: 21300000, guid: 13256da5682f05d4d99eec97bc0715ea, type: 3}
@@ -121,6 +119,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c8bd87cb6a5b77c4493bacf9c041c1a5, type: 3}
   - {fileID: 21300000, guid: 53cf87fb491399544bf874c4fb8b0395, type: 3}
   - {fileID: 21300000, guid: bf5f755c705b0404e8b7f956ec0bd3c2, type: 3}
+  - {fileID: 21300000, guid: bad8286c322c94bb79bf009c837aef07, type: 3}
   - {fileID: 21300000, guid: cf49f07c9b1646d4b9c63316bab747cb, type: 3}
   - {fileID: 21300000, guid: d08ec68cb7df5c1418f55a5cf67a23d4, type: 3}
   - {fileID: 21300000, guid: b433ec8c24a773342887b62f718635ac, type: 3}
@@ -157,7 +156,7 @@ SpriteAtlas:
   - bullet_2_1_1
   - icon_up
   - coin_frame_2
-  - weapon_1
+  - weapon_default
   - button_1
   - ui_icon_buff_live_up_virus
   - ui_icon_buff_boost_virus
@@ -182,6 +181,7 @@ SpriteAtlas:
   - arrow_down
   - function_item_title_bg
   - button_reward
+  - weapon_normal_part1
   - ui_icon_buff_coin
   - weapon_board_3
   - board_0
@@ -225,6 +225,7 @@ SpriteAtlas:
   - board_6
   - bullet_0_0_1
   - icon_buff_06
+  - weapon_normal_part2
   - coin_frame_6
   - button_xingyundajiang
   - button_receive

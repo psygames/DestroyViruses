@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 39d3a2c65735b486f9282905de75337b
+guid: 1108a23277d757245b95e76d7e6c512f
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -18,5 +18,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: 
+  assetBundleName: sounds/crash
   assetBundleVariant: 

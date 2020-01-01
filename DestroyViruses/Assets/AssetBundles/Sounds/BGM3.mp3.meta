@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5f3c3ab64b9804fc8aee3b1254648c49
+guid: da984b636848944679b4c178af1d7b66
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -18,5 +18,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: 
+  assetBundleName: sounds/bgm3
   assetBundleVariant: 
