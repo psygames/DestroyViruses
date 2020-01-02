@@ -245,6 +245,18 @@ namespace DestroyViruses
 		public int dailySignUnlockLevel { get { return _dailySignUnlockLevel; } private set { _dailySignUnlockLevel = value; } }
 
 		/// <summary>
+		/// 武器系统解锁关卡
+		/// </summary>
+		private int _weaponUnlockLevel;
+		public int weaponUnlockLevel { get { return _weaponUnlockLevel; } private set { _weaponUnlockLevel = value; } }
+
+		/// <summary>
+		/// 图鉴系统解锁关卡
+		/// </summary>
+		private int _bookUnlockLevel;
+		public int bookUnlockLevel { get { return _bookUnlockLevel; } private set { _bookUnlockLevel = value; } }
+
+		/// <summary>
 		/// 大厅飞船待机动画移动距离
 		/// </summary>
 		private float _aircraftHomeAnimaDist;

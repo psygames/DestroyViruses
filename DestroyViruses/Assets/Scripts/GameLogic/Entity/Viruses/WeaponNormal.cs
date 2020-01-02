@@ -20,13 +20,13 @@ namespace DestroyViruses
             base.OnUnitFire(index);
             if (index == 0)
             {
-                EntityManager.Create<WeaponNormalBullet>().Reset(unit1.GetUIPos()
+                EntityManager.Create<WeaponNormalBullet>().Reset(unit1.GetUIPos() + Vector2.up * 50
                     , Quaternion.AngleAxis(effect2, Vector3.forward) * Vector2.up
                     , damage, effect1, effect1, effect2, effect3);
             }
-            else if(index == 1)
+            else if (index == 1)
             {
-                EntityManager.Create<WeaponNormalBullet>().Reset(unit2.GetUIPos()
+                EntityManager.Create<WeaponNormalBullet>().Reset(unit2.GetUIPos() + Vector2.up * 50
                     , Quaternion.AngleAxis(-effect2, Vector3.forward) * Vector2.up
                     , damage, effect1, effect1, effect2, effect3);
             }

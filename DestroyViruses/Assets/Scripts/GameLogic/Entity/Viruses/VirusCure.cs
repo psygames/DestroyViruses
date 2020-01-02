@@ -38,7 +38,7 @@ namespace DestroyViruses
             for (int i = mViruses.Count - 1; i >= 0; i--)
             {
                 var v = mViruses[i];
-                if (v.isAlive && GetDist(v) > table.effect3)
+                if (!v.isAlive || GetDist(v) > table.effect3)
                 {
                     mViruses.RemoveAt(i);
                 }
@@ -48,6 +48,7 @@ namespace DestroyViruses
                 var virus = v as VirusBase;
                 if (typeof(VirusCure) != virus.GetType()
                     && !mViruses.Contains(virus)
+                    && virus.isAlive
                     && GetDist(virus) <= table.effect2)
                 {
                     mViruses.Add(virus);

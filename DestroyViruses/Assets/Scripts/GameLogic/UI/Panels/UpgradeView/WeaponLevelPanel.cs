@@ -34,6 +34,13 @@ namespace DestroyViruses
 
         public void SetData()
         {
+            if (D.I.unlockedGameLevel < ConstTable.table.weaponUnlockLevel)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+
+            gameObject.SetActive(true);
             if (D.I.weaponId <= 0)
             {
                 icon.SetSprite("icon_weapon_default");

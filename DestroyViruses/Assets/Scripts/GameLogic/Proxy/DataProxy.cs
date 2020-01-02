@@ -202,7 +202,14 @@ namespace DestroyViruses
                 return;
             }
             localData.unlockedGameLevel += 1;
+            // auto equip
+            if (weaponId <= 0 && ConstTable.table.weaponUnlockLevel <= unlockedGameLevel)
+            {
+                localData.weaponId = 1;
+            }
+
             SaveLocalData();
+            DispatchEvent(EventGameData.Action.UnlockNewLevel);
             DispatchEvent(EventGameData.Action.DataChange);
         }
 

@@ -30,7 +30,7 @@ namespace DestroyViruses
         {
             if (mId == D.I.weaponId)
             {
-                D.I.ChangeWeapon(0);
+                //D.I.ChangeWeapon(0);
             }
             else
             {

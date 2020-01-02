@@ -16,7 +16,7 @@ MonoBehaviour:
   sortingOrder: -1
   zOffset: 0
   zUnit: 0
-  mScale: 80
+  mScale: 180
 --- !u!1 &6795419132070359971
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,7 +85,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 50
 --- !u!114 &5482954329341447793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,11 +155,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4144006472976614, guid: 7a4032c8a09013f49ab695cd330a18df, type: 3}
       propertyPath: m_LocalScale.x
-      value: 80
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 4144006472976614, guid: 7a4032c8a09013f49ab695cd330a18df, type: 3}
       propertyPath: m_LocalScale.y
-      value: 80
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 199565468780472720, guid: 7a4032c8a09013f49ab695cd330a18df,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 198838268833884450, guid: 7a4032c8a09013f49ab695cd330a18df,
         type: 3}
@@ -181,17 +186,12 @@ PrefabInstance:
       propertyPath: RotationModule.curve.scalar
       value: 4.712389
       objectReference: {fileID: 0}
-    - target: {fileID: 199565468780472720, guid: 7a4032c8a09013f49ab695cd330a18df,
+    - target: {fileID: 199933360774137846, guid: 7a4032c8a09013f49ab695cd330a18df,
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 199198943118235146, guid: 7a4032c8a09013f49ab695cd330a18df,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 199933360774137846, guid: 7a4032c8a09013f49ab695cd330a18df,
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
