@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2105764556
+CRC: 851122980
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a13aaeb41c156a97ca007b2f2efb33f0
+    Hash: 2b7dec1dbf28c85860d69dfbb1c86b03
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
@@ -12,5 +12,5 @@ ClassTypes:
 - Class: 83
   Script: {instanceID: 0}
 Assets:
-- Assets/AssetBundles/Sounds/level_up.wav
+- Assets/AssetBundles/Sounds/level_up.mp3
 Dependencies: []

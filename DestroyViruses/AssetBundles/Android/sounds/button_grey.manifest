@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3696072367
+CRC: 3246168045
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f5542c7c07e92c3c567df122d8db4dc4
+    Hash: 17393f702389706ece36cbef934964b4
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
@@ -12,5 +12,5 @@ ClassTypes:
 - Class: 83
   Script: {instanceID: 0}
 Assets:
-- Assets/AssetBundles/Sounds/button_grey.wav
+- Assets/AssetBundles/Sounds/button_grey.mp3
 Dependencies: []

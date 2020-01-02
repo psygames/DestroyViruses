@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9e7caf758ca5d40d7abcd301cf4b41b1
+guid: 228c477f8df68b14cbc0afc1914e85f2
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -18,5 +18,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: sounds/hit
+  assetBundleName: sounds/diamond
   assetBundleVariant: 

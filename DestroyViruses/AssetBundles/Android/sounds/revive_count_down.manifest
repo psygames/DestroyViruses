@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 222796289
+CRC: 3214194053
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ca57c882503ae8d8083ba9c6c3f4a1d6
+    Hash: f70a81633ab6904555643d68bc58586e
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
@@ -12,5 +12,5 @@ ClassTypes:
 - Class: 83
   Script: {instanceID: 0}
 Assets:
-- Assets/AssetBundles/Sounds/revive_count_down.wav
+- Assets/AssetBundles/Sounds/revive_count_down.mp3
 Dependencies: []

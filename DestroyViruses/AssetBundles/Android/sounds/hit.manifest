@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 680917516
+CRC: 3063713626
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 14500c15c106861b62d203c7d8db6033
+    Hash: 4bd9fc2002ea49c14521e6e23385dd7a
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
@@ -12,5 +12,5 @@ ClassTypes:
 - Class: 83
   Script: {instanceID: 0}
 Assets:
-- Assets/AssetBundles/Sounds/hit.wav
+- Assets/AssetBundles/Sounds/hit.mp3
 Dependencies: []

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 222789306
+CRC: 1366359833
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0d78fb306846cc0b8647afc5167f3f25
+    Hash: f786e9884a912dba452877d49f0fadab
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
@@ -12,5 +12,5 @@ ClassTypes:
 - Class: 83
   Script: {instanceID: 0}
 Assets:
-- Assets/AssetBundles/Sounds/explosion.mp3
+- Assets/AssetBundles/Sounds/explosion.wav
 Dependencies: []

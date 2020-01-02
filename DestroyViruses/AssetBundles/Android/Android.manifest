@@ -1,38 +1,38 @@
 ManifestFileVersion: 0
-CRC: 1343703943
+CRC: 3780930346
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
+      Name: manifest
+      Dependencies: {}
+    Info_1:
+      Name: tables/tablevirus
+      Dependencies: {}
+    Info_2:
+      Name: tables/tablegamelevel
+      Dependencies: {}
+    Info_3:
+      Name: tables/tableaircraft
+      Dependencies: {}
+    Info_4:
       Name: prefabs
       Dependencies:
         Dependency_0: textures/viruscollidertexture_3
         Dependency_1: textures/virustriangletexture_1
-    Info_1:
-      Name: manifest
-      Dependencies: {}
-    Info_2:
-      Name: tables/tableaircraft
-      Dependencies: {}
-    Info_3:
-      Name: tables/tablefirespeed
-      Dependencies: {}
-    Info_4:
-      Name: tables/tablefirepower
-      Dependencies: {}
     Info_5:
-      Name: tables/tablegamewave
-      Dependencies: {}
-    Info_6:
-      Name: tables/tableconst
-      Dependencies: {}
-    Info_7:
-      Name: tables/tablegamelevel
-      Dependencies: {}
-    Info_8:
       Name: tables/tablebuff
       Dependencies: {}
+    Info_6:
+      Name: tables/tablegamewave
+      Dependencies: {}
+    Info_7:
+      Name: tables/tablefirespeed
+      Dependencies: {}
+    Info_8:
+      Name: tables/tablefirepower
+      Dependencies: {}
     Info_9:
-      Name: tables/tablevirus
+      Name: tables/tableconst
       Dependencies: {}
     Info_10:
       Name: tables/tablelanguage
@@ -47,25 +47,25 @@ AssetBundleManifest:
       Name: tables/tablebuffautogen
       Dependencies: {}
     Info_14:
-      Name: tables/tablecoinincome
+      Name: spriteatlas/total
       Dependencies: {}
     Info_15:
-      Name: tables/tabledailysign
+      Name: tables/tablecoinincome
       Dependencies: {}
     Info_16:
       Name: tables/tablecoinvalue
       Dependencies: {}
     Info_17:
-      Name: spriteatlas/total
+      Name: tables/tabledailysign
       Dependencies: {}
     Info_18:
-      Name: tables/tableweaponpowerlevel
+      Name: tables/tableweapon
       Dependencies: {}
     Info_19:
-      Name: tables/tableweaponspeedlevel
+      Name: tables/tableweaponpowerlevel
       Dependencies: {}
     Info_20:
-      Name: tables/tableweapon
+      Name: tables/tableweaponspeedlevel
       Dependencies: {}
     Info_21:
       Name: textures/virusexpandtexture_2
@@ -176,16 +176,16 @@ AssetBundleManifest:
       Name: textures/viruscuretexture_6
       Dependencies: {}
     Info_57:
-      Name: sounds/coin
+      Name: sounds/boss
       Dependencies: {}
     Info_58:
-      Name: sounds/bgm1
-      Dependencies: {}
-    Info_59:
       Name: sounds/crash
       Dependencies: {}
+    Info_59:
+      Name: sounds/button_normal
+      Dependencies: {}
     Info_60:
-      Name: sounds/bgm3
+      Name: sounds/bgm2
       Dependencies: {}
     Info_61:
       Name: sounds/win
@@ -194,32 +194,35 @@ AssetBundleManifest:
       Name: sounds/collect_coin
       Dependencies: {}
     Info_63:
-      Name: sounds/bgm2
-      Dependencies: {}
-    Info_64:
-      Name: sounds/button_grey
-      Dependencies: {}
-    Info_65:
-      Name: sounds/bgm4
-      Dependencies: {}
-    Info_66:
       Name: sounds/flyaway
       Dependencies: {}
+    Info_64:
+      Name: sounds/bgm4
+      Dependencies: {}
+    Info_65:
+      Name: sounds/bgm3
+      Dependencies: {}
+    Info_66:
+      Name: sounds/coin
+      Dependencies: {}
     Info_67:
-      Name: sounds/explosion
+      Name: sounds/bgm1
       Dependencies: {}
     Info_68:
-      Name: sounds/button_normal
+      Name: sounds/revive_count_down
       Dependencies: {}
     Info_69:
-      Name: sounds/boss
+      Name: sounds/hit
       Dependencies: {}
     Info_70:
-      Name: sounds/revive_count_down
+      Name: sounds/button_grey
       Dependencies: {}
     Info_71:
       Name: sounds/level_up
       Dependencies: {}
     Info_72:
-      Name: sounds/hit
+      Name: sounds/explosion
+      Dependencies: {}
+    Info_73:
+      Name: sounds/diamond
       Dependencies: {}
