@@ -58,7 +58,7 @@ namespace Plugins.XAsset.Editor
 
         public static string TrimedAssetBundleName(string assetBundleName)
         {
-            if(string.IsNullOrEmpty(assetRootPath))
+            if (string.IsNullOrEmpty(assetRootPath))
                 return assetBundleName;
             return assetBundleName.Replace(assetRootPath, "");
         }
@@ -74,7 +74,7 @@ namespace Plugins.XAsset.Editor
         private static void MarkAssetsWithDir()
         {
             var settings = BuildScript.GetSettings();
-            assetRootPath = settings.assetRootPath; 
+            assetRootPath = settings.assetRootPath;
             var assetsManifest = BuildScript.GetManifest();
             var assets = Selection.GetFiltered<Object>(SelectionMode.DeepAssets);
             for (var i = 0; i < assets.Length; i++)
@@ -93,11 +93,52 @@ namespace Plugins.XAsset.Editor
             EditorUtility.ClearProgressBar();
         }
 
+        public static void MarkAssetsWithFiles(string _path, params string[] excepts)
+        {
+            var settings = BuildScript.GetSettings();
+            assetRootPath = settings.assetRootPath;
+            var assetsManifest = BuildScript.GetManifest();
+            var assets = new System.Collections.Generic.List<Object>() { };
+            foreach (var f in Directory.GetFiles(_path))
+            {
+                if (excepts != null && excepts.Any(f.EndsWith))
+                {
+                    continue;
+                }
+                var asset = AssetDatabase.LoadAssetAtPath<Object>(f);
+                if (asset != null)
+                    assets.Add(asset);
+            }
+            for (var i = 0; i < assets.Count; i++)
+            {
+                var asset = assets[i];
+                var path = AssetDatabase.GetAssetPath(asset);
+                if (Directory.Exists(path) || path.EndsWith(".cs", System.StringComparison.CurrentCulture))
+                    continue;
+                if (EditorUtility.DisplayCancelableProgressBar(KMarkAssets, path, i * 1f / assets.Count))
+                    break;
+
+                var dir = Path.GetDirectoryName(path);
+                var name = Path.GetFileNameWithoutExtension(path);
+                if (dir == null)
+                    continue;
+                dir = dir.Replace("\\", "/") + "/";
+                if (name == null)
+                    continue;
+
+                var assetBundleName = TrimedAssetBundleName(Path.Combine(dir, name));
+                BuildScript.SetAssetBundleNameAndVariant(path, assetBundleName.ToLower(), null);
+            }
+            EditorUtility.SetDirty(assetsManifest);
+            AssetDatabase.SaveAssets();
+            EditorUtility.ClearProgressBar();
+        }
+
         [MenuItem(KMarkAssetsWithFile)]
         private static void MarkAssetsWithFile()
         {
             var settings = BuildScript.GetSettings();
-            assetRootPath = settings.assetRootPath; 
+            assetRootPath = settings.assetRootPath;
             var assetsManifest = BuildScript.GetManifest();
             var assets = Selection.GetFiltered<Object>(SelectionMode.DeepAssets);
             for (var i = 0; i < assets.Length; i++)
@@ -129,7 +170,7 @@ namespace Plugins.XAsset.Editor
         private static void MarkAssetsWithName()
         {
             var settings = BuildScript.GetSettings();
-            assetRootPath = settings.assetRootPath; 
+            assetRootPath = settings.assetRootPath;
             var assets = Selection.GetFiltered<Object>(SelectionMode.DeepAssets);
             var assetsManifest = BuildScript.GetManifest();
             for (var i = 0; i < assets.Length; i++)

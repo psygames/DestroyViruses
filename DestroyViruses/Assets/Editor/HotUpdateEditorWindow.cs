@@ -123,6 +123,12 @@ public class HotUpdateEditorWindow : EditorWindow
         window.GeneAllAssets();
         window.Close();
 
+        // tag files
+        Plugins.XAsset.Editor.AssetsMenuItem.MarkAssetsWithFiles("Assets/AssetBundles/Sounds/", "hfs.comments.txt", ".meta");
+        Plugins.XAsset.Editor.AssetsMenuItem.MarkAssetsWithFiles("Assets/AssetBundles/Tables/", "hfs.comments.txt", ".meta");
+        Plugins.XAsset.Editor.AssetsMenuItem.MarkAssetsWithFiles("Assets/AssetBundles/Textures/", "hfs.comments.txt", ".meta");
+        Plugins.XAsset.Editor.AssetsMenuItem.MarkAssetsWithFiles("Assets/AssetBundles/SpriteAtlas/", "hfs.comments.txt", ".meta");
+
         // build asset bundle
         Plugins.XAsset.Editor.BuildScript.BuildManifest();
         Plugins.XAsset.Editor.BuildScript.BuildAssetBundles();
