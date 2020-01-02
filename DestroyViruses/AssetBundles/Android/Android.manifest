@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3597008841
+CRC: 1343703943
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -174,4 +174,52 @@ AssetBundleManifest:
       Dependencies: {}
     Info_56:
       Name: textures/viruscuretexture_6
+      Dependencies: {}
+    Info_57:
+      Name: sounds/coin
+      Dependencies: {}
+    Info_58:
+      Name: sounds/bgm1
+      Dependencies: {}
+    Info_59:
+      Name: sounds/crash
+      Dependencies: {}
+    Info_60:
+      Name: sounds/bgm3
+      Dependencies: {}
+    Info_61:
+      Name: sounds/win
+      Dependencies: {}
+    Info_62:
+      Name: sounds/collect_coin
+      Dependencies: {}
+    Info_63:
+      Name: sounds/bgm2
+      Dependencies: {}
+    Info_64:
+      Name: sounds/button_grey
+      Dependencies: {}
+    Info_65:
+      Name: sounds/bgm4
+      Dependencies: {}
+    Info_66:
+      Name: sounds/flyaway
+      Dependencies: {}
+    Info_67:
+      Name: sounds/explosion
+      Dependencies: {}
+    Info_68:
+      Name: sounds/button_normal
+      Dependencies: {}
+    Info_69:
+      Name: sounds/boss
+      Dependencies: {}
+    Info_70:
+      Name: sounds/revive_count_down
+      Dependencies: {}
+    Info_71:
+      Name: sounds/level_up
+      Dependencies: {}
+    Info_72:
+      Name: sounds/hit
       Dependencies: {}

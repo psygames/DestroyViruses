@@ -121,7 +121,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.0.016
+  bundleVersion: 0.0.017
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -166,7 +166,7 @@ PlayerSettings:
     Android: com.unionfun.pss
     Standalone: com.Company.ProductName
   buildNumber: {}
-  AndroidBundleVersionCode: 16
+  AndroidBundleVersionCode: 17
   AndroidMinSdkVersion: 21
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -259,7 +259,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: /Users/yinlong/Desktop/keys/user.keystore
+  AndroidKeystoreName: /Users/yinlong/Documents/github/DestroyViruses/Docs/keys/user.keystore
   AndroidKeyaliasName: unionfunkey
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0

@@ -17,22 +17,22 @@ MonoBehaviour:
   bundles:
   - manifest
   - prefabs
-  - prefabs/sounds/bgm1
-  - prefabs/sounds/bgm2
-  - prefabs/sounds/bgm3
-  - prefabs/sounds/bgm4
-  - prefabs/sounds/boss
-  - prefabs/sounds/button_grey
-  - prefabs/sounds/button_normal
-  - prefabs/sounds/coin
-  - prefabs/sounds/collect_coin
-  - prefabs/sounds/crash
-  - prefabs/sounds/explosion
-  - prefabs/sounds/flyaway
-  - prefabs/sounds/hit
-  - prefabs/sounds/level_up
-  - prefabs/sounds/revive_count_down
-  - prefabs/sounds/win
+  - sounds/bgm1
+  - sounds/bgm2
+  - sounds/bgm3
+  - sounds/bgm4
+  - sounds/boss
+  - sounds/button_grey
+  - sounds/button_normal
+  - sounds/coin
+  - sounds/collect_coin
+  - sounds/crash
+  - sounds/explosion
+  - sounds/flyaway
+  - sounds/hit
+  - sounds/level_up
+  - sounds/revive_count_down
+  - sounds/win
   - spriteatlas/total
   - tables/tableads
   - tables/tableaircraft
@@ -99,7 +99,7 @@ MonoBehaviour:
   - Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow
   - Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle
   - Assets/AssetBundles/Prefabs/UI/View
-  - Assets/AssetBundles/Prefabs/Sounds
+  - Assets/AssetBundles/Sounds
   - Assets/AssetBundles/SpriteAtlas
   - Assets/AssetBundles/Tables
   - Assets/AssetBundles/Textures
@@ -193,7 +193,13 @@ MonoBehaviour:
     name: VirusVampire.prefab
   - bundle: 1
     dir: 1
+    name: WeaponNone.prefab
+  - bundle: 1
+    dir: 1
     name: WeaponNormal.prefab
+  - bundle: 1
+    dir: 1
+    name: WeaponNormalBullet.prefab
   - bundle: 1
     dir: 3
     name: VirusCollider3D.prefab
@@ -305,6 +311,12 @@ MonoBehaviour:
   - bundle: 1
     dir: 9
     name: BattleView.prefab
+  - bundle: 1
+    dir: 9
+    name: BookView.prefab
+  - bundle: 1
+    dir: 9
+    name: BookVirusView.prefab
   - bundle: 1
     dir: 9
     name: CoinView.prefab

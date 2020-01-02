@@ -104,24 +104,6 @@ public class HotUpdateEditorWindow : EditorWindow
         if (File.Exists(triggerFile))
             return;
 
-        // check change
-        var changeList = new List<string>();
-        foreach (var f in Directory.GetFiles(checkRoot))
-        {
-            var fileName = Path.GetFileName(f);
-            var ext = Path.GetExtension(f);
-            if (ext == ".xls" || ext == ".xlsx")
-            {
-                var dest = Path.Combine(tableRoot, fileName);
-                if (File.Exists(dest))
-                {
-                    File.Delete(dest);
-                    File.Copy(f, dest);
-                    changeList.Add(fileName);
-                }
-            }
-        }
-
         // backup
         var backupDir = Path.Combine(checkRoot, "backup", DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss_ms"));
         foreach (var f in Directory.GetFileSystemEntries(checkRoot))
@@ -135,31 +117,19 @@ public class HotUpdateEditorWindow : EditorWindow
             FileUtil.MoveFileOrDirectory(f, Path.Combine(backupDir, Path.GetFileName(f)));
         }
 
+        // table genes
+        var window = GetWindow(typeof(TableToolEditorWindow)) as TableToolEditorWindow;
+        window.titleContent = new GUIContent("配置表生成工具");
+        window.GeneAllAssets();
+        window.Close();
 
-        // change process
-        if (changeList.Count > 0)
-        {
-            // table generate
-            if (changeList.Any(a => a.Contains(".xls")))
-            {
-                var window = GetWindow(typeof(TableToolEditorWindow)) as TableToolEditorWindow;
-                window.titleContent = new GUIContent("配置表生成工具");
-                window.GeneAllAssets();
-                window.Close();
-            }
-
-            // build asset bundle
-            Plugins.XAsset.Editor.BuildScript.BuildManifest();
-            Plugins.XAsset.Editor.BuildScript.BuildAssetBundles();
-        }
+        // build asset bundle
+        Plugins.XAsset.Editor.BuildScript.BuildManifest();
+        Plugins.XAsset.Editor.BuildScript.BuildAssetBundles();
 
         // change log
         var logFile = Path.Combine(checkRoot, logFileName);
         var log = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ":\n";
-        foreach (var c in changeList)
-        {
-            log += c + "\n";
-        }
         globalLog += log + "----------------------------\n";
         if (!File.Exists(logFile))
             File.Create(logFile).Close();

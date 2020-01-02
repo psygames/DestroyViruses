@@ -12,3 +12,5 @@ QuickHotUpdateTool/backup/
 QuickHotUpdateTool/web/psyduck_search/__pycache__/
 .~*.xlsx
 Releases
+HotUpdate/backup
+热更日志.txt
