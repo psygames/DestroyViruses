@@ -154,6 +154,12 @@ namespace DestroyViruses
 		private float _effect2;
 		public float effect2 { get { return _effect2; } private set { _effect2 = value; } }
 
+		/// <summary>
+		/// 技能效果数值3
+		/// </summary>
+		private float _effect3;
+		public float effect3 { get { return _effect3; } private set { _effect3 = value; } }
+
 
 		public static TableVirus Get(int id)
 		{

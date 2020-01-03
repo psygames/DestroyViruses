@@ -26,16 +26,18 @@ namespace DestroyViruses
             base.Update();
             var dist = (aircraft.headPosition - position).magnitude - radius;
             bool triggerSlow = dist <= table.effect2;
+            bool triggerSlowOff = dist > table.effect3;
 
             if (!mIsSlow && triggerSlow)
             {
                 aircraft.movement.moveSpeedRatio *= (1f - table.effect1);
+                mIsSlow = true;
             }
-            else if (mIsSlow && !triggerSlow)
+            else if (mIsSlow && triggerSlowOff)
             {
                 aircraft.movement.moveSpeedRatio /= (1f - table.effect1);
+                mIsSlow = false;
             }
-            mIsSlow = triggerSlow;
 
             if (mIsSlow)
             {

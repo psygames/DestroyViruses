@@ -35,11 +35,19 @@ namespace DestroyViruses
         {
             base.Update();
 
-            mViruses.Clear();
+            for (int i = mViruses.Count - 1; i >= 0; i--)
+            {
+                var v = mViruses[i];
+                if (v.isAlive && GetDist(v) > table.effect3)
+                {
+                    mViruses.RemoveAt(i);
+                }
+            }
             foreach (var v in EntityManager.GetAll<VirusBase>())
             {
                 var virus = v as VirusBase;
                 if (typeof(VirusCure) != virus.GetType()
+                    && !mViruses.Contains(virus)
                     && GetDist(virus) <= table.effect2)
                 {
                     mViruses.Add(virus);
