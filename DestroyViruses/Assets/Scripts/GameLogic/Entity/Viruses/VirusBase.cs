@@ -40,6 +40,7 @@ namespace DestroyViruses
         private int mLastColorIndex = -1;
         private float mLastHp = -1;
         private float mKnockback = 0;
+        private float mShakeScale = 1;
 
         protected virtual void Awake()
         {
@@ -151,6 +152,13 @@ namespace DestroyViruses
                 )
             {
                 animator.SetTrigger("hurt");
+            }
+
+            if (TimeUtil.CheckInterval("virus_" + uid + "_hurt_shake", ConstTable.table.hitVirusShakeCD))
+            {
+                DOTween.Shake(() => Vector3.one * mShakeScale, x => mShakeScale = x.x
+                , ConstTable.table.hitVirusShakeCD, Vector3.one * ConstTable.table.hitVirusShakeScale
+                , ConstTable.table.hitVirusShakeTimes);
             }
         }
 
@@ -283,7 +291,7 @@ namespace DestroyViruses
         protected virtual void UpdateScale()
         {
             var proxy = ProxyManager.GetProxy<BuffProxy>();
-            var _scale = GetSizeScale((int)proxy.Effect_BoostVirus + size);
+            var _scale = GetSizeScale((int)proxy.Effect_BoostVirus + size) * mShakeScale;
             if (!Mathf.Approximately(mLastScale, _scale))
             {
                 mLastScale = proxy.Effect_BoostVirus;

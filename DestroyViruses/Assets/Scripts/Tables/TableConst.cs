@@ -221,6 +221,24 @@ namespace DestroyViruses
 		public float virusBombShakeScreenRate { get { return _virusBombShakeScreenRate; } private set { _virusBombShakeScreenRate = value; } }
 
 		/// <summary>
+		/// 命中病毒震动缩放倍数
+		/// </summary>
+		private float _hitVirusShakeScale;
+		public float hitVirusShakeScale { get { return _hitVirusShakeScale; } private set { _hitVirusShakeScale = value; } }
+
+		/// <summary>
+		/// 命中病毒震动次数
+		/// </summary>
+		private int _hitVirusShakeTimes;
+		public int hitVirusShakeTimes { get { return _hitVirusShakeTimes; } private set { _hitVirusShakeTimes = value; } }
+
+		/// <summary>
+		/// 命中病毒震动时间
+		/// </summary>
+		private float _hitVirusShakeCD;
+		public float hitVirusShakeCD { get { return _hitVirusShakeCD; } private set { _hitVirusShakeCD = value; } }
+
+		/// <summary>
 		/// 每日签到解锁关卡
 		/// </summary>
 		private int _dailySignUnlockLevel;
