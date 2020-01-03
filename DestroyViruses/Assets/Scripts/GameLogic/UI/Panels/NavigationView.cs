@@ -55,7 +55,7 @@ namespace DestroyViruses
 
         private void OnClickAddCoin()
         {
-            UIManager.Open<ExchangeView>();
+            UIManager.Open<ExchangeView>(UILayer.Top);
         }
 
         private void OnClickAddDiamond()
