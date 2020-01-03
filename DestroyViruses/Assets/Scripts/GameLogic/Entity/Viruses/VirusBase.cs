@@ -79,6 +79,13 @@ namespace DestroyViruses
             mLastHitSlowdownTime = 0;
         }
 
+        // FOR HOME ONLY
+        public void SetColor(int colorIndex)
+        {
+            OnColorChanged(colorIndex);
+            hpText.text = "";
+        }
+
         public void SetDirection(Vector2 direction)
         {
             this.direction = direction;
@@ -146,7 +153,6 @@ namespace DestroyViruses
                 animator.SetTrigger("hurt");
             }
         }
-
 
         private void BeHitSlowDown()
         {
@@ -274,13 +280,8 @@ namespace DestroyViruses
         }
 
         protected float mLastScale = 1f;
-        protected void UpdateScale()
+        protected virtual void UpdateScale()
         {
-            if (GetType() == typeof(VirusExpand))
-            {
-                return;
-            }
-
             var proxy = ProxyManager.GetProxy<BuffProxy>();
             var _scale = GetSizeScale((int)proxy.Effect_BoostVirus + size);
             if (!Mathf.Approximately(mLastScale, _scale))

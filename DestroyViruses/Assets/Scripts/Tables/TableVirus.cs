@@ -119,6 +119,24 @@ namespace DestroyViruses
 		public string type { get { return _type; } private set { _type = value; } }
 
 		/// <summary>
+		/// 多语言
+		/// </summary>
+		private string _nameID;
+		public string nameID { get { return _nameID; } private set { _nameID = value; } }
+
+		/// <summary>
+		/// 多语言
+		/// </summary>
+		private string _descriptionID;
+		public string descriptionID { get { return _descriptionID; } private set { _descriptionID = value; } }
+
+		/// <summary>
+		/// 多语言
+		/// </summary>
+		private string _tipsID;
+		public string tipsID { get { return _tipsID; } private set { _tipsID = value; } }
+
+		/// <summary>
 		/// skill触发间隔
 		/// </summary>
 		private float _skillCD;

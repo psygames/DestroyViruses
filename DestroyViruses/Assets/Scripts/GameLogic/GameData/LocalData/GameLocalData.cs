@@ -16,6 +16,7 @@ namespace DestroyViruses
             diamond = 0;
             streak = 0;
             signDays = 1;
+            weaponId = 0;
             lastSignDateTicks = 0;
             coinValueLevel = 1;
             coinIncomeLevel = 1;
@@ -30,6 +31,7 @@ namespace DestroyViruses
         public float diamond;
         public int streak;          //连胜/败
         public int signDays;        //签到天数
+        public int weaponId;        //选择的副武器，0表示没有
         public long lastSignDateTicks; //上次签到时间
         public int coinValueLevel;
         public int coinIncomeLevel;

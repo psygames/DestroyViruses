@@ -6,6 +6,35 @@ namespace DestroyViruses
 {
     public class BookData : LocalData<BookData>
     {
-        public Dictionary<int, int> virusCount = new Dictionary<int, int>();
+        [SerializeField]
+        private int[] virusCount = new int[100];
+
+        public BookData()
+        {
+            for (int i = 0; i < virusCount.Length; i++)
+            {
+                virusCount[i] = -1;
+            }
+        }
+
+        public void Add(int id, int count)
+        {
+            virusCount[id] += count;
+        }
+
+        public void Set(int id, int count)
+        {
+            virusCount[id] = count;
+        }
+
+        public int Get(int id)
+        {
+            return virusCount[id];
+        }
+
+        public bool Exist(int id)
+        {
+            return virusCount[id] >= 0;
+        }
     }
 }

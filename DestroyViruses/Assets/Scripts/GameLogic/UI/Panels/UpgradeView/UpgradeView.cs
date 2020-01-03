@@ -13,6 +13,8 @@ namespace DestroyViruses
     {
         public FadeGroup fadeGroup;
         public LevelPanel levelPanel;
+        public WeaponLevelPanel weaponLevelPanel;
+        public WeaponPanel weaponPanel;
 
         protected override void OnOpen()
         {
@@ -28,6 +30,8 @@ namespace DestroyViruses
         private void RefreshUI()
         {
             levelPanel.SetData();
+            weaponLevelPanel.SetData();
+            weaponPanel.SetData();
         }
 
         private void OnEventGameData(EventGameData evt)

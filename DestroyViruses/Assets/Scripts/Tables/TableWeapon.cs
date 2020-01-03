@@ -113,6 +113,24 @@ namespace DestroyViruses
 		public int id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
+		/// 程序用
+		/// </summary>
+		private string _type;
+		public string type { get { return _type; } private set { _type = value; } }
+
+		/// <summary>
+		/// 多语言
+		/// </summary>
+		private string _nameID;
+		public string nameID { get { return _nameID; } private set { _nameID = value; } }
+
+		/// <summary>
+		/// 描述多语言
+		/// </summary>
+		private string _descriptionID;
+		public string descriptionID { get { return _descriptionID; } private set { _descriptionID = value; } }
+
+		/// <summary>
 		/// 武器图标
 		/// </summary>
 		private string _icon;

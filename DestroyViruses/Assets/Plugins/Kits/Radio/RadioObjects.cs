@@ -25,7 +25,7 @@ public class RadioObjects : RadioBase
         {
             if (!gameObjects[i])
                 continue;
-            if (i != index && gameObjects[i].activeSelf)
+            if (i != index && gameObjects[i].activeSelf && (gameObjects?[index] != gameObjects[i]))
                 gameObjects[i].SetActive(false);
             else if (i == index && !gameObjects[i].activeSelf)
                 gameObjects[i].SetActive(true);

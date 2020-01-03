@@ -17,6 +17,11 @@ namespace DestroyViruses
             base.OnColorChanged(index);
         }
 
+        protected override void UpdateScale()
+        {
+            // do nothing
+        }
+
         protected override void OnSkillTrigger()
         {
             base.OnSkillTrigger();

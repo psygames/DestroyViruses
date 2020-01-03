@@ -207,7 +207,7 @@ namespace DestroyViruses
                     );
             }
 
-            public static void DailySign(int days,float multiple)
+            public static void DailySign(int days, float multiple)
             {
                 proxy.LogEvent("daily_sign",
                     new Parameter("days", days),
@@ -234,6 +234,13 @@ namespace DestroyViruses
                 proxy.LogEvent("coin_exchange",
                     new Parameter("diamond", diamond.KMB()),
                     new Parameter("coin", coin.KMB())
+                    );
+            }
+
+            public static void ChangeWeapon(int weaponId)
+            {
+                proxy.LogEvent("change_weapon",
+                    new Parameter("weapon_id", weaponId)
                     );
             }
 

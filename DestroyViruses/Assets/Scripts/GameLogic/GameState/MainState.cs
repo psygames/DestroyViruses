@@ -15,14 +15,11 @@ namespace DestroyViruses
             UIManager.Open<NavigationView>(UILayer.Top);
         }
 
-        public override void OnUpdate(float deltaTime)
-        {
-        }
-
         public override void OnExit()
         {
             base.OnExit();
             Aircraft.ins.anima.KillAll();
+            Aircraft.ins.weapon.Reset();
             UIManager.Close<MainView>();
             UIManager.Close<NavigationView>();
         }

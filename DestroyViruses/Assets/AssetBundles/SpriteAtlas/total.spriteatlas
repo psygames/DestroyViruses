@@ -20,19 +20,7 @@ SpriteAtlas:
       readable: 0
       crunchedCompression: 0
       sRGB: 1
-    platformSettings:
-    - serializedVersion: 3
-      m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 2048
-      m_ResizeAlgorithm: 0
-      m_TextureFormat: -1
-      m_TextureCompression: 0
-      m_CompressionQuality: 50
-      m_CrunchedCompression: 0
-      m_AllowsAlphaSplitting: 0
-      m_Overridden: 0
-      m_AndroidETC2FallbackOverride: 0
-      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    platformSettings: []
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -43,10 +31,14 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1827d5ad581044f08b470c56b841c4ab, type: 3}
-    totalSpriteSurfaceArea: 4135423
+    totalSpriteSurfaceArea: 4672351
     bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 7a7b6848bf6ddd99b7b929f68939a6f6
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 7c35ef305f48b2247bb3c0eab8fb3c47, type: 3}
   - {fileID: 21300000, guid: 6870294071e48e44dabfca1db9e2384a, type: 3}
   - {fileID: 21300000, guid: b1f962806f8e58244943c667298dbec8, type: 3}
   - {fileID: 21300000, guid: c467d0c095ed2b544ace0de0e20d6f76, type: 3}
@@ -63,6 +55,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b0c53333ac03f2f458501b8f65fd1c35, type: 3}
   - {fileID: 21300000, guid: f1b42c93ad6881a4da9c6d7831fee765, type: 3}
   - {fileID: 21300000, guid: 155023a33cec2a442877404063bfd1d1, type: 3}
+  - {fileID: 21300000, guid: 4a4f76b3fb14e99429d0437c9b24282d, type: 3}
   - {fileID: 21300000, guid: 0202b3c34a5970844a8a4ac7a1fee0a2, type: 3}
   - {fileID: 21300000, guid: 8df94ac3e4b3dc74797394a9771460a7, type: 3}
   - {fileID: 21300000, guid: 3ab3eff3c54723b499de992e494cfebc, type: 3}
@@ -70,6 +63,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d4bd4f348542acc43b295f844c879979, type: 3}
   - {fileID: 21300000, guid: 36091d4420a00694fa6aa2488c787f97, type: 3}
   - {fileID: 21300000, guid: df563f849af95fa42aac90e9a2b9296b, type: 3}
+  - {fileID: 21300000, guid: cd524494b09c6b74990f5ed248e789b0, type: 3}
   - {fileID: 21300000, guid: 00369b946ced1f14b964cf1e86ec367a, type: 3}
   - {fileID: 21300000, guid: f007b9e4b99e4ae45933ef81e111586a, type: 3}
   - {fileID: 21300000, guid: 259ed135a3763ff41a5bd14d332b6a3a, type: 3}
@@ -84,6 +78,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 96def7068f5274d4a8537264356af109, type: 3}
   - {fileID: 21300000, guid: e0056b16bc8363f46a75270b746d1fae, type: 3}
   - {fileID: 21300000, guid: 442006565ec92024da569416f0ced41f, type: 3}
+  - {fileID: 21300000, guid: ad8c5f66f6fdd244f8b6b88d30f5ded3, type: 3}
   - {fileID: 21300000, guid: 92d7d6a61a3767c4fa07b2120e4c2af3, type: 3}
   - {fileID: 21300000, guid: 3c04f0c6da713b341b3c580c0367b592, type: 3}
   - {fileID: 21300000, guid: 4117f8d6916344740a3a5095909d1fcd, type: 3}
@@ -94,12 +89,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c6624b476f96f7d449c5308fea1f0e7e, type: 3}
   - {fileID: 21300000, guid: 438e97573424f8a4c99ed7a463979a67, type: 3}
   - {fileID: 21300000, guid: ae16651856b2fff44b10859c3d918853, type: 3}
+  - {fileID: 21300000, guid: ea141628040f62f47845a94ca968b97c, type: 3}
   - {fileID: 21300000, guid: a6d9e5488564c194b9245d6b83eb7b8d, type: 3}
   - {fileID: 21300000, guid: 22db4178b04724c42931f17d9034da4f, type: 3}
   - {fileID: 21300000, guid: 4e3cdc98e27bcb34fbf4a74682be777e, type: 3}
   - {fileID: 21300000, guid: e73e88e8b47086c4e904ccd4deb7b50d, type: 3}
   - {fileID: 21300000, guid: e63902f851ca1534d89a55c06b88ad98, type: 3}
   - {fileID: 21300000, guid: 62696829cff95a34abf7ecd75f5d3824, type: 3}
+  - {fileID: 21300000, guid: 412d1a4990222f047b9132143650e6a5, type: 3}
   - {fileID: 21300000, guid: 29ff0b89914f74f4b908debdab6f1fa2, type: 3}
   - {fileID: 21300000, guid: 657a5b99da62a5643b9cbbffe0c3a250, type: 3}
   - {fileID: 21300000, guid: afff0d99f35270e4791fcbdb4f302a33, type: 3}
@@ -152,7 +149,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8757336fe625f8249b9e01761be70d87, type: 3}
   - {fileID: 21300000, guid: 7269517f7f5b674409d0bc7a00bd91f0, type: 3}
   - {fileID: 21300000, guid: 1b46c8ffbbeffdd459e6e72873455d52, type: 3}
+  - {fileID: 21300000, guid: 0cd4dbff451c2b84db2b5c50f75b456c, type: 3}
   m_PackedSpriteNamesToIndex:
+  - book_item_collect_progress_bg
   - bullet_2_1_1
   - icon_up
   - coin_frame_2
@@ -169,6 +168,7 @@ SpriteAtlas:
   - icon_buff_live_up_virus
   - icon_buff_coin
   - board_3
+  - book_virus_bg
   - icon_buff_ns_arrow
   - coin_frame_3
   - ui_icon_buff_support
@@ -176,6 +176,7 @@ SpriteAtlas:
   - icon_buff_move_limitation
   - bullet_1_0_0
   - icon_buff_16
+  - book_detail_bg
   - circle_glow
   - ui_icon_buff_fire_speed
   - arrow_down
@@ -190,6 +191,7 @@ SpriteAtlas:
   - ui_icon_buff_slowdown
   - boss_wave_toast
   - button_add
+  - book_receive_bg
   - button_upgrade_1
   - icon_buff_fire_power
   - button_function
@@ -199,13 +201,15 @@ SpriteAtlas:
   - baner_2
   - ui_icon_buff_fire_power
   - upgrade_panel_bg
-  - icon_weapon
+  - icon_weapon_normal
+  - book_item_collect_progress_fwd
   - bullet_0_1_1
   - weapon_board_2
   - weapon_board_1
   - hp_boss_1
   - baner_1
   - ui_buff_fill_3
+  - book_receive_diamond_bg
   - icon_buff_fire_speed
   - bullet_1_1_1
   - icon_currency_add
@@ -258,5 +262,6 @@ SpriteAtlas:
   - function_item_bg_1
   - game_logo
   - bullet_0_0_0
+  - book_item_unknown
   m_Tag: total
   m_IsVariant: 0

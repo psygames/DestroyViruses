@@ -33,9 +33,9 @@ namespace DestroyViruses
         }
 
         private const string SOUND_ROOT = ASSET_ROOT + "Sounds/";
-        public static string Sound(string name)
+        public static string Sound(string name, string ext)
         {
-            return SOUND_ROOT + name + ".mp3";
+            return SOUND_ROOT + name + ext;
         }
 
         private const string TEXTURE_ROOT = ASSET_ROOT + "Textures/";

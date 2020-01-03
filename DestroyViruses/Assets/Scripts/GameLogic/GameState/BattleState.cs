@@ -17,11 +17,6 @@ namespace DestroyViruses
             GameModeManager.Instance.Begin();
         }
 
-        public override void OnUpdate(float deltaTime)
-        {
-            base.OnUpdate(deltaTime);
-        }
-
         public override void OnExit()
         {
             base.OnExit();

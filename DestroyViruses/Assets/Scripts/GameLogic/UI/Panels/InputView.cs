@@ -7,8 +7,6 @@ namespace DestroyViruses
 {
     public class InputView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
     {
-        private bool isInHome { get { return StateManager.Instance.currentState.GetType() == typeof(MainState); } }
-        private bool isInBattle { get { return StateManager.Instance.currentState.GetType() == typeof(BattleState); } }
         private Aircraft aircraft { get { return Aircraft.ins; } }
 
         // private
@@ -33,7 +31,7 @@ namespace DestroyViruses
             mDowns[eventData.pointerId] = true;
             mHoldTime = 0;
 
-            if (isInHome)
+            if (GameUtil.isInHome)
             {
                 aircraft.anima.StopStandBy();
             }
@@ -47,7 +45,7 @@ namespace DestroyViruses
             mTotalDrag = Vector2.zero;
             mDowns[eventData.pointerId] = false;
             mHoldTime = 0;
-            if (isInHome)
+            if (GameUtil.isInHome)
             {
                 aircraft.anima.PlayStandby();
             }
@@ -59,7 +57,7 @@ namespace DestroyViruses
             if (aircraft == null || !mIsDown)
                 return;
 
-            if (isInHome)
+            if (GameUtil.isInHome)
             {
                 if (mTotalDrag.magnitude > mDragBeginThreshold)
                 {
@@ -71,7 +69,7 @@ namespace DestroyViruses
                 }
                 mTotalDrag += delta;
             }
-            else if (isInBattle)
+            else if (GameUtil.isInBattle)
             {
                 BattleDrag(delta);
             }
@@ -86,12 +84,12 @@ namespace DestroyViruses
             if (mIsDown)
                 mHoldTime += Time.deltaTime;
 
-            if (isInHome && mIsDown && mHoldTime >= mHoldBeginThreshold)
+            if (GameUtil.isInHome && mIsDown && mHoldTime >= mHoldBeginThreshold)
             {
                 BattleStart();
             }
 
-            if (isInBattle)
+            if (GameUtil.isInBattle)
             {
                 GlobalData.isBattleTouchOn = mIsDown;
                 if (mLastBattleDown != mIsDown)

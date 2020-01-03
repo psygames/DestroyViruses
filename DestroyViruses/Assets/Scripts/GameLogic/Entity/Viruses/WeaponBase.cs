@@ -10,54 +10,90 @@ namespace DestroyViruses
 {
     public class WeaponBase : EntityBase
     {
-        public const float baseRadius = 125f;
+        public int id { get; private set; }
+        public TableWeapon table { get; private set; }
+        public TableWeaponPowerLevel tablePower { get; private set; }
+        public TableWeaponSpeedLevel tableSpeed { get; private set; }
+        public float rechargeDuration { get; private set; }
 
-        public int id { get; protected set; }
-        public TableWeapon table { get; protected set; }
-        public TableWeaponPowerLevel tablePower { get; protected set; }
-        public TableWeaponSpeedLevel tableSpeed { get; protected set; }
-        public float cd { get; protected set; }
+        public float damage { get; protected set; }
+        public float effect1 { get; protected set; }
+        public float effect2 { get; protected set; }
+        public float effect3 { get; protected set; }
 
-        protected virtual void Awake()
-        {
-        }
+        // override if need
+        public virtual bool autoFire { get; } = true;
+        public virtual int unitCount { get; } = 1;
 
-        protected virtual void OnEnable()
-        {
-        }
 
-        public virtual void Reset(int id, int powerLevel,int speedLevel)
+        protected int mUnitIndex;
+        protected List<float> mUnitCD = new List<float>();
+
+        public virtual void Reset(int id, int powerLevel, int speedLevel)
         {
             this.id = id;
+            if (id <= 0) return;
             table = TableWeapon.Get(id);
             tablePower = TableWeaponPowerLevel.Get(_ => _.weaponId == id && _.level == powerLevel);
-            tableSpeed = TableWeaponSpeedLevel.Get(_ => _.weaponId == id && _.level == powerLevel);
-            cd = tableSpeed.recharge;
+            tableSpeed = TableWeaponSpeedLevel.Get(_ => _.weaponId == id && _.level == speedLevel);
+            rechargeDuration = tableSpeed.recharge;
+            damage = tablePower.damage;
+            effect1 = table.effect1 * tablePower.effectFactor1 * tableSpeed.effectFactor1;
+            effect2 = table.effect2 * tablePower.effectFactor2 * tableSpeed.effectFactor2;
+            effect3 = table.effect3 * tablePower.effectFactor3 * tableSpeed.effectFactor3;
+            mUnitIndex = 0;
+            mUnitCD.Clear();
+            for (int i = 0; i < unitCount; i++)
+            {
+                mUnitCD.Add(rechargeDuration);
+            }
         }
 
-        protected VirusBase Create()
+        protected virtual void OnUnitReady(int index)
         {
-            return EntityManager.Create(GetType()) as VirusBase;
+            if (autoFire)
+            {
+                OnUnitFire(index);
+            }
         }
 
-        protected virtual void OnSkillTrigger()
+        protected virtual void OnUnitFire(int index)
         {
-
+            mUnitCD[index] = rechargeDuration;
         }
 
         protected virtual void UpdateCD()
         {
-            if (tableSpeed.recharge <= 0)
+            if (rechargeDuration <= 0)
                 return;
 
-            cd = this.UpdateCD(cd, GlobalData.slowDownFactor);
-            if (cd <= 0)
+            if (mUnitCD[mUnitIndex] <= 0)
             {
-                cd = tableSpeed.recharge;
-                OnSkillTrigger();
+                mUnitIndex = (mUnitIndex + 1) % unitCount;
+                return;
+            }
+
+            mUnitCD[mUnitIndex] = this.UpdateCD(mUnitCD[mUnitIndex], GlobalData.slowDownFactor);
+            if (mUnitCD[mUnitIndex] <= 0)
+            {
+                OnUnitReady(mUnitIndex);
+                mUnitIndex = (mUnitIndex + 1) % unitCount;
             }
         }
 
+        protected float GetUnitCD(int index)
+        {
+            if (mUnitCD.Count > index)
+                return mUnitCD[index];
+            return 0;
+        }
+
+        protected float GetUnitFill(int index)
+        {
+            if (GameUtil.isInHome || rechargeDuration <= 0)
+                return 1f;
+            return 1f - GetUnitCD(index) / rechargeDuration;
+        }
 
         protected virtual void Update()
         {

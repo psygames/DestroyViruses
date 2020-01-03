@@ -12,12 +12,14 @@ namespace DestroyViruses
     {
         public int id { get; private set; }
         public TableVirus table { get; private set; }
-        public int bookCollectCount { get { return DataProxy.Ins.BookGetCollectCount(id); } }
-        public bool isUnlock { get { return DataProxy.Ins.BoolIsUnlock(id); } }
-        public string name { get { return LT.Get(""); } }
-        public string description { get { return LT.Get(""); } }
-        public string tips { get { return LT.Get(""); } }
-        public string prefabPath { get { return table.type; } }
+        public int collectCount { get { return DataProxy.Ins.BookGetCollectCount(id); } }
+        public int needCount { get { return ConstTable.table.bookVirusCollectKillCount; } }
+        public bool isUnlock { get { return DataProxy.Ins.BookIsUnlock(id); } }
+        public bool isReceivable { get { return collectCount >= needCount; } }
+        public string name { get { return LT.Get(table.nameID); } }
+        public string description { get { return LT.Get(table.descriptionID); } }
+        public string tips { get { return LT.Get(table.tipsID); } }
+        public string prefabPath { get { return PathUtil.Entity(table.type); } }
 
         public void SetData(int id)
         {
@@ -28,60 +30,75 @@ namespace DestroyViruses
 
     public class BookVirusView : ViewBase
     {
+        public Text title;
+        public Text description;
+        public Text tips;
+        public Text diamondCount;
+        public ButtonPro receiveBtn;
+        public Transform modelRoot;
+        public Slider fill;
+
         public static int VirusID { get; set; }
-
-        public ButtonPro addBtn;
-        public ButtonPro subBtn;
-        public ButtonPro exchangeBtn;
-        public Image costIcon;
-        public Text costText;
-        public Image gainIcon;
-        public Text gainText;
-
-        private float mCurrent;
+        public static int ColorIndex { get; set; }
+        private VirusData v = new VirusData();
+        private VirusBase mVirus;
+        private string mLastPrefabPath;
 
         protected override void OnOpen()
         {
-            mCurrent = 0;
+            base.OnOpen();
+            this.BindUntilDisable<EventGameData>(OnEventGameData);
+            v.SetData(VirusID);
             Refresh();
         }
 
         private void Refresh()
         {
-            costText.text = mCurrent.KMB();
-            gainText.text = (mCurrent * FormulaUtil.Expresso(ConstTable.table.formulaArgsCoinExchange)).KMB();
-
-            subBtn.SetBtnGrey(mCurrent <= 0);
-            addBtn.SetBtnGrey(mCurrent >= D.I.diamond);
-
-            exchangeBtn.SetBtnGrey(mCurrent <= 0);
-        }
-
-        private void OnClickAdd()
-        {
-            mCurrent = Mathf.Min(D.I.diamond, mCurrent + Mathf.Max(1, D.I.diamond * 0.1f));
-            Refresh();
-        }
-
-        private void OnClickSub()
-        {
-            mCurrent = Mathf.Max(0, mCurrent - Mathf.Max(1, D.I.diamond * 0.1f));
-            Refresh();
-        }
-
-        private void OnClickExchange()
-        {
-            if (mCurrent > 0)
+            if (v.prefabPath != mLastPrefabPath)
             {
-                D.I.ExchangeCoin(mCurrent);
-                mCurrent = 0;
+                if (mVirus != null)
+                    DestroyImmediate(mVirus.gameObject);
+
+                var prefab = ResourceUtil.Load<VirusBase>(v.prefabPath);
+                if (mVirus == null && prefab != null)
+                {
+                    mVirus = Instantiate(prefab);
+                    if (mVirus != null)
+                    {
+                        mVirus.rectTransform.SetParent(modelRoot, false);
+                        mVirus.SetColor(ColorIndex);
+                    }
+                }
+
+                mLastPrefabPath = v.prefabPath;
+            }
+
+            fill.value = 1f * v.collectCount / v.needCount;
+            receiveBtn.SetBtnGrey(!v.isReceivable);
+            diamondCount.text = "x" + ConstTable.table.bookVirusCollectRewardDiamond;
+            title.text = v.name;
+            tips.text = v.tips;
+            description.text = v.description;
+        }
+
+        private void OnEventGameData(EventGameData evt)
+        {
+            if (evt.action == EventGameData.Action.DataChange)
+            {
                 Refresh();
-                Coin.CreateGroup(UIUtil.center, UIUtil.COIN_POS, 10);
-                Close();
+            }
+        }
+
+        private void OnClickReceive()
+        {
+            if (v.isReceivable)
+            {
+                D.I.BookCollect(VirusID);
+                AudioManager.Instance.PlaySound("collect_coin");
             }
             else
             {
-                Toast.Show("钻石不足兑换");
+                Toast.Show("收集数量不足");
             }
         }
     }

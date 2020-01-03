@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Reflection;
 
 public class ContentGroup : MonoBehaviour
 {
@@ -10,6 +11,16 @@ public class ContentGroup : MonoBehaviour
     private void Awake()
     {
         template.gameObject.SetActive(false);
+    }
+
+    public void SetData<P, D>(ICollection<D> dataList)
+    where P : MonoBehaviour
+    {
+        SetData<P, D>(dataList, (index, item, data) =>
+        {
+            BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+            item.GetType().GetMethod("SetData", flags)?.Invoke(item, new object[] { data });
+        });
     }
 
     public void SetData<P, D>(ICollection<D> dataList, Action<int, P, D> setContentFunc)

@@ -34,7 +34,6 @@ namespace DestroyViruses
             AudioManager.Instance.SoundPlayer.mute = !Option.sound;
         }
 
-
         private void OnEnable()
         {
             this.BindUntilDisable<EventGameData>(OnEventGameData);
@@ -60,9 +59,13 @@ namespace DestroyViruses
 
         private void SelectOption(int optionIndex)
         {
-            if (optionIndex == 0 || optionIndex == 1)
+            if (optionIndex == 0)
             {
                 UIManager.Open<UpgradeView>();
+            }
+            else if (optionIndex == 1)
+            {
+                UIManager.Open<BookView>();
             }
             else if (optionIndex == 2)
             {
@@ -75,8 +78,10 @@ namespace DestroyViruses
             gameLevelPanel.SetData();
             canAircraftUp.SetActive(!D.I.isFireSpeedLevelMax && D.I.coin >= D.I.fireSpeedUpCost
                 || !D.I.isFirePowerLevelMax && D.I.coin >= D.I.firePowerUpCost);
-            canWeaponUp.SetActive(false);
-            canIncomeUp.SetActive(false);
+            canWeaponUp.SetActive(!D.I.isWeaponSpeedLevelMax && D.I.coin >= D.I.weaponSpeedUpCost
+                || !D.I.isWeaponPowerLevelMax && D.I.coin >= D.I.weaponPowerUpCost);
+            canIncomeUp.SetActive(!D.I.isCoinIncomeLevelMax && D.I.coin >= D.I.coinIncomeUpCost
+                || !D.I.isCoinValueLevelMax && D.I.coin >= D.I.coinValueUpCost);
         }
 
         private void OnEventGameData(EventGameData evt)
@@ -84,6 +89,10 @@ namespace DestroyViruses
             if (evt.action == EventGameData.Action.DataChange)
             {
                 RefreshUI();
+            }
+            if (evt.action == EventGameData.Action.ChangeWeapon)
+            {
+                Aircraft.ins.Reset();
             }
         }
     }

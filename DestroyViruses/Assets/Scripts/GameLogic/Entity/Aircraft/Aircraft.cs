@@ -11,6 +11,7 @@ namespace DestroyViruses
         public AircraftMovement movement { get; private set; }
         public AircraftFire firement { get; private set; }
         public AircraftAnimation anima { get; private set; }
+        public AircraftWeapon weapon { get; private set; }
 
         private AircraftInputHandle mInputHandle;
         private AircraftSupport mSupport;
@@ -26,6 +27,7 @@ namespace DestroyViruses
             movement = gameObject.GetOrAddComponent<AircraftMovement>();
             firement = gameObject.GetOrAddComponent<AircraftFire>();
             anima = gameObject.GetOrAddComponent<AircraftAnimation>();
+            weapon = gameObject.GetOrAddComponent<AircraftWeapon>();
             mInputHandle.onFire = firement.Fire;
             mInputHandle.onHoldFire = firement.HoldFire;
             mInputHandle.onMove = movement.Move;
@@ -41,6 +43,7 @@ namespace DestroyViruses
             isInvincible = false;
             firement.HoldFire();
             anima.KillAll();
+            weapon.Reset();
         }
 
         public void Revive()

@@ -176,6 +176,9 @@ namespace DestroyViruses
 
                 // virus kills 4 buff
                 D.I.kills4Buff += 1;
+
+                // book     
+                D.I.BookAddCollectCount(evt.virus.id);
             }
             else if (evt.action == EventVirus.Action.BE_HIT)
             {

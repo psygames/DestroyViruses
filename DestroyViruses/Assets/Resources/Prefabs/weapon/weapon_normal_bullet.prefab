@@ -4760,7 +4760,7 @@ GameObject:
   - component: {fileID: 198838268833884450}
   - component: {fileID: 199565468780472720}
   m_Layer: 5
-  m_Name: fuwuqi1
+  m_Name: weapon_normal_bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5408,7 +5408,7 @@ ParticleSystem:
         m_RotationOrder: 4
   ShapeModule:
     serializedVersion: 6
-    enabled: 1
+    enabled: 0
     type: 6
     angle: 25
     length: 5

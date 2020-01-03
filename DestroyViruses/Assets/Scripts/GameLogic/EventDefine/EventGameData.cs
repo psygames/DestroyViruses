@@ -10,6 +10,7 @@ namespace DestroyViruses
     {
         public enum Action
         {
+            ChangeWeapon,
             DataChange,
             Error,
         }

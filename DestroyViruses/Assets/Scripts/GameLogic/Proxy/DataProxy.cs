@@ -8,6 +8,7 @@ namespace DestroyViruses
     {
         private GameLocalData localData { get { return GameLocalData.Instance; } }
         private BookData bookData { get { return BookData.Instance; } }
+        private WeaponLevelData weaponLevelData { get { return WeaponLevelData.Instance; } }
 
         public float coin { get { return localData.coin; } }
         public float diamond { get { return localData.diamond; } }
@@ -30,6 +31,7 @@ namespace DestroyViruses
 
         public int streak { get { return Mathf.Clamp(localData.streak, -6, 6); } }
         public int signDays { get { return localData.signDays; } }
+        public int weaponId { get { return localData.weaponId; } }
 
         public int coinValueLevel { get { return localData.coinValueLevel; } }
         public float coinValue { get { return TableCoinValue.Get(coinValueLevel).value; } }
@@ -108,6 +110,7 @@ namespace DestroyViruses
             Analytics.UserProperty.Set("fire_speed_level", fireSpeedLevel);
             Analytics.UserProperty.Set("streak", streak);
             Analytics.UserProperty.Set("daily_sign", signDays);
+            Analytics.UserProperty.Set("weapon_id", weaponId);
         }
 
         public void FirePowerUp()
@@ -336,38 +339,41 @@ namespace DestroyViruses
         #region Virus Book
         public void BookAddCollectCount(int virusID)
         {
-            if (!bookData.virusCount.ContainsKey(virusID))
+            if (!bookData.Exist(virusID))
             {
-                bookData.virusCount[virusID] = 0;
+                bookData.Set(virusID, 0);
             }
-            bookData.virusCount[virusID]++;
+
+            if (bookData.Get(virusID) < ConstTable.table.bookVirusCollectKillCount)
+            {
+                bookData.Add(virusID, 1);
+            }
         }
 
         public int BookGetCollectCount(int virusID)
         {
-            bookData.virusCount.TryGetValue(virusID, out int count);
-            return count;
+            return bookData.Get(virusID);
         }
 
-        public bool BoolIsUnlock(int virusID)
+        public bool BookIsUnlock(int virusID)
         {
-            return bookData.virusCount.TryGetValue(virusID, out _);
+            return bookData.Exist(virusID);
         }
 
         public void BookCollect(int virusID)
         {
-            if(!bookData.virusCount.ContainsKey(virusID))
+            if (!bookData.Exist(virusID))
             {
                 DispatchEvent(EventGameData.Action.Error, "怪物尚未解锁");
                 return;
             }
-            if (bookData.virusCount[virusID] < ConstTable.table.bookVirusCollectKillCount)
+            if (bookData.Get(virusID) < ConstTable.table.bookVirusCollectKillCount)
             {
                 DispatchEvent(EventGameData.Action.Error, "数量不足");
                 return;
             }
 
-            bookData.virusCount[virusID] -= ConstTable.table.bookVirusCollectKillCount;
+            bookData.Add(virusID, -ConstTable.table.bookVirusCollectKillCount);
             AddDiamond(ConstTable.table.bookVirusCollectRewardDiamond);
 
             SaveLocalData();
@@ -375,16 +381,110 @@ namespace DestroyViruses
             DispatchEvent(EventGameData.Action.DataChange);
         }
 
+        private void SaveBookData()
+        {
+            bookData.Save();
+        }
+
         #endregion
+
+        #region Weapon
+        public int weaponSpeedLevel { get { return weaponLevelData.GetSpeedLevel(weaponId); } }
+        public int weaponSpeedMaxLevel { get { return TableWeaponSpeedLevel.GetAll().Max(a => (a.weaponId == weaponId) ? a.level : 0).level; } }
+        public bool isWeaponSpeedLevelMax { get { return weaponSpeedLevel >= weaponSpeedMaxLevel; } }
+        public float weaponSpeedUpCost { get { return TableWeaponSpeedLevel.Get(a => a.weaponId == weaponId && a.level == weaponSpeedLevel).upCost; } }
+
+        public int weaponPowerLevel { get { return weaponLevelData.GetPowerLevel(weaponId); } }
+        public int weaponPowerMaxLevel { get { return TableWeaponPowerLevel.GetAll().Max(a => (a.weaponId == weaponId) ? a.level : 0).level; } }
+        public bool isWeaponPowerLevelMax { get { return weaponPowerLevel >= weaponPowerMaxLevel; } }
+        public float weaponPowerUpCost { get { return TableWeaponPowerLevel.Get(a => a.weaponId == weaponId && a.level == weaponPowerLevel).upCost; } }
+
+        public void ChangeWeapon(int id)
+        {
+            if (id > 0 && unlockedGameLevel < TableWeapon.Get(id).unlockLevel)
+            {
+                DispatchEvent(EventGameData.Action.Error, "未达到武器解锁等级");
+                return;
+            }
+
+            localData.weaponId = id;
+            SaveLocalData();
+
+            DispatchEvent(EventGameData.Action.ChangeWeapon);
+            DispatchEvent(EventGameData.Action.DataChange);
+            Analytics.Event.ChangeWeapon(id);
+        }
+
+        public void WeaponSpeedLevelUp()
+        {
+            if (isWeaponSpeedLevelMax)
+            {
+                DispatchEvent(EventGameData.Action.Error, "已经升至满级");
+                return;
+            }
+
+            if (weaponSpeedLevel >= fireSpeedLevel)
+            {
+                DispatchEvent(EventGameData.Action.Error, "不能超过主武器射速等级");
+                return;
+            }
+
+            var cost = weaponSpeedUpCost;
+            if (coin < cost)
+            {
+                DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
+                return;
+            }
+
+            localData.coin -= cost;
+            weaponLevelData.SetSpeedLevel(weaponId, weaponSpeedLevel + 1);
+            SaveLocalData();
+            SaveWeaponLevelData();
+            DispatchEvent(EventGameData.Action.DataChange);
+
+            Analytics.Event.Upgrade($"{TableWeapon.Get(weaponId).type.ToLower()}_speed", weaponSpeedLevel);
+        }
+
+        public void WeaponPowerLevelUp()
+        {
+            if (isWeaponPowerLevelMax)
+            {
+                DispatchEvent(EventGameData.Action.Error, "已经升至满级");
+                return;
+            }
+
+            if (weaponPowerLevel >= firePowerLevel)
+            {
+                DispatchEvent(EventGameData.Action.Error, "不能超过主武器火力等级");
+                return;
+            }
+
+            var cost = weaponPowerUpCost;
+            if (coin < cost)
+            {
+                DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
+                return;
+            }
+
+            localData.coin -= cost;
+            weaponLevelData.SetPowerLevel(weaponId, weaponPowerLevel + 1);
+            SaveLocalData();
+            SaveWeaponLevelData();
+            DispatchEvent(EventGameData.Action.DataChange);
+
+            Analytics.Event.Upgrade($"{TableWeapon.Get(weaponId).type.ToLower()}_power", weaponPowerLevel);
+        }
+
+        private void SaveWeaponLevelData()
+        {
+            weaponLevelData.Save();
+        }
+        #endregion
+
 
         private void SaveLocalData()
         {
             localData.Save();
-        }
-
-        private void SaveBookData()
-        {
-            bookData.Save();
         }
 
         private void DispatchEvent(EventGameData.Action action, string errorMsg = "")
@@ -396,5 +496,5 @@ namespace DestroyViruses
     public static class D
     {
         public static DataProxy I { get { return DataProxy.Ins; } }
-    };
+    }
 }

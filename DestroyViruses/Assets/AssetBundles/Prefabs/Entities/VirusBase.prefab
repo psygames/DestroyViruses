@@ -207,21 +207,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1184960284371418224, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7225865264347855027, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5824417518907856584, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b,
-        type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b, type: 3}
 --- !u!224 &4838502258275878923 stripped

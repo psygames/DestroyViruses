@@ -9,6 +9,8 @@ namespace DestroyViruses
 {
     public static class GameUtil
     {
+        public static bool isInHome { get { return StateManager.Instance.currentState.GetType() == typeof(MainState); } }
+        public static bool isInBattle { get { return StateManager.Instance.currentState.GetType() == typeof(BattleState); } }
         public static bool isFrozen
         {
             get
