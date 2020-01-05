@@ -32,49 +32,4 @@ namespace DestroyViruses
             }
         }
     }
-
-    public static class LT
-    {
-        public static TableLanguage table
-        {
-            get { return TableLanguage.Get(Option.language); }
-        }
-
-        public static string Get(string key, params object[] args)
-        {
-            var prop = table.GetType().GetProperty(key
-                 , System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
-            if (prop == null)
-            {
-                return $"[{key}]";
-            }
-            if (args == null)
-                return prop.GetValue(LT.table) as string;
-            return string.Format(prop.GetValue(LT.table) as string, args);
-        }
-
-        public static string systemLanguage
-        {
-            get
-            {
-                if (Application.systemLanguage == SystemLanguage.Chinese
-                || Application.systemLanguage == SystemLanguage.ChineseSimplified
-                || Application.systemLanguage == SystemLanguage.ChineseTraditional)
-                    return "zh-cn";
-                else if (Application.systemLanguage == SystemLanguage.Spanish)
-                    return "sp";
-                else if (Application.systemLanguage == SystemLanguage.Russian)
-                    return "ru";
-                else if (Application.systemLanguage == SystemLanguage.Korean)
-                    return "ko";
-                else if (Application.systemLanguage == SystemLanguage.Japanese)
-                    return "ja";
-                else if (Application.systemLanguage == SystemLanguage.French)
-                    return "fr";
-                else if (Application.systemLanguage == SystemLanguage.German)
-                    return "ge";
-                else return "en";
-            }
-        }
-    }
 }

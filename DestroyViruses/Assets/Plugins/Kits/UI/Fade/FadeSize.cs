@@ -7,41 +7,31 @@ public class FadeSize : Fade, IFade
     public Vector2 from = Vector2.zero;
     public Vector2 to = Vector2.zero;
 
-    public override void FadeIn()
+    protected override void DoFadeIn()
     {
-        base.FadeIn();
-        if (!enableFadeIn)
-            return;
-        GetComponent<RectTransform>().sizeDelta = from;
-        GetComponent<RectTransform>().DOSizeDelta(to, fadeInDuration)
+        base.DoFadeIn();
+        rectTransform.DOKill();
+        rectTransform.DOSizeDelta(to, fadeInDuration)
             .SetDelay(fadeInDelay).SetEase(fadeInMethod).OnComplete(OnFadeInFinished);
     }
 
-    public override void FadeOut()
+    protected override void DoFadeOut()
     {
-        base.FadeOut();
-        if (!enableFadeOut)
-            return;
-        GetComponent<RectTransform>().sizeDelta = to;
-        GetComponent<RectTransform>().DOSizeDelta(from, fadeOutDuration)
+        base.DoFadeOut();
+        rectTransform.DOKill();
+        rectTransform.DOSizeDelta(from, fadeOutDuration)
             .SetDelay(fadeOutDelay).SetEase(fadeOutMethod).OnComplete(OnFadeOutFinished);
     }
 
-    public override void FadeInImmediately()
+    protected override void DoFadeInReset()
     {
-        base.FadeInImmediately();
-        if (!enableFadeIn)
-            return;
-        GetComponent<RectTransform>().sizeDelta = to;
-        OnFadeInFinished();
+        base.DoFadeInReset();
+        rectTransform.sizeDelta = from;
     }
 
-    public override void FadeOutImmediately()
+    protected override void DoFadeOutReset()
     {
-        base.FadeOutImmediately();
-        if (!enableFadeOut)
-            return;
-        GetComponent<RectTransform>().sizeDelta = from;
-        OnFadeOutFinished();
+        base.DoFadeOutReset();
+        rectTransform.sizeDelta = to;
     }
 }

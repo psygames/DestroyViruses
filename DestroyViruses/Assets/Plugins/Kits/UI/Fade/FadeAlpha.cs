@@ -11,53 +11,43 @@ public class FadeAlpha : Fade, IFade
     public float to = 1;
 
     private CanvasGroup m_canvasGroup;
-    private void UseCanvasGroup()
+    private CanvasGroup canvasGroup
     {
-        if (m_canvasGroup == null)
-            m_canvasGroup = GetComponent<CanvasGroup>();
-        if (m_canvasGroup == null)
-            m_canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        get
+        {
+            if (m_canvasGroup == null)
+                m_canvasGroup = GetComponent<CanvasGroup>();
+            if (m_canvasGroup == null)
+                m_canvasGroup = gameObject.AddComponent<CanvasGroup>();
+            return m_canvasGroup;
+        }
     }
 
-    public override void FadeIn()
+    protected override void DoFadeIn()
     {
-        base.FadeIn();
-        if (!enableFadeIn)
-            return;
-        UseCanvasGroup();
-        m_canvasGroup.alpha = from;
-        DOTween.To(() => m_canvasGroup.alpha, (x) => m_canvasGroup.alpha = x, to, fadeInDuration)
+        base.DoFadeIn();
+        canvasGroup.DOKill();
+        canvasGroup.DOFade(to, fadeInDuration)
             .SetDelay(fadeInDelay).SetEase(fadeInMethod).OnComplete(OnFadeInFinished);
     }
 
-    public override void FadeOut()
+    protected override void DoFadeInReset()
     {
-        base.FadeOut();
-        if (!enableFadeOut)
-            return;
-        UseCanvasGroup();
-        m_canvasGroup.alpha = to;
-        DOTween.To(() => m_canvasGroup.alpha, (x) => m_canvasGroup.alpha = x, from, fadeOutDuration)
+        base.DoFadeInReset();
+        canvasGroup.alpha = from;
+    }
+
+    protected override void DoFadeOutReset()
+    {
+        base.DoFadeOutReset();
+        canvasGroup.alpha = to;
+    }
+
+    protected override void DoFadeOut()
+    {
+        base.DoFadeOut();
+        canvasGroup.DOKill();
+        canvasGroup.DOFade(from, fadeOutDuration)
             .SetDelay(fadeOutDelay).SetEase(fadeOutMethod).OnComplete(OnFadeOutFinished);
-    }
-
-    public override void FadeInImmediately()
-    {
-        base.FadeInImmediately();
-        if (!enableFadeIn)
-            return;
-        UseCanvasGroup();
-        m_canvasGroup.alpha = to;
-        OnFadeInFinished();
-    }
-
-    public override void FadeOutImmediately()
-    {
-        base.FadeOutImmediately();
-        if (!enableFadeOut)
-            return;
-        UseCanvasGroup();
-        m_canvasGroup.alpha = from;
-        OnFadeOutFinished();
     }
 }

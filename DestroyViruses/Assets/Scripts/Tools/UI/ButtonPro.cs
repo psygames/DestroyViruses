@@ -110,7 +110,7 @@ namespace DestroyViruses
 
         public void Set4LevelUp(float costCoin, bool isMax)
         {
-            if (isMax) SetText(LT.table.LEVEL_MAX);
+            if (isMax) SetText(LT.Get("LEVEL_MAX"));
             else SetText(costCoin.KMB());
             SetBtnGrey(isMax || costCoin > D.I.coin);
             SetTextRed(costCoin > D.I.coin);

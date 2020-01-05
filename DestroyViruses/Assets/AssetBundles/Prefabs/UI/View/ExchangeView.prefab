@@ -210,6 +210,7 @@ MonoBehaviour:
   clickEvent: Sub
   clickEventID: 0
   downUpEvent: 1
+  sound: button_normal
 --- !u!1 &726995164342498669
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +223,7 @@ GameObject:
   - component: {fileID: 6784052422822115784}
   - component: {fileID: 8102308853643649807}
   - component: {fileID: 798258316165486797}
-  - component: {fileID: 5428206551961050199}
+  - component: {fileID: 4163103361390212172}
   m_Layer: 5
   m_Name: title
   m_TagString: Untagged
@@ -306,7 +307,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.73333335}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
---- !u!114 &5428206551961050199
+--- !u!114 &4163103361390212172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,10 +316,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 726995164342498669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9e382561367345199a909beac5521d3, type: 3}
+  m_Script: {fileID: 11500000, guid: c1f9e4df3b422455a957d92e53e46d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: GAIN
+  LTKey: GAIN
 --- !u!1 &929615475769630252
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +535,7 @@ MonoBehaviour:
   clickEvent: Exchange
   clickEventID: 0
   downUpEvent: 0
+  sound: button_normal
 --- !u!1 &1595174158758782362
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +757,7 @@ GameObject:
   - component: {fileID: 2711518620792029309}
   - component: {fileID: 3855249072152109476}
   - component: {fileID: 5094719664891321673}
-  - component: {fileID: 7025135594428816592}
+  - component: {fileID: 2195433329943807805}
   m_Layer: 5
   m_Name: title
   m_TagString: Untagged
@@ -839,7 +841,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.85490197}
   m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
---- !u!114 &7025135594428816592
+--- !u!114 &2195433329943807805
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -848,10 +850,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3498841153536966495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9e382561367345199a909beac5521d3, type: 3}
+  m_Script: {fileID: 11500000, guid: c1f9e4df3b422455a957d92e53e46d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: COIN_EXCHANGE
+  LTKey: COIN_EXCHANGE
 --- !u!1 &4233631893740451059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,7 +1422,7 @@ GameObject:
   - component: {fileID: 6771143105312805112}
   - component: {fileID: 8815501692373050935}
   - component: {fileID: 5234155279567092482}
-  - component: {fileID: 8426030880576055109}
+  - component: {fileID: 1610114949286908211}
   m_Layer: 5
   m_Name: title
   m_TagString: Untagged
@@ -1504,7 +1506,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.73333335}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
---- !u!114 &8426030880576055109
+--- !u!114 &1610114949286908211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1513,10 +1515,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6613326728846361956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9e382561367345199a909beac5521d3, type: 3}
+  m_Script: {fileID: 11500000, guid: c1f9e4df3b422455a957d92e53e46d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: COST
+  LTKey: COST
 --- !u!1 &7304388275343498775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,3 +1733,4 @@ MonoBehaviour:
   clickEvent: Add
   clickEventID: 0
   downUpEvent: 1
+  sound: button_normal

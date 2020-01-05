@@ -113,136 +113,52 @@ namespace DestroyViruses
 		public string id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
-		/// 名称
+		/// 中文（中华人民共和国）
 		/// </summary>
-		private string _name;
-		public string name { get { return _name; } private set { _name = value; } }
+		private string _cn;
+		public string cn { get { return _cn; } private set { _cn = value; } }
 
 		/// <summary>
-		/// LV.
+		/// 英语
 		/// </summary>
-		private string _LEVEL_DOT;
-		public string LEVEL_DOT { get { return _LEVEL_DOT; } private set { _LEVEL_DOT = value; } }
+		private string _en;
+		public string en { get { return _en; } private set { _en = value; } }
 
 		/// <summary>
-		/// 升级
+		/// 法语（标准）
 		/// </summary>
-		private string _UPGRADE;
-		public string UPGRADE { get { return _UPGRADE; } private set { _UPGRADE = value; } }
+		private string _fr;
+		public string fr { get { return _fr; } private set { _fr = value; } }
 
 		/// <summary>
-		/// 满级
+		/// 西班牙语
 		/// </summary>
-		private string _LEVEL_MAX;
-		public string LEVEL_MAX { get { return _LEVEL_MAX; } private set { _LEVEL_MAX = value; } }
+		private string _sp;
+		public string sp { get { return _sp; } private set { _sp = value; } }
 
 		/// <summary>
-		/// 热更资源：
+		/// 德语（标准）
 		/// </summary>
-		private string _UPDATE_RESOURCE;
-		public string UPDATE_RESOURCE { get { return _UPDATE_RESOURCE; } private set { _UPDATE_RESOURCE = value; } }
+		private string _de;
+		public string de { get { return _de; } private set { _de = value; } }
 
 		/// <summary>
-		/// 快速热更：
+		/// 俄语
 		/// </summary>
-		private string _QUICK_UPDATE_RESOURCE;
-		public string QUICK_UPDATE_RESOURCE { get { return _QUICK_UPDATE_RESOURCE; } private set { _QUICK_UPDATE_RESOURCE = value; } }
+		private string _ru;
+		public string ru { get { return _ru; } private set { _ru = value; } }
 
 		/// <summary>
-		/// 检查热更资源...
+		/// 日语
 		/// </summary>
-		private string _CHECK_UPDATE_RESOURCE;
-		public string CHECK_UPDATE_RESOURCE { get { return _CHECK_UPDATE_RESOURCE; } private set { _CHECK_UPDATE_RESOURCE = value; } }
+		private string _ja;
+		public string ja { get { return _ja; } private set { _ja = value; } }
 
 		/// <summary>
-		/// 准备热更资源...
+		/// 韩语
 		/// </summary>
-		private string _READY_UPDATE_RESOURCE;
-		public string READY_UPDATE_RESOURCE { get { return _READY_UPDATE_RESOURCE; } private set { _READY_UPDATE_RESOURCE = value; } }
-
-		/// <summary>
-		/// 恭喜过关
-		/// </summary>
-		private string _GAME_END_WIN;
-		public string GAME_END_WIN { get { return _GAME_END_WIN; } private set { _GAME_END_WIN = value; } }
-
-		/// <summary>
-		/// 游戏结束
-		/// </summary>
-		private string _GAME_END_LOSE;
-		public string GAME_END_LOSE { get { return _GAME_END_LOSE; } private set { _GAME_END_LOSE = value; } }
-
-		/// <summary>
-		/// 剩余病毒:
-		/// </summary>
-		private string _REMAIN_VIRUS_COUNT;
-		public string REMAIN_VIRUS_COUNT { get { return _REMAIN_VIRUS_COUNT; } private set { _REMAIN_VIRUS_COUNT = value; } }
-
-		/// <summary>
-		/// 滑动屏幕开始游戏
-		/// </summary>
-		private string _SLIDE_TO_START;
-		public string SLIDE_TO_START { get { return _SLIDE_TO_START; } private set { _SLIDE_TO_START = value; } }
-
-		/// <summary>
-		/// 火力
-		/// </summary>
-		private string _FIRE_POWER;
-		public string FIRE_POWER { get { return _FIRE_POWER; } private set { _FIRE_POWER = value; } }
-
-		/// <summary>
-		/// 射速
-		/// </summary>
-		private string _FIRE_SPEED;
-		public string FIRE_SPEED { get { return _FIRE_SPEED; } private set { _FIRE_SPEED = value; } }
-
-		/// <summary>
-		/// 功能尚未解锁
-		/// </summary>
-		private string _FUNCTION_LOCKED;
-		public string FUNCTION_LOCKED { get { return _FUNCTION_LOCKED; } private set { _FUNCTION_LOCKED = value; } }
-
-		/// <summary>
-		/// 点击领取
-		/// </summary>
-		private string _CLICK_TO_RECEIVE;
-		public string CLICK_TO_RECEIVE { get { return _CLICK_TO_RECEIVE; } private set { _CLICK_TO_RECEIVE = value; } }
-
-		/// <summary>
-		/// 设置
-		/// </summary>
-		private string _SETTING;
-		public string SETTING { get { return _SETTING; } private set { _SETTING = value; } }
-
-		/// <summary>
-		/// 射击震动
-		/// </summary>
-		private string _SETTING_VIBRATION;
-		public string SETTING_VIBRATION { get { return _SETTING_VIBRATION; } private set { _SETTING_VIBRATION = value; } }
-
-		/// <summary>
-		/// 音乐
-		/// </summary>
-		private string _SETTING_MUSIC;
-		public string SETTING_MUSIC { get { return _SETTING_MUSIC; } private set { _SETTING_MUSIC = value; } }
-
-		/// <summary>
-		/// 音效
-		/// </summary>
-		private string _SETTING_SOUND;
-		public string SETTING_SOUND { get { return _SETTING_SOUND; } private set { _SETTING_SOUND = value; } }
-
-		/// <summary>
-		/// 语言
-		/// </summary>
-		private string _SETTING_LANGUAGE;
-		public string SETTING_LANGUAGE { get { return _SETTING_LANGUAGE; } private set { _SETTING_LANGUAGE = value; } }
-
-		/// <summary>
-		/// 神秘大奖
-		/// </summary>
-		private string _GAME_END_BONUS;
-		public string GAME_END_BONUS { get { return _GAME_END_BONUS; } private set { _GAME_END_BONUS = value; } }
+		private string _ko;
+		public string ko { get { return _ko; } private set { _ko = value; } }
 
 
 		public static TableLanguage Get(string id)

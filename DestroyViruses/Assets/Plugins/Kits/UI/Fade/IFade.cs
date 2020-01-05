@@ -1,4 +1,4 @@
-﻿interface IFade
+interface IFade
 {
     void FadeIn();
     void FadeOut();

@@ -6,13 +6,15 @@ public class Fade : MonoBehaviour, IFade
 {
     public bool enableFadeIn = true;
     public bool onEnableFadeIn = false;
+    public bool fadeInReset = true;
     public float fadeInDelay = 0f;
     public float fadeInDuration = 0.15f;
-    public Ease fadeInMethod = Ease.OutSine;
+    public Ease fadeInMethod = Ease.InSine;
     public event Action onFadeInComplete;
 
     public bool enableFadeOut = true;
     public bool outSetInactive = true;
+    public bool fadeOutReset = false;
     public float fadeOutDelay = 0f;
     public float fadeOutDuration = 0.15f;
     public Ease fadeOutMethod = Ease.OutSine;
@@ -21,44 +23,85 @@ public class Fade : MonoBehaviour, IFade
     public bool autoFadeOut = false;
     public bool isIn { get; protected set; }
 
+    private RectTransform m_rectTransform;
+    public RectTransform rectTransform
+    {
+        get
+        {
+            if (m_rectTransform == null)
+                m_rectTransform = GetComponent<RectTransform>();
+            return m_rectTransform;
+        }
+    }
+
     protected virtual void OnEnable()
     {
-        if (onEnableFadeIn)
+        if (enableFadeIn && onEnableFadeIn)
             FadeIn();
     }
 
-    public virtual void FadeIn()
+    protected virtual void DoFadeInReset()
+    {
+
+    }
+
+    protected virtual void DoFadeIn()
+    {
+
+    }
+
+    protected virtual void DoFadeOutReset()
+    {
+
+    }
+
+    protected virtual void DoFadeOut()
+    {
+
+    }
+
+    public void FadeIn()
     {
         if (!enableFadeIn)
             return;
         isIn = true;
         if (!gameObject.activeSelf)
             gameObject.SetActive(true);
+        if (fadeInReset)
+            DoFadeInReset();
+        DoFadeIn();
     }
 
-    public virtual void FadeOut()
+    public void FadeOut()
     {
         if (!enableFadeOut)
             return;
         isIn = false;
         if (!gameObject.activeSelf)
             gameObject.SetActive(true);
+        if (fadeOutReset)
+            DoFadeOutReset();
+        DoFadeOut();
     }
 
-    public virtual void FadeInImmediately()
+    public void FadeInImmediately()
     {
         if (!enableFadeIn)
             return;
         isIn = true;
+        DoFadeOutReset();
+        OnFadeInFinished();
     }
 
-    public virtual void FadeOutImmediately()
+    public void FadeOutImmediately()
     {
         if (!enableFadeOut)
             return;
         isIn = false;
         if (outSetInactive && gameObject.activeSelf)
             gameObject.SetActive(false);
+        DoFadeInReset();
+        OnFadeOutFinished();
     }
 
     protected virtual void OnFadeInFinished()
@@ -76,5 +119,4 @@ public class Fade : MonoBehaviour, IFade
         if (onFadeOutComplete != null)
             onFadeOutComplete.Invoke();
     }
-
 }

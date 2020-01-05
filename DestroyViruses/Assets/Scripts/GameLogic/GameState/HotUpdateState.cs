@@ -64,22 +64,22 @@ namespace DestroyViruses
             }
             else if (updater.state == AssetsUpdate.State.Wait)
             {
-                message = LT.table.READY_UPDATE_RESOURCE;
+                message = LT.Get("READY_UPDATE_RESOURCE");
                 progress = 0.05f;
             }
             else if (updater.state == AssetsUpdate.State.Checking)
             {
-                message = LT.table.CHECK_UPDATE_RESOURCE;
+                message = LT.Get("CHECK_UPDATE_RESOURCE");
                 progress = 0.1f;
             }
             else if (updater.state == AssetsUpdate.State.Downloading)
             {
-                message = $"{LT.table.UPDATE_RESOURCE}[{updater.downloadIndex}/{updater.downloadCount}]";
+                message = $"{LT.Get("UPDATE_RESOURCE")}[{updater.downloadIndex}/{updater.downloadCount}]";
                 progress = updater.progress * 0.8f + 0.1f;
             }
             else if (updater.state == AssetsUpdate.State.Completed && !mQuickHotUpdateFinished)
             {
-                message = $"{LT.table.QUICK_UPDATE_RESOURCE}[{mQuickHotUpdateIndex}/{mQuickHotUpdateList.Count}]";
+                message = $"{LT.Get("QUICK_UPDATE_RESOURCE")}[{mQuickHotUpdateIndex}/{mQuickHotUpdateList.Count}]";
                 progress = (1f * mQuickHotUpdateIndex / mQuickHotUpdateList.Count + mQuickHotUpdateProgress) * 0.1f + 0.9f;
             }
         }

@@ -3,8 +3,10 @@ guid: ee39eb0ace12406a938acd5968c4e238
 labels:
 - gvh
 - gvh_version-1.2.130.0
+- gvh_version-6.7.0
+timeCreated: 1538009133
+licenseType: Pro
 DefaultImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  userData:
+  assetBundleName:
+  assetBundleVariant:
