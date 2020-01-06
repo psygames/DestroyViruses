@@ -61,7 +61,7 @@ namespace DestroyViruses
             }
             else
             {
-                Toast.Show("钻石不足兑换");
+                Toast.Show(LTKey.EXCHANGE_DIAMOND_NOT_ENOUGH.LT());
             }
         }
     }

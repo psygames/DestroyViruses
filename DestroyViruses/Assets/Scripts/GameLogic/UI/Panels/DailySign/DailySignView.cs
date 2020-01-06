@@ -53,7 +53,7 @@ namespace DestroyViruses
             }
             else
             {
-                Toast.Show("今日已签到");
+                Toast.Show(LTKey.DAILY_SIGN_ALREADY_SIGNED.LT());
                 Close();
             }
         }
@@ -76,12 +76,12 @@ namespace DestroyViruses
                 }
                 else
                 {
-                    Toast.Show("广告播放失败");
+                    Toast.Show(LTKey.AD_PLAY_FAILED.LT());
                 }
             }
             else
             {
-                Toast.Show("今日已签到");
+                Toast.Show(LTKey.DAILY_SIGN_ALREADY_SIGNED.LT());
                 Close();
             }
         }

@@ -98,7 +98,7 @@ namespace DestroyViruses
             }
             else
             {
-                Toast.Show("收集数量不足");
+                Toast.Show(LTKey.VIRUS_COLLECT_NOT_ENOUGH);
             }
         }
     }

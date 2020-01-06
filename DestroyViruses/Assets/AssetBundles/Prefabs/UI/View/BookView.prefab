@@ -1390,6 +1390,7 @@ GameObject:
   - component: {fileID: 3617887496963091729}
   - component: {fileID: 1469591094959727539}
   - component: {fileID: 7579504114279731582}
+  - component: {fileID: 1304301724423418876}
   m_Layer: 5
   m_Name: title
   m_TagString: Untagged
@@ -1454,7 +1455,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u672A\u6536\u5F55"
@@ -1488,6 +1489,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
+--- !u!114 &1304301724423418876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453944340801665895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f9e4df3b422455a957d92e53e46d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LTKey: VIRUS_UNKNOWN
 --- !u!1 &5976213242875076878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,6 +1905,7 @@ GameObject:
   - component: {fileID: 5291005666177227232}
   - component: {fileID: 3173897633170031890}
   - component: {fileID: 5359551139323624057}
+  - component: {fileID: 5341997101908200050}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1915,7 +1930,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -121.78003}
-  m_SizeDelta: {x: 200, y: 60}
+  m_SizeDelta: {x: 250, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3964589350237249544
 CanvasRenderer:
@@ -1955,7 +1970,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u9886\u53D6\u5956\u52B1"
@@ -1989,6 +2004,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &5341997101908200050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7645227229828932862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f9e4df3b422455a957d92e53e46d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LTKey: RECEIVE_REWARD
 --- !u!1 &7936255883231738086
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,6 +2030,7 @@ GameObject:
   - component: {fileID: 2525249943013627253}
   - component: {fileID: 546265579919751490}
   - component: {fileID: 6354797448657698422}
+  - component: {fileID: 5035431945304803329}
   m_Layer: 5
   m_Name: title
   m_TagString: Untagged
@@ -2066,7 +2095,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u9ED8\u8BA4\u6B66\u5668"
@@ -2100,6 +2129,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
+--- !u!114 &5035431945304803329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7936255883231738086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f9e4df3b422455a957d92e53e46d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LTKey: 
 --- !u!1 &8137864537506898772
 GameObject:
   m_ObjectHideFlags: 0
@@ -2516,6 +2558,7 @@ GameObject:
   - component: {fileID: 6676153982163146012}
   - component: {fileID: 5268061971302826828}
   - component: {fileID: 9115772139833491128}
+  - component: {fileID: 2258100309417823127}
   m_Layer: 5
   m_Name: title
   m_TagString: Untagged
@@ -2614,6 +2657,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 4, y: -6}
   m_UseGraphicAlpha: 1
+--- !u!114 &2258100309417823127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8872771224639465324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f9e4df3b422455a957d92e53e46d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LTKey: VIRUS_BOOK
 --- !u!1 &8879044875854681456
 GameObject:
   m_ObjectHideFlags: 0

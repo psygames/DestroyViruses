@@ -9,6 +9,8 @@
     <package>com.google.firebase:firebase-analytics-unity:6.7.0</package>
     <package>com.google.firebase:firebase-app-unity:6.7.0</package>
     <package>com.google.firebase:firebase-common:19.2.0</package>
+    <package>com.google.firebase:firebase-config:19.0.3</package>
+    <package>com.google.firebase:firebase-config-unity:6.7.0</package>
     <package>com.mopub.mediation:adcolony:4.1.0.1</package>
     <package>com.mopub.mediation:admob:18.3.0.1</package>
     <package>com.mopub.mediation:facebookaudiencenetwork:5.6.0.0</package>
@@ -70,14 +72,18 @@
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-stats-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.auto.value.auto-value-annotations-1.6.5.jar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-abt-19.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-analytics-17.2.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-analytics-unity-6.7.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-app-unity-6.7.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-common-19.3.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-components-16.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-iid-19.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-config-19.1.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-config-unity-6.7.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-iid-20.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-iid-interop-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-measurement-connector-18.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.protobuf.protobuf-lite-3.0.1.jar</file>
     <file>Assets/Plugins/Android/com.mopub.mediation.adcolony-4.1.0.1.aar</file>
     <file>Assets/Plugins/Android/com.mopub.mediation.admob-18.3.0.1.aar</file>
     <file>Assets/Plugins/Android/com.mopub.mediation.facebookaudiencenetwork-5.6.0.0.aar</file>

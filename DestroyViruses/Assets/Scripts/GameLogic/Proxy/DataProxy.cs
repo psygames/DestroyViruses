@@ -117,14 +117,14 @@ namespace DestroyViruses
         {
             if (isFirePowerLevelMax)
             {
-                DispatchEvent(EventGameData.Action.Error, "已经升至满级");
+                DispatchEvent(EventGameData.Action.Error, LTKey.ALREADY_LEVEL_MAX.LT());
                 return;
             }
 
             var cost = firePowerUpCost;
             if (coin < cost)
             {
-                DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
+                DispatchEvent(EventGameData.Action.Error, LTKey.UPGRADE_LACK_OF_COIN.LT());
                 return;
             }
 
@@ -140,14 +140,14 @@ namespace DestroyViruses
         {
             if (isFireSpeedLevelMax)
             {
-                DispatchEvent(EventGameData.Action.Error, "已经升至满级");
+                DispatchEvent(EventGameData.Action.Error, LTKey.ALREADY_LEVEL_MAX.LT());
                 return;
             }
 
             var cost = fireSpeedUpCost;
             if (coin < cost)
             {
-                DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
+                DispatchEvent(EventGameData.Action.Error, LTKey.UPGRADE_LACK_OF_COIN.LT());
                 return;
             }
 
@@ -217,13 +217,13 @@ namespace DestroyViruses
         {
             if (level <= 0)
             {
-                DispatchEvent(EventGameData.Action.Error, "不是有效关卡");
+                DispatchEvent(EventGameData.Action.Error, LTKey.GAME_LEVEL_INVALID.LT());
                 return;
             }
 
             if (level > localData.unlockedGameLevel)
             {
-                DispatchEvent(EventGameData.Action.Error, "关卡尚未解锁");
+                DispatchEvent(EventGameData.Action.Error, LTKey.GAME_LEVEL_LOCKED.LT());
                 return;
             }
 
@@ -236,7 +236,7 @@ namespace DestroyViruses
         {
             if (!CanDailySign())
             {
-                DispatchEvent(EventGameData.Action.Error, "Can't Sign Now.");
+                DispatchEvent(EventGameData.Action.Error, LTKey.DAILY_SIGN_CANT_SIGN);
                 return;
             }
 
@@ -283,14 +283,14 @@ namespace DestroyViruses
         {
             if (isCoinIncomeLevelMax)
             {
-                DispatchEvent(EventGameData.Action.Error, "已经升至满级");
+                DispatchEvent(EventGameData.Action.Error, LTKey.ALREADY_LEVEL_MAX.LT());
                 return;
             }
 
             var cost = coinIncomeUpCost;
             if (coin < cost)
             {
-                DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
+                DispatchEvent(EventGameData.Action.Error, LTKey.UPGRADE_LACK_OF_COIN.LT());
                 return;
             }
 
@@ -306,14 +306,14 @@ namespace DestroyViruses
         {
             if (isCoinValueLevelMax)
             {
-                DispatchEvent(EventGameData.Action.Error, "已经升至满级");
+                DispatchEvent(EventGameData.Action.Error, LTKey.ALREADY_LEVEL_MAX.LT());
                 return;
             }
 
             var cost = coinValueUpCost;
             if (coin < cost)
             {
-                DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
+                DispatchEvent(EventGameData.Action.Error, LTKey.UPGRADE_LACK_OF_COIN.LT());
                 return;
             }
 
@@ -329,7 +329,7 @@ namespace DestroyViruses
         {
             if (diamond > this.diamond)
             {
-                DispatchEvent(EventGameData.Action.Error, "钻石不足");
+                DispatchEvent(EventGameData.Action.Error, LTKey.UPGRADE_LACK_OF_DIAMOND.LT());
                 return;
             }
 
@@ -371,12 +371,12 @@ namespace DestroyViruses
         {
             if (!bookData.Exist(virusID))
             {
-                DispatchEvent(EventGameData.Action.Error, "怪物尚未解锁");
+                DispatchEvent(EventGameData.Action.Error, LTKey.VIRUS_LOCKED.LT());
                 return;
             }
             if (bookData.Get(virusID) < ConstTable.table.bookVirusCollectKillCount)
             {
-                DispatchEvent(EventGameData.Action.Error, "数量不足");
+                DispatchEvent(EventGameData.Action.Error, LTKey.VIRUS_COLLECT_NOT_ENOUGH.LT());
                 return;
             }
 
@@ -410,7 +410,7 @@ namespace DestroyViruses
         {
             if (id > 0 && unlockedGameLevel < TableWeapon.Get(id).unlockLevel)
             {
-                DispatchEvent(EventGameData.Action.Error, "未达到武器解锁等级");
+                DispatchEvent(EventGameData.Action.Error, LTKey.NOT_REACH_WEAPON_UNLOCK_GAME_LEVEL.LT());
                 return;
             }
 
@@ -426,20 +426,20 @@ namespace DestroyViruses
         {
             if (isWeaponSpeedLevelMax)
             {
-                DispatchEvent(EventGameData.Action.Error, "已经升至满级");
+                DispatchEvent(EventGameData.Action.Error, LTKey.ALREADY_LEVEL_MAX.LT());
                 return;
             }
 
             if (weaponSpeedLevel >= fireSpeedLevel)
             {
-                DispatchEvent(EventGameData.Action.Error, "不能超过主武器射速等级");
+                DispatchEvent(EventGameData.Action.Error, LTKey.CANNOT_EXCEED_FIRE_SPEED_LEVEL.LT());
                 return;
             }
 
             var cost = weaponSpeedUpCost;
             if (coin < cost)
             {
-                DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
+                DispatchEvent(EventGameData.Action.Error, LTKey.UPGRADE_LACK_OF_COIN.LT());
                 return;
             }
 
@@ -456,20 +456,20 @@ namespace DestroyViruses
         {
             if (isWeaponPowerLevelMax)
             {
-                DispatchEvent(EventGameData.Action.Error, "已经升至满级");
+                DispatchEvent(EventGameData.Action.Error, LTKey.ALREADY_LEVEL_MAX.LT());
                 return;
             }
 
             if (weaponPowerLevel >= firePowerLevel)
             {
-                DispatchEvent(EventGameData.Action.Error, "不能超过主武器火力等级");
+                DispatchEvent(EventGameData.Action.Error, LTKey.CANNOT_EXCEED_FIRE_POWER_LEVEL.LT());
                 return;
             }
 
             var cost = weaponPowerUpCost;
             if (coin < cost)
             {
-                DispatchEvent(EventGameData.Action.Error, "升级所需金币不足");
+                DispatchEvent(EventGameData.Action.Error, LTKey.UPGRADE_LACK_OF_COIN.LT());
                 return;
             }
 

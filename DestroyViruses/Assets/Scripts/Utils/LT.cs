@@ -40,7 +40,7 @@ namespace DestroyViruses
             else if (tag == TAG_KO) val = t.ko;
             else val = t.en;
 
-            if (args == null)
+            if (args == null || args.Length <= 0)
             {
                 return val;
             }
@@ -71,6 +71,20 @@ namespace DestroyViruses
                     return TAG_EN;
                 else return TAG_DEFAULT;
             }
+        }
+
+    }
+
+    public static class LTExtension
+    {
+        public static string LT(this string key)
+        {
+            return DestroyViruses.LT.Get(key);
+        }
+
+        public static string LT(this string key, params object[] args)
+        {
+            return DestroyViruses.LT.Get(key, args);
         }
     }
 }

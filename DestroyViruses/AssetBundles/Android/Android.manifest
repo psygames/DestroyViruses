@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 617336907
+CRC: 317281816
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -225,4 +225,10 @@ AssetBundleManifest:
       Dependencies: {}
     Info_73:
       Name: sounds/diamond
+      Dependencies: {}
+    Info_74:
+      Name: sounds/debuff
+      Dependencies: {}
+    Info_75:
+      Name: sounds/buff
       Dependencies: {}

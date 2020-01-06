@@ -111,21 +111,21 @@ namespace DestroyViruses
             {
                 if (D.I.unlockedGameLevel == ConstTable.table.dailySignUnlockLevel)
                 {
-                    mOpenHints.Add("已解锁【每日签到】");
+                    mOpenHints.Add(LTKey.UNLOCK_SYSTEM_X.LT(LTKey.DAILY_SIGN.LT()));
                 }
                 if (D.I.unlockedGameLevel == ConstTable.table.bookUnlockLevel)
                 {
-                    mOpenHints.Add("已解锁【怪物图鉴】");
+                    mOpenHints.Add(LTKey.UNLOCK_SYSTEM_X.LT(LTKey.VIRUS_BOOK.LT()));
                 }
                 if (D.I.unlockedGameLevel == ConstTable.table.weaponUnlockLevel)
                 {
-                    mOpenHints.Add("已解锁【副武器系统】");
+                    mOpenHints.Add(LTKey.UNLOCK_SYSTEM_X.LT(LTKey.WEAPON_SYSTEM.LT()));
                 }
                 foreach (var t in TableWeapon.GetAll())
                 {
                     if (D.I.unlockedGameLevel == t.unlockLevel)
                     {
-                        mOpenHints.Add($"已解锁副武器【{LT.Get(t.nameID)}】");
+                        mOpenHints.Add(LTKey.UNLOCK_WEAPON_X.LT(LT.Get(t.nameID)));
                     }
                 }
             }

@@ -68,7 +68,7 @@ namespace DestroyViruses
         {
             float progress = 1 - D.I.battleProgress;
             progressFill.value = progress;
-            progressText.text = $"{LT.Get("REMAIN_VIRUS_COUNT")}{Mathf.CeilToInt(progress * 100)}%";
+            progressText.text = $"{LTKey.REMAIN_VIRUS_COUNT.LT()}{Mathf.CeilToInt(progress * 100)}%";
 
             if (mLastIsBattleTouchOn != GlobalData.isBattleTouchOn)
             {

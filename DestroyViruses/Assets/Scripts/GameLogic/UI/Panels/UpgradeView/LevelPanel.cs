@@ -29,11 +29,11 @@ namespace DestroyViruses
         public void SetData()
         {
             firePowerUpBtn.Set4LevelUp(D.I.firePowerUpCost, D.I.isFirePowerLevelMax);
-            firePowerLevelText.text = $"{LT.Get("FIRE_POWER")} {LT.Get("LEVEL_DOT")}{D.I.firePowerLevel}";
+            firePowerLevelText.text = $"{LTKey.FIRE_POWER.LT()} {LTKey.LEVEL_DOT.LT()}{D.I.firePowerLevel}";
             firePowerFill.value = 1f * D.I.firePowerLevel / D.I.firePowerMaxLevel;
 
             fireSpeedUpBtn.Set4LevelUp(D.I.fireSpeedUpCost, D.I.isFireSpeedLevelMax);
-            fireSpeedLevelText.text = $"{LT.Get("FIRE_SPEED")} {LT.Get("LEVEL_DOT")}{D.I.fireSpeedLevel}";
+            fireSpeedLevelText.text = $"{LTKey.FIRE_SPEED.LT()} {LTKey.LEVEL_DOT.LT()}{D.I.fireSpeedLevel}";
             fireSpeedFill.value = 1f * D.I.fireSpeedLevel / D.I.fireSpeedMaxLevel;
         }
     }
