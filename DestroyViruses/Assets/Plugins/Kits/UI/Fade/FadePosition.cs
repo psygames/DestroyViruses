@@ -7,41 +7,31 @@ public class FadePosition : Fade, IFade
     public Vector2 from = Vector2.zero;
     public Vector2 to = Vector2.zero;
 
-    public override void FadeIn()
+    protected override void DoFadeIn()
     {
-        base.FadeIn();
-        if (!enableFadeIn)
-            return;
-        GetComponent<RectTransform>().anchoredPosition = from;
-        GetComponent<RectTransform>().DOAnchorPos(to, fadeInDuration)
+        base.DoFadeIn();
+        rectTransform.DOKill();
+        rectTransform.DOAnchorPos(to, fadeInDuration)
             .SetDelay(fadeInDelay).SetEase(fadeInMethod).OnComplete(OnFadeInFinished);
     }
 
-    public override void FadeOut()
+    protected override void DoFadeOut()
     {
-        base.FadeOut();
-        if (!enableFadeOut)
-            return;
-        GetComponent<RectTransform>().anchoredPosition = to;
-        GetComponent<RectTransform>().DOAnchorPos(from, fadeOutDuration)
+        base.DoFadeOut();
+        rectTransform.DOKill();
+        rectTransform.DOAnchorPos(from, fadeOutDuration)
             .SetDelay(fadeOutDelay).SetEase(fadeOutMethod).OnComplete(OnFadeOutFinished);
     }
 
-    public override void FadeInImmediately()
+    protected override void DoFadeInReset()
     {
-        base.FadeInImmediately();
-        if (!enableFadeIn)
-            return;
-        GetComponent<RectTransform>().anchoredPosition = to;
-        OnFadeInFinished();
+        base.DoFadeInReset();
+        rectTransform.anchoredPosition = from;
     }
 
-    public override void FadeOutImmediately()
+    protected override void DoFadeOutReset()
     {
-        base.FadeOutImmediately();
-        if (!enableFadeOut)
-            return;
-        GetComponent<RectTransform>().anchoredPosition = from;
-        OnFadeOutFinished();
+        base.DoFadeOutReset();
+        rectTransform.anchoredPosition = to;
     }
 }

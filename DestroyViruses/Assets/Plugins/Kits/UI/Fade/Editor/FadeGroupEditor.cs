@@ -1,6 +1,5 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEngine;
-
 [CustomEditor(typeof(FadeGroup), true)]
 public class FadeGroupEditor : Editor
 {

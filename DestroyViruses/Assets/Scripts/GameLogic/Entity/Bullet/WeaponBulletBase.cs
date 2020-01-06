@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnibusEvent;
 using UnityEngine.UI;
+using System;
 
 namespace DestroyViruses
 {
@@ -12,21 +13,16 @@ namespace DestroyViruses
         protected int mId;
         protected float mDamage;
         protected float mSpeed;
-        protected float mEffect1;
-        protected float mEffect2;
-        protected float mEffect3;
+        protected float[] mEffects = new float[5];
         protected Vector2 mSize = Vector2.one * 100;
 
         public Vector2 position { get; protected set; }
         public Vector2 direction { get; protected set; }
 
-        public void Reset(Vector2 position, Vector2 direction, float damage, float speed, float effect1, float effect2, float effect3)
+        public virtual void Reset(Vector2 position, Vector2 direction, float damage, float[] effects)
         {
             mDamage = damage;
-            mSpeed = speed;
-            mEffect1 = effect1;
-            mEffect2 = effect2;
-            mEffect3 = effect3;
+            Array.Copy(effects, mEffects, mEffects.Length);
             this.position = position;
             this.direction = direction;
             isAlive = true;
@@ -60,15 +56,19 @@ namespace DestroyViruses
 
         protected virtual void UpdatePosition()
         {
-            if (position.y > UIUtil.height + mSize.y
+            if (position.y > UIUtil.height + mSize.y || position.y < -mSize.y
                 || position.x < -mSize.x || position.x > UIUtil.width + mSize.x)
             {
-                Recycle();
-                isAlive = false;
+                ForceRecycle();
             }
 
             this.position += direction * mSpeed * GlobalData.slowDownFactor * Time.deltaTime;
             rectTransform.anchoredPosition = position;
+        }
+
+        protected float GetDist(Vector2 hitPos, VirusBase virus)
+        {
+            return Mathf.Max(0, (hitPos - virus.position).magnitude - virus.radius);
         }
 
         protected virtual void Update()
@@ -77,6 +77,12 @@ namespace DestroyViruses
                 return;
 
             UpdatePosition();
+        }
+
+        protected virtual void ForceRecycle()
+        {
+            isAlive = false;
+            Recycle();
         }
     }
 }

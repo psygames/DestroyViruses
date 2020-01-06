@@ -11,28 +11,25 @@ public class BackgroundMask : MonoBehaviour
     private RectTransform m_tranform;
     private Transform m_parentTransform;
 
-    private void Awake()
-    {
-        m_tranform = GetComponent<RectTransform>();
-        m_parentTransform = transform.parent;
-    }
-
-    private void Start()
-    {
-        if (m_parentTransform == null)
-        {
-            m_parentTransform = transform.parent;
-            OnEnable();
-        }
-    }
-
-    private GameObject mMaskGo = null;
+    private GameObject mMaskGo;
     private void OnEnable()
     {
+        StartCoroutine(DelayShow());
+    }
+
+    private IEnumerator DelayShow()
+    {
+        yield return null;
+
+        m_tranform = GetComponent<RectTransform>();
+        m_parentTransform = transform.parent;
+
+        DestroyGo();
+
+        yield return null;
+
         if (mMaskGo == null && m_parentTransform != null)
         {
-            DestroyGo();
-
             mMaskGo = new GameObject();
             mMaskGo.name = this.name + "(MASK)";
             var trans = mMaskGo.AddComponent<RectTransform>();

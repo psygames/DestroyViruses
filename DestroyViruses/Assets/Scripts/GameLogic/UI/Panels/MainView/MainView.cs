@@ -151,7 +151,7 @@ namespace DestroyViruses
 
         private void OnClickDailySign()
         {
-            UIManager.Open<DailySignView>();
+            UIManager.Open<DailySignView>(UILayer.Top);
         }
 
         private void OnClickBook()

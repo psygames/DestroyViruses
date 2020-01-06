@@ -14,6 +14,7 @@ namespace DestroyViruses
 
         public override void Reset(int id, float hp, int size, float speed, Vector2 pos, Vector2 direction, Vector2 hpRange, bool isMatrix)
         {
+            mViruses.Clear();
             base.Reset(id, hp, size, speed, pos, direction, hpRange, isMatrix);
             Update();
         }

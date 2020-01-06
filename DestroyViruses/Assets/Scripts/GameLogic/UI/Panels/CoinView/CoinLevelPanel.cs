@@ -28,11 +28,11 @@ namespace DestroyViruses
         public void SetData()
         {
             coinValueUpBtn.Set4LevelUp(D.I.coinValueUpCost, D.I.isCoinValueLevelMax);
-            coinValueLevelText.text = $"{"金币价值"} {LT.table.LEVEL_DOT}{D.I.coinValueLevel}";
+            coinValueLevelText.text = $"{"金币价值"} {LT.Get("LEVEL_DOT")}{D.I.coinValueLevel}";
             coinValueFill.value = 1f * D.I.coinValueLevel / D.I.coinValueMaxLevel;
 
             coinIncomeUpBtn.Set4LevelUp(D.I.coinIncomeUpCost, D.I.isCoinValueLevelMax);
-            coinIncomeLevelText.text = $"{"金币收益"} {LT.table.LEVEL_DOT}{D.I.coinIncomeLevel}";
+            coinIncomeLevelText.text = $"{"金币收益"} {LT.Get("LEVEL_DOT")}{D.I.coinIncomeLevel}";
             coinIncomeFill.value = 1f * D.I.coinIncomeLevel / D.I.coinIncomeMaxLevel;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
+
 [CustomEditor(typeof(Fade), true)]
 public class FadeEditor : Editor
 {
@@ -22,6 +23,7 @@ public class FadeEditor : Editor
                 fade.FadeIn();
             }
             PropertyField("onEnableFadeIn");
+            PropertyField("fadeInReset");
             PropertyField("fadeInMethod");
             PropertyField("fadeInDelay");
             PropertyField("fadeInDuration");
@@ -43,6 +45,7 @@ public class FadeEditor : Editor
             {
                 fade.FadeOut();
             }
+            PropertyField("fadeOutReset");
             PropertyField("fadeOutMethod");
             PropertyField("fadeOutDelay");
             PropertyField("fadeOutDuration");

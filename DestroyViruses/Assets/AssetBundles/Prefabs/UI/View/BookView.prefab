@@ -87,11 +87,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enableFadeIn: 1
   onEnableFadeIn: 0
+  fadeInReset: 1
   fadeInDelay: 0
   fadeInDuration: 0.2
   fadeInMethod: 3
   enableFadeOut: 1
   outSetInactive: 0
+  fadeOutReset: 0
   fadeOutDelay: 0
   fadeOutDuration: 0.2
   fadeOutMethod: 3

@@ -8,7 +8,7 @@ namespace DestroyViruses
 	[Serializable]
     public class TableConstCollection
     {
-        private Dictionary<int, TableConst> mDict = null;
+        private Dictionary<string, TableConst> mDict = null;
 
         [NonSerialized]
         private static TableConstCollection _ins = null;
@@ -24,7 +24,7 @@ namespace DestroyViruses
             }
         }
 
-		public TableConst Get(int id)
+		public TableConst Get(string id)
         {
             TableConst data = null;
 			_ins.mDict.TryGetValue(id, out data);
@@ -107,10 +107,10 @@ namespace DestroyViruses
     public class TableConst
     {
 		/// <summary>
-		/// ID（正在使用 - 1）
+		/// 配置组名
 		/// </summary>
-		private int _id;
-		public int id { get { return _id; } private set { _id = value; } }
+		private string _id;
+		public string id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
 		/// 游戏帧数，-1表示不限制。
@@ -365,7 +365,7 @@ namespace DestroyViruses
 		public string formulaArgsDailySignCoin { get { return _formulaArgsDailySignCoin; } private set { _formulaArgsDailySignCoin = value; } }
 
 
-		public static TableConst Get(int id)
+		public static TableConst Get(string id)
 		{
 			return TableConstCollection.Instance.Get(id);
 		}

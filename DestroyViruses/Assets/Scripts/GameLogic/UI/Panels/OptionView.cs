@@ -16,10 +16,8 @@ namespace DestroyViruses
         public Button vibrationBtn;
         public Dropdown languageDropdown;
 
-        private List<TableLanguage> mLangs = null;
         private void Awake()
         {
-            mLangs = TableLanguage.GetAll().ToList();
             musicBtn.OnClick(OnClickMusic);
             vibrationBtn.OnClick(OnClickVibration);
             languageDropdown.onValueChanged.AddListener(OnValueChangedLanguage);
@@ -40,11 +38,7 @@ namespace DestroyViruses
 
         private void OnValueChangedLanguage(int index)
         {
-            Option.language = mLangs[index].id;
-            foreach (var lt in UIUtil.uiRoot.GetComponentsInChildren<LocalizationText>())
-            {
-                lt.Validate();
-            }
+            Option.language = LT.Tags[index];
             Refresh();
         }
 
@@ -53,12 +47,23 @@ namespace DestroyViruses
             musicRadio.Radio(Option.music);
             vibraitonRadio.Radio(Option.vibration);
             languageDropdown.options.Clear();
-            foreach (var t in mLangs)
+            var t = TableLanguage.Get("LANGUAGE_NAME");
+            string val;
+            foreach (var _tag in LT.Tags)
             {
-                languageDropdown.options.Add(new Dropdown.OptionData(t.name));
+                if (_tag == LT.TAG_EN) val = t.en;
+                else if (_tag == LT.TAG_CN) val = t.cn;
+                else if (_tag == LT.TAG_FR) val = t.fr;
+                else if (_tag == LT.TAG_SP) val = t.sp;
+                else if (_tag == LT.TAG_DE) val = t.de;
+                else if (_tag == LT.TAG_RU) val = t.ru;
+                else if (_tag == LT.TAG_JA) val = t.ja;
+                else if (_tag == LT.TAG_KO) val = t.ko;
+                else val = t.en;
+                languageDropdown.options.Add(new Dropdown.OptionData(val));
             }
-            languageDropdown.value = mLangs.FindIndex(a => a.id == Option.language);
-            languageDropdown.captionText.text = mLangs[languageDropdown.value].name;
+            languageDropdown.value = LT.Tags.IndexOf(Option.language);
+            languageDropdown.captionText.text = LT.Tags[languageDropdown.value];
             SetMusic();
         }
 

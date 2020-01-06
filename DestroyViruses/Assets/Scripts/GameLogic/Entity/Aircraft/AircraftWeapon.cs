@@ -33,6 +33,7 @@ namespace DestroyViruses
                     mWeapon = Instantiate(prefab);
                     mWeapon.rectTransform.SetParent(mWeaponRoot, false);
                 }
+                mLastWeaponType = weaponType;
             }
 
             mWeapon.Reset(D.I.weaponId, D.I.weaponPowerLevel, D.I.weaponSpeedLevel);

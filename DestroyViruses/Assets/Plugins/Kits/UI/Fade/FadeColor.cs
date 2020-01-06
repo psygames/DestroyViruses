@@ -10,50 +10,41 @@ public class FadeColor : Fade, IFade
 
     private UnityEngine.UI.Graphic m_graphic = null;
 
-    void Awake()
+    private UnityEngine.UI.Graphic graphic
     {
-        m_graphic = GetComponent<UnityEngine.UI.Graphic>();
+        get
+        {
+            if (m_graphic == null)
+                m_graphic = GetComponent<UnityEngine.UI.Graphic>();
+            return m_graphic;
+        }
     }
 
-    public override void FadeIn()
+    protected override void DoFadeIn()
     {
-        base.FadeIn();
-        if (!enableFadeIn)
-            return;
-        if (m_graphic == null)
-            return;
-        m_graphic.color = from;
-        m_graphic.DOColor(to, fadeInDuration).SetDelay(fadeInDelay)
+        base.DoFadeIn();
+        graphic.DOKill();
+        graphic.DOColor(to, fadeInDuration).SetDelay(fadeInDelay)
             .SetEase(fadeInMethod).OnComplete(OnFadeInFinished);
     }
 
-    public override void FadeOut()
+    protected override void DoFadeOut()
     {
-        base.FadeOut();
-        if (!enableFadeOut)
-            return;
-        if (m_graphic == null)
-            return;
-        m_graphic.color = to;
-        m_graphic.DOColor(from, fadeOutDuration).SetDelay(fadeOutDelay)
+        base.DoFadeOut();
+        graphic.DOKill();
+        graphic.DOColor(from, fadeOutDuration).SetDelay(fadeOutDelay)
             .SetEase(fadeOutMethod).OnComplete(OnFadeOutFinished);
     }
 
-    public override void FadeInImmediately()
+    protected override void DoFadeOutReset()
     {
-        base.FadeInImmediately();
-        if (!enableFadeIn)
-            return;
-        m_graphic.color = to;
-        OnFadeInFinished();
+        base.DoFadeOutReset();
+        graphic.color = to;
     }
 
-    public override void FadeOutImmediately()
+    protected override void DoFadeInReset()
     {
-        base.FadeOutImmediately();
-        if (!enableFadeOut)
-            return;
-        m_graphic.color = from;
-        OnFadeOutFinished();
+        base.DoFadeInReset();
+        graphic.color = from;
     }
 }

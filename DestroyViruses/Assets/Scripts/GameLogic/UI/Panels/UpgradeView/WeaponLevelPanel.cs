@@ -46,11 +46,11 @@ namespace DestroyViruses
                 icon.SetSprite("icon_weapon_default");
 
                 powerFill.value = 0;
-                powerLevelText.text = $"{LT.table.FIRE_POWER} {LT.table.LEVEL_DOT}1";
+                powerLevelText.text = $"{LT.Get("FIRE_POWER")} {LT.Get("LEVEL_DOT")}1";
                 powerUpBtn.SetData("0", true, false);
 
                 speedFill.value = 0;
-                speedLevelText.text = $"{LT.table.FIRE_SPEED} {LT.table.LEVEL_DOT}1";
+                speedLevelText.text = $"{LT.Get("FIRE_SPEED")} {LT.Get("LEVEL_DOT")}1";
                 speedUpBtn.SetData("0", true, false);
                 return;
             }
@@ -58,11 +58,11 @@ namespace DestroyViruses
             icon.SetSprite(TableWeapon.Get(D.I.weaponId).icon);
 
             powerUpBtn.Set4LevelUp(D.I.weaponPowerUpCost, D.I.isWeaponPowerLevelMax);
-            powerLevelText.text = $"{LT.table.FIRE_POWER} {LT.table.LEVEL_DOT}{D.I.weaponPowerLevel}";
+            powerLevelText.text = $"{LT.Get("FIRE_POWER")} {LT.Get("LEVEL_DOT")}{D.I.weaponPowerLevel}";
             powerFill.value = 1f * D.I.weaponPowerLevel / D.I.weaponPowerMaxLevel;
 
             speedUpBtn.Set4LevelUp(D.I.weaponSpeedUpCost, D.I.isWeaponSpeedLevelMax);
-            speedLevelText.text = $"{LT.table.FIRE_SPEED} {LT.table.LEVEL_DOT}{D.I.weaponSpeedLevel}";
+            speedLevelText.text = $"{LT.Get("FIRE_SPEED")} {LT.Get("LEVEL_DOT")}{D.I.weaponSpeedLevel}";
             speedFill.value = 1f * D.I.weaponSpeedLevel / D.I.weaponSpeedMaxLevel;
         }
     }
