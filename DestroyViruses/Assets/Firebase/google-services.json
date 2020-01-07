@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "705713222983",
-    "firebase_url": "https://projectss-276f6.firebaseio.com",
-    "project_id": "projectss-276f6",
-    "storage_bucket": "projectss-276f6.appspot.com"
+    "project_number": "687854841413",
+    "firebase_url": "https://unionfun-pss.firebaseio.com",
+    "project_id": "unionfun-pss",
+    "storage_bucket": "unionfun-pss.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:705713222983:android:7b82b63e5f5405c1a14862",
+        "mobilesdk_app_id": "1:687854841413:android:743af7c818c9ef37247d2c",
         "android_client_info": {
           "package_name": "com.unionfun.pss"
         }
       },
       "oauth_client": [
         {
-          "client_id": "705713222983-5qo3jd027apbl1m4ki1vccv3tbnep0da.apps.googleusercontent.com",
+          "client_id": "687854841413-07gtuiub7hs6mkmbuqjvin3cf8figkk1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDefIkKnzTBnMENnJr9tqtbwd3P7G6Z8QU"
+          "current_key": "AIzaSyDFRagmB4LyH465P9ryMJ7aG1AL8sCke8k"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "705713222983-5qo3jd027apbl1m4ki1vccv3tbnep0da.apps.googleusercontent.com",
+              "client_id": "687854841413-07gtuiub7hs6mkmbuqjvin3cf8figkk1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
