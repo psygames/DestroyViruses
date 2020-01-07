@@ -17,9 +17,7 @@ namespace DestroyViruses
         public float rechargeDuration { get; private set; }
 
         public float damage { get; protected set; }
-        public float effect1 { get; protected set; }
-        public float effect2 { get; protected set; }
-        public float effect3 { get; protected set; }
+        public float[] effects { get; protected set; } = new float[5];
 
         // override if need
         public virtual bool autoFire { get; } = true;
@@ -38,9 +36,11 @@ namespace DestroyViruses
             tableSpeed = TableWeaponSpeedLevel.Get(_ => _.weaponId == id && _.level == speedLevel);
             rechargeDuration = tableSpeed.recharge;
             damage = tablePower.damage;
-            effect1 = table.effect1 * tablePower.effectFactor1 * tableSpeed.effectFactor1;
-            effect2 = table.effect2 * tablePower.effectFactor2 * tableSpeed.effectFactor2;
-            effect3 = table.effect3 * tablePower.effectFactor3 * tableSpeed.effectFactor3;
+            effects[0] = table.effect1 * tablePower.effectFactor1 * tableSpeed.effectFactor1;
+            effects[1] = table.effect2 * tablePower.effectFactor2 * tableSpeed.effectFactor2;
+            effects[2] = table.effect3 * tablePower.effectFactor3 * tableSpeed.effectFactor3;
+            effects[3] = table.effect4 * tablePower.effectFactor4 * tableSpeed.effectFactor4;
+            effects[4] = table.effect5 * tablePower.effectFactor5 * tableSpeed.effectFactor5;
             mUnitIndex = 0;
             mUnitCD.Clear();
             for (int i = 0; i < unitCount; i++)

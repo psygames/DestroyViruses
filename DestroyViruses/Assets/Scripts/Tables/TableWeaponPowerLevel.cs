@@ -149,6 +149,18 @@ namespace DestroyViruses
 		public float effectFactor3 { get { return _effectFactor3; } private set { _effectFactor3 = value; } }
 
 		/// <summary>
+		/// 影响效果数值
+		/// </summary>
+		private float _effectFactor4;
+		public float effectFactor4 { get { return _effectFactor4; } private set { _effectFactor4 = value; } }
+
+		/// <summary>
+		/// 影响效果数值
+		/// </summary>
+		private float _effectFactor5;
+		public float effectFactor5 { get { return _effectFactor5; } private set { _effectFactor5 = value; } }
+
+		/// <summary>
 		/// 升级消耗
 		/// </summary>
 		private float _upCost;
