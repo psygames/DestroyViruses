@@ -33,9 +33,9 @@ namespace DestroyViruses
                 if (!virus.isAlive || virus.isInvincible)
                     continue;
                 if (virus.position.y > position.y
-                    && Mathf.Abs(virus.position.x - position.x) < mEffects[1] * 0.5f + virus.radius)
+                    && Mathf.Abs(virus.position.x - position.x) < effects[1] * 0.5f + virus.radius)
                 {
-                    Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, virus, mDamage));
+                    Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, virus, damage));
                 }
             }
         }

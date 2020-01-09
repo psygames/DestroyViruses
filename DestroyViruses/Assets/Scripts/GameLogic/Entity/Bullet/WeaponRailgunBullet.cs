@@ -11,7 +11,7 @@ namespace DestroyViruses
     {
         public override void Reset(Vector2 position, Vector2 direction, float damage, float[] effects)
         {
-            mSpeed = effects[0];
+            speed = effects[0];
             base.Reset(position, direction, damage, effects);
         }
 
@@ -19,12 +19,12 @@ namespace DestroyViruses
         {
             base.OnHit(virus);
             var hitPos = position + direction;
-            AreaHit(hitPos, mEffects[1] * 0.5f, (_vv) =>
+            AreaHit(hitPos, effects[1] * 0.5f, (_vv) =>
             {
-                _vv.Stun(mEffects[2]);
-                Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, _vv, mDamage));
+                _vv.Stun(effects[2]);
+                Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, _vv, damage));
             });
-            ExplosionWeaponRailgunBullet.Create().Reset(hitPos, mEffects[1]);
+            ExplosionWeaponRailgunBullet.Create().Reset(hitPos, effects[1]);
             ForceRecycle();
         }
     }

@@ -23,7 +23,7 @@ namespace DestroyViruses
             title.text = LT.Get(table.nameID);
             selectedObj.SetActive(id == D.I.weaponId);
             radioState.Radio(D.I.unlockedGameLevel < table.unlockLevel ? 0 : D.I.weaponId == id ? 2 : 1);
-            unlockText.text = LTKey.WEAPON_UNLOCK_ON_GAME_LEVEL_X.LT(table.unlockLevel);
+            unlockText.text = LTKey.WEAPON_UNLOCK_ON_GAME_LEVEL_X.LT(table.unlockLevel - 1);
         }
 
         private void OnClickSelf()

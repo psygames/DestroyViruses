@@ -789,6 +789,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Texture: {fileID: 2800000, guid: 512ee478a69e73b42a513884a098d652, type: 3}
   m_UVRect:
     serializedVersion: 2
@@ -933,6 +935,9 @@ MonoBehaviour:
       type: 3}
     root: {fileID: 2101164527}
   - prefab: {fileID: 5388636947329759520, guid: 4a40634caa27e1c48bfd8a10cf32981f,
+      type: 3}
+    root: {fileID: 1410083179}
+  - prefab: {fileID: 5388636947329759520, guid: afc9da2a6791d479bba061063e418476,
       type: 3}
     root: {fileID: 1410083179}
 --- !u!1 &755729285
@@ -1378,6 +1383,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0

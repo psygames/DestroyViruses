@@ -11,9 +11,9 @@ namespace DestroyViruses
     public class WeaponBulletBase : EntityBase
     {
         protected int mId;
-        protected float mDamage;
-        protected float mSpeed;
-        protected float[] mEffects = new float[5];
+        protected float damage;
+        protected float speed;
+        protected float[] effects = new float[5];
         protected Vector2 mSize = Vector2.one * 100;
 
         public Vector2 position { get; protected set; }
@@ -21,8 +21,8 @@ namespace DestroyViruses
 
         public virtual void Reset(Vector2 position, Vector2 direction, float damage, float[] effects)
         {
-            mDamage = damage;
-            Array.Copy(effects, mEffects, mEffects.Length);
+            this.damage = damage;
+            Array.Copy(effects, this.effects, this.effects.Length);
             this.position = position;
             this.direction = direction;
             isAlive = true;
@@ -62,7 +62,7 @@ namespace DestroyViruses
                 ForceRecycle();
             }
 
-            this.position += direction * mSpeed * GlobalData.slowDownFactor * Time.deltaTime;
+            this.position += direction * speed * GlobalData.slowDownFactor * Time.deltaTime;
             rectTransform.anchoredPosition = position;
         }
 

@@ -90,13 +90,17 @@ namespace DestroyViruses
         private int mLastWaveIndex = -1;
         private void CheckGameState()
         {
+            if (!isRunning)
+                return;
+
             if (mLastWaveIndex != mWaveModule.waveIndex && mWaveModule.isBossWave)
             {
                 Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.BossWave));
             }
             mLastWaveIndex = mWaveModule.waveIndex;
 
-            if (mWaveModule.isFinalWave && mWaveModule.isStart
+            if (mWaveModule.isFinalWave
+                && mWaveModule.isStart
                 && EntityManager.Count<VirusBase>() <= 0
                 && mWaveModule.isSpawnOver)
             {

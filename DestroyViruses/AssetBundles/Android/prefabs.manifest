@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2582854195
+CRC: 3768865681
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ed64f9088dfd1b2c9298ed95d3fa4fa2
+    Hash: fa45f8c4d7710e480323dbae0c2b73cf
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 5ca14c42f9abdb750112ba68f4b8448c
+    Hash: 955f8ac4c5cdd7ef55552b2a13d2ca31
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -40,6 +40,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 74ef7f009c6044adb9f13064a5673066, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: df446710ae50e55439b2fd0bc9e2a5f5, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: bb079c10173f84e5e8e6b8ea3c8013aa, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f1dde9204ef035243a8aeb898d02394c, type: 3}
@@ -54,11 +56,15 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 3b1a121160a444fcd91046623a3c053f, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 59dd9a61b7badc8449c1d304a1953afb, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: be910aa109f9eca429318f2be0b409ce, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 686a4c42d909f804dbc6a72af9892dbc, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
 - Class: 114
@@ -219,6 +225,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c1f9e4df3b422455a957d92e53e46d52, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: aae50da55b4dc488ca2e0caadeaac178, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 120
@@ -249,10 +257,12 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/VirusBomb.prefab
 - Assets/AssetBundles/Prefabs/UI/View/BookVirusView.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpand3D.prefab
+- Assets/AssetBundles/Prefabs/Entities/Items/aircraft_crash.prefab
 - Assets/AssetBundles/Prefabs/UI/View/MainView.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandAnimation_Idle.anim
 - Assets/AssetBundles/Prefabs/Entities/Items/plane_1.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderMaterial.mat
+- Assets/AssetBundles/Prefabs/Entities/Items/aircraft_spray.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowAnimation_Idle.anim
 - Assets/AssetBundles/Prefabs/Entities/WeaponRailgun.prefab
 - Assets/AssetBundles/Prefabs/Entities/Coin.prefab
@@ -278,6 +288,7 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderRaw.FBX
 - Assets/AssetBundles/Prefabs/Entities/VirusTrack.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureMaterial.mat
+- Assets/AssetBundles/Prefabs/Entities/WeaponCover.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle/VirusTriangleAnimation_Idle.anim
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderAnimator.controller
 - Assets/AssetBundles/Prefabs/Entities/VirusAttach.prefab
@@ -293,18 +304,26 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverAnimation_Hurt.anim
 - Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle/VirusTriangleAnimation_Hurt.anim
 - Assets/AssetBundles/Prefabs/Entities/ExplosionVirus.prefab
+- Assets/AssetBundles/Prefabs/Entities/weapon/weapon_railgun_boom.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureRaw.FBX
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderAnimation_Hurt.anim
 - Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowRaw.FBX
 - Assets/AssetBundles/Prefabs/UI/View/ToastView.prefab
 - Assets/AssetBundles/Prefabs/UI/View/ExchangeView.prefab
+- Assets/AssetBundles/Prefabs/Entities/Items/virus_explosion_red.prefab
+- Assets/AssetBundles/Prefabs/Entities/weapon/weapon_normal_bullet.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureAnimation_Idle.anim
+- Assets/AssetBundles/Prefabs/Entities/Items/virus_be_hit.prefab
 - Assets/AssetBundles/Prefabs/UI/View/CoinView.prefab
 - Assets/AssetBundles/Prefabs/Entities/ExplosionBullet.prefab
+- Assets/AssetBundles/Prefabs/Entities/weapon/weapon_cover_part_2.prefab
+- Assets/AssetBundles/Prefabs/Entities/weapon/weapon_railgun_bullet.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusRecover.prefab
+- Assets/AssetBundles/Prefabs/Entities/weapon/weapon_missile_fire.prefab
 - Assets/AssetBundles/Prefabs/UI/View/BookView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusVampire.prefab
 - Assets/AssetBundles/Prefabs/Entities/Aircraft.prefab
+- Assets/AssetBundles/Prefabs/Entities/ExlopsionWeaponCoverItem.prefab
 - Assets/AssetBundles/Prefabs/UI/View/GameReviveView.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle/VirusTriangle3D.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverMaterial.mat
@@ -312,14 +331,22 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/WeaponLaserBullet.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverAnimator.controller
 - Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowMaterial.mat
+- Assets/AssetBundles/Prefabs/Entities/weapon/weapon_laser_charge.prefab
 - Assets/AssetBundles/Prefabs/UI/View/OptionView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusSpeed.prefab
+- Assets/AssetBundles/Prefabs/Entities/weapon/weapon_missile_boom.prefab
 - Assets/AssetBundles/Prefabs/Entities/Items/virus_base.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandRaw.FBX
+- Assets/AssetBundles/Prefabs/Entities/weapon/weapon_laser_part_2.prefab
 - Assets/AssetBundles/Prefabs/Entities/WeaponMissileBullet.prefab
+- Assets/AssetBundles/Prefabs/Entities/ExlopsionWeaponRailgunBullet.prefab
+- Assets/AssetBundles/Prefabs/Entities/Items/aircraft_head.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle/VirusTriangleRaw.FBX
+- Assets/AssetBundles/Prefabs/Entities/weapon/weapon_cover_boom.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderAnimation_Idle.anim
+- Assets/AssetBundles/Prefabs/Entities/weapon/weapon_railgun_virus_stun.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusExpand.prefab
+- Assets/AssetBundles/Prefabs/Entities/weapon/weapon_normal_part_4.prefab
 - Assets/AssetBundles/Prefabs/UI/View/GameEndView.prefab
 - Assets/AssetBundles/Prefabs/Entities/Items/cure_buff.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusCollider.prefab
@@ -328,11 +355,12 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/WeaponNormal.prefab
 - Assets/AssetBundles/Prefabs/Entities/WeaponRailgunBullet.prefab
 - Assets/AssetBundles/Prefabs/Entities/WeaponNone.prefab
+- Assets/AssetBundles/Prefabs/Entities/weapon/weapon_laser_bullet_2.prefab
 - Assets/AssetBundles/Prefabs/Entities/ExlopsionWeaponMissileBullet.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle/VirusTriangleMaterial.mat
 - Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecoverAnimation_Idle.anim
+- Assets/AssetBundles/Prefabs/Entities/Items/virus_explosion_green.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusTriangle.prefab
 Dependencies:
-- C:/Users/Administrator.YIN-PC/Desktop/DestroyViruses/DestroyViruses/AssetBundles/Android/spriteatlas/total
-- C:/Users/Administrator.YIN-PC/Desktop/DestroyViruses/DestroyViruses/AssetBundles/Android/textures/virustriangletexture_1
-- C:/Users/Administrator.YIN-PC/Desktop/DestroyViruses/DestroyViruses/AssetBundles/Android/textures/viruscollidertexture_3
+- /Users/yinlong/Documents/github/DestroyViruses/DestroyViruses/AssetBundles/Android/textures/viruscollidertexture_3
+- /Users/yinlong/Documents/github/DestroyViruses/DestroyViruses/AssetBundles/Android/textures/virustriangletexture_1

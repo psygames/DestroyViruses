@@ -139,7 +139,7 @@ namespace DestroyViruses
             }
             if (evt.action == EventGameData.Action.ChangeWeapon)
             {
-                Aircraft.ins.Reset();
+                Aircraft.ins.weapon.Reset();
             }
         }
 

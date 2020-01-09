@@ -15,7 +15,7 @@ namespace DestroyViruses
         {
             mTarget = null;
             rectTransform.localRotation = Quaternion.identity;
-            DOTween.To(() => mSpeed, _ => mSpeed = _, effects[0], 1f).SetEase(Ease.InQuart).SetDelay(0.5f);
+            DOTween.To(() => speed, _ => speed = _, effects[0], 1f).SetEase(Ease.InQuart).SetDelay(0.5f);
             base.Reset(position, direction, damage, effects);
         }
 
@@ -32,7 +32,7 @@ namespace DestroyViruses
 
             var fromRot = Quaternion.FromToRotation(Vector3.up, direction);
             var toRot = Quaternion.FromToRotation(Vector3.up, (mTarget.position - position).normalized);
-            var maxAngle = mEffects[2] * Time.deltaTime * GlobalData.slowDownFactor;
+            var maxAngle = effects[2] * Time.deltaTime * GlobalData.slowDownFactor;
             var tarRot = Quaternion.RotateTowards(fromRot, toRot, maxAngle);
             direction = tarRot * Vector3.up;
             rectTransform.localRotation = tarRot;
@@ -51,11 +51,11 @@ namespace DestroyViruses
         {
             base.OnHit(virus);
             var hitPos = position + direction * 50;
-            AreaHit(hitPos, mEffects[1] * 0.5f, (_vv) =>
+            AreaHit(hitPos, effects[1] * 0.5f, (_vv) =>
             {
-                Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, _vv, mDamage));
+                Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, _vv, damage));
             });
-            ExplosionWeaponMissileBullet.Create().Reset(hitPos, mEffects[1]);
+            ExplosionWeaponMissileBullet.Create().Reset(hitPos, effects[1]);
             ForceRecycle();
         }
     }

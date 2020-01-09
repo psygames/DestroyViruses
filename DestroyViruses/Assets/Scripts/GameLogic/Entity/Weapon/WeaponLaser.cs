@@ -13,7 +13,7 @@ namespace DestroyViruses
         public RectTransform firement;
         public ParticleSystem fireEffect;
 
-        private void Awake()
+        private void OnEnable()
         {
             fireEffect.Stop(true);
         }

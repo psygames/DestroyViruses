@@ -63,8 +63,12 @@ namespace DestroyViruses
             else if (collision.tag == TagUtil.Buff)
             {
                 var buff = collision.gameObject.GetComponent<Buff>();
-                buff.ForceRecycle();
                 ProxyManager.GetProxy<BuffProxy>().AddBuff(buff.buffID);
+                if (TableBuff.Get(buff.buffID).type == 1)
+                    AudioManager.Instance.PlaySound("buff");
+                else
+                    AudioManager.Instance.PlaySound("debuff");
+                buff.ForceRecycle();
             }
         }
 

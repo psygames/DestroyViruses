@@ -95,6 +95,7 @@ MonoBehaviour:
   - Assets
   - Assets/AssetBundles/Prefabs/Entities
   - Assets/AssetBundles/Prefabs/Entities/Items
+  - Assets/AssetBundles/Prefabs/Entities/weapon
   - Assets/AssetBundles/Prefabs/Entities3D/VirusCollider
   - Assets/AssetBundles/Prefabs/Entities3D/VirusCure
   - Assets/AssetBundles/Prefabs/Entities3D/VirusExpand
@@ -127,7 +128,13 @@ MonoBehaviour:
     name: Coin.prefab
   - bundle: 1
     dir: 1
+    name: ExlopsionWeaponCoverItem.prefab
+  - bundle: 1
+    dir: 1
     name: ExlopsionWeaponMissileBullet.prefab
+  - bundle: 1
+    dir: 1
+    name: ExlopsionWeaponRailgunBullet.prefab
   - bundle: 1
     dir: 1
     name: ExplosionBullet.prefab
@@ -137,6 +144,15 @@ MonoBehaviour:
   - bundle: 1
     dir: 1
     name: ExplosionVirus.prefab
+  - bundle: 1
+    dir: 2
+    name: aircraft_crash.prefab
+  - bundle: 1
+    dir: 2
+    name: aircraft_head.prefab
+  - bundle: 1
+    dir: 2
+    name: aircraft_spray.prefab
   - bundle: 1
     dir: 2
     name: cure_buff.prefab
@@ -149,6 +165,15 @@ MonoBehaviour:
   - bundle: 1
     dir: 2
     name: virus_base.prefab
+  - bundle: 1
+    dir: 2
+    name: virus_be_hit.prefab
+  - bundle: 1
+    dir: 2
+    name: virus_explosion_green.prefab
+  - bundle: 1
+    dir: 2
+    name: virus_explosion_red.prefab
   - bundle: 1
     dir: 1
     name: VirusAttach.prefab
@@ -198,6 +223,45 @@ MonoBehaviour:
     dir: 1
     name: VirusVampire.prefab
   - bundle: 1
+    dir: 3
+    name: weapon_cover_boom.prefab
+  - bundle: 1
+    dir: 3
+    name: weapon_cover_part_2.prefab
+  - bundle: 1
+    dir: 3
+    name: weapon_laser_bullet_2.prefab
+  - bundle: 1
+    dir: 3
+    name: weapon_laser_charge.prefab
+  - bundle: 1
+    dir: 3
+    name: weapon_laser_part_2.prefab
+  - bundle: 1
+    dir: 3
+    name: weapon_missile_boom.prefab
+  - bundle: 1
+    dir: 3
+    name: weapon_missile_fire.prefab
+  - bundle: 1
+    dir: 3
+    name: weapon_normal_bullet.prefab
+  - bundle: 1
+    dir: 3
+    name: weapon_normal_part_4.prefab
+  - bundle: 1
+    dir: 3
+    name: weapon_railgun_boom.prefab
+  - bundle: 1
+    dir: 3
+    name: weapon_railgun_bullet.prefab
+  - bundle: 1
+    dir: 3
+    name: weapon_railgun_virus_stun.prefab
+  - bundle: 1
+    dir: 1
+    name: WeaponCover.prefab
+  - bundle: 1
     dir: 1
     name: WeaponLaser.prefab
   - bundle: 1
@@ -225,374 +289,374 @@ MonoBehaviour:
     dir: 1
     name: WeaponRailgunBullet.prefab
   - bundle: 1
-    dir: 3
+    dir: 4
     name: VirusCollider3D.prefab
   - bundle: 1
-    dir: 3
+    dir: 4
     name: VirusColliderAnimation_Hurt.anim
   - bundle: 1
-    dir: 3
+    dir: 4
     name: VirusColliderAnimation_Idle.anim
   - bundle: 1
-    dir: 3
+    dir: 4
     name: VirusColliderAnimator.controller
   - bundle: 1
-    dir: 3
+    dir: 4
     name: VirusColliderMaterial.mat
   - bundle: 1
-    dir: 3
+    dir: 4
     name: VirusColliderRaw.FBX
   - bundle: 1
-    dir: 4
+    dir: 5
     name: VirusCure3D.prefab
   - bundle: 1
-    dir: 4
+    dir: 5
     name: VirusCureAnimation_Hurt.anim
   - bundle: 1
-    dir: 4
+    dir: 5
     name: VirusCureAnimation_Idle.anim
   - bundle: 1
-    dir: 4
+    dir: 5
     name: VirusCureAnimator.controller
   - bundle: 1
-    dir: 4
+    dir: 5
     name: VirusCureMaterial.mat
   - bundle: 1
-    dir: 4
+    dir: 5
     name: VirusCureRaw.FBX
   - bundle: 1
-    dir: 5
+    dir: 6
     name: VirusExpand3D.prefab
   - bundle: 1
-    dir: 5
+    dir: 6
     name: VirusExpandAnimation_Hurt.anim
   - bundle: 1
-    dir: 5
+    dir: 6
     name: VirusExpandAnimation_Idle.anim
   - bundle: 1
-    dir: 5
+    dir: 6
     name: VirusExpandAnimator.controller
   - bundle: 1
-    dir: 5
+    dir: 6
     name: VirusExpandMaterial.mat
   - bundle: 1
-    dir: 5
+    dir: 6
     name: VirusExpandRaw.FBX
   - bundle: 1
-    dir: 6
+    dir: 7
     name: VirusRecover3D.prefab
   - bundle: 1
-    dir: 6
+    dir: 7
     name: VirusRecoverAnimation_Hurt.anim
   - bundle: 1
-    dir: 6
+    dir: 7
     name: VirusRecoverAnimation_Idle.anim
   - bundle: 1
-    dir: 6
+    dir: 7
     name: VirusRecoverAnimator.controller
   - bundle: 1
-    dir: 6
+    dir: 7
     name: VirusRecoverMaterial.mat
   - bundle: 1
-    dir: 6
+    dir: 7
     name: VirusRecoverRaw.FBX
   - bundle: 1
-    dir: 7
+    dir: 8
     name: VirusSwallow3D.prefab
   - bundle: 1
-    dir: 7
+    dir: 8
     name: VirusSwallowAnimation_Hurt.anim
   - bundle: 1
-    dir: 7
+    dir: 8
     name: VirusSwallowAnimation_Idle.anim
   - bundle: 1
-    dir: 7
+    dir: 8
     name: VirusSwallowAnimator.controller
   - bundle: 1
-    dir: 7
+    dir: 8
     name: VirusSwallowMaterial.mat
   - bundle: 1
-    dir: 7
+    dir: 8
     name: VirusSwallowRaw.FBX
   - bundle: 1
-    dir: 8
+    dir: 9
     name: VirusTriangle3D.prefab
   - bundle: 1
-    dir: 8
+    dir: 9
     name: VirusTriangleAnimation_Hurt.anim
   - bundle: 1
-    dir: 8
+    dir: 9
     name: VirusTriangleAnimation_Idle.anim
   - bundle: 1
-    dir: 8
+    dir: 9
     name: VirusTriangleAnimator.controller
   - bundle: 1
-    dir: 8
+    dir: 9
     name: VirusTriangleMaterial.mat
   - bundle: 1
-    dir: 8
+    dir: 9
     name: VirusTriangleRaw.FBX
   - bundle: 1
-    dir: 9
+    dir: 10
     name: BattleView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: BookView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: BookVirusView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: CoinView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: DailySignView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: DebugView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: ExchangeView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: GameEndView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: GameReviveView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: MainView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: NavigationView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: OptionView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: ToastView.prefab
   - bundle: 1
-    dir: 9
+    dir: 10
     name: UpgradeView.prefab
   - bundle: 2
-    dir: 10
+    dir: 11
     name: BGM1.mp3
   - bundle: 3
-    dir: 10
+    dir: 11
     name: BGM2.mp3
   - bundle: 4
-    dir: 10
+    dir: 11
     name: BGM3.mp3
   - bundle: 5
-    dir: 10
+    dir: 11
     name: BGM4.mp3
   - bundle: 6
-    dir: 10
+    dir: 11
     name: boss.mp3
   - bundle: 7
-    dir: 10
+    dir: 11
     name: buff.mp3
   - bundle: 8
-    dir: 10
+    dir: 11
     name: button_grey.mp3
   - bundle: 9
-    dir: 10
+    dir: 11
     name: button_normal.wav
   - bundle: 10
-    dir: 10
+    dir: 11
     name: coin.mp3
   - bundle: 11
-    dir: 10
+    dir: 11
     name: collect_coin.wav
   - bundle: 12
-    dir: 10
+    dir: 11
     name: crash.mp3
   - bundle: 13
-    dir: 10
+    dir: 11
     name: debuff.wav
   - bundle: 14
-    dir: 10
+    dir: 11
     name: diamond.mp3
   - bundle: 15
-    dir: 10
+    dir: 11
     name: explosion.wav
   - bundle: 16
-    dir: 10
+    dir: 11
     name: flyaway.mp3
   - bundle: 17
-    dir: 10
+    dir: 11
     name: hit.mp3
   - bundle: 18
-    dir: 10
+    dir: 11
     name: level_up.mp3
   - bundle: 19
-    dir: 10
+    dir: 11
     name: revive_count_down.mp3
   - bundle: 20
-    dir: 10
+    dir: 11
     name: win.mp3
   - bundle: 21
-    dir: 11
+    dir: 12
     name: total.spriteatlas
   - bundle: 22
-    dir: 12
+    dir: 13
     name: TableAds.bytes
   - bundle: 23
-    dir: 12
+    dir: 13
     name: TableAircraft.bytes
   - bundle: 24
-    dir: 12
+    dir: 13
     name: TableBuff.bytes
   - bundle: 25
-    dir: 12
+    dir: 13
     name: TableBuffAutoGen.bytes
   - bundle: 26
-    dir: 12
+    dir: 13
     name: TableBuffKillGen.bytes
   - bundle: 27
-    dir: 12
+    dir: 13
     name: TableCoinIncome.bytes
   - bundle: 28
-    dir: 12
+    dir: 13
     name: TableCoinValue.bytes
   - bundle: 29
-    dir: 12
+    dir: 13
     name: TableConst.bytes
   - bundle: 30
-    dir: 12
+    dir: 13
     name: TableDailySign.bytes
   - bundle: 31
-    dir: 12
+    dir: 13
     name: TableFirePower.bytes
   - bundle: 32
-    dir: 12
+    dir: 13
     name: TableFireSpeed.bytes
   - bundle: 33
-    dir: 12
+    dir: 13
     name: TableGameLevel.bytes
   - bundle: 34
-    dir: 12
+    dir: 13
     name: TableGameWave.bytes
   - bundle: 35
-    dir: 12
+    dir: 13
     name: TableLanguage.bytes
   - bundle: 36
-    dir: 12
+    dir: 13
     name: TableVirus.bytes
   - bundle: 37
-    dir: 12
+    dir: 13
     name: TableWeapon.bytes
   - bundle: 38
-    dir: 12
+    dir: 13
     name: TableWeaponPowerLevel.bytes
   - bundle: 39
-    dir: 12
+    dir: 13
     name: TableWeaponSpeedLevel.bytes
   - bundle: 40
-    dir: 13
+    dir: 14
     name: VirusColliderTexture_1.png
   - bundle: 41
-    dir: 13
+    dir: 14
     name: VirusColliderTexture_2.png
   - bundle: 42
-    dir: 13
+    dir: 14
     name: VirusColliderTexture_3.png
   - bundle: 43
-    dir: 13
+    dir: 14
     name: VirusColliderTexture_4.png
   - bundle: 44
-    dir: 13
+    dir: 14
     name: VirusColliderTexture_5.png
   - bundle: 45
-    dir: 13
+    dir: 14
     name: VirusColliderTexture_6.png
   - bundle: 46
-    dir: 13
+    dir: 14
     name: VirusCureTexture_1.png
   - bundle: 47
-    dir: 13
+    dir: 14
     name: VirusCureTexture_2.png
   - bundle: 48
-    dir: 13
+    dir: 14
     name: VirusCureTexture_3.png
   - bundle: 49
-    dir: 13
+    dir: 14
     name: VirusCureTexture_4.png
   - bundle: 50
-    dir: 13
+    dir: 14
     name: VirusCureTexture_5.png
   - bundle: 51
-    dir: 13
+    dir: 14
     name: VirusCureTexture_6.png
   - bundle: 52
-    dir: 13
+    dir: 14
     name: VirusExpandTexture_1.png
   - bundle: 53
-    dir: 13
+    dir: 14
     name: VirusExpandTexture_2.png
   - bundle: 54
-    dir: 13
+    dir: 14
     name: VirusExpandTexture_3.png
   - bundle: 55
-    dir: 13
+    dir: 14
     name: VirusExpandTexture_4.png
   - bundle: 56
-    dir: 13
+    dir: 14
     name: VirusExpandTexture_5.png
   - bundle: 57
-    dir: 13
+    dir: 14
     name: VirusExpandTexture_6.png
   - bundle: 58
-    dir: 13
+    dir: 14
     name: VirusRecoverTexture_1.png
   - bundle: 59
-    dir: 13
+    dir: 14
     name: VirusRecoverTexture_2.png
   - bundle: 60
-    dir: 13
+    dir: 14
     name: VirusRecoverTexture_3.png
   - bundle: 61
-    dir: 13
+    dir: 14
     name: VirusRecoverTexture_4.png
   - bundle: 62
-    dir: 13
+    dir: 14
     name: VirusRecoverTexture_5.png
   - bundle: 63
-    dir: 13
+    dir: 14
     name: VirusRecoverTexture_6.png
   - bundle: 64
-    dir: 13
+    dir: 14
     name: VirusSwallowTexture_1.png
   - bundle: 65
-    dir: 13
+    dir: 14
     name: VirusSwallowTexture_2.png
   - bundle: 66
-    dir: 13
+    dir: 14
     name: VirusSwallowTexture_3.png
   - bundle: 67
-    dir: 13
+    dir: 14
     name: VirusSwallowTexture_4.png
   - bundle: 68
-    dir: 13
+    dir: 14
     name: VirusSwallowTexture_5.png
   - bundle: 69
-    dir: 13
+    dir: 14
     name: VirusSwallowTexture_6.png
   - bundle: 70
-    dir: 13
+    dir: 14
     name: VirusTriangleTexture_1.png
   - bundle: 71
-    dir: 13
+    dir: 14
     name: VirusTriangleTexture_2.png
   - bundle: 72
-    dir: 13
+    dir: 14
     name: VirusTriangleTexture_3.png
   - bundle: 73
-    dir: 13
+    dir: 14
     name: VirusTriangleTexture_4.png
   - bundle: 74
-    dir: 13
+    dir: 14
     name: VirusTriangleTexture_5.png
   - bundle: 75
-    dir: 13
+    dir: 14
     name: VirusTriangleTexture_6.png

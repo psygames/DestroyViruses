@@ -12,6 +12,7 @@ namespace DestroyViruses
     public class WeaponCoverItem : MonoBehaviour
     {
         public Action<int, VirusBase> onCollider;
+        public Vector2 position => rectTransform.GetUIPos();
 
         private new Collider2D collider2D;
         private RectTransform rectTransform;
@@ -24,13 +25,13 @@ namespace DestroyViruses
             rectTransform = GetComponent<RectTransform>();
         }
 
-        public void SetData(int index)
+        public void SetData(int index, float area)
         {
             this.index = index;
             float angle = (index % 9) / 9f * 360;
-            float dist = (index / 9) * 20 + 150;
-            rectTransform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            rectTransform.anchoredPosition = rectTransform.rotation * Vector3.up * dist;
+            float dist = (index / 9) * 20 + area * 0.5f;
+            rectTransform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            rectTransform.anchoredPosition = rectTransform.localRotation * Vector3.up * dist;
         }
 
         public void SetFill(float fill)
