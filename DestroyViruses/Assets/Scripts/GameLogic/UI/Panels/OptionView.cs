@@ -63,7 +63,7 @@ namespace DestroyViruses
                 languageDropdown.options.Add(new Dropdown.OptionData(val));
             }
             languageDropdown.value = LT.Tags.IndexOf(Option.language);
-            languageDropdown.captionText.text = LT.Tags[languageDropdown.value];
+            //languageDropdown.captionText.text = LT.Tags[languageDropdown.value];
             SetMusic();
         }
 

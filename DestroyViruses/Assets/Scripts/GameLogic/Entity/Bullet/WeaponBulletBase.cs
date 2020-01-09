@@ -84,5 +84,18 @@ namespace DestroyViruses
             isAlive = false;
             Recycle();
         }
+
+        protected void AreaHit(Vector2 hitPos, float radius, Action<VirusBase> hitHandle)
+        {
+            foreach (var v in EntityManager.GetAll<VirusBase>())
+            {
+                var _vv = v as VirusBase;
+                if (_vv.isAlive && !_vv.isInvincible 
+                    && GetDist(hitPos, _vv) <= radius + _vv.radius)
+                {
+                    hitHandle?.Invoke(_vv);
+                }
+            }
+        }
     }
 }

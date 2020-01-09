@@ -18,13 +18,14 @@ namespace DestroyViruses
         protected override void OnHit(VirusBase virus)
         {
             base.OnHit(virus);
-            if (virus.isAlive && !virus.isInvincible)
+            var hitPos = position + direction;
+            AreaHit(hitPos, mEffects[1] * 0.5f, (_vv) =>
             {
-                Vector2 cDir = virus.position - position;
-                Vector2 dir = (cDir + virus.direction).normalized;
-                virus.SetDirection(dir);
-                Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, virus, mDamage));
-            }
+                _vv.Stun(mEffects[2]);
+                Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, _vv, mDamage));
+            });
+            ExplosionWeaponRailgunBullet.Create().Reset(hitPos, mEffects[1]);
+            ForceRecycle();
         }
     }
 }

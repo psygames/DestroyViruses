@@ -6,15 +6,13 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4718578082914813045}
+  m_GameObject: {fileID: 2845978670347534334}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 773ebef3854631d4cb556d623102287c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bindTarget: {fileID: 5861081206247289504}
-  zOffset: 0.3
-  zUnit: 0.3
 --- !u!1 &5388636947329759520
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,7 +44,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8584028139057985126}
+  - {fileID: 3607957365119973103}
   - {fileID: 4932857185015267841}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -106,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpText: {fileID: 8954366229148676931}
-  animator: {fileID: 1849461972300897052}
+  animator: {fileID: 267716273069559051}
   fadeScale: {fileID: 7556851121114983455}
 --- !u!114 &7556851121114983455
 MonoBehaviour:
@@ -122,11 +120,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enableFadeIn: 1
   onEnableFadeIn: 0
+  fadeInReset: 1
   fadeInDelay: 0
   fadeInDuration: 0.3
   fadeInMethod: 3
   enableFadeOut: 1
   outSetInactive: 0
+  fadeOutReset: 0
   fadeOutDelay: 0
   fadeOutDuration: 0.3
   fadeOutMethod: 3
@@ -208,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 2900486129274834226, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2900486129274834226, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b,
         type: 3}
@@ -249,6 +249,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082518718938108451, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881923474245544910, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881923474245544910, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881923474245544910, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270935417665561359, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b,
+        type: 3}
+      propertyPath: mScale
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b, type: 3}
@@ -295,7 +320,7 @@ PrefabInstance:
     - target: {fileID: 991513301776339360, guid: 521bb201d0e942941a496033ded39404,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.3
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 991513301776339360, guid: 521bb201d0e942941a496033ded39404,
         type: 3}
@@ -699,19 +724,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 521bb201d0e942941a496033ded39404, type: 3}
---- !u!1 &4718578082914813045 stripped
+--- !u!1 &2845978670347534334 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4294685549666689971, guid: 521bb201d0e942941a496033ded39404,
     type: 3}
   m_PrefabInstance: {fileID: 8854648634880698310}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8584028139057985126 stripped
+--- !u!4 &3607957365119973103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 991513301776339360, guid: 521bb201d0e942941a496033ded39404,
     type: 3}
   m_PrefabInstance: {fileID: 8854648634880698310}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1849461972300897052 stripped
+--- !u!95 &267716273069559051 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7154130570717478106, guid: 521bb201d0e942941a496033ded39404,
     type: 3}

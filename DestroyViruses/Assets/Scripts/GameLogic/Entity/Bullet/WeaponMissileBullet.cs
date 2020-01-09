@@ -51,14 +51,10 @@ namespace DestroyViruses
         {
             base.OnHit(virus);
             var hitPos = position + direction * 50;
-            foreach (var v in EntityManager.GetAll<VirusBase>())
+            AreaHit(hitPos, mEffects[1] * 0.5f, (_vv) =>
             {
-                var _vv = v as VirusBase;
-                if (_vv.isAlive && !_vv.isInvincible && GetDist(hitPos, _vv) <= mEffects[1] * 0.5f)
-                {
-                    Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, _vv, mDamage));
-                }
-            }
+                Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, _vv, mDamage));
+            });
             ExplosionWeaponMissileBullet.Create().Reset(hitPos, mEffects[1]);
             ForceRecycle();
         }

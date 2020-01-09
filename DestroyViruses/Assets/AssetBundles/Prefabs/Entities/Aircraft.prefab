@@ -62,7 +62,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2959743537080235254}
+  - {fileID: 2907379210847664257}
   m_Father: {fileID: 4973164803924713417}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -333,6 +333,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6341658301495547462}
     m_Modifications:
+    - target: {fileID: 1752643960399704, guid: cc46c3228e0a7a242b06929d0a32f57e, type: 3}
+      propertyPath: m_Name
+      value: aircraft_spray
+      objectReference: {fileID: 0}
     - target: {fileID: 4797869028850250, guid: cc46c3228e0a7a242b06929d0a32f57e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -385,10 +389,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 180
       objectReference: {fileID: 0}
-    - target: {fileID: 1752643960399704, guid: cc46c3228e0a7a242b06929d0a32f57e, type: 3}
-      propertyPath: m_Name
-      value: aircraft_spray
-      objectReference: {fileID: 0}
     - target: {fileID: 199861431178752568, guid: cc46c3228e0a7a242b06929d0a32f57e,
         type: 3}
       propertyPath: m_SortingOrder
@@ -425,6 +425,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 396537100}
     m_Modifications:
+    - target: {fileID: 6569304748176055433, guid: e77394c17b4a16148a00dff0deafd3a0,
+        type: 3}
+      propertyPath: m_Name
+      value: plane_1
+      objectReference: {fileID: 0}
     - target: {fileID: 6569304748176055432, guid: e77394c17b4a16148a00dff0deafd3a0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -530,11 +535,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6569304748176055433, guid: e77394c17b4a16148a00dff0deafd3a0,
-        type: 3}
-      propertyPath: m_Name
-      value: plane_1
-      objectReference: {fileID: 0}
     - target: {fileID: 6569304747930246925, guid: e77394c17b4a16148a00dff0deafd3a0,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -553,7 +553,7 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e77394c17b4a16148a00dff0deafd3a0, type: 3}
---- !u!224 &2959743537080235254 stripped
+--- !u!224 &2907379210847664257 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6569304748176055432, guid: e77394c17b4a16148a00dff0deafd3a0,
     type: 3}
@@ -566,6 +566,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 759474302556775970}
     m_Modifications:
+    - target: {fileID: 1103756835053268, guid: 6ff10e4c4dab1724e8798d9bcbe258d9, type: 3}
+      propertyPath: m_Name
+      value: aircraft_head
+      objectReference: {fileID: 0}
     - target: {fileID: 4977190878378908, guid: 6ff10e4c4dab1724e8798d9bcbe258d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -617,10 +621,6 @@ PrefabInstance:
     - target: {fileID: 4977190878378908, guid: 6ff10e4c4dab1724e8798d9bcbe258d9, type: 3}
       propertyPath: m_LocalScale.y
       value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 1103756835053268, guid: 6ff10e4c4dab1724e8798d9bcbe258d9, type: 3}
-      propertyPath: m_Name
-      value: aircraft_head
       objectReference: {fileID: 0}
     - target: {fileID: 199021167646175732, guid: 6ff10e4c4dab1724e8798d9bcbe258d9,
         type: 3}

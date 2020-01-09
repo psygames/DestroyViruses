@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bindTarget: {fileID: 0}
-  sortingOrder: 1
+  sortingOrder: -1
   zOffset: 0
   zUnit: 0
   mScale: 30
@@ -133,27 +133,37 @@ PrefabInstance:
     - target: {fileID: 199842540905048540, guid: be8ed0ab0e4f0e2418c7fe0f869ef0ad,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 199914084157438278, guid: be8ed0ab0e4f0e2418c7fe0f869ef0ad,
+    - target: {fileID: 199515017789641930, guid: be8ed0ab0e4f0e2418c7fe0f869ef0ad,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 199275385023797912, guid: be8ed0ab0e4f0e2418c7fe0f869ef0ad,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 199541004253474722, guid: be8ed0ab0e4f0e2418c7fe0f869ef0ad,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 199454220353417428, guid: be8ed0ab0e4f0e2418c7fe0f869ef0ad,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199914084157438278, guid: be8ed0ab0e4f0e2418c7fe0f869ef0ad,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199275385023797912, guid: be8ed0ab0e4f0e2418c7fe0f869ef0ad,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199065058320406416, guid: be8ed0ab0e4f0e2418c7fe0f869ef0ad,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be8ed0ab0e4f0e2418c7fe0f869ef0ad, type: 3}

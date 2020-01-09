@@ -48,6 +48,7 @@ public class EntityManager : Singleton<EntityManager>
         }
 
         var entity = PoolManager.SpawnObject(_pooledPrefab.Value.prefab).GetComponent<EntityBase>();
+        entity.uid = ++sUidCounter;
         if (_pooledPrefab.Value.root != null
             && _pooledPrefab.Value.root != entity.transform.parent)
         {
@@ -69,7 +70,6 @@ public class EntityManager : Singleton<EntityManager>
     private T create<T>() where T : EntityBase
     {
         var entity = create(typeof(T)) as T;
-        entity.uid = ++sUidCounter;
         return entity;
     }
 

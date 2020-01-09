@@ -17,6 +17,7 @@ namespace DestroyViruses
 
         public new Collider2D collider2D { get; private set; }
         public ParticleSystem cureEffect { get; private set; }
+        public ParticleSystem stunEffect { get; private set; }
 
         public int id { get; protected set; }
         public TableVirus table { get; protected set; }
@@ -30,6 +31,7 @@ namespace DestroyViruses
         public Vector2 direction { get; protected set; }
         public Vector2 position { get; protected set; }
         public bool isInvincible { get; protected set; }
+        public bool isStun { get { return mStunCD > 0; } }
         public bool isMatrix { get; protected set; }
         public float radius { get; private set; }
         public float scale { get; private set; }
@@ -41,12 +43,15 @@ namespace DestroyViruses
         private float mLastHp = -1;
         private float mKnockback = 0;
         private float mShakeScale = 1;
+        private float mStunCD = 0;
 
         protected virtual void Awake()
         {
             collider2D = GetComponent<Collider2D>();
             cureEffect = transform.Find("virus_base/cure_buff").GetComponent<ParticleSystem>();
             cureEffect.Stop(true);
+            stunEffect = transform.Find("virus_base/stun_effect").GetComponent<ParticleSystem>();
+            stunEffect.Stop(true);
         }
 
         protected virtual void OnEnable()
@@ -78,6 +83,10 @@ namespace DestroyViruses
             mLastHp = -1;
             mLastScale = 1f;
             mLastHitSlowdownTime = 0;
+            mStunCD = 0;
+
+            cureEffect.Stop(true);
+            stunEffect.Stop(true);
         }
 
         // FOR HOME ONLY
@@ -246,7 +255,7 @@ namespace DestroyViruses
 
         protected virtual void UpdatePosition()
         {
-            if (!isAlive)
+            if (!isAlive || isStun)
                 return;
 
             var uiPos = UIUtil.GetUIPos(rectTransform);
@@ -295,7 +304,7 @@ namespace DestroyViruses
             if (!Mathf.Approximately(mLastScale, _scale))
             {
                 mLastScale = proxy.Effect_BoostVirus;
-                rectTransform.localScale = Vector3.one * _scale;
+                rectTransform.localScale = new Vector3(_scale, _scale, 1);
             }
         }
 
@@ -316,14 +325,22 @@ namespace DestroyViruses
 
         protected virtual void UpdateCD()
         {
-            if (table.skillCD <= 0)
-                return;
+            var lastStunCD = mStunCD;
+            mStunCD = this.UpdateCD(mStunCD, GlobalData.slowDownFactor);
 
-            cd = this.UpdateCD(cd, GlobalData.slowDownFactor);
-            if (cd <= 0)
+            if (mStunCD <= 0 && lastStunCD > 0)
             {
-                cd = table.skillCD;
-                OnSkillTrigger();
+                stunEffect.Stop(true);
+            }
+
+            if (table.skillCD > 0 && !isStun)
+            {
+                cd = this.UpdateCD(cd, GlobalData.slowDownFactor);
+                if (cd <= 0)
+                {
+                    cd = table.skillCD;
+                    OnSkillTrigger();
+                }
             }
         }
 
@@ -358,8 +375,13 @@ namespace DestroyViruses
 
         public void PlayCure()
         {
-            if (cureEffect != null)
-                cureEffect.Play(true);
+            cureEffect.Play(true);
+        }
+
+        public void Stun(float duration)
+        {
+            mStunCD = duration;
+            stunEffect.Play(true);
         }
     }
 }

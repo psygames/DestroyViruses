@@ -13,9 +13,9 @@ public static class UnityExtension
         return component;
     }
 
-    public static void DelayDo(this MonoBehaviour mono, float delay, Action callback)
+    public static Coroutine DelayDo(this MonoBehaviour mono, float delay, Action callback)
     {
-        mono.StartCoroutine(DelayDoCoro(delay, callback));
+        return mono.StartCoroutine(DelayDoCoro(delay, callback));
     }
 
     private static IEnumerator DelayDoCoro(float delay, Action callback)

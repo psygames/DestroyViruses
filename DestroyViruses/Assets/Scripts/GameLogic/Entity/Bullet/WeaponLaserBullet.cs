@@ -17,18 +17,26 @@ namespace DestroyViruses
 
             rectTransform.anchoredPosition = position;
             rectTransform.localScale = new Vector3(0, 0, 1);
-            rectTransform.DOScale(effects[1] / baseWidth, 0.5f).OnComplete(() =>
+            rectTransform.DOScale(new Vector3(effects[1] / baseWidth, 1, 1), 0.4f).OnComplete(() =>
             {
                 ForceRecycle();
             });
+
+            this.DelayDo(0.2f, CheckHit);
         }
 
-        protected override void OnHit(VirusBase virus)
+        private void CheckHit()
         {
-            base.OnHit(virus);
-            if (virus.isAlive && !virus.isInvincible)
+            foreach (var _v in EntityManager.GetAll<VirusBase>())
             {
-                Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, virus, mDamage));
+                var virus = _v as VirusBase;
+                if (!virus.isAlive || virus.isInvincible)
+                    continue;
+                if (virus.position.y > position.y
+                    && Mathf.Abs(virus.position.x - position.x) < mEffects[1] * 0.5f + virus.radius)
+                {
+                    Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, virus, mDamage));
+                }
             }
         }
 
