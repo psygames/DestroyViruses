@@ -510,7 +510,8 @@ namespace DestroyViruses
         protected override void OnUpdate()
         {
             base.OnUpdate();
-
+            if (!GameUtil.isInHome)
+                return;
             // energy 
             if (isEnergyMax)
             {
