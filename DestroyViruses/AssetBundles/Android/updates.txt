@@ -537,3 +537,9 @@ tables/tablevirus
 tables/tableweapon
 tables/tableweaponpowerlevel
 tables/tableweaponspeedlevel
+132230944645660920:
+prefabs
+spriteatlas/total
+tables/tableconst
+tables/tablelanguage
+tables/tableweapon

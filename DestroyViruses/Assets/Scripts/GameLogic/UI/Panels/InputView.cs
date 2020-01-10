@@ -27,6 +27,11 @@ namespace DestroyViruses
             if (aircraft == null)
                 return;
 
+            if (!mIsDown)
+            {
+                mIsTriggerBattleStateOnDown = false;
+            }
+
             mTotalDrag = Vector2.zero;
             mDowns[eventData.pointerId] = true;
             mHoldTime = 0;
@@ -108,10 +113,21 @@ namespace DestroyViruses
             }
         }
 
+        private bool mIsTriggerBattleStateOnDown = false;
         private void BattleStart()
         {
-            mLastBattleDown = false;
-            StateManager.ChangeState<BattleState>();
+            if (mIsTriggerBattleStateOnDown)
+                return;
+            mIsTriggerBattleStateOnDown = true;
+            if (D.I.energy >= ConstTable.table.energyBattleCost)
+            {
+                mLastBattleDown = false;
+                StateManager.ChangeState<BattleState>();
+            }
+            else
+            {
+                Toast.Show(LTKey.ENERGY_NOT_ENOUGH.LT());
+            }
         }
 
         private void BattleDrag(Vector2 delta)

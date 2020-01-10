@@ -40,5 +40,6 @@
         public const string WEAPON_UNLOCK_ON_GAME_LEVEL_X = "WEAPON_UNLOCK_ON_GAME_LEVEL_X";
 
         public const string ENERGY_TIPS_X = "ENERGY_TIPS_X";
+        public const string ENERGY_NOT_ENOUGH = "ENERGY_NOT_ENOUGH";
     }
 }
