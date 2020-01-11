@@ -21,13 +21,14 @@ namespace DestroyViruses
             coinValueLevel = 1;
             coinIncomeLevel = 1;
             lastTakeIncomeTicks = 0;
+            lastEnergyTicks = 0;
         }
 
         public int firePowerLevel;  //火力
         public int fireSpeedLevel;  //射速
         public int gameLevel;       //关卡
         public int unlockedGameLevel; //已解锁关卡
-        public float coin;   
+        public float coin;
         public float diamond;
         public int streak;          //连胜/败
         public int signDays;        //签到天数
@@ -36,5 +37,7 @@ namespace DestroyViruses
         public int coinValueLevel;
         public int coinIncomeLevel;
         public long lastTakeIncomeTicks;
+        public int energy; // 体力值
+        public long lastEnergyTicks; // 上次体力值变化时间
     }
 }

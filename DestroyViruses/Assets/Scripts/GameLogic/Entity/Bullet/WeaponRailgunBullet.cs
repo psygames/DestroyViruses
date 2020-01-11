@@ -9,10 +9,10 @@ namespace DestroyViruses
 {
     public class WeaponRailgunBullet : WeaponBulletBase
     {
-        public override void Reset(Vector2 position, Vector2 direction, float damage, float[] effects)
+        public override void Reset(Vector2 position, Vector2 direction, float damage, float[] effects, string explosionSound)
         {
             speed = effects[0];
-            base.Reset(position, direction, damage, effects);
+            base.Reset(position, direction, damage, effects, explosionSound);
         }
 
         protected override void OnHit(VirusBase virus)
@@ -24,7 +24,7 @@ namespace DestroyViruses
                 _vv.Stun(effects[2]);
                 Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, _vv, damage));
             });
-            ExplosionWeaponRailgunBullet.Create().Reset(hitPos, effects[1]);
+            ExplosionWeaponRailgunBullet.Create().Reset(hitPos, effects[1], explosionSound);
             ForceRecycle();
         }
     }

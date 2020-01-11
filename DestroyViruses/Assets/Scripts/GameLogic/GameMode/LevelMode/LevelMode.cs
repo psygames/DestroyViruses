@@ -44,6 +44,7 @@ namespace DestroyViruses
             progress = 0;
             mLastWaveIndex = -1;
             D.I.reviveCount = 1;
+            D.I.CostEnergy(ConstTable.table.energyBattleCost);
             Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.GameBegin));
             mWaveModule.Start();
         }

@@ -15,16 +15,18 @@ namespace DestroyViruses
         protected float speed;
         protected float[] effects = new float[5];
         protected Vector2 mSize = Vector2.one * 100;
+        protected string explosionSound;
 
         public Vector2 position { get; protected set; }
         public Vector2 direction { get; protected set; }
 
-        public virtual void Reset(Vector2 position, Vector2 direction, float damage, float[] effects)
+        public virtual void Reset(Vector2 position, Vector2 direction, float damage, float[] effects, string explosionSound)
         {
             this.damage = damage;
             Array.Copy(effects, this.effects, this.effects.Length);
             this.position = position;
             this.direction = direction;
+            this.explosionSound = explosionSound;
             isAlive = true;
             Update();
         }
@@ -90,7 +92,7 @@ namespace DestroyViruses
             foreach (var v in EntityManager.GetAll<VirusBase>())
             {
                 var _vv = v as VirusBase;
-                if (_vv.isAlive && !_vv.isInvincible 
+                if (_vv.isAlive && !_vv.isInvincible
                     && GetDist(hitPos, _vv) <= radius + _vv.radius)
                 {
                     hitHandle?.Invoke(_vv);

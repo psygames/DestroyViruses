@@ -11,9 +11,9 @@ namespace DestroyViruses
     {
         public const float baseWidth = 200;
 
-        public override void Reset(Vector2 position, Vector2 direction, float damage, float[] effects)
+        public override void Reset(Vector2 position, Vector2 direction, float damage, float[] effects, string explosionSound)
         {
-            base.Reset(position, direction, damage, effects);
+            base.Reset(position, direction, damage, effects, explosionSound);
 
             rectTransform.anchoredPosition = position;
             rectTransform.localScale = new Vector3(0, 0, 1);
@@ -21,7 +21,7 @@ namespace DestroyViruses
             {
                 ForceRecycle();
             });
-
+            AudioManager.Instance.PlaySound(explosionSound);
             this.DelayDo(0.2f, CheckHit);
         }
 

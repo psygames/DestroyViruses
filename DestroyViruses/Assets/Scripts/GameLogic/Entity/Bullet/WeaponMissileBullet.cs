@@ -11,12 +11,12 @@ namespace DestroyViruses
     {
         private VirusBase mTarget = null;
 
-        public override void Reset(Vector2 position, Vector2 direction, float damage, float[] effects)
+        public override void Reset(Vector2 position, Vector2 direction, float damage, float[] effects, string explosionSound)
         {
             mTarget = null;
             rectTransform.localRotation = Quaternion.identity;
             DOTween.To(() => speed, _ => speed = _, effects[0], 1f).SetEase(Ease.InQuart).SetDelay(0.5f);
-            base.Reset(position, direction, damage, effects);
+            base.Reset(position, direction, damage, effects, explosionSound);
         }
 
         void UpdateDirection()
@@ -55,7 +55,7 @@ namespace DestroyViruses
             {
                 Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, _vv, damage));
             });
-            ExplosionWeaponMissileBullet.Create().Reset(hitPos, effects[1]);
+            ExplosionWeaponMissileBullet.Create().Reset(hitPos, effects[1], explosionSound);
             ForceRecycle();
         }
     }

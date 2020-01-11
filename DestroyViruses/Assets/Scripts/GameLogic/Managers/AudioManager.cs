@@ -61,6 +61,9 @@ namespace DestroyViruses
         //播放音效
         public void PlaySound(string name)
         {
+            if (string.IsNullOrEmpty(name))
+                return;
+
             AudioClip clip = GetClip(name);
             SoundPlayer.clip = clip;
             SoundPlayer.PlayOneShot(clip);

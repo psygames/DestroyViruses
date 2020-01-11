@@ -8,9 +8,10 @@ namespace DestroyViruses
 {
     public class ExplosionWeaponCoverItem : ExplosionBase<ExplosionWeaponCoverItem>
     {
-        public void Reset(Vector2 pos)
+        public void Reset(Vector2 pos, string sound)
         {
             rectTransform.anchoredPosition = pos;
+            AudioManager.Instance.PlaySound(sound);
         }
     }
 }

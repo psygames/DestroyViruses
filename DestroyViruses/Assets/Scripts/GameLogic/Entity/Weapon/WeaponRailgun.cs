@@ -22,14 +22,15 @@ namespace DestroyViruses
             {
                 EntityManager.Create<WeaponRailgunBullet>().Reset(unit1.GetUIPos()
                     , Vector2.up
-                    , damage, effects);
+                    , damage, effects, table.explosionSound);
             }
             else if (index == 1)
             {
                 EntityManager.Create<WeaponRailgunBullet>().Reset(unit2.GetUIPos()
                     , Vector2.up
-                    , damage, effects);
+                    , damage, effects, table.explosionSound);
             }
+            AudioManager.Instance.PlaySound(table.fireSound);
         }
 
         protected override void Update()

@@ -15,6 +15,9 @@ namespace DestroyViruses
         // top menu
         public Text coinText;
         public Text energyText;
+        public Slider energyFill;
+        public GameObject energyTipsObj;
+        public Text energyTips;
         public Text diamondText;
         public Button settingBtn;
         public Button debugBtn;
@@ -66,7 +69,8 @@ namespace DestroyViruses
         private void RefreshUI()
         {
             coinText.text = D.I.coin.KMB();
-            energyText.text = "100";
+            energyText.text = $"{D.I.energy}/{D.I.maxEnergy}";
+            energyFill.value = 1f * D.I.energy / D.I.maxEnergy;
             diamondText.text = D.I.diamond.KMB();
         }
 
@@ -74,6 +78,18 @@ namespace DestroyViruses
         {
             if (sIns != null)
                 sIns.blackSetting.SetActive(isOn);
+        }
+
+        private void Update()
+        {
+            if (D.I.isEnergyMax)
+            {
+                energyTipsObj.SetActive(false);
+                return;
+            }
+
+            energyTipsObj.SetActive(true);
+            energyTips.text = LTKey.ENERGY_TIPS_X.LT(D.I.energyRechargeRemain);
         }
     }
 }

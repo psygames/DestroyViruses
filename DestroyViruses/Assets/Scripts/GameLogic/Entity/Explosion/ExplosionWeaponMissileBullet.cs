@@ -8,10 +8,11 @@ namespace DestroyViruses
 {
     public class ExplosionWeaponMissileBullet : ExplosionBase<ExplosionWeaponMissileBullet>
     {
-        public void Reset(Vector2 pos, float radius)
+        public void Reset(Vector2 pos, float radius,string sound)
         {
             rectTransform.anchoredPosition = pos;
             rectTransform.localScale = Vector3.one * radius * 0.01f;
+            AudioManager.Instance.PlaySound(sound);
         }
     }
 }

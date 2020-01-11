@@ -69,7 +69,9 @@ namespace DestroyViruses
         {
             if (string.IsNullOrEmpty(clickEvent))
                 return;
-            var view = GetComponentInParent<ViewBase>();
+            var view = GetComponent<ViewBase>();
+            if (view == null)
+                view = GetComponentInParent<ViewBase>();
             if (view == null)
                 return;
             var method = view.GetType().GetMethod(header + clickEvent, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);

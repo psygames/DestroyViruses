@@ -53,6 +53,7 @@ namespace DestroyViruses
         {
             base.OnUnitReady(index);
             units[index].SetReady(true);
+            AudioManager.Instance.PlaySound(table.fireSound);
         }
 
         private void OnItemCollider(int index, VirusBase virus)
@@ -63,7 +64,7 @@ namespace DestroyViruses
             Vector2 dir = (cDir + virus.direction).normalized;
             virus.SetDirection(dir);
             Unibus.Dispatch(EventBullet.Get(EventBullet.Action.HIT, virus, damage));
-            ExplosionWeaponCoverItem.Create().Reset(units[index].position);
+            ExplosionWeaponCoverItem.Create().Reset(units[index].position, table.explosionSound);
         }
 
         protected override void Update()

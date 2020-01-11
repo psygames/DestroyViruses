@@ -11,11 +11,11 @@ namespace DestroyViruses
     {
         private int mHitCount = 0;
 
-        public override void Reset(Vector2 position, Vector2 direction, float damage, float[] effects)
+        public override void Reset(Vector2 position, Vector2 direction, float damage, float[] effects, string explosionSound)
         {
             speed = effects[0];
             mSize = Vector2.one * effects[2];
-            base.Reset(position, direction, damage, effects);
+            base.Reset(position, direction, damage, effects, explosionSound);
             rectTransform.localScale = Vector3.one * effects[2] * 0.01f;
             mHitCount = (int)effects[3];
         }
@@ -35,6 +35,7 @@ namespace DestroyViruses
             if (mHitCount <= 0)
             {
                 ForceRecycle();
+                AudioManager.Instance.PlaySound(explosionSound);
             }
         }
     }

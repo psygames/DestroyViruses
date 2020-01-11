@@ -38,5 +38,7 @@
         public const string UNLOCK_SYSTEM_X = "UNLOCK_SYSTEM_X";
         public const string UNLOCK_WEAPON_X = "UNLOCK_WEAPON_X";
         public const string WEAPON_UNLOCK_ON_GAME_LEVEL_X = "WEAPON_UNLOCK_ON_GAME_LEVEL_X";
+
+        public const string ENERGY_TIPS_X = "ENERGY_TIPS_X";
     }
 }

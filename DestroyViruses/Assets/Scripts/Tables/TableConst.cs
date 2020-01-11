@@ -287,6 +287,36 @@ namespace DestroyViruses
 		public int bookVirusCollectRewardDiamond { get { return _bookVirusCollectRewardDiamond; } private set { _bookVirusCollectRewardDiamond = value; } }
 
 		/// <summary>
+		/// 最大武器满级试用次数（每日）
+		/// </summary>
+		private int _maxWeaponTrialCount;
+		public int maxWeaponTrialCount { get { return _maxWeaponTrialCount; } private set { _maxWeaponTrialCount = value; } }
+
+		/// <summary>
+		/// 每1个能量（体力值）恢复间隔时间（秒）
+		/// </summary>
+		private int _energyRecoverInterval;
+		public int energyRecoverInterval { get { return _energyRecoverInterval; } private set { _energyRecoverInterval = value; } }
+
+		/// <summary>
+		/// 获胜获得体力值数量
+		/// </summary>
+		private int _energyRecoverWin;
+		public int energyRecoverWin { get { return _energyRecoverWin; } private set { _energyRecoverWin = value; } }
+
+		/// <summary>
+		/// 每次战斗消耗体力值数量
+		/// </summary>
+		private int _energyBattleCost;
+		public int energyBattleCost { get { return _energyBattleCost; } private set { _energyBattleCost = value; } }
+
+		/// <summary>
+		/// 体力值上限
+		/// </summary>
+		private int _energyMax;
+		public int energyMax { get { return _energyMax; } private set { _energyMax = value; } }
+
+		/// <summary>
 		/// 子弹横向距离
 		/// </summary>
 		private float _bulletHDist;

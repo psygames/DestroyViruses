@@ -12,10 +12,12 @@ namespace DestroyViruses
         public ButtonPro powerUpBtn;
         public Text powerLevelText;
         public Slider powerFill;
+        public ButtonTips powerTips;
 
         public ButtonPro speedUpBtn;
         public Text speedLevelText;
         public Slider speedFill;
+        public ButtonTips speedTips;
 
         private void OnClickPowerUp()
         {
@@ -55,15 +57,18 @@ namespace DestroyViruses
                 return;
             }
 
-            icon.SetSprite(TableWeapon.Get(D.I.weaponId).icon);
+            var table = TableWeapon.Get(D.I.weaponId);
+            icon.SetSprite(table.icon);
 
             powerUpBtn.Set4LevelUp(D.I.weaponPowerUpCost, D.I.isWeaponPowerLevelMax);
             powerLevelText.text = $"{LTKey.FIRE_POWER.LT()} {LTKey.LEVEL_DOT.LT()}{D.I.weaponPowerLevel}";
             powerFill.value = 1f * D.I.weaponPowerLevel / D.I.weaponPowerMaxLevel;
+            powerTips.SetData(table.powerUpTips);
 
             speedUpBtn.Set4LevelUp(D.I.weaponSpeedUpCost, D.I.isWeaponSpeedLevelMax);
             speedLevelText.text = $"{LTKey.FIRE_SPEED.LT()} {LTKey.LEVEL_DOT.LT()}{D.I.weaponSpeedLevel}";
             speedFill.value = 1f * D.I.weaponSpeedLevel / D.I.weaponSpeedMaxLevel;
+            speedTips.SetData(table.speedUpTips);
         }
     }
 }

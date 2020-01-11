@@ -32,6 +32,19 @@ namespace DestroyViruses
         public int streak { get { return Mathf.Clamp(localData.streak, -6, 6); } }
         public int signDays { get { return localData.signDays; } }
         public int weaponId { get { return localData.weaponId; } }
+        public int energy { get { return Mathf.Min(localData.energy, maxEnergy); } }
+        public int maxEnergy { get { return ConstTable.table.energyMax; } }
+        public bool isEnergyMax { get { return energy >= maxEnergy; } }
+        public int energyRechargeRemain
+        {
+            get
+            {
+                if (isEnergyMax)
+                    return 0;
+                var elapse = (int)(DateTime.Now - new DateTime(localData.lastEnergyTicks)).TotalSeconds;
+                return Mathf.Max(0, ConstTable.table.energyRecoverInterval - elapse);
+            }
+        }
 
         public int coinValueLevel { get { return localData.coinValueLevel; } }
         public float coinValue { get { return TableCoinValue.Get(coinValueLevel).value; } }
@@ -189,6 +202,11 @@ namespace DestroyViruses
             else
             {
                 localData.streak = 0;
+            }
+            // energy
+            if (isWin)
+            {
+                AddEnergy(ConstTable.table.energyRecoverWin);
             }
             SaveLocalData();
             SaveBookData();
@@ -488,6 +506,50 @@ namespace DestroyViruses
         }
         #endregion
 
+        bool isLastEnergyMax = false;
+        protected override void OnUpdate()
+        {
+            base.OnUpdate();
+
+            // energy 
+            if (isEnergyMax)
+            {
+                localData.lastEnergyTicks = DateTime.Now.Ticks;
+                if (!isLastEnergyMax)
+                {
+                    SaveLocalData();
+                    DispatchEvent(EventGameData.Action.DataChange);
+                }
+            }
+            else
+            {
+                DateTime _egLast = new DateTime(localData.lastEnergyTicks);
+                var diff = (DateTime.Now - _egLast).TotalSeconds;
+                if (diff >= ConstTable.table.energyRecoverInterval)
+                {
+                    var add = (int)(diff / ConstTable.table.energyRecoverInterval);
+                    localData.lastEnergyTicks = DateTime.Now.Ticks 
+                        - (long)(diff - add * ConstTable.table.energyRecoverInterval) * 10000000L;
+                    AddEnergy(Mathf.Min(add, maxEnergy - energy));
+                }
+            }
+
+            isLastEnergyMax = isEnergyMax;
+        }
+
+        public void AddEnergy(int count)
+        {
+            localData.energy += count;
+            SaveLocalData();
+            DispatchEvent(EventGameData.Action.DataChange);
+        }
+
+        public void CostEnergy(int count)
+        {
+            localData.energy -= count;
+            SaveLocalData();
+            DispatchEvent(EventGameData.Action.DataChange);
+        }
 
         private void SaveLocalData()
         {

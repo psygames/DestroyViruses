@@ -172,6 +172,30 @@ namespace DestroyViruses
 		private float _effect5;
 		public float effect5 { get { return _effect5; } private set { _effect5 = value; } }
 
+		/// <summary>
+		/// 开火音效
+		/// </summary>
+		private string _fireSound;
+		public string fireSound { get { return _fireSound; } private set { _fireSound = value; } }
+
+		/// <summary>
+		/// 爆炸音效
+		/// </summary>
+		private string _explosionSound;
+		public string explosionSound { get { return _explosionSound; } private set { _explosionSound = value; } }
+
+		/// <summary>
+		/// 升级火力提示（多语言）
+		/// </summary>
+		private string _powerUpTips;
+		public string powerUpTips { get { return _powerUpTips; } private set { _powerUpTips = value; } }
+
+		/// <summary>
+		/// 升级速度提示（多语言）
+		/// </summary>
+		private string _speedUpTips;
+		public string speedUpTips { get { return _speedUpTips; } private set { _speedUpTips = value; } }
+
 
 		public static TableWeapon Get(int id)
 		{
