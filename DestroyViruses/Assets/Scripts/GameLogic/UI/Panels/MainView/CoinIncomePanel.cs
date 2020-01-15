@@ -23,7 +23,7 @@ namespace DestroyViruses
                     Coin.CreateGroup(pos, UIUtil.COIN_POS, uiCoinCount);
                     D.I.TakeIncomeCoins();
                     mRefreshCD = 0;
-                    AudioManager.Instance.PlaySound("collect_coin");
+                    AudioManager.PlaySound("collect_coin");
                 }
             });
         }

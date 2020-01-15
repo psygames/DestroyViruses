@@ -28,7 +28,7 @@ namespace DestroyViruses
                 EntityManager.Create<WeaponMissileBullet>().Reset(unit2.GetUIPos(), Vector2.up,
                     damage, effects, table.explosionSound);
             }
-            AudioManager.Instance.PlaySound(table.fireSound);
+            AudioManager.PlaySound(table.fireSound);
         }
 
         protected override void Update()

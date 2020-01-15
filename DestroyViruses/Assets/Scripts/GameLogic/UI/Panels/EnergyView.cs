@@ -8,7 +8,7 @@ using UnibusEvent;
 
 namespace DestroyViruses
 {
-    public class ExchangeView : ViewBase
+    public class EnergyView : ViewBase
     {
         public ButtonPro addBtn;
         public ButtonPro subBtn;
@@ -36,23 +36,38 @@ namespace DestroyViruses
         private void Refresh()
         {
             costText.text = mCurrent.KMB();
-            gainText.text = (mCurrent * FormulaUtil.Expresso(ConstTable.table.formulaArgsCoinExchange)).KMB();
+            gainText.text = (mCurrent * ConstTable.table.energyExchange).ToString();
 
             subBtn.SetBtnGrey(mCurrent <= 0);
-            addBtn.SetBtnGrey(mCurrent >= D.I.diamond);
+            addBtn.SetBtnGrey(mCurrent >= D.I.diamond || IsEnergyFull());
 
             exchangeBtn.SetBtnGrey(mCurrent <= 0);
         }
 
+        private bool IsEnergyFull()
+        {
+            if (mCurrent * ConstTable.table.energyExchange >= D.I.maxEnergy - D.I.energy)
+            {
+                return true;
+            }
+            return false;
+        }
+
         private void OnClickAdd()
         {
-            mCurrent = Mathf.Min(D.I.diamond, mCurrent + Mathf.Max(1, D.I.diamond * 0.1f));
+            if (IsEnergyFull())
+            {
+                Toast.Show(LTKey.ENERGY_EXCHANGE_ENERGY_WILL_BE_OVERFLOW.LT());
+                return;
+            }
+
+            mCurrent = Mathf.Min(D.I.diamond, mCurrent + 1);
             Refresh();
         }
 
         private void OnClickSub()
         {
-            mCurrent = Mathf.Max(0, mCurrent - Mathf.Max(1, D.I.diamond * 0.1f));
+            mCurrent = Mathf.Max(0, mCurrent - 1);
             Refresh();
         }
 
@@ -60,10 +75,9 @@ namespace DestroyViruses
         {
             if (mCurrent > 0)
             {
-                D.I.ExchangeCoin(mCurrent);
+                D.I.ExchangeEnergy(mCurrent);
                 mCurrent = 0;
                 Refresh();
-                Coin.CreateGroup(UIUtil.center, UIUtil.COIN_POS, 10);
                 Close();
             }
             else

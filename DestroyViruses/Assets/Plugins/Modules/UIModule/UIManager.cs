@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ReflectionEx;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -99,7 +99,7 @@ public class UIManager : Singleton<UIManager>
 
         view.gameObject.SetActive(true);
         setLayer(view, layer);
-        view.Invoke("OnOpen", 0f);
+        view.ReflectInvokeMethod("OnOpen");
         return view as T;
     }
 
@@ -107,7 +107,7 @@ public class UIManager : Singleton<UIManager>
     {
         ViewBase view = getView(typeof(T));
         view.gameObject.SetActive(false);
-        view.Invoke("OnClose", 0);
+        view.ReflectInvokeMethod("OnClose");
     }
 
     private void close(Type type)
@@ -119,7 +119,7 @@ public class UIManager : Singleton<UIManager>
         }
         ViewBase view = getView(type);
         view.gameObject.SetActive(false);
-        view.Invoke("OnClose", 0);
+        view.ReflectInvokeMethod("OnClose");
     }
 
 

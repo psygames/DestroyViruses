@@ -27,7 +27,7 @@ namespace DestroyViruses
                 EntityManager.Create<WeaponLaserBullet>().Reset(firement.GetUIPos()
                     , Vector2.zero, damage, effects, table.explosionSound);
             });
-            AudioManager.Instance.PlaySound(table.fireSound);
+            AudioManager.PlaySound(table.fireSound);
         }
     }
 }

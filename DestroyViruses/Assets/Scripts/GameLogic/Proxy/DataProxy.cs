@@ -347,7 +347,7 @@ namespace DestroyViruses
         {
             if (diamond > this.diamond)
             {
-                DispatchEvent(EventGameData.Action.Error, LTKey.UPGRADE_LACK_OF_DIAMOND.LT());
+                DispatchEvent(EventGameData.Action.Error, LTKey.EXCHANGE_DIAMOND_NOT_ENOUGH.LT());
                 return;
             }
 
@@ -359,6 +359,25 @@ namespace DestroyViruses
             DispatchEvent(EventGameData.Action.DataChange);
 
             Analytics.Event.Exchange(diamond, addCoin);
+        }
+
+        public void ExchangeEnergy(float diamond)
+        {
+            if (diamond > this.diamond)
+            {
+                DispatchEvent(EventGameData.Action.Error, LTKey.EXCHANGE_DIAMOND_NOT_ENOUGH.LT());
+                return;
+            }
+
+            localData.diamond -= diamond;
+            var addEnergy = (int)diamond * ConstTable.table.energyExchange;
+            localData.energy += addEnergy;
+
+            SaveLocalData();
+            DispatchEvent(EventGameData.Action.DataChange);
+
+            // TODO: Analytics
+            // Analytics.Event.Exchange(diamond, addCoin);
         }
 
         #region Virus Book
@@ -529,7 +548,7 @@ namespace DestroyViruses
                 if (diff >= ConstTable.table.energyRecoverInterval)
                 {
                     var add = (int)(diff / ConstTable.table.energyRecoverInterval);
-                    localData.lastEnergyTicks = DateTime.Now.Ticks 
+                    localData.lastEnergyTicks = DateTime.Now.Ticks
                         - (long)(diff - add * ConstTable.table.energyRecoverInterval) * 10000000L;
                     AddEnergy(Mathf.Min(add, maxEnergy - energy));
                 }

@@ -27,6 +27,8 @@ namespace DestroyViruses
             mVirus.Clear();
             foreach (var v in TableVirus.GetAll())
             {
+                if (v.collectable <= 0)
+                    continue;
                 var _data = new VirusData();
                 _data.SetData(v.id);
                 mVirus.Add(_data);

@@ -89,7 +89,7 @@ namespace DestroyViruses
         private void Sign(float multiple)
         {
             D.I.DailySign(multiple);
-            AudioManager.Instance.PlaySound("revive_count_down");
+            AudioManager.PlaySound("revive_count_down");
         }
     }
 }

@@ -137,6 +137,12 @@ namespace DestroyViruses
 		public string tipsID { get { return _tipsID; } private set { _tipsID = value; } }
 
 		/// <summary>
+		/// 可收集状态,0不可收集，1可收集
+		/// </summary>
+		private int _collectable;
+		public int collectable { get { return _collectable; } private set { _collectable = value; } }
+
+		/// <summary>
 		/// skill触发间隔
 		/// </summary>
 		private float _skillCD;

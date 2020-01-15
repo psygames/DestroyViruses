@@ -32,9 +32,9 @@ namespace DestroyViruses
 
         private void SetMusic()
         {
-            AudioManager.Instance.MusicPlayer.mute = !Option.music;
-            AudioManager.Instance.FireMusicPlayer.mute = !Option.sound;
-            AudioManager.Instance.SoundPlayer.mute = !Option.sound;
+            AudioManager.MusicPlayer.mute = !Option.music;
+            AudioManager.FireMusicPlayer.mute = !Option.sound;
+            AudioManager.SoundPlayer.mute = !Option.sound;
         }
 
         private void OnEnable()
@@ -45,8 +45,9 @@ namespace DestroyViruses
 
         protected override void OnOpen()
         {
+            base.OnOpen();
             RefreshUI();
-            AudioManager.Instance.PlayMusic($"BGM{Random.Range(1, 3)}", 1f);
+            AudioManager.PlayMusic($"BGM{Random.Range(1, 3)}", 1f);
             NavigationView.BlackSetting(false);
             StartCoroutine(ShowOpenHints());
         }

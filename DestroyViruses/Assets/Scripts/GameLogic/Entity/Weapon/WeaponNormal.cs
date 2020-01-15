@@ -30,7 +30,7 @@ namespace DestroyViruses
                     , Quaternion.AngleAxis(-effects[1], Vector3.forward) * Vector2.up
                     , damage, effects, table.explosionSound);
             }
-            AudioManager.Instance.PlaySound(table.fireSound);
+            AudioManager.PlaySound(table.fireSound);
         }
 
         protected override void Update()

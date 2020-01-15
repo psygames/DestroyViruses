@@ -51,7 +51,7 @@ namespace DestroyViruses
             }
             else if (evt.action == EventGameData.Action.Error)
             {
-                Debug.Log(evt.errorMsg);
+                // Debug.Log(evt.errorMsg);
                 Toast.Show(evt.errorMsg);
             }
         }
@@ -64,6 +64,11 @@ namespace DestroyViruses
         private void OnClickAddDiamond()
         {
             UIManager.Open<CoinView>();
+        }
+
+        private void OnClickAddEnergy()
+        {
+            UIManager.Open<EnergyView>(UILayer.Top);
         }
 
         private void RefreshUI()
@@ -89,7 +94,18 @@ namespace DestroyViruses
             }
 
             energyTipsObj.SetActive(true);
-            energyTips.text = LTKey.ENERGY_TIPS_X.LT(D.I.energyRechargeRemain);
+            energyTips.text = LTKey.ENERGY_TIPS_X.LT(TimeStr(D.I.energyRechargeRemain));
+        }
+
+        private string TimeStr(int seconds)
+        {
+            var secStr = seconds % 60 < 10 ? $"0{seconds % 60}" : $"{seconds % 60}";
+            if (seconds >= 600)
+                return $"{seconds / 60}:{secStr}";
+            else if (seconds >= 60)
+                return $"0{seconds / 60}:{secStr}";
+            else
+                return $"00:{secStr}";
         }
     }
 }

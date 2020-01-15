@@ -317,6 +317,12 @@ namespace DestroyViruses
 		public int energyMax { get { return _energyMax; } private set { _energyMax = value; } }
 
 		/// <summary>
+		/// 体力值兑换（1钻石=x体力值）
+		/// </summary>
+		private int _energyExchange;
+		public int energyExchange { get { return _energyExchange; } private set { _energyExchange = value; } }
+
+		/// <summary>
 		/// 子弹横向距离
 		/// </summary>
 		private float _bulletHDist;

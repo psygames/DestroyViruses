@@ -63,20 +63,26 @@ namespace DestroyViruses
                 languageDropdown.options.Add(new Dropdown.OptionData(val));
             }
             languageDropdown.value = LT.Tags.IndexOf(Option.language);
-            //languageDropdown.captionText.text = LT.Tags[languageDropdown.value];
             SetMusic();
         }
 
         private void SetMusic()
         {
-            AudioManager.Instance.MusicPlayer.mute = !Option.music;
-            AudioManager.Instance.FireMusicPlayer.mute = !Option.sound;
-            AudioManager.Instance.SoundPlayer.mute = !Option.sound;
+            AudioManager.MusicPlayer.mute = !Option.music;
+            AudioManager.FireMusicPlayer.mute = !Option.sound;
+            AudioManager.SoundPlayer.mute = !Option.sound;
         }
 
         protected override void OnOpen()
         {
+            base.OnOpen();
             Refresh();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+            AudioManager.PlaySound("button_normal");
         }
     }
 }

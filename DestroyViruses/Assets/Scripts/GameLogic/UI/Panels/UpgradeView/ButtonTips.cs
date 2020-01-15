@@ -31,8 +31,8 @@ namespace DestroyViruses
             msgFade.FadeIn();
         }
 
-        void OnUpTips()
-        { 
+        void OnClickClose()
+        {
             msgFade.FadeOut();
         }
     }

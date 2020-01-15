@@ -34,8 +34,9 @@ public class BackgroundMask : MonoBehaviour
             mMaskGo.name = this.name + "(MASK)";
             var trans = mMaskGo.AddComponent<RectTransform>();
             float zPos = m_tranform.anchoredPosition3D.z;
-            trans.SetParent(m_parentTransform);
+            trans.SetParent(m_parentTransform, false);
             trans.anchoredPosition3D = new Vector3(0, 0, zPos);
+            trans.localScale = Vector3.one;
             trans.sizeDelta = new Vector2(10000, 10000);
             trans.SetSiblingIndex(m_tranform.GetSiblingIndex());
 

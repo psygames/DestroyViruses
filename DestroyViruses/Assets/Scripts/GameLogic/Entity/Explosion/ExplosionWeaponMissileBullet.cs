@@ -12,7 +12,7 @@ namespace DestroyViruses
         {
             rectTransform.anchoredPosition = pos;
             rectTransform.localScale = Vector3.one * radius * 0.01f;
-            AudioManager.Instance.PlaySound(sound);
+            AudioManager.PlaySound(sound);
         }
     }
 }

@@ -9,8 +9,8 @@
 
         public const string CANNOT_EXCEED_FIRE_SPEED_LEVEL = "CANNOT_EXCEED_FIRE_SPEED_LEVEL";
         public const string CANNOT_EXCEED_FIRE_POWER_LEVEL = "CANNOT_EXCEED_FIRE_POWER_LEVEL";
-        public const string NOT_REACH_WEAPON_UNLOCK_GAME_LEVEL = "NOT_REACH_WEAPON_UNLOCK_GAME_LEVEL";
         public const string EXCHANGE_DIAMOND_NOT_ENOUGH = "EXCHANGE_DIAMOND_NOT_ENOUGH";
+        public const string NOT_REACH_WEAPON_UNLOCK_GAME_LEVEL = "NOT_REACH_WEAPON_UNLOCK_GAME_LEVEL";
 
         public const string GAME_LEVEL_LOCKED = "GAME_LEVEL_LOCKED";
         public const string GAME_LEVEL_INVALID = "GAME_LEVEL_INVALID";
@@ -41,5 +41,6 @@
 
         public const string ENERGY_TIPS_X = "ENERGY_TIPS_X";
         public const string ENERGY_NOT_ENOUGH = "ENERGY_NOT_ENOUGH";
+        public const string ENERGY_EXCHANGE_ENERGY_WILL_BE_OVERFLOW = "ENERGY_EXCHANGE_ENERGY_WILL_BE_OVERFLOW";
     }
 }

@@ -17,13 +17,10 @@ namespace DestroyViruses
 
         public string sound = "button_normal";
 
-        private static Material sGreyMat;
         private bool isGrey = false;
 
         private void Awake()
         {
-            if (sGreyMat == null)
-                sGreyMat = Resources.Load<Material>("Materials/UIGrey");
             if (targetText != null)
                 mOrginColor = targetText.color;
             GetComponent<Button>().onClick.AddListener(OnClick);
@@ -61,7 +58,7 @@ namespace DestroyViruses
         private void OnClick()
         {
             if (!isGrey)
-                AudioManager.Instance.PlaySound(sound);
+                AudioManager.PlaySound(sound);
             SendEvent("OnClick");
         }
 
@@ -92,8 +89,8 @@ namespace DestroyViruses
 
         public void SetBtnGrey(bool isGrey)
         {
-            if (targetImage != null && sGreyMat != null)
-                targetImage.material = isGrey ? sGreyMat : null;
+            if (targetImage != null)
+                targetImage.SetGrey(isGrey);
             this.isGrey = isGrey;
         }
 

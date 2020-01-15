@@ -10,80 +10,119 @@ namespace DestroyViruses
         Dictionary<string, AudioClip> mCached = new Dictionary<string, AudioClip>();
 
         //音乐播放器
-        public AudioSource MusicPlayer;
+        [SerializeField]
+        private AudioSource _MusicPlayer;
         //开火音乐
-        public AudioSource FireMusicPlayer;
+        [SerializeField]
+        private AudioSource _FireMusicPlayer;
         //音效播放器
-        public AudioSource SoundPlayer;
+        [SerializeField]
+        private AudioSource _SoundPlayer;
 
         private string mLastMusic = "";
         //播放音乐
-        public void PlayMusic(string name, float volume = 1f, bool loop = true)
+        private void _PlayMusic(string name, float volume = 1f, bool loop = true)
         {
-            if (mLastMusic != name || !MusicPlayer.isPlaying)
+            if (mLastMusic != name || !_MusicPlayer.isPlaying)
             {
                 AudioClip clip = GetClip(name);
-                MusicPlayer.clip = clip;
-                MusicPlayer.loop = loop;
-                MusicPlayer.volume = volume;
-                MusicPlayer.Play();
+                _MusicPlayer.clip = clip;
+                _MusicPlayer.loop = loop;
+                _MusicPlayer.volume = volume;
+                _MusicPlayer.Play();
                 mLastMusic = name;
             }
         }
 
-        public void StopMusic()
+        private void _StopMusic()
         {
-            if (MusicPlayer.isPlaying)
-                MusicPlayer.Stop();
+            if (_MusicPlayer.isPlaying)
+                _MusicPlayer.Stop();
         }
 
         private string mLastFireMusic = "";
         //播放音乐
-        public void PlayFireMusic(string name, float volume = 1f, bool loop = true)
+        private void _PlayFireMusic(string name, float volume = 1f, bool loop = true)
         {
-            if (mLastFireMusic != name || !FireMusicPlayer.isPlaying)
+            if (mLastFireMusic != name || !_FireMusicPlayer.isPlaying)
             {
                 AudioClip clip = GetClip(name);
-                FireMusicPlayer.clip = clip;
-                FireMusicPlayer.loop = loop;
-                FireMusicPlayer.volume = volume;
-                FireMusicPlayer.Play();
+                _FireMusicPlayer.clip = clip;
+                _FireMusicPlayer.loop = loop;
+                _FireMusicPlayer.volume = volume;
+                _FireMusicPlayer.Play();
                 mLastFireMusic = name;
             }
         }
 
-        public void StopFireMusic()
+        private void _StopFireMusic()
         {
-            if (FireMusicPlayer.isPlaying)
-                FireMusicPlayer.Stop();
+            if (_FireMusicPlayer.isPlaying)
+                _FireMusicPlayer.Stop();
         }
 
         //播放音效
-        public void PlaySound(string name)
+        private void _PlaySound(string name)
         {
             if (string.IsNullOrEmpty(name))
                 return;
 
             AudioClip clip = GetClip(name);
-            SoundPlayer.clip = clip;
-            SoundPlayer.PlayOneShot(clip);
+            _SoundPlayer.clip = clip;
+            _SoundPlayer.PlayOneShot(clip);
         }
 
-        public void StopSound()
+        private void _StopSound()
         {
-            SoundPlayer.Stop();
+            _SoundPlayer.Stop();
         }
 
         private AudioClip GetClip(string clipName)
         {
             if (!mCached.TryGetValue(clipName, out AudioClip clip))
             {
-                clip = ResourceUtil.Load<AudioClip>(PathUtil.Sound(clipName,".wav"));
-                if(clip == null)
+                clip = ResourceUtil.Load<AudioClip>(PathUtil.Sound(clipName, ".wav"));
+                if (clip == null)
                     clip = ResourceUtil.Load<AudioClip>(PathUtil.Sound(clipName, ".mp3"));
                 mCached.Add(clipName, clip);
             }
             return clip;
+        }
+
+        public static AudioSource MusicPlayer => Instance._MusicPlayer;
+        public static AudioSource FireMusicPlayer => Instance._FireMusicPlayer;
+        public static AudioSource SoundPlayer => Instance._SoundPlayer;
+
+        public static void PlayMusic(string name, float volume = 1f, bool loop = true)
+        {
+            Instance._PlayMusic(name, volume, loop);
+        }
+
+        public static void StopMusic()
+        {
+            Instance._StopMusic();
+        }
+
+        //播放音乐
+        public static void PlayFireMusic(string name, float volume = 1f, bool loop = true)
+        {
+            Instance._PlayFireMusic(name, volume, loop);
+        }
+
+        public static void StopFireMusic()
+        {
+            Instance._StopFireMusic();
+        }
+
+        //播放音效
+        public static void PlaySound(string name)
+        {
+            Instance._PlaySound(name);
+        }
+
+        public static void StopSound()
+        {
+            Instance._StopSound();
         }
 
         public static void Preload(string name)

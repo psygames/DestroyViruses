@@ -32,6 +32,15 @@ public static class GameExtension
         image.color = color;
     }
 
+    private static Material sGreyMat;
+    public static void SetGrey(this Image image, bool isGrey)
+    {
+        if (sGreyMat == null)
+            sGreyMat = Resources.Load<Material>("Materials/UIGrey");
+        if (image != null && sGreyMat != null)
+            image.material = isGrey ? sGreyMat : null;
+    }
+
     // 数值单位转换
     private static string[] sKMBUnits = { "K", "M", "B", "T", "P", "E", "Z", "Y", "S" };
     private static float[] sKMBDivs = { 1E3f, 1E6f, 1E9f, 1E12f, 1E15f, 1E18f, 1E21f, 1E24f, 1E27f };

@@ -53,7 +53,7 @@ namespace DestroyViruses
         {
             base.OnUnitReady(index);
             units[index].SetReady(true);
-            AudioManager.Instance.PlaySound(table.fireSound);
+            AudioManager.PlaySound(table.fireSound);
         }
 
         private void OnItemCollider(int index, VirusBase virus)

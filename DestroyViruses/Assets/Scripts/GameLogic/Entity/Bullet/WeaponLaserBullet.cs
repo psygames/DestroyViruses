@@ -21,7 +21,7 @@ namespace DestroyViruses
             {
                 ForceRecycle();
             });
-            AudioManager.Instance.PlaySound(explosionSound);
+            AudioManager.PlaySound(explosionSound);
             this.DelayDo(0.2f, CheckHit);
         }
 

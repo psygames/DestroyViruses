@@ -26,7 +26,7 @@ namespace DestroyViruses
 
             if (TimeUtil.CheckInterval("ExplosionSfx", ConstTable.table.explosionSfxInterval))
             {
-                AudioManager.Instance.PlaySound("explosion");
+                AudioManager.PlaySound("explosion");
             }
             if (Option.vibration)
             {

@@ -53,6 +53,7 @@ namespace DestroyViruses
 
         protected override void OnOpen()
         {
+            base.OnOpen();
             coinText.text = D.I.battleGetCoin.KMB();
             winLoseRadio.Radio(!D.I.gameEndWin);
             mRectTransform.localScale = Vector3.zero;

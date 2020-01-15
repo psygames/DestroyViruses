@@ -21,6 +21,14 @@ namespace DestroyViruses
 
         private Dictionary<int, bool> mDowns = new Dictionary<int, bool>();
 
+        private bool IsSystemNoTouches()
+        {
+            return Input.touchCount <= 0
+                && !Input.GetMouseButton(0)
+                && !Input.GetMouseButton(1)
+                && !Input.GetMouseButton(2)
+                ;
+        }
 
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -85,6 +93,9 @@ namespace DestroyViruses
         {
             if (aircraft == null)
                 return;
+
+            if (IsSystemNoTouches() && mDowns.Count > 0)
+                mDowns.Clear();
 
             if (mIsDown)
                 mHoldTime += Time.deltaTime;

@@ -37,7 +37,7 @@ namespace DestroyViruses
         {
             Toast.text = text;
             UIManager.Open<ToastView>(UILayer.Top);
-            AudioManager.Instance.PlaySound("button_grey");
+            AudioManager.PlaySound("button_grey");
         }
     }
 }

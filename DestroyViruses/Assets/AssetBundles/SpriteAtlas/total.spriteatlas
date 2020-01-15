@@ -31,8 +31,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1827d5ad581044f08b470c56b841c4ab, type: 3}
-    totalSpriteSurfaceArea: 4961822
+    totalSpriteSurfaceArea: 4965266
     bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 07fa391ed31762265b9093cbf9d4feaf
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 7c35ef305f48b2247bb3c0eab8fb3c47, type: 3}
@@ -103,6 +106,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e73e88e8b47086c4e904ccd4deb7b50d, type: 3}
   - {fileID: 21300000, guid: e63902f851ca1534d89a55c06b88ad98, type: 3}
   - {fileID: 21300000, guid: 62696829cff95a34abf7ecd75f5d3824, type: 3}
+  - {fileID: 21300000, guid: 48eed2390f544c54ba147d5cd8ab0016, type: 3}
   - {fileID: 21300000, guid: 9ab43739d797a4664a4e6a97e5309c62, type: 3}
   - {fileID: 21300000, guid: 412d1a4990222f047b9132143650e6a5, type: 3}
   - {fileID: 21300000, guid: 29ff0b89914f74f4b908debdab6f1fa2, type: 3}
@@ -232,6 +236,7 @@ SpriteAtlas:
   - hp_boss_1
   - baner_1
   - ui_buff_fill_3
+  - energy_recharge_bg
   - button_setting
   - book_receive_diamond_bg
   - icon_buff_fire_speed
@@ -257,7 +262,7 @@ SpriteAtlas:
   - icon_buff_06
   - weapon_normal_part2
   - coin_frame_6
-  - button_xingyundajiang
+  - button_luck_gift
   - button_receive
   - button_gift
   - ui_icon_buff_knockback

@@ -35,7 +35,7 @@ namespace DestroyViruses
             if (mHitCount <= 0)
             {
                 ForceRecycle();
-                AudioManager.Instance.PlaySound(explosionSound);
+                AudioManager.PlaySound(explosionSound);
             }
         }
     }

@@ -65,9 +65,9 @@ namespace DestroyViruses
                 var buff = collision.gameObject.GetComponent<Buff>();
                 ProxyManager.GetProxy<BuffProxy>().AddBuff(buff.buffID);
                 if (TableBuff.Get(buff.buffID).type == 1)
-                    AudioManager.Instance.PlaySound("buff");
+                    AudioManager.PlaySound("buff");
                 else
-                    AudioManager.Instance.PlaySound("debuff");
+                    AudioManager.PlaySound("debuff");
                 buff.ForceRecycle();
             }
         }

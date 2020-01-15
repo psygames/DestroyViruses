@@ -11,19 +11,9 @@ namespace DestroyViruses
 {
     public class DebugView : ViewBase
     {
-        public Button clearBtn;
         public InputField gameLevelInput;
-        public Button selectBtn;
-        public Button coinBtn;
 
-        private void Awake()
-        {
-            clearBtn.OnClick(OnClear);
-            selectBtn.OnClick(OnSelect);
-            coinBtn.OnClick(OnCoin);
-        }
-
-        private void OnClear()
+        private void OnClickClear()
         {
             if (Directory.Exists(Application.persistentDataPath))
             {
@@ -34,7 +24,7 @@ namespace DestroyViruses
             Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
         }
 
-        private void OnSelect()
+        private void OnClickSelect()
         {
             if (int.TryParse(gameLevelInput.text, out var level))
             {
@@ -45,15 +35,30 @@ namespace DestroyViruses
             }
         }
 
-        private void OnCoin()
+        private void OnClickCoin()
         {
             GameLocalData.Instance.coin = 99999999;
             GameLocalData.Instance.Save();
             Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
         }
 
+        private void OnClickDiamond()
+        {
+            GameLocalData.Instance.diamond = 99999;
+            GameLocalData.Instance.Save();
+            Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
+        }
+
+        private void OnClickEnergy()
+        {
+            GameLocalData.Instance.energy = ConstTable.table.energyMax;
+            GameLocalData.Instance.Save();
+            Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
+        }
+
         protected override void OnOpen()
         {
+            base.OnOpen();
             gameLevelInput.text = D.I.gameLevel.ToString();
         }
     }

@@ -11,7 +11,7 @@ namespace DestroyViruses
         public void Reset(Vector2 pos, string sound)
         {
             rectTransform.anchoredPosition = pos;
-            AudioManager.Instance.PlaySound(sound);
+            AudioManager.PlaySound(sound);
         }
     }
 }

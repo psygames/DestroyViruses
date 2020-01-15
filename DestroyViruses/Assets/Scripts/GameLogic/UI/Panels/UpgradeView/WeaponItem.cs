@@ -20,6 +20,7 @@ namespace DestroyViruses
             mId = id;
             var table = TableWeapon.Get(id);
             icon.SetSprite(table.icon);
+            icon.SetGrey(D.I.unlockedGameLevel < table.unlockLevel);
             title.text = LT.Get(table.nameID);
             selectedObj.SetActive(id == D.I.weaponId);
             radioState.Radio(D.I.unlockedGameLevel < table.unlockLevel ? 0 : D.I.weaponId == id ? 2 : 1);

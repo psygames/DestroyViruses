@@ -16,6 +16,7 @@ namespace DestroyViruses
 
         protected override void OnOpen()
         {
+            base.OnOpen();
             mCountDown = ConstTable.table.reviveCountDown;
         }
 
@@ -45,7 +46,7 @@ namespace DestroyViruses
             countDownText.rectTransform.DOKill();
             countDownText.rectTransform.localScale = new Vector3(-1, 1, 1);
             countDownText.rectTransform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack);
-            AudioManager.Instance.PlaySound("revive_count_down");
+            AudioManager.PlaySound("revive_count_down");
         }
 
         private void OnClickRevive()

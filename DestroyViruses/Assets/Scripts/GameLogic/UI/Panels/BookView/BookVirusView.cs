@@ -94,7 +94,7 @@ namespace DestroyViruses
             if (v.isReceivable)
             {
                 D.I.BookCollect(VirusID);
-                AudioManager.Instance.PlaySound("collect_coin");
+                AudioManager.PlaySound("collect_coin");
             }
             else
             {

@@ -29,10 +29,11 @@ namespace DestroyViruses
 
         protected override void OnOpen()
         {
+            base.OnOpen();
             Aircraft.ins.anima.PlayHomeOut();
             bossWaveToast.SetActive(false);
             slowDownFade.FadeInImmediately();
-            AudioManager.Instance.PlayMusic($"BGM{Random.Range(3, 5)}", 0.6f);
+            AudioManager.PlayMusic($"BGM{Random.Range(3, 5)}", 0.6f);
             gameLevelPanel.SetData();
             mLastIsBattleTouchOn = GlobalData.isBattleTouchOn;
             if(mLastIsBattleTouchOn) slowDownFade.FadeOutImmediately();
@@ -85,7 +86,7 @@ namespace DestroyViruses
             {
                 bossWaveToast.SetActive(false);
             });
-            AudioManager.Instance.PlaySound("boss");
+            AudioManager.PlaySound("boss");
         }
 
         private void ShowGameEndPanel(bool isWin)

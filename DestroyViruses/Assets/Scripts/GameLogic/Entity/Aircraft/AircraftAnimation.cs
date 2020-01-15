@@ -40,13 +40,13 @@ namespace DestroyViruses
         public void PlayCrash()
         {
             mRectTransform.DOScale(Vector3.zero, 0.3f);
-            AudioManager.Instance.PlaySound("crash");
+            AudioManager.PlaySound("crash");
             ExplosionCrash.Create().Reset(mRectTransform.anchoredPosition);
         }
 
         public void PlayFlyAway()
         {
-            AudioManager.Instance.PlaySound("flyaway");
+            AudioManager.PlaySound("flyaway");
             mRectTransform.DOAnchorPos3D(new Vector3(UIUtil.width * 0.5f, UIUtil.height + 400, 0), 1).SetEase(Ease.InQuad);
         }
 
