@@ -17,11 +17,15 @@ namespace DestroyViruses
 
         private void OnClickCoinValueUp()
         {
+            if (coinValueUpBtn.isGrey)
+                return;
             D.I.CoinValueLevelUp();
         }
 
         private void OnClickCoinIncomeUp()
         {
+            if (coinIncomeUpBtn.isGrey)
+                return;
             D.I.CoinIncomeLevelUp();
         }
 

@@ -17,7 +17,7 @@ namespace DestroyViruses
 
         public string sound = "button_normal";
 
-        private bool isGrey = false;
+        public bool isGrey { get; private set; }
 
         private void Awake()
         {
