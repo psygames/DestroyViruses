@@ -15,9 +15,10 @@ namespace DestroyViruses
         public int collectCount { get { return D.I.BookGetCollectCount(id); } }
         public int startCount { get { return D.I.GetBookCountBegin(id); } }
         public int endCount { get { return D.I.GetBookCountEnd(id); } }
+        public bool isMax { get { return D.I.IsBookCollectMax(id); } }
         public float progress { get { return 1f * (collectCount - startCount) / (endCount - startCount); } }
         public bool isUnlock { get { return D.I.BookIsUnlock(id); } }
-        public bool isReceivable { get { return collectCount >= endCount; } }
+        public bool isReceivable { get { return !isMax && collectCount >= endCount; } }
         public string name { get { return LT.Get(table.nameID); } }
         public string description { get { return LT.Get(table.descriptionID); } }
         public string tips { get { return LT.Get(table.tipsID); } }
@@ -39,6 +40,7 @@ namespace DestroyViruses
         public ButtonPro receiveBtn;
         public Transform modelRoot;
         public Slider fill;
+        public Text fillText;
 
         public static int VirusID { get; set; }
         public static int ColorIndex { get; set; }
@@ -78,9 +80,18 @@ namespace DestroyViruses
             {
                 mVirus.stunEffect.Stop(true);
             }
-
-            fill.value = v.progress;
-            receiveBtn.SetBtnGrey(!v.isReceivable);
+            if (v.isMax)
+            {
+                fill.value = 1f;
+                fillText.text = "";
+                receiveBtn.SetData(LTKey.COLLECT_FINISH.LT(), true, false);
+            }
+            else
+            {
+                fill.value = v.progress;
+                fillText.text = $"{v.collectCount - v.startCount}/{v.endCount - v.startCount}";
+                receiveBtn.SetData(LTKey.RECEIVE.LT(), !v.isReceivable, false);
+            }
             diamondCount.text = "x" + D.I.GetBookDiamond(v.id);
             title.text = v.name;
             tips.text = v.tips;
@@ -97,14 +108,18 @@ namespace DestroyViruses
 
         private void OnClickReceive()
         {
-            if (v.isReceivable)
+            if (v.isMax)
+            {
+                Toast.Show(LTKey.COLLECT_FINISH.LT());
+            }
+            else if (v.isReceivable)
             {
                 D.I.BookCollect(VirusID);
                 AudioManager.PlaySound("collect_coin");
             }
             else
             {
-                Toast.Show(LTKey.VIRUS_COLLECT_NOT_ENOUGH);
+                Toast.Show(LTKey.VIRUS_COLLECT_NOT_ENOUGH.LT());
             }
         }
     }

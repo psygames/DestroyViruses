@@ -6,11 +6,16 @@ namespace DestroyViruses
 {
     public class LoadingState : StateBase
     {
+        public float progress { get; private set; }
+        public string message { get; private set; }
+
         float m_waitSeconds;
         public override void OnEnter()
         {
             base.OnEnter();
             m_waitSeconds = 0.3f;
+            ProxyManager.Subscribe<AnalyticsProxy>();
+            ProxyManager.Subscribe<DataProxy>();
             ProxyManager.Subscribe<AdProxy>();
             Analytics.Event.Login(DeviceID.UUID);
             D.I.AnalyticsSetUserProperty();

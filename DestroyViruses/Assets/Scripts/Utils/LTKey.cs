@@ -3,6 +3,8 @@
 
     public static class LTKey
     {
+        public const string RECEIVE = "RECEIVE";
+
         public const string ALREADY_LEVEL_MAX = "ALREADY_LEVEL_MAX";
         public const string UPGRADE_LACK_OF_COIN = "UPGRADE_LACK_OF_COIN";
         public const string UPGRADE_LACK_OF_DIAMOND = "UPGRADE_LACK_OF_DIAMOND";
@@ -20,6 +22,7 @@
 
         public const string VIRUS_LOCKED = "VIRUS_LOCKED";
         public const string VIRUS_COLLECT_NOT_ENOUGH = "VIRUS_COLLECT_NOT_ENOUGH";
+        public const string COLLECT_FINISH = "COLLECT_FINISH";
 
         public const string REMAIN_VIRUS_COUNT = "REMAIN_VIRUS_COUNT";
 

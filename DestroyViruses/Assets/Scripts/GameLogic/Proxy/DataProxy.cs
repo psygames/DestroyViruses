@@ -397,7 +397,7 @@ namespace DestroyViruses
                 return 0;
             if (bookData.GetIndex(virusID) <= 0)
                 return 0;
-            return ConstTable.table.bookVirusCollectRewardDiamond[bookData.GetIndex(virusID) - 1];
+            return ConstTable.table.bookVirusCollectKillCount[bookData.GetIndex(virusID) - 1];
         }
 
         public int GetBookCountEnd(int virusID)
@@ -443,10 +443,8 @@ namespace DestroyViruses
                 return;
             }
 
-            bookData.Add(virusID, -GetBookCountEnd(virusID));
-            bookData.AddIndex(virusID, 1);
             AddDiamond(GetBookDiamond(virusID));
-
+            bookData.AddIndex(virusID, 1);
             SaveLocalData();
             SaveBookData();
             DispatchEvent(EventGameData.Action.DataChange);

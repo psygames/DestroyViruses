@@ -23,6 +23,10 @@ namespace DestroyViruses
 
         protected override void Update()
         {
+            if (GameUtil.isFrozen)
+            {
+                return;
+            }
             base.Update();
             var dist = (aircraft.headPosition - position).magnitude - radius;
             bool triggerSlow = dist <= table.effect2;

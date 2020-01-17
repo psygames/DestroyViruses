@@ -47,8 +47,10 @@ namespace DestroyViruses
             {
                 mVirus.stunEffect.Stop(true);
             }
-
-            fill.value = v.progress;
+            if (v.isMax)
+                fill.value = 1f;
+            else
+                fill.value = v.progress;
             if (v.isUnlock)
             {
                 if (v.isReceivable)

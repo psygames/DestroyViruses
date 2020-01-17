@@ -21,6 +21,8 @@ namespace DestroyViruses
             }
             PlayerPrefs.DeleteAll();
             GameLocalData.Reload();
+            BookData.Reload();
+            WeaponLevelData.Reload();
             Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
         }
 
@@ -31,6 +33,19 @@ namespace DestroyViruses
                 GameLocalData.Instance.gameLevel = level;
                 GameLocalData.Instance.unlockedGameLevel = level;
                 GameLocalData.Instance.Save();
+                Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
+            }
+        }
+
+        private void OnClickCollectCount()
+        {
+            if (int.TryParse(gameLevelInput.text, out var level))
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    BookData.Instance.Set(i, level);
+                }
+                BookData.Instance.Save();
                 Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
             }
         }

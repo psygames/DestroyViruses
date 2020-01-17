@@ -55,9 +55,9 @@ namespace DestroyViruses
         IEnumerator ShowOpenHints()
         {
             yield return new WaitForSeconds(1);
-            foreach (var h in mOpenHints)
+            foreach (var hint in mOpenHints)
             {
-                Toast.Show(h);
+                Toast.Show(hint);
                 yield return new WaitForSeconds(2);
             }
 
