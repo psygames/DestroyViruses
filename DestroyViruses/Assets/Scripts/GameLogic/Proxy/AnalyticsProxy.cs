@@ -19,7 +19,6 @@ namespace DestroyViruses
                 var dependencyStatus = task.Result;
                 if (dependencyStatus == DependencyStatus.Available)
                 {
-                    Debug.Log("Analytics 初始化完成");
                     InitializeFirebase();
                 }
                 else
@@ -35,6 +34,8 @@ namespace DestroyViruses
             FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
             FirebaseAnalytics.SetUserId(DeviceID.UUID);
             FirebaseAnalytics.SetSessionTimeoutDuration(new TimeSpan(0, 30, 0));
+
+            Analytics.Event.Login(DeviceID.UUID);
         }
 
         public void ResetAnalyticsData()
@@ -153,10 +154,7 @@ namespace DestroyViruses
         {
             get
             {
-                var p = ProxyManager.GetProxy<AnalyticsProxy>();
-                if (p == null)
-                    Debug.LogError("Error: AnalyticsProxy is null.");
-                return p;
+                return ProxyManager.GetProxy<AnalyticsProxy>();
             }
         }
 
@@ -248,6 +246,9 @@ namespace DestroyViruses
             private static float s_errorLogRepeatedInterval = 3600;
             public static void Log(LogType type, string message, string stackTrack)
             {
+                if (proxy == null || !proxy.isInit)
+                    return;
+
                 if (type == LogType.Error || type == LogType.Exception)
                 {
                     s_errorLogTimeDic.TryGetValue(message, out float _time);

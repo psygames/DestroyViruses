@@ -171,7 +171,6 @@ namespace DestroyViruses
         public override void OnExit()
         {
             base.OnExit();
-            UIManager.Close<LoadingView>();
         }
     }
 }

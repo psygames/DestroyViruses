@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Data;
+using System.Collections.Generic;
 
 namespace DestroyViruses
 {
@@ -113,19 +114,14 @@ namespace DestroyViruses
             }
         }
 
-        public void AnalyticsSetUserProperty()
+
+        protected override void OnUpdate()
         {
-            Analytics.UserProperty.Set("coin", coin.KMB());
-            Analytics.UserProperty.Set("diamond", diamond.KMB());
-            Analytics.UserProperty.Set("game_level", gameLevel);
-            Analytics.UserProperty.Set("unlocked_game_level", unlockedGameLevel);
-            Analytics.UserProperty.Set("fire_power_level", firePowerLevel);
-            Analytics.UserProperty.Set("fire_speed_level", fireSpeedLevel);
-            Analytics.UserProperty.Set("streak", streak);
-            Analytics.UserProperty.Set("daily_sign", signDays);
-            Analytics.UserProperty.Set("weapon_id", weaponId);
+            base.OnUpdate();
+            UpdateEnergy();
         }
 
+        #region MAIN
         public void FirePowerUp()
         {
             if (isFirePowerLevelMax)
@@ -181,7 +177,9 @@ namespace DestroyViruses
         {
             localData.diamond += count;
         }
+        #endregion
 
+        #region BATTLE
         public void BattleEnd(bool isWin)
         {
             gameEndWin = isWin;
@@ -207,6 +205,11 @@ namespace DestroyViruses
             if (isWin)
             {
                 AddEnergy(ConstTable.table.energyRecoverWin);
+            }
+            // trial end
+            if (localData.trialWeaponID != 0)
+            {
+                TrialEnd();
             }
             SaveLocalData();
             SaveBookData();
@@ -249,7 +252,9 @@ namespace DestroyViruses
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
         }
+        #endregion
 
+        #region Daily Sign
         public void DailySign(float multiple)
         {
             if (!CanDailySign())
@@ -280,7 +285,9 @@ namespace DestroyViruses
         {
             return gameLevel >= ConstTable.table.dailySignUnlockLevel;
         }
+        #endregion
 
+        #region Coin Value & Income
         public void TakeIncomeCoins()
         {
             var gain = coinIncomeTotal;
@@ -342,7 +349,9 @@ namespace DestroyViruses
 
             Analytics.Event.Upgrade("coin_value", coinIncomeLevel);
         }
+        #endregion
 
+        #region Exchange
         public void ExchangeCoin(float diamond)
         {
             if (diamond > this.diamond)
@@ -379,6 +388,7 @@ namespace DestroyViruses
             // TODO: Analytics
             // Analytics.Event.Exchange(diamond, addCoin);
         }
+        #endregion
 
         #region Virus Book
         public void BookAddCollectCount(int virusID)
@@ -458,12 +468,28 @@ namespace DestroyViruses
         #endregion
 
         #region Weapon
-        public int weaponSpeedLevel { get { return weaponLevelData.GetSpeedLevel(weaponId); } }
+        public int weaponSpeedLevel
+        {
+            get
+            {
+                if (GetTrialWeaponID() == weaponId && IsInTrial())
+                    return weaponSpeedMaxLevel;
+                return weaponLevelData.GetSpeedLevel(weaponId);
+            }
+        }
         public int weaponSpeedMaxLevel { get { return TableWeaponSpeedLevel.GetAll().Max(a => (a.weaponId == weaponId) ? a.level : 0).level; } }
         public bool isWeaponSpeedLevelMax { get { return weaponSpeedLevel >= weaponSpeedMaxLevel; } }
         public float weaponSpeedUpCost { get { return TableWeaponSpeedLevel.Get(a => a.weaponId == weaponId && a.level == weaponSpeedLevel).upCost; } }
 
-        public int weaponPowerLevel { get { return weaponLevelData.GetPowerLevel(weaponId); } }
+        public int weaponPowerLevel
+        {
+            get
+            {
+                if (GetTrialWeaponID() == weaponId && IsInTrial())
+                    return weaponPowerMaxLevel;
+                return weaponLevelData.GetPowerLevel(weaponId);
+            }
+        }
         public int weaponPowerMaxLevel { get { return TableWeaponPowerLevel.GetAll().Max(a => (a.weaponId == weaponId) ? a.level : 0).level; } }
         public bool isWeaponPowerLevelMax { get { return weaponPowerLevel >= weaponPowerMaxLevel; } }
         public float weaponPowerUpCost { get { return TableWeaponPowerLevel.Get(a => a.weaponId == weaponId && a.level == weaponPowerLevel).upCost; } }
@@ -550,10 +576,10 @@ namespace DestroyViruses
         }
         #endregion
 
+        #region ENERGY
         bool isLastEnergyMax = false;
-        protected override void OnUpdate()
+        private void UpdateEnergy()
         {
-            base.OnUpdate();
             if (!GameUtil.isInHome)
                 return;
             // energy 
@@ -595,6 +621,87 @@ namespace DestroyViruses
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
         }
+        #endregion
+
+        #region Weapon Trial
+        public void TrialBegin()
+        {
+            if (!HasTrialWeapon())
+                return;
+            localData.isInTrial = true;
+            SaveLocalData();
+        }
+
+        public void TrialEnd()
+        {
+            localData.trialWeaponID = 0;
+            localData.isInTrial = false;
+            localData.trialCount += 1;
+
+            SaveLocalData();
+        }
+
+        public bool HasTrialWeapon()
+        {
+            return GetTrialWeaponID() != 0;
+        }
+
+        public int GetTrialWeaponID()
+        {
+            if (unlockedGameLevel < ConstTable.table.weaponUnlockLevel)
+                return 0;
+
+            var _last = new DateTime(localData.lastTrialTicks);
+            if (_last.DayOfYear != DateTime.Now.DayOfYear)
+            {
+                localData.lastTrialTicks = DateTime.Now.Ticks;
+                localData.trialCount = 0;
+                SaveLocalData();
+            }
+            if (localData.trialCount >= ConstTable.table.maxWeaponTrialCount)
+            {
+                return 0;
+            }
+            if (localData.weaponId == 0 && streak < 0)
+            {
+                var _weapons = new List<int>();
+                foreach (var w in TableWeapon.GetAll())
+                {
+                    if (w.unlockLevel <= unlockedGameLevel)
+                    {
+                        _weapons.Add(w.id);
+                    }
+                }
+                var _id = FormulaUtil.RandomInArray(_weapons.ToArray());
+                if (_id != 0)
+                {
+                    localData.weaponId = _id;
+                    SaveLocalData();
+                }
+            }
+            return localData.weaponId;
+        }
+
+        public bool IsInTrial()
+        {
+            return localData.isInTrial;
+        }
+        #endregion
+
+        #region ANALYTICS
+        public void AnalyticsSetUserProperty()
+        {
+            Analytics.UserProperty.Set("coin", coin.KMB());
+            Analytics.UserProperty.Set("diamond", diamond.KMB());
+            Analytics.UserProperty.Set("game_level", gameLevel);
+            Analytics.UserProperty.Set("unlocked_game_level", unlockedGameLevel);
+            Analytics.UserProperty.Set("fire_power_level", firePowerLevel);
+            Analytics.UserProperty.Set("fire_speed_level", fireSpeedLevel);
+            Analytics.UserProperty.Set("streak", streak);
+            Analytics.UserProperty.Set("daily_sign", signDays);
+            Analytics.UserProperty.Set("weapon_id", weaponId);
+        }
+        #endregion
 
         private void SaveLocalData()
         {

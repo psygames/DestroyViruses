@@ -13,10 +13,12 @@ namespace DestroyViruses
             new Dictionary<string, List<MoPub.Reward>>();
         private float m_delayCacheRewardAll;
 
-        public const float AD_AUTO_LOAD_DELAY = 5;
+        public const float AD_AUTO_LOAD_DELAY = 2;
+        public const float AD_AUTO_LOAD_INTERAL = 1;
         public const float AD_LOAD_TIMEOUT = 60;
 
         public const bool ENABLE_LOG = true;
+        public bool isInit { get; private set; }
 
         protected override void OnInit()
         {
@@ -42,6 +44,7 @@ namespace DestroyViruses
             MoPubManager.OnRewardedVideoFailedToPlayEvent -= OnRewardedVideoFailedToPlayEvent;
             MoPubManager.OnRewardedVideoClosedEvent -= OnRewardedVideoClosedEvent;
             MoPubManager.OnSdkInitializedEvent -= MoPubManager_OnSdkInitializedEvent;
+            isInit = false;
             base.OnDestroy();
         }
 
@@ -50,7 +53,7 @@ namespace DestroyViruses
             var ad = TableAds.Get(adId);
             if (ad == null)
             {
-                Debug.LogError("播放广告失败，配置表不存在项：" + adId);
+                Log(adId, "广告", "播放", false, "播放广告失败，配置表不存在项");
                 return false;
             }
             Analytics.Event.ClickAd(ad.id, ad.unitID);
@@ -71,27 +74,31 @@ namespace DestroyViruses
 
         private void MoPubManager_OnSdkInitializedEvent(string obj)
         {
+            isInit = true;
             LoadPlugins();
             m_delayCacheRewardAll = AD_AUTO_LOAD_DELAY;
         }
 
         private void LoadPlugins()
         {
-            Debug.Log("加载 AD Plugins");
             LoadInterstitialPlugin();
             LoadRewardedVideosPlugin();
         }
 
-        private void CacheRequestAll()
+        private void RequestAd(string adId)
         {
-            foreach (var adUnit in GetAdUnits("RewardedVideo"))
+            var ad = TableAds.Get(adId);
+            if (ad != null)
             {
-                RequestRewardedVideo(adUnit);
-            }
+                if (ad.type == "RewardedVideo")
+                {
+                    RequestRewardedVideo(ad.unitID);
+                }
 
-            foreach (var adUnit in GetAdUnits("Interstitial"))
-            {
-                RequestInterstitial(adUnit);
+                if (ad.type == "Interstitial")
+                {
+                    RequestInterstitial(ad.unitID);
+                }
             }
         }
 
@@ -298,6 +305,8 @@ namespace DestroyViruses
             Debug.Log($"{action}{name} {end}: {unitID}");
         }
 
+        private float m_cacheAdCd = 0;
+        private List<string> m_needAutoCacheAds = new List<string>();
         protected override void OnUpdate()
         {
             base.OnUpdate();
@@ -306,8 +315,28 @@ namespace DestroyViruses
                 m_delayCacheRewardAll -= Time.deltaTime;
                 if (m_delayCacheRewardAll <= 0)
                 {
-                    CacheRequestAll();
+                    m_needAutoCacheAds.Clear();
+                    foreach (var t in TableAds.GetAll())
+                    {
+                        if (t.preloadPriority > 0)
+                            m_needAutoCacheAds.Add(t.id);
+                    }
+
+                    m_needAutoCacheAds.Sort((a, b) =>
+                    {
+                        var ta = TableAds.Get(a).preloadPriority;
+                        var tb = TableAds.Get(b).preloadPriority;
+                        return tb.CompareTo(ta);
+                    });
                 }
+            }
+
+            m_cacheAdCd -= Time.deltaTime;
+            if (m_cacheAdCd <= 0 && m_needAutoCacheAds.Count > 0)
+            {
+                m_cacheAdCd = AD_AUTO_LOAD_INTERAL;
+                RequestAd(m_needAutoCacheAds[0]);
+                m_needAutoCacheAds.RemoveAt(0);
             }
         }
     }

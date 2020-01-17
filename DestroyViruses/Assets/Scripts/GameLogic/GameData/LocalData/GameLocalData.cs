@@ -22,6 +22,10 @@ namespace DestroyViruses
             coinIncomeLevel = 1;
             lastTakeIncomeTicks = 0;
             lastEnergyTicks = 0;
+            lastTrialTicks = 0;
+            trialCount = 0;
+            trialWeaponID = 0;
+            isInTrial = false;
         }
 
         public int firePowerLevel;  //火力
@@ -39,5 +43,9 @@ namespace DestroyViruses
         public long lastTakeIncomeTicks;
         public int energy; // 体力值
         public long lastEnergyTicks; // 上次体力值变化时间
+        public long lastTrialTicks; // 上次武器试用时间
+        public int trialCount; // 武器试用次数
+        public int trialWeaponID; // 试用武器ID
+        public bool isInTrial; // 是否试用中
     }
 }

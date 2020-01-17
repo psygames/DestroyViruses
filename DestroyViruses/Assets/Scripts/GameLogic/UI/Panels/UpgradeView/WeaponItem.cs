@@ -12,6 +12,7 @@ namespace DestroyViruses
         public RadioGroup radioState;
         public GameObject selectedObj;
         public Text unlockText;
+        public GameObject trialTag;
 
         private int mId = -1;
 
@@ -25,10 +26,17 @@ namespace DestroyViruses
             selectedObj.SetActive(id == D.I.weaponId);
             radioState.Radio(D.I.unlockedGameLevel < table.unlockLevel ? 0 : D.I.weaponId == id ? 2 : 1);
             unlockText.text = LTKey.WEAPON_UNLOCK_ON_GAME_LEVEL_X.LT(table.unlockLevel - 1);
+            trialTag.SetActive(D.I.GetTrialWeaponID() == id && !D.I.IsInTrial());
         }
 
         private void OnClickSelf()
         {
+            if (D.I.GetTrialWeaponID() == mId && !D.I.IsInTrial())
+            {
+                AdProxy.Ins.ShowAd("weapon_trial");
+                D.I.TrialBegin();
+            }
+
             if (mId == D.I.weaponId)
             {
                 //D.I.ChangeWeapon(0);

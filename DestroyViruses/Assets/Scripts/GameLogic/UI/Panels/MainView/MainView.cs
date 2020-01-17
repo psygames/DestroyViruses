@@ -24,6 +24,8 @@ namespace DestroyViruses
         public GameObject dailySignObj;
         public GameObject bookObj;
 
+        public GameObject trialTag;
+
         private void Awake()
         {
             ButtonListenerInit();
@@ -103,6 +105,7 @@ namespace DestroyViruses
                 || !D.I.isCoinValueLevelMax && D.I.coin >= D.I.coinValueUpCost);
             dailySignObj.SetActive(D.I.unlockedGameLevel >= ConstTable.table.dailySignUnlockLevel);
             bookObj.SetActive(D.I.unlockedGameLevel >= ConstTable.table.bookUnlockLevel);
+            trialTag.SetActive(D.I.HasTrialWeapon() && !D.I.IsInTrial());
         }
 
         List<string> mOpenHints = new List<string>();

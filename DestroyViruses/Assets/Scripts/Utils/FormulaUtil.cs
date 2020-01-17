@@ -27,6 +27,8 @@ namespace DestroyViruses
 
         public static T RandomInArray<T>(T[] probArray)
         {
+            if (probArray.Length <= 0)
+                return default;
             return probArray[Random.Range(0, probArray.Length)];
         }
 
