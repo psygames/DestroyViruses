@@ -88,7 +88,7 @@ namespace DestroyViruses
             return 0;
         }
 
-        protected float GetUnitFill(int index)
+        protected virtual float GetUnitFill(int index)
         {
             if (GameUtil.isInHome || rechargeDuration <= 0)
                 return 1f;

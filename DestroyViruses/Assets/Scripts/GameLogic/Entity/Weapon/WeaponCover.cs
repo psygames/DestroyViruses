@@ -44,8 +44,9 @@ namespace DestroyViruses
             base.Reset(id, powerLevel, speedLevel);
             for (int i = 0; i < unitCount; i++)
             {
+                mUnitCD[i] = 0;
                 units[i].SetData(i, effects[1]);
-                units[i].SetReady(false);
+                units[i].SetReady(true);
             }
         }
 
@@ -77,6 +78,13 @@ namespace DestroyViruses
             {
                 units[i].SetFill(GetUnitFill(i));
             }
+        }
+
+        protected override float GetUnitFill(int index)
+        {
+            if (GameUtil.isInHome)
+                return 0f;
+            return base.GetUnitFill(index);
         }
 
         private void OnEnable()
