@@ -18,6 +18,7 @@ namespace DestroyViruses
 
         private WeaponCoverItem[] units;
         private RectTransform bindRoot;
+        private int shape = 0;
 
         private void Awake()
         {
@@ -42,10 +43,12 @@ namespace DestroyViruses
         public override void Reset(int id, int powerLevel, int speedLevel)
         {
             base.Reset(id, powerLevel, speedLevel);
+            this.shape = 0;
             for (int i = 0; i < unitCount; i++)
             {
                 mUnitCD[i] = 0;
                 units[i].SetData(i, effects[1]);
+                units[i].SetShape(shape);
                 units[i].SetReady(true);
             }
         }
@@ -68,14 +71,27 @@ namespace DestroyViruses
             ExplosionWeaponCoverItem.Create().Reset(units[index].position, table.explosionSound);
         }
 
+        private bool mLastIsTouchOn = false;
         protected override void Update()
         {
             base.Update();
+            if (mLastIsTouchOn && !GlobalData.isBattleTouchOn)
+            {
+                shape = (shape + 1) % 2;
+            }
+            mLastIsTouchOn = GlobalData.isBattleTouchOn;
+
+            if (shape == 0)
+                unitRoot.localRotation *= Quaternion.AngleAxis(effects[0] * Time.deltaTime * GlobalData.slowDownFactor, Vector3.forward);
+            else
+                unitRoot.localRotation = Quaternion.identity;
+
             unitRoot.anchoredPosition = bindRoot.GetUIPos();
             unitRoot.localScale = Aircraft.ins.rectTransform.localScale;
-            unitRoot.localRotation *= Quaternion.AngleAxis(effects[0] * Time.deltaTime * GlobalData.slowDownFactor, Vector3.forward);
+
             for (int i = 0; i < unitCount; i++)
             {
+                units[i].SetShape(shape);
                 units[i].SetFill(GetUnitFill(i));
             }
         }

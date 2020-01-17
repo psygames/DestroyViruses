@@ -13,11 +13,14 @@ namespace DestroyViruses
     {
         public Action<int, VirusBase> onCollider;
         public Vector2 position => rectTransform.GetUIPos();
+        public int shape { get; private set; }
 
         private new Collider2D collider2D;
         private RectTransform rectTransform;
         private bool isReady = false;
         private int index = -1;
+        private float fill = 0;
+        private float area = 0;
 
         private void Awake()
         {
@@ -28,15 +31,53 @@ namespace DestroyViruses
         public void SetData(int index, float area)
         {
             this.index = index;
-            float angle = (index % 9) / 9f * 360;
-            float dist = (index / 9) * 20 + area * 0.5f;
-            rectTransform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            rectTransform.anchoredPosition = rectTransform.localRotation * Vector3.up * dist;
+            this.area = area;
         }
 
         public void SetFill(float fill)
         {
-            rectTransform.localScale = new Vector3(fill, fill, 1);
+            this.fill = fill;
+        }
+
+
+        private Vector2 tarPos = Vector2.zero;
+        private Quaternion tarRot = Quaternion.identity;
+        public void SetShape(int shape)
+        {
+            this.shape = shape;
+            var groupDist = 20f;
+
+            if (shape == 0)
+            {
+                float angle = (index % 9) / 9f * 360;
+                float dist = (index / 9) * groupDist + area * 0.5f;
+                tarRot = Quaternion.AngleAxis(angle, Vector3.forward);
+                tarPos = tarRot * Vector3.up * dist;
+            }
+            else
+            {
+                if (index < 8)
+                {
+                    float angle = (index % 4) / 3f * 100 - 50;
+                    float dist = (index / 4) * groupDist + area * 0.5f;
+                    tarRot = Quaternion.AngleAxis(angle, Vector3.forward);
+                    tarPos = tarRot * Vector3.up * dist;
+                }
+                else
+                {
+                    float angle = ((index - 8) % 5) / 4f * 100 - 50;
+                    float dist = ((index - 8) / 5) * groupDist + area * 0.75f;
+                    tarRot = Quaternion.AngleAxis(angle, Vector3.forward);
+                    tarPos = tarRot * Vector3.up * dist;
+                }
+            }
+        }
+
+        private void Update()
+        {
+            rectTransform.localScale = Vector3.one * fill * fill;
+            rectTransform.localRotation = Quaternion.Slerp(rectTransform.localRotation, tarRot, Time.deltaTime * 15);
+            rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, tarPos * Mathf.Sqrt(fill), Time.deltaTime * 15);
         }
 
         public void SetReady(bool isReady)
