@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 1329384325
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d24df2d7ccac8de3f933f6f7e48e7dcd
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/Sounds/win.mp3
+Dependencies: []

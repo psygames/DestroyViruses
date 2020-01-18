@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 4245926732
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6a2cdf4ba6600de2c331531ca1097e43
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/Sounds/coin.mp3
+Dependencies: []
