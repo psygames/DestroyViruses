@@ -12,10 +12,12 @@ namespace DestroyViruses
     {
         public int id { get; private set; }
         public TableVirus table { get; private set; }
-        public int collectCount { get { return DataProxy.Ins.BookGetCollectCount(id); } }
-        public int needCount { get { return ConstTable.table.bookVirusCollectKillCount; } }
-        public bool isUnlock { get { return DataProxy.Ins.BookIsUnlock(id); } }
-        public bool isReceivable { get { return collectCount >= needCount; } }
+        public int collectCount { get { return D.I.BookGetCollectCount(id); } }
+        public int startCount { get { return D.I.GetBookCountBegin(id); } }
+        public int endCount { get { return D.I.GetBookCountEnd(id); } }
+        public float progress { get { return 1f * (collectCount - startCount) / (endCount - startCount); } }
+        public bool isUnlock { get { return D.I.BookIsUnlock(id); } }
+        public bool isReceivable { get { return collectCount >= endCount; } }
         public string name { get { return LT.Get(table.nameID); } }
         public string description { get { return LT.Get(table.descriptionID); } }
         public string tips { get { return LT.Get(table.tipsID); } }
@@ -69,13 +71,17 @@ namespace DestroyViruses
                         mVirus.SetColor(ColorIndex);
                     }
                 }
-
                 mLastPrefabPath = v.prefabPath;
             }
 
-            fill.value = 1f * v.collectCount / v.needCount;
+            if (mVirus != null)
+            {
+                mVirus.stunEffect.Stop(true);
+            }
+
+            fill.value = v.progress;
             receiveBtn.SetBtnGrey(!v.isReceivable);
-            diamondCount.text = "x" + ConstTable.table.bookVirusCollectRewardDiamond;
+            diamondCount.text = "x" + D.I.GetBookDiamond(v.id);
             title.text = v.name;
             tips.text = v.tips;
             description.text = v.description;

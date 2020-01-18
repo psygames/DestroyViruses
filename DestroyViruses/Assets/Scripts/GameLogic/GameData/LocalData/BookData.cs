@@ -8,6 +8,8 @@ namespace DestroyViruses
     {
         [SerializeField]
         private int[] virusCount = new int[100];
+        [SerializeField]
+        private int[] collectIndex = new int[100];
 
         public BookData()
         {
@@ -30,6 +32,16 @@ namespace DestroyViruses
         public int Get(int id)
         {
             return virusCount[id];
+        }
+
+        public void AddIndex(int id, int count)
+        {
+            collectIndex[id] += count;
+        }
+
+        public int GetIndex(int id)
+        {
+            return collectIndex[id];
         }
 
         public bool Exist(int id)

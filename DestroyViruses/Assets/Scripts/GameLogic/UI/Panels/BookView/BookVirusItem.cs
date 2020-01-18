@@ -43,7 +43,12 @@ namespace DestroyViruses
                 mLastPrefabPath = v.prefabPath;
             }
 
-            fill.value = 1f * v.collectCount / v.needCount;
+            if (mVirus != null)
+            {
+                mVirus.stunEffect.Stop(true);
+            }
+
+            fill.value = v.progress;
             if (v.isUnlock)
             {
                 if (v.isReceivable)

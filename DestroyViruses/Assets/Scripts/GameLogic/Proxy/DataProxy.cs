@@ -388,10 +388,36 @@ namespace DestroyViruses
                 bookData.Set(virusID, 0);
             }
 
-            if (bookData.Get(virusID) < ConstTable.table.bookVirusCollectKillCount)
-            {
-                bookData.Add(virusID, 1);
-            }
+            bookData.Add(virusID, 1);
+        }
+
+        public int GetBookCountBegin(int virusID)
+        {
+            if (IsBookCollectMax(virusID))
+                return 0;
+            if (bookData.GetIndex(virusID) <= 0)
+                return 0;
+            return ConstTable.table.bookVirusCollectRewardDiamond[bookData.GetIndex(virusID) - 1];
+        }
+
+        public int GetBookCountEnd(int virusID)
+        {
+            if (IsBookCollectMax(virusID))
+                return 0;
+            return ConstTable.table.bookVirusCollectKillCount[bookData.GetIndex(virusID)];
+        }
+
+        public int GetBookDiamond(int virusID)
+        {
+            if (IsBookCollectMax(virusID))
+                return 0;
+            return ConstTable.table.bookVirusCollectRewardDiamond[bookData.GetIndex(virusID)];
+        }
+
+        public bool IsBookCollectMax(int virusID)
+        {
+            return bookData.GetIndex(virusID) >= ConstTable.table.bookVirusCollectKillCount.Length
+                || bookData.GetIndex(virusID) >= ConstTable.table.bookVirusCollectRewardDiamond.Length;
         }
 
         public int BookGetCollectCount(int virusID)
@@ -411,14 +437,15 @@ namespace DestroyViruses
                 DispatchEvent(EventGameData.Action.Error, LTKey.VIRUS_LOCKED.LT());
                 return;
             }
-            if (bookData.Get(virusID) < ConstTable.table.bookVirusCollectKillCount)
+            if (bookData.Get(virusID) < GetBookCountEnd(virusID))
             {
                 DispatchEvent(EventGameData.Action.Error, LTKey.VIRUS_COLLECT_NOT_ENOUGH.LT());
                 return;
             }
 
-            bookData.Add(virusID, -ConstTable.table.bookVirusCollectKillCount);
-            AddDiamond(ConstTable.table.bookVirusCollectRewardDiamond);
+            bookData.Add(virusID, -GetBookCountEnd(virusID));
+            bookData.AddIndex(virusID, 1);
+            AddDiamond(GetBookDiamond(virusID));
 
             SaveLocalData();
             SaveBookData();

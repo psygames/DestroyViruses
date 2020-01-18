@@ -275,16 +275,16 @@ namespace DestroyViruses
 		public float aircraftHomeScale { get { return _aircraftHomeScale; } private set { _aircraftHomeScale = value; } }
 
 		/// <summary>
-		/// 每击杀n个病毒可收集一次图鉴奖励
+		/// 累计杀n个病毒可收集图鉴奖励
 		/// </summary>
-		private int _bookVirusCollectKillCount;
-		public int bookVirusCollectKillCount { get { return _bookVirusCollectKillCount; } private set { _bookVirusCollectKillCount = value; } }
+		private int[] _bookVirusCollectKillCount;
+		public int[] bookVirusCollectKillCount { get { return _bookVirusCollectKillCount; } private set { _bookVirusCollectKillCount = value; } }
 
 		/// <summary>
-		/// 收集图鉴奖励获得钻石数量
+		/// 累计杀n个病毒可收集图鉴奖励对应钻石数量
 		/// </summary>
-		private int _bookVirusCollectRewardDiamond;
-		public int bookVirusCollectRewardDiamond { get { return _bookVirusCollectRewardDiamond; } private set { _bookVirusCollectRewardDiamond = value; } }
+		private int[] _bookVirusCollectRewardDiamond;
+		public int[] bookVirusCollectRewardDiamond { get { return _bookVirusCollectRewardDiamond; } private set { _bookVirusCollectRewardDiamond = value; } }
 
 		/// <summary>
 		/// 最大武器满级试用次数（每日）
