@@ -1,0 +1,62 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UniRx;
+using DG.Tweening;
+using UnibusEvent;
+
+namespace DestroyViruses
+{
+    public class IncomeCollectView : ViewBase
+    {
+        public Text normal;
+        public Text rewards;
+
+        protected override void OnOpen()
+        {
+            base.OnOpen();
+            Refresh();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+            AudioManager.PlaySound("button_normal");
+        }
+
+        private void Refresh()
+        {
+            normal.text = D.I.coinIncomeTotal.KMB();
+            rewards.text = (D.I.coinIncomeTotal * 2).KMB();
+        }
+
+        private void OnClickReceive()
+        { 
+            PlayCollectEffect();
+            D.I.TakeIncomeCoins();
+            Close();
+        }
+
+        private void OnClickReward()
+        {
+            if (!AdProxy.Ins.ShowAd("offline_reward"))
+            {
+                Toast.Show(LTKey.AD_PLAY_FAILED.LT());
+                return;
+            }
+
+            PlayCollectEffect();
+            D.I.TakeIncomeCoins(2);
+            Close();
+        }
+
+        private void PlayCollectEffect()
+        {
+            var uiCoinCount = (int)(D.I.coinIncomeTotal / (ConstTable.table.coinIncomeRefreshCD * D.I.coinIncome));
+            var pos = GetComponent<RectTransform>().GetUIPos();
+            Coin.CreateGroup(pos, UIUtil.COIN_POS, uiCoinCount);
+            AudioManager.PlaySound("collect_coin");
+        }
+    }
+}

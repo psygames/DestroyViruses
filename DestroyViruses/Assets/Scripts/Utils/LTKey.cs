@@ -23,6 +23,8 @@
         public const string VIRUS_LOCKED = "VIRUS_LOCKED";
         public const string VIRUS_COLLECT_NOT_ENOUGH = "VIRUS_COLLECT_NOT_ENOUGH";
         public const string COLLECT_FINISH = "COLLECT_FINISH";
+        public const string PURCHASE_FAILED = "PURCHASE_FAILED";
+        public const string FREQUENT_OPERATION = "FREQUENT_OPERATION";
 
         public const string REMAIN_VIRUS_COUNT = "REMAIN_VIRUS_COUNT";
 

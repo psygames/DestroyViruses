@@ -11,13 +11,14 @@ namespace DestroyViruses
 {
     public class ToastView : ViewBase
     {
+        public static string _text = "";
         public Image bg;
         public Text text;
 
         protected override void OnOpen()
         {
             base.OnOpen();
-            text.text = Toast.text;
+            text.text = _text;
             rectTransform.DOKill();
             rectTransform.localScale = new Vector3(0, 1, 1);
             rectTransform.DOScaleX(1, 0.2f).OnComplete(() =>
@@ -32,10 +33,9 @@ namespace DestroyViruses
 
     public static class Toast
     {
-        public static string text = "";
         public static void Show(string text)
         {
-            Toast.text = text;
+            ToastView._text = text;
             UIManager.Open<ToastView>(UILayer.Top);
             AudioManager.PlaySound("button_grey");
         }

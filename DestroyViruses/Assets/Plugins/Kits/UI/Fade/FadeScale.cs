@@ -4,8 +4,8 @@ using DG.Tweening;
 [RequireComponent(typeof(RectTransform))]
 public class FadeScale : Fade, IFade
 {
-    public Vector2 from = Vector2.zero;
-    public Vector2 to = Vector2.zero;
+    public Vector3 from = Vector3.zero;
+    public Vector3 to = Vector3.one;
 
     protected override void DoFadeIn()
     {

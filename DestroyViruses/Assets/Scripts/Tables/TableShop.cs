@@ -8,7 +8,7 @@ namespace DestroyViruses
 	[Serializable]
     public class TableShopCollection
     {
-        private Dictionary<string, TableShop> mDict = null;
+        private Dictionary<int, TableShop> mDict = null;
 
         [NonSerialized]
         private static TableShopCollection _ins = null;
@@ -24,7 +24,7 @@ namespace DestroyViruses
             }
         }
 
-		public TableShop Get(string id)
+		public TableShop Get(int id)
         {
             TableShop data = null;
 			_ins.mDict.TryGetValue(id, out data);
@@ -109,8 +109,8 @@ namespace DestroyViruses
 		/// <summary>
 		/// ID
 		/// </summary>
-		private string _id;
-		public string id { get { return _id; } private set { _id = value; } }
+		private int _id;
+		public int id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
 		/// <para>描述</para><para>（策划用）</para>
@@ -137,6 +137,12 @@ namespace DestroyViruses
 		public string nameID { get { return _nameID; } private set { _nameID = value; } }
 
 		/// <summary>
+		/// 价格对应多语言
+		/// </summary>
+		private string _priceID;
+		public string priceID { get { return _priceID; } private set { _priceID = value; } }
+
+		/// <summary>
 		/// 描述多语言
 		/// </summary>
 		private string _descriptionID;
@@ -161,7 +167,7 @@ namespace DestroyViruses
 		public int extra { get { return _extra; } private set { _extra = value; } }
 
 
-		public static TableShop Get(string id)
+		public static TableShop Get(int id)
 		{
 			return TableShopCollection.Instance.Get(id);
 		}

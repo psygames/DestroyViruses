@@ -36,12 +36,14 @@ namespace DestroyViruses
             // #1
             progress += step;
             message = "Initialize Data...";
+            yield return null;
             ProxyManager.Subscribe<DataProxy>();
             yield return null;
 
             // #2
             progress += step;
             message = "Initialize Analytics...";
+            yield return null;
             ProxyManager.Subscribe<AnalyticsProxy>();
             yield return null;
             while (!AnalyticsProxy.Ins.isInit)
@@ -50,6 +52,7 @@ namespace DestroyViruses
             // #3
             progress += step;
             message = "Initialize Advertisement...";
+            yield return null;
             ProxyManager.Subscribe<AdProxy>();
             yield return null;
             while (!AdProxy.Ins.isInit)
@@ -57,22 +60,35 @@ namespace DestroyViruses
 
             // #4
             progress += step;
-            message = "Initialize Settings...";
-            Application.targetFrameRate = ConstTable.table.frameRate;
+            message = "Initialize IAP...";
             yield return null;
+            IAPManager.Instance.Init();
+            yield return null;
+            // while (!IAPManager.Instance.isInit)
+            //    yield return null;
 
             // #5
             progress += step;
+            message = "Initialize Settings...";
+            yield return null;
+            Application.targetFrameRate = ConstTable.table.frameRate;
+            yield return null;
+
+            // #6
+            progress += step;
 
             message = "Preload Resources(Atlas)...";
+            yield return null;
             UIUtil.LoadAtlasAll();
             yield return null;
 
             message = "Preload Resources(Entities)...";
+            yield return null;
             EntityManager.WarmPoolAll();
             yield return null;
 
             message = "Preload Resources(Views)...";
+            yield return null;
             UIManager.Load<BattleView>();
             yield return null;
 

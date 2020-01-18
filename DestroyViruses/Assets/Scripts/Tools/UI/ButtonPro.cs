@@ -112,7 +112,7 @@ namespace DestroyViruses
             if (isMax) SetText(LT.Get("LEVEL_MAX"));
             else SetText(costCoin.KMB());
             SetBtnGrey(isMax || costCoin > D.I.coin);
-            SetTextRed(costCoin > D.I.coin);
+            SetTextRed(!isMax && costCoin > D.I.coin);
         }
     }
 }

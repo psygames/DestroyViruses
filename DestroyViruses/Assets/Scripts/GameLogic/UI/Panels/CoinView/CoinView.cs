@@ -13,6 +13,7 @@ namespace DestroyViruses
     {
         public FadeGroup fadeGroup;
         public CoinLevelPanel levelPanel;
+        public ContentGroup shopGoods;
 
         protected override void OnOpen()
         {
@@ -28,6 +29,11 @@ namespace DestroyViruses
         private void RefreshUI()
         {
             levelPanel.SetData();
+            shopGoods.SetData<ShopGoodsItem, TableShop>(TableShop.GetAll()
+            , (index, item, _data) =>
+            {
+                item.SetData(_data.id);
+            });
         }
 
         private void OnEventGameData(EventGameData evt)

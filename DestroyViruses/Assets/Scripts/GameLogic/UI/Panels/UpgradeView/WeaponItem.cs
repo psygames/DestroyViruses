@@ -33,8 +33,14 @@ namespace DestroyViruses
         {
             if (D.I.GetTrialWeaponID() == mId && !D.I.IsInTrial())
             {
-                AdProxy.Ins.ShowAd("weapon_trial");
-                D.I.TrialBegin();
+                if (AdProxy.Ins.ShowAd("weapon_trial"))
+                {
+                    D.I.TrialBegin();
+                }
+                else
+                {
+                    Toast.Show(LTKey.AD_PLAY_FAILED.LT());
+                }
             }
 
             if (mId == D.I.weaponId)

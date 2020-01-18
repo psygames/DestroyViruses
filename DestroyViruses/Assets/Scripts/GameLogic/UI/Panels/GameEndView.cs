@@ -10,34 +10,32 @@ namespace DestroyViruses
 {
     public class GameEndView : ViewBase
     {
-        public RectTransform coinTransform;
-        public Button receiveBtns;
         public Text coinText;
         public RadioObjects winLoseRadio;
-        public Button gameEndBonusBtn;
-
-        private void Awake()
-        {
-            receiveBtns.OnClickAsObservable().Subscribe(_ => OnClickReceive());
-            gameEndBonusBtn.OnClick(OnClickBonus);
-        }
+        public GameObject mysticalBonus;
 
         private void OnClickReceive()
         {
-            D.I.GameEndReceive(1);
+            D.I.GameEndReceive();
             GameEnd();
         }
 
         private void OnClickBonus()
         {
-            if (!AdProxy.Ins.ShowAd("revive"))
+            if (!AdProxy.Ins.ShowAd("triple_reward"))
             {
                 Toast.Show(LTKey.AD_PLAY_FAILED.LT());
                 return;
             }
 
-            D.I.GameEndReceive(Random.Range(2, 10));
+            D.I.GameEndReceive(3);
             GameEnd();
+        }
+
+        private void OnClickMysticalBonus()
+        {
+            Close();
+            UIManager.Open<DrawBenchView>(UILayer.Top);
         }
 
         private void GameEnd()
@@ -47,7 +45,7 @@ namespace DestroyViruses
             // 注意放到最后
             if (!Mathf.Approximately(D.I.battleGetCoin, 0))
             {
-                Coin.CreateGroup(coinTransform.GetUIPos(), UIUtil.COIN_POS, 20);
+                Coin.CreateGroup(UIUtil.center + Vector2.down * 100, UIUtil.COIN_POS, 20);
             }
         }
 
@@ -56,8 +54,7 @@ namespace DestroyViruses
             base.OnOpen();
             coinText.text = D.I.battleGetCoin.KMB();
             winLoseRadio.Radio(!D.I.gameEndWin);
-            mRectTransform.localScale = Vector3.zero;
-            mRectTransform.DOScale(1, 0.25f).SetDelay(1f);
+            mysticalBonus.SetActive(Random.value <= ConstTable.table.mysticalBonusProbability);
 
             if (D.I.gameEndWin)
             {

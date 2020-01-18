@@ -288,9 +288,9 @@ namespace DestroyViruses
         #endregion
 
         #region Coin Value & Income
-        public void TakeIncomeCoins()
+        public void TakeIncomeCoins(int multiple = 1)
         {
-            var gain = coinIncomeTotal;
+            var gain = coinIncomeTotal * multiple;
             localData.lastTakeIncomeTicks = DateTime.Now.Ticks;
             AddCoin(gain);
             SaveLocalData();
@@ -299,9 +299,9 @@ namespace DestroyViruses
             Analytics.Event.CoinIncomeTake(gain);
         }
 
-        public void GameEndReceive(float multiple)
+        public void GameEndReceive(int multiple = 1)
         {
-            AddCoin(D.I.battleGetCoin);
+            AddCoin(D.I.battleGetCoin * multiple);
         }
 
         public void CoinIncomeLevelUp()
@@ -428,6 +428,12 @@ namespace DestroyViruses
         {
             return bookData.GetIndex(virusID) >= ConstTable.table.bookVirusCollectKillCount.Length
                 || bookData.GetIndex(virusID) >= ConstTable.table.bookVirusCollectRewardDiamond.Length;
+        }
+
+        public bool IsBookCollectNeedPlayAd(int virusID)
+        {
+            return bookData.GetIndex(virusID) < ConstTable.table.bookVirusCollectNeedPlayAD.Length
+                && ConstTable.table.bookVirusCollectNeedPlayAD[bookData.GetIndex(virusID)] > 0;
         }
 
         public int BookGetCollectCount(int virusID)
@@ -704,6 +710,23 @@ namespace DestroyViruses
             Analytics.UserProperty.Set("weapon_id", weaponId);
         }
         #endregion
+
+        #region PURCHASE
+        public void OnPurchaseSuccess(int shopGoodsID)
+        {
+            var t = TableShop.Get(shopGoodsID);
+            AddDiamond(t.diamonds + t.extra);
+            SaveLocalData();
+            DispatchEvent(EventGameData.Action.DataChange);
+        }
+
+        public void Purchase(int shopGoodsID)
+        {
+            var t = TableShop.Get(shopGoodsID);
+            IAPManager.Instance.Purchase(t.productID);
+        }
+        #endregion
+
 
         private void SaveLocalData()
         {

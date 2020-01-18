@@ -239,6 +239,12 @@ namespace DestroyViruses
 		public float hitVirusShakeCD { get { return _hitVirusShakeCD; } private set { _hitVirusShakeCD = value; } }
 
 		/// <summary>
+		/// 神秘大奖出现概率
+		/// </summary>
+		private float _mysticalBonusProbability;
+		public float mysticalBonusProbability { get { return _mysticalBonusProbability; } private set { _mysticalBonusProbability = value; } }
+
+		/// <summary>
 		/// 每日签到解锁关卡
 		/// </summary>
 		private int _dailySignUnlockLevel;
@@ -285,6 +291,12 @@ namespace DestroyViruses
 		/// </summary>
 		private int[] _bookVirusCollectRewardDiamond;
 		public int[] bookVirusCollectRewardDiamond { get { return _bookVirusCollectRewardDiamond; } private set { _bookVirusCollectRewardDiamond = value; } }
+
+		/// <summary>
+		/// 累计杀n个病毒可收集图鉴奖励对应是否需要播放广告
+		/// </summary>
+		private int[] _bookVirusCollectNeedPlayAD;
+		public int[] bookVirusCollectNeedPlayAD { get { return _bookVirusCollectNeedPlayAD; } private set { _bookVirusCollectNeedPlayAD = value; } }
 
 		/// <summary>
 		/// 最大武器满级试用次数（每日）

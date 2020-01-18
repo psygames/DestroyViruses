@@ -16,14 +16,21 @@ namespace DestroyViruses
         {
             receiveBtn?.OnClick(() =>
             {
-                var uiCoinCount = (int)(D.I.coinIncomeTotal / (ConstTable.table.coinIncomeRefreshCD * D.I.coinIncome));
-                if (uiCoinCount > 0)
+                if (D.I.isCoinIncomePoolFull)
                 {
-                    var pos = GetComponent<RectTransform>().GetUIPos();
-                    Coin.CreateGroup(pos, UIUtil.COIN_POS, uiCoinCount);
-                    D.I.TakeIncomeCoins();
-                    mRefreshCD = 0;
-                    AudioManager.PlaySound("collect_coin");
+                    UIManager.Open<IncomeCollectView>(UILayer.Top);
+                }
+                else
+                {
+                    var uiCoinCount = (int)(D.I.coinIncomeTotal / (ConstTable.table.coinIncomeRefreshCD * D.I.coinIncome));
+                    if (uiCoinCount > 0)
+                    {
+                        var pos = GetComponent<RectTransform>().GetUIPos();
+                        Coin.CreateGroup(pos, UIUtil.COIN_POS, uiCoinCount);
+                        D.I.TakeIncomeCoins();
+                        mRefreshCD = 0;
+                        AudioManager.PlaySound("collect_coin");
+                    }
                 }
             });
         }
@@ -37,14 +44,23 @@ namespace DestroyViruses
         private void Update()
         {
             mRefreshCD = this.UpdateCD(mRefreshCD);
-            imageFill.fillAmount = 1f - mRefreshCD / ConstTable.table.coinIncomeRefreshCD;
-            if (mRefreshCD <= 0)
+
+            if (D.I.isCoinIncomePoolFull)
             {
-                mRefreshCD = ConstTable.table.coinIncomeRefreshCD;
-                if (D.I.coinIncomeTotal < 1)
-                    countText.text = "0";
-                else
-                    countText.text = D.I.coinIncomeTotal.KMB();
+                imageFill.fillAmount = 1f;
+                countText.text = D.I.coinIncomeTotal.KMB();
+            }
+            else
+            {
+                imageFill.fillAmount = 1f - mRefreshCD / ConstTable.table.coinIncomeRefreshCD;
+                if (mRefreshCD <= 0)
+                {
+                    mRefreshCD = ConstTable.table.coinIncomeRefreshCD;
+                    if (D.I.coinIncomeTotal < 1)
+                        countText.text = "0";
+                    else
+                        countText.text = D.I.coinIncomeTotal.KMB();
+                }
             }
         }
     }

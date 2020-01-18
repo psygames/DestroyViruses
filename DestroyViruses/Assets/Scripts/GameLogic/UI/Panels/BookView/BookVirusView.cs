@@ -16,6 +16,7 @@ namespace DestroyViruses
         public int startCount { get { return D.I.GetBookCountBegin(id); } }
         public int endCount { get { return D.I.GetBookCountEnd(id); } }
         public bool isMax { get { return D.I.IsBookCollectMax(id); } }
+        public bool needPlayAd { get { return D.I.IsBookCollectNeedPlayAd(id); } }
         public float progress { get { return 1f * (collectCount - startCount) / (endCount - startCount); } }
         public bool isUnlock { get { return D.I.BookIsUnlock(id); } }
         public bool isReceivable { get { return !isMax && collectCount >= endCount; } }
@@ -41,6 +42,7 @@ namespace DestroyViruses
         public Transform modelRoot;
         public Slider fill;
         public Text fillText;
+        public RadioObjects adReceiveRadio;
 
         public static int VirusID { get; set; }
         public static int ColorIndex { get; set; }
@@ -96,6 +98,7 @@ namespace DestroyViruses
             title.text = v.name;
             tips.text = v.tips;
             description.text = v.description;
+            adReceiveRadio.Radio(v.needPlayAd);
         }
 
         private void OnEventGameData(EventGameData evt)
@@ -114,8 +117,23 @@ namespace DestroyViruses
             }
             else if (v.isReceivable)
             {
-                D.I.BookCollect(VirusID);
-                AudioManager.PlaySound("collect_coin");
+                if (v.needPlayAd)
+                {
+                    if (AdProxy.Ins.ShowAd("book_reward"))
+                    {
+                        D.I.BookCollect(v.id);
+                        AudioManager.PlaySound("collect_coin");
+                    }
+                    else
+                    {
+                        Toast.Show(LTKey.AD_PLAY_FAILED.LT());
+                    }
+                }
+                else
+                {
+                    D.I.BookCollect(v.id);
+                    AudioManager.PlaySound("collect_coin");
+                }
             }
             else
             {

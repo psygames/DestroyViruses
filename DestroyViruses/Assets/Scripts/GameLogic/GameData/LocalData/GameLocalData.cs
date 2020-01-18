@@ -28,24 +28,24 @@ namespace DestroyViruses
             isInTrial = false;
         }
 
-        public int firePowerLevel;  //火力
-        public int fireSpeedLevel;  //射速
-        public int gameLevel;       //关卡
-        public int unlockedGameLevel; //已解锁关卡
+        public int firePowerLevel;      //火力
+        public int fireSpeedLevel;      //射速
+        public int gameLevel;           //关卡
+        public int unlockedGameLevel;   //已解锁关卡
         public float coin;
         public float diamond;
-        public int streak;          //连胜/败
-        public int signDays;        //签到天数
-        public int weaponId;        //选择的副武器，0表示没有
-        public long lastSignDateTicks; //上次签到时间
+        public int streak;              //连胜/败
+        public int signDays;            //签到天数
+        public int weaponId;            //选择的副武器，0表示没有
+        public long lastSignDateTicks;  //上次签到时间
         public int coinValueLevel;
         public int coinIncomeLevel;
-        public long lastTakeIncomeTicks;
-        public int energy; // 体力值
-        public long lastEnergyTicks; // 上次体力值变化时间
-        public long lastTrialTicks; // 上次武器试用时间
-        public int trialCount; // 武器试用次数
-        public int trialWeaponID; // 试用武器ID
-        public bool isInTrial; // 是否试用中
+        public long lastTakeIncomeTicks;    //上次领取收益时间
+        public int energy;                  //体力值
+        public long lastEnergyTicks;        //上次体力值变化时间
+        public long lastTrialTicks;         //上次武器试用时间
+        public int trialCount;              //武器试用次数
+        public int trialWeaponID;           //试用武器ID
+        public bool isInTrial;              //是否试用中
     }
 }
