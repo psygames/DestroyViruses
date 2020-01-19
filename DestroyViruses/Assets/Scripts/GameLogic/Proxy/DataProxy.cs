@@ -207,7 +207,7 @@ namespace DestroyViruses
                 AddEnergy(ConstTable.table.energyRecoverWin);
             }
             // trial end
-            if (localData.trialWeaponID != 0)
+            if (localData.trialWeaponID != 0 || localData.isInTrial)
             {
                 TrialEnd();
             }
@@ -630,6 +630,8 @@ namespace DestroyViruses
                 return;
             localData.isInTrial = true;
             SaveLocalData();
+
+            DispatchEvent(EventGameData.Action.DataChange);
         }
 
         public void TrialEnd()
@@ -662,7 +664,7 @@ namespace DestroyViruses
             {
                 return 0;
             }
-            if (localData.weaponId == 0 && streak < 0)
+            if (localData.trialWeaponID == 0 && streak < 0)
             {
                 var _weapons = new List<int>();
                 foreach (var w in TableWeapon.GetAll())
@@ -675,11 +677,11 @@ namespace DestroyViruses
                 var _id = FormulaUtil.RandomInArray(_weapons.ToArray());
                 if (_id != 0)
                 {
-                    localData.weaponId = _id;
+                    localData.trialWeaponID = _id;
                     SaveLocalData();
                 }
             }
-            return localData.weaponId;
+            return localData.trialWeaponID;
         }
 
         public bool IsInTrial()

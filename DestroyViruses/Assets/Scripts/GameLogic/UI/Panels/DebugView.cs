@@ -32,6 +32,8 @@ namespace DestroyViruses
             {
                 GameLocalData.Instance.gameLevel = level;
                 GameLocalData.Instance.unlockedGameLevel = level;
+                if (GameLocalData.Instance.weaponId == 0 && level >= ConstTable.table.weaponUnlockLevel)
+                    GameLocalData.Instance.weaponId = 1;
                 GameLocalData.Instance.Save();
                 Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
             }
