@@ -1,5 +1,5 @@
 manifest:b0721149b80ca62ef88eaaa27b82c981
-prefabs:6422f0dbc8d16ebdd4993f5ebc8e2dd0
+prefabs:ebf05b707d60cf1a2f017418475c2e57
 sounds/bgm1:0db23cab1756cc35b74c68674fa50b5c
 sounds/bgm2:bb6458967b481ba2ff02fe24926c2e49
 sounds/bgm3:8ac3623234c79618a11f18bc48f8dd1f
@@ -19,7 +19,7 @@ sounds/hit:4bd9fc2002ea49c14521e6e23385dd7a
 sounds/level_up:2b7dec1dbf28c85860d69dfbb1c86b03
 sounds/revive_count_down:f70a81633ab6904555643d68bc58586e
 sounds/win:d24df2d7ccac8de3f933f6f7e48e7dcd
-spriteatlas/total:d52ab5256e22a7f8d871266c674a9e7b
+spriteatlas/total:a3672b7edc552bb951f019c26b2452c3
 tables/tableads:30d7654549745257650591da0d63d442
 tables/tableaircraft:b52753f96c51cfe614aeebe46a2f3d74
 tables/tablebuff:067f39ffeba32c79cc83b16faa660f55

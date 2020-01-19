@@ -28,8 +28,24 @@ namespace DestroyViruses
             taskFinished = true;
         }
 
+        private Dictionary<string, float> mTaskWait = new Dictionary<string, float>();
+        private bool WaitTimeout(string key, float timeout = 2, bool enableLog = true)
+        {
+            if (!mTaskWait.ContainsKey(key))
+            {
+                mTaskWait.Add(key, Time.time);
+                return false;
+            }
+            bool isTimeout = Time.time - mTaskWait[key] > timeout;
+            if (isTimeout && enableLog)
+                Debug.LogError($"{key} Timeout.");
+            return isTimeout;
+        }
+
         IEnumerator TaskAll()
         {
+            mTaskWait.Clear();
+
             // #0 Delay One Frame
             yield return null;
 
@@ -46,7 +62,7 @@ namespace DestroyViruses
             yield return null;
             ProxyManager.Subscribe<AnalyticsProxy>();
             yield return null;
-            while (!AnalyticsProxy.Ins.isInit)
+            while (!AnalyticsProxy.Ins.isInit && !WaitTimeout("Analytics"))
                 yield return null;
 
             // #3
@@ -55,17 +71,17 @@ namespace DestroyViruses
             yield return null;
             ProxyManager.Subscribe<AdProxy>();
             yield return null;
-            while (!AdProxy.Ins.isInit)
+            while (!AdProxy.Ins.isInit && !WaitTimeout("Advertisement"))
                 yield return null;
 
             // #4
             progress += step;
-            message = "Initialize IAP...";
+            message = "Initialize In-App Purchase...";
             yield return null;
             IAPManager.Instance.Init();
             yield return null;
-            // while (!IAPManager.Instance.isInit)
-            //    yield return null;
+            while (!IAPManager.Instance.isInit && !WaitTimeout("In-App Purchase"))
+                yield return null;
 
             // #5
             progress += step;
@@ -131,6 +147,7 @@ namespace DestroyViruses
             yield return null;
             TableWeaponPowerLevelCollection.Instance.GetAll();
             TableWeaponSpeedLevelCollection.Instance.GetAll();
+            TableShopCollection.Instance.GetAll();
 
             yield return null;
 

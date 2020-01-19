@@ -40,6 +40,7 @@ namespace DestroyViruses
             mQuickHotUpdateList.Add(typeof(TableGameLevelCollection));
             mQuickHotUpdateList.Add(typeof(TableGameWaveCollection));
             mQuickHotUpdateList.Add(typeof(TableLanguageCollection));
+            mQuickHotUpdateList.Add(typeof(TableShopCollection));
             mQuickHotUpdateList.Add(typeof(TableVirusCollection));
             mQuickHotUpdateList.Add(typeof(TableWeaponCollection));
             mQuickHotUpdateList.Add(typeof(TableWeaponPowerLevelCollection));

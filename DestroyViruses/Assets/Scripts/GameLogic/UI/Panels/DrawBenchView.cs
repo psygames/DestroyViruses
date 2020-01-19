@@ -14,6 +14,7 @@ namespace DestroyViruses
         public RectTransform stickDot;
         public RectTransform stick;
         public ButtonPro receiveBtn;
+        public ButtonPro closeBtn;
 
         private bool mNumLoopStart;
         private float maxSpeed = 5000;
@@ -27,6 +28,8 @@ namespace DestroyViruses
         {
             base.OnOpen();
 
+            receiveBtn.gameObject.SetActive(true);
+            closeBtn.gameObject.SetActive(false);
             numLoop.anchoredPosition = Vector2.zero;
             stickDot.anchoredPosition = new Vector2(0, 175);
             stick.localScale = Vector3.one;
@@ -45,12 +48,20 @@ namespace DestroyViruses
 
             if (!AdProxy.Ins.ShowAd("mystical_reward"))
             {
+                receiveBtn.gameObject.SetActive(false);
+                closeBtn.gameObject.SetActive(true);
                 Toast.Show(LTKey.AD_PLAY_FAILED.LT());
                 return;
             }
 
             receiveBtn.SetBtnGrey(true);
             AnimaStart();
+        }
+
+        private void OnClickClose()
+        {
+            Close();
+            UIManager.Open<GameEndView>(UILayer.Top);
         }
 
         private void AnimaStart()

@@ -11,6 +11,7 @@ namespace DestroyViruses
     public class AnalyticsProxy : ProxyBase<AnalyticsProxy>
     {
         public bool isInit { get; private set; }
+        public bool isInitFailed { get; private set; }
         protected override void OnInit()
         {
             base.OnInit();
@@ -23,6 +24,7 @@ namespace DestroyViruses
                 }
                 else
                 {
+                    isInitFailed = true;
                     Debug.LogError(string.Format("Could not resolve all Firebase dependencies: {0}", dependencyStatus));
                 }
             });
@@ -49,7 +51,7 @@ namespace DestroyViruses
         {
             if (!isInit)
             {
-                LogError($"LogEvent [{name}] failed cause sdk not initialized.");
+                LogWarning($"SetUserProperty [{name}] failed cause sdk not initialized.");
                 return;
             }
             FirebaseAnalytics.SetUserProperty(name, property);
@@ -59,7 +61,7 @@ namespace DestroyViruses
         {
             if (!isInit)
             {
-                LogError($"LogEvent [{name}] failed cause sdk not initialized.");
+                LogWarning($"SetUserProperty [{name}] failed cause sdk not initialized.");
                 return;
             }
             FirebaseAnalytics.SetUserProperty(name, obj.ToString());
@@ -74,7 +76,7 @@ namespace DestroyViruses
         {
             if (!isInit)
             {
-                LogError($"LogEvent [{name}] failed cause sdk not initialized.");
+                LogWarning($"LogEvent [{name}] failed cause sdk not initialized.");
                 return;
             }
             FirebaseAnalytics.LogEvent(name);
@@ -84,7 +86,7 @@ namespace DestroyViruses
         {
             if (!isInit)
             {
-                LogError($"LogEvent [{name}] failed cause sdk not initialized.");
+                LogWarning($"LogEvent [{name}] failed cause sdk not initialized.");
                 return;
             }
             FirebaseAnalytics.LogEvent(name, parameterName, parameterValue);
@@ -94,7 +96,7 @@ namespace DestroyViruses
         {
             if (!isInit)
             {
-                LogError($"LogEvent [{name}] failed cause sdk not initialized.");
+                LogWarning($"LogEvent [{name}] failed cause sdk not initialized.");
                 return;
             }
             FirebaseAnalytics.LogEvent(name, parameterName, parameterValue);
@@ -104,7 +106,7 @@ namespace DestroyViruses
         {
             if (!isInit)
             {
-                LogError($"LogEvent [{name}] failed cause sdk not initialized.");
+                LogWarning($"LogEvent [{name}] failed cause sdk not initialized.");
                 return;
             }
             FirebaseAnalytics.LogEvent(name, parameterName, parameterValue);
@@ -114,7 +116,7 @@ namespace DestroyViruses
         {
             if (!isInit)
             {
-                LogError($"LogEvent [{name}] failed cause sdk not initialized.");
+                LogWarning($"LogEvent [{name}] failed cause sdk not initialized.");
                 return;
             }
             FirebaseAnalytics.LogEvent(name, parameterName, parameterValue);
@@ -133,7 +135,7 @@ namespace DestroyViruses
         {
             if (!isInit)
             {
-                LogError($"LogEvent [{name}] failed cause sdk not initialized.");
+                LogWarning($"LogEvent [{name}] failed cause sdk not initialized.");
                 return;
             }
             FirebaseAnalytics.LogEvent(name, parameters);
@@ -141,9 +143,9 @@ namespace DestroyViruses
         #endregion
 
 
-        private void LogError(string msg)
+        private void LogWarning(string msg)
         {
-            Debug.LogError(msg);
+            // Debug.LogWarning(msg);
         }
     }
 
@@ -168,28 +170,39 @@ namespace DestroyViruses
 
         public static class Event
         {
-            public static void AppOpen()
-            {
-                proxy.LogEvent(FirebaseAnalytics.EventAppOpen);
-            }
-
             public static void Login(string uuid)
             {
+                if(!proxy.isInit)
+                {
+                    return;
+                }
                 proxy.LogEvent(FirebaseAnalytics.EventLogin, "uuid", uuid);
             }
 
             public static void Upgrade(string name, int level)
             {
+                if (!proxy.isInit)
+                {
+                    return;
+                }
                 proxy.LogEvent(name + "_upgrade", FirebaseAnalytics.ParameterLevel, level);
             }
 
             public static void GameBegin(int level)
             {
+                if (!proxy.isInit)
+                {
+                    return;
+                }
                 proxy.LogEvent(FirebaseAnalytics.EventLevelStart, "game_level", level);
             }
 
             public static void GameEnd(int level, bool finish, float progress)
             {
+                if (!proxy.isInit)
+                {
+                    return;
+                }
                 proxy.LogEvent(FirebaseAnalytics.EventLevelEnd,
                     new Parameter("game_level", level),
                     new Parameter("finish", finish ? 1 : 0),
@@ -199,6 +212,10 @@ namespace DestroyViruses
 
             public static void ClickAd(string adName, string adUnit)
             {
+                if (!proxy.isInit)
+                {
+                    return;
+                }
                 proxy.LogEvent("advertising",
                     new Parameter("name", adName),
                     new Parameter("unitID", adUnit)
@@ -207,6 +224,10 @@ namespace DestroyViruses
 
             public static void DailySign(int days, float multiple)
             {
+                if (!proxy.isInit)
+                {
+                    return;
+                }
                 proxy.LogEvent("daily_sign",
                     new Parameter("days", days),
                     new Parameter("multiple", multiple)
@@ -215,6 +236,10 @@ namespace DestroyViruses
 
             public static void CoinIncomeTake(float quantity)
             {
+                if (!proxy.isInit)
+                {
+                    return;
+                }
                 proxy.LogEvent("coin_income_take",
                     new Parameter(FirebaseAnalytics.ParameterQuantity, quantity.KMB())
                     );
@@ -222,6 +247,10 @@ namespace DestroyViruses
 
             public static void UnlockVirus(int virusID)
             {
+                if (!proxy.isInit)
+                {
+                    return;
+                }
                 proxy.LogEvent("unlock_virus",
                     new Parameter("virus_id", virusID)
                     );
@@ -229,6 +258,10 @@ namespace DestroyViruses
 
             public static void Exchange(float diamond, float coin)
             {
+                if (!proxy.isInit)
+                {
+                    return;
+                }
                 proxy.LogEvent("coin_exchange",
                     new Parameter("diamond", diamond.KMB()),
                     new Parameter("coin", coin.KMB())
@@ -237,6 +270,10 @@ namespace DestroyViruses
 
             public static void ChangeWeapon(int weaponId)
             {
+                if (!proxy.isInit)
+                {
+                    return;
+                }
                 proxy.LogEvent("change_weapon",
                     new Parameter("weapon_id", weaponId)
                     );
