@@ -7,7 +7,7 @@ namespace DestroyViruses
         {
             get
             {
-                return TableConst.Get("default");
+                return TableConst.Get(GameLocalData.Instance.lastConstGroup);
             }
         }
     }

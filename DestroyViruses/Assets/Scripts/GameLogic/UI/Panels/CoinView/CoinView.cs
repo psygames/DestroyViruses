@@ -35,7 +35,7 @@ namespace DestroyViruses
             {
                 item.SetData(_data.id);
             });
-            vipBtn.SetBtnGrey(!D.I.IsVip());
+            // vipBtn.SetBtnGrey(!D.I.IsVip());
         }
 
         private void OnEventGameData(EventGameData evt)

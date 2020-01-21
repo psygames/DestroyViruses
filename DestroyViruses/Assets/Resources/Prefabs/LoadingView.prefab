@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 1869014588906402163}
   - component: {fileID: 1869014588906402164}
   - component: {fileID: 1869014588906402165}
+  - component: {fileID: 8041076641175774008}
   - component: {fileID: 1869014588906402162}
   m_Layer: 5
   m_Name: Text
@@ -233,8 +234,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 1.02}
+  m_SizeDelta: {x: 0, y: -9.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1869014588906402164
 CanvasRenderer:
@@ -276,6 +277,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: loading...
+--- !u!114 &8041076641175774008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869014588906402160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &1869014588906402162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
+  m_EffectDistance: {x: 2, y: -4}
   m_UseGraphicAlpha: 1
 --- !u!1 &1869014589311633777
 GameObject:
@@ -304,7 +320,7 @@ GameObject:
   - component: {fileID: 2601170297412403009}
   - component: {fileID: 4365633325392137105}
   m_Layer: 5
-  m_Name: LoadingPanel
+  m_Name: LoadingView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -370,11 +386,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enableFadeIn: 1
   onEnableFadeIn: 1
+  fadeInReset: 1
   fadeInDelay: 0
-  fadeInDuration: 0.3
+  fadeInDuration: 0.15
   fadeInMethod: 2
   enableFadeOut: 0
   outSetInactive: 1
+  fadeOutReset: 0
   fadeOutDelay: 0
   fadeOutDuration: 0.3
   fadeOutMethod: 3

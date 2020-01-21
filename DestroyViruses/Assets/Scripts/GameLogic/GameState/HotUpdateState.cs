@@ -57,6 +57,8 @@ namespace DestroyViruses
         {
             progress = 0;
             UIManager.Open<LoadingView>();
+            message = LT.Get("READY_UPDATE_RESOURCE");
+            progress = 0.05f;
             updater.Init();
             InitQuickHotUpdate();
             base.OnEnter();

@@ -29,7 +29,7 @@ namespace DestroyViruses
         }
 
         private Dictionary<string, float> mTaskWait = new Dictionary<string, float>();
-        private bool WaitTimeout(string key, float timeout = 1, bool enableLog = true)
+        private bool WaitTimeout(string key, float timeout = 3, bool logError = true)
         {
             if (!mTaskWait.ContainsKey(key))
             {
@@ -37,8 +37,13 @@ namespace DestroyViruses
                 return false;
             }
             bool isTimeout = Time.time - mTaskWait[key] > timeout;
-            if (isTimeout && enableLog)
-                Debug.LogError($"{key} Timeout.");
+            if (isTimeout)
+            {
+                if (logError)
+                    Debug.LogError($"{key} Timeout.");
+                else
+                    Debug.LogWarning($"{key} Timeout.");
+            }
             return isTimeout;
         }
 
@@ -49,48 +54,58 @@ namespace DestroyViruses
             // #0 Delay One Frame
             yield return null;
 
+            // #0.5 Remote Config
+            progress += step;
+            message = LTKey.LOADING_INITIALIZE_REMOTE_CONFIG.LT();
+            yield return null;
+            ProxyManager.Subscribe<RemoteConfigProxy>();
+            yield return null;
+            while (!RemoteConfigProxy.Ins.isInit
+                && !WaitTimeout("RemoteConfig", 0.1f, false))
+                yield return null;
+
             // #1
             progress += step;
-            message = "Initialize Data...";
+            message = LTKey.LOADING_INITIALIZE_DATA.LT();
             yield return null;
             ProxyManager.Subscribe<DataProxy>();
             yield return null;
 
             // #2
             progress += step;
-            message = "Initialize Analytics...";
+            message = LTKey.LOADING_INITIALIZE_ANALYTICS.LT();
             yield return null;
             ProxyManager.Subscribe<AnalyticsProxy>();
             yield return null;
             while (!AnalyticsProxy.Ins.isInit
                 && !AnalyticsProxy.Ins.isInitFailed
-                && !WaitTimeout("Analytics"))
+                && !WaitTimeout("Analytics", 0.1f, false))
                 yield return null;
 
             // #3
             progress += step;
-            message = "Initialize Advertisement...";
+            message = LTKey.LOADING_INITIALIZE_ADVERTISEMENT.LT();
             yield return null;
             ProxyManager.Subscribe<AdProxy>();
             yield return null;
             while (!AdProxy.Ins.isInit
-                && !WaitTimeout("Advertisement"))
+                && !WaitTimeout("Advertisement", 0.1f, false))
                 yield return null;
 
             // #4
             progress += step;
-            message = "Initialize In-App Purchase...";
+            message = LTKey.LOADING_INITIALIZE_IN_APP_PURCHASE.LT();
             yield return null;
             IAPManager.Instance.Init();
             yield return null;
             while (!IAPManager.Instance.isInit
                 && !IAPManager.Instance.isInitFailed
-                && !WaitTimeout("In-App Purchase"))
+                && !WaitTimeout("In-App Purchase", 0.1f, false))
                 yield return null;
 
             // #5
             progress += step;
-            message = "Initialize Settings...";
+            message = LTKey.LOADING_INITIALIZE_SETTINGS.LT();
             yield return null;
             Application.targetFrameRate = ConstTable.table.frameRate;
             yield return null;
@@ -98,22 +113,22 @@ namespace DestroyViruses
             // #6
             progress += step;
 
-            message = "Preload Resources(Atlas)...";
+            message = LTKey.LOADING_INITIALIZE_RESOURCES_ATLAS.LT();
             yield return null;
             UIUtil.LoadAtlasAll();
             yield return null;
 
-            message = "Preload Resources(Entities)...";
+            message = LTKey.LOADING_INITIALIZE_RESOURCES_ENTITIES.LT();
             yield return null;
             EntityManager.WarmPoolAll();
             yield return null;
 
-            message = "Preload Resources(Views)...";
+            message = LTKey.LOADING_INITIALIZE_RESOURCES_VIEWS.LT();
             yield return null;
             UIManager.Load<BattleView>();
             yield return null;
 
-            message = "Preload Resources(Sounds)...";
+            message = LTKey.LOADING_INITIALIZE_RESOURCES_SOUNDS.LT();
             AudioManager.Preload("BGM1");
             yield return null;
             AudioManager.Preload("BGM2");
@@ -125,7 +140,7 @@ namespace DestroyViruses
             AudioManager.Preload("hit");
             yield return null;
 
-            message = "Preload Resources(Tables)...";
+            message = LTKey.LOADING_INITIALIZE_RESOURCES_TABLES.LT();
             TableAdsCollection.Instance.GetAll();
             TableAircraftCollection.Instance.GetAll();
             yield return null;

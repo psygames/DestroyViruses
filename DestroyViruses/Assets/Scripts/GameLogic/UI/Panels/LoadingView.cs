@@ -19,13 +19,13 @@ namespace DestroyViruses
             if (state is HotUpdateState)
             {
                 var rus = state as HotUpdateState;
-                fill.value = Mathf.Lerp(fill.value, Mathf.Lerp(0, 0.6f, rus.progress), Time.deltaTime * 15);
+                fill.value = Mathf.Lerp(fill.value, Mathf.Lerp(0, 0.4f, rus.progress), Time.deltaTime * 15);
                 desc.text = rus.message;
             }
             if (state is LoadingState)
             {
                 var ls = state as LoadingState;
-                fill.value = Mathf.Lerp(fill.value, Mathf.Lerp(0.6f, 1, ls.progress), Time.deltaTime * 15);
+                fill.value = Mathf.Lerp(fill.value, Mathf.Lerp(0.4f, 1, ls.progress), Time.deltaTime * 15);
                 desc.text = ls.message;
             }
         }

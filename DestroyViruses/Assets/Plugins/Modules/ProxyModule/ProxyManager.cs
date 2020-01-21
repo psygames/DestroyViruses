@@ -37,6 +37,18 @@ public class ProxyManager : Singleton<ProxyManager>
         }
     }
 
+    private void OnDestroy()
+    {
+        foreach (var proxy in mProxys)
+        {
+            if (proxy.Value != null)
+            {
+                InvokeMethod(proxy.Value, "OnDestroy");
+            }
+        }
+        mProxys.Clear();
+    }
+
     private void InvokeMethod(object obj, string method)
     {
         obj.GetType().GetMethod(method, BindingFlags.Instance | BindingFlags.NonPublic).Invoke(obj, new object[] { });

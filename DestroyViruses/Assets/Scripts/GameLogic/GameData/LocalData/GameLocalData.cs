@@ -28,6 +28,7 @@ namespace DestroyViruses
             isInTrial = false;
             lastVipTicks = 0;
             lastVipRewardDays = -1;
+            lastConstGroup = "default";
         }
 
         public int firePowerLevel;      //火力
@@ -51,5 +52,6 @@ namespace DestroyViruses
         public bool isInTrial;              //是否试用中
         public long lastVipTicks;           //上次购买VIP时间
         public int lastVipRewardDays;       //上次VIP奖励领取时间
+        public string lastConstGroup;       //上次配置组ID
     }
 }

@@ -1763,7 +1763,7 @@ public class Reporter : MonoBehaviour
     int gestureCount = 0;
     bool isGestureDone()
     {
-#if !UNITY_EDITOR && PUBLISH_BUILD
+#if UNITY_EDITOR || PUBLISH_BUILD
         return false;
 #endif
         if (Application.platform == RuntimePlatform.Android ||
