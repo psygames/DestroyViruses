@@ -25,7 +25,11 @@ namespace DestroyViruses
             var t = TableLanguage.Get(key);
             if (t == null)
             {
+#if UNITY_EDITOR || !PUBLISH_BUILD
                 return $"[{key}]";
+#else
+                return key;
+#endif
             }
 
             var tag = Option.language;

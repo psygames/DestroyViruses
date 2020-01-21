@@ -8,6 +8,7 @@
         public const string ALREADY_LEVEL_MAX = "ALREADY_LEVEL_MAX";
         public const string UPGRADE_LACK_OF_COIN = "UPGRADE_LACK_OF_COIN";
         public const string UPGRADE_LACK_OF_DIAMOND = "UPGRADE_LACK_OF_DIAMOND";
+        public const string REVIVE_LACK_OF_DIAMOND = "REVIVE_LACK_OF_DIAMOND";
 
         public const string CANNOT_EXCEED_FIRE_SPEED_LEVEL = "CANNOT_EXCEED_FIRE_SPEED_LEVEL";
         public const string CANNOT_EXCEED_FIRE_POWER_LEVEL = "CANNOT_EXCEED_FIRE_POWER_LEVEL";

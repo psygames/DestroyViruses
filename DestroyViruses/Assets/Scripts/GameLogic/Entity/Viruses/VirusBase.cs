@@ -207,11 +207,13 @@ namespace DestroyViruses
         {
             bool isGen = false;
             var _tab = TableBuffKillGen.Get(a => a.gameLevel.Contains(D.I.gameLevel) && a.streak == D.I.streak);
-            float ratio = _tab.probability * D.I.kills4Buff;
+            var _prob = D.I.IsVip() ? _tab.vipProbability : _tab.probability;
+            float ratio = _prob * D.I.kills4Buff;
             if (Random.value <= ratio)
             {
                 isGen = true;
-                var buffID = FormulaUtil.RandomInProbDict(_tab.buffTypePriority);
+                var _typeProb = D.I.IsVip() ? _tab.vipBuffTypePriority : _tab.buffTypePriority;
+                var buffID = FormulaUtil.RandomInProbDict(_typeProb);
                 var _speed = ConstTable.table.buffSpeedRange.random;
                 var dir = Quaternion.AngleAxis(ConstTable.table.buffSpawnDirection.random, Vector3.forward) * Vector2.down;
                 Buff.Create().Reset(buffID, position, dir, _speed);

@@ -13,6 +13,12 @@ namespace DestroyViruses
         public float progress { get; private set; }
         public string message { get; private set; }
 
+#if !UNITY_EDITOR && PUBLISH_BUILD
+        public const bool ENABLE_QUICK_HOT_UPDATE = false;
+#else
+        public const bool ENABLE_QUICK_HOT_UPDATE = true;
+#endif
+
         private const string sQuickHotUpdateUrl = "http://39.105.150.229:8741/QuickHotUpdate/";
         private bool mQuickHotUpdateFinished = false;
         private int mQuickHotUpdateIndex = 0;
@@ -103,7 +109,7 @@ namespace DestroyViruses
             }
             else if (updater.state == AssetsUpdate.State.Completed)
             {
-                if (mQuickHotUpdateFinished)
+                if (!ENABLE_QUICK_HOT_UPDATE || mQuickHotUpdateFinished)
                 {
                     StateManager.ChangeState<LoadingState>();
                 }
@@ -139,7 +145,6 @@ namespace DestroyViruses
             {
                 if (mQuickHotUpdateRequest.isHttpError || mQuickHotUpdateRequest.isNetworkError)
                 {
-                    // Debug.Log("qucik hot update failed table: " + mQuickHotUpdateList[mQuickHotUpdateIndex]);
                     mQuickHotUpdateRequest.Dispose();
                     mQuickHotUpdateRequest = null;
                     mQuickHotUpdateIndex++;

@@ -167,6 +167,49 @@ namespace DestroyViruses
 		private TRangeInt _buffCount;
 		public TRangeInt buffCount { get { return _buffCount; } private set { _buffCount = value; } }
 
+		/// <summary>
+        /// buff类型权重
+        /// </summary>
+        [SerializeField]
+        private int[] _vipBuffTypePriority_dc_key;
+        [SerializeField]
+        private float[] _vipBuffTypePriority_dc_value;
+        private Dictionary<int, float> _vipBuffTypePriority;
+        public Dictionary<int, float> vipBuffTypePriority
+        {
+            get
+            {
+                if (_vipBuffTypePriority == null)
+                {
+                    _vipBuffTypePriority = new Dictionary<int, float>();
+                    for (int i = 0; i < _vipBuffTypePriority_dc_key.Length; i++)
+                    {
+                        _vipBuffTypePriority.Add(_vipBuffTypePriority_dc_key[i], _vipBuffTypePriority_dc_value[i]);
+                    }
+                }
+                return _vipBuffTypePriority;
+            }
+            private set
+            {
+                _vipBuffTypePriority = value;
+                _vipBuffTypePriority_dc_key = new int[value.Keys.Count];
+                _vipBuffTypePriority_dc_value = new float[value.Values.Count];
+				int i = 0;
+                foreach (var kv in value)
+                {
+                    _vipBuffTypePriority_dc_key[i] = kv.Key;
+                    _vipBuffTypePriority_dc_value[i] = kv.Value;
+                    i++;
+                }
+            }
+        }
+
+		/// <summary>
+		/// buff数量
+		/// </summary>
+		private TRangeInt _vipBuffCount;
+		public TRangeInt vipBuffCount { get { return _vipBuffCount; } private set { _vipBuffCount = value; } }
+
 
 		public static TableBuffAutoGen Get(int id)
 		{

@@ -79,3 +79,6 @@ textures/virustriangletexture_6
 132238969710475490:
 prefabs
 spriteatlas/total
+132239279011509910:
+prefabs
+tables/tableshop

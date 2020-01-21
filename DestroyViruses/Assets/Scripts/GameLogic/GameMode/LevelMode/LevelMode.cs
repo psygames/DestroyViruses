@@ -43,7 +43,8 @@ namespace DestroyViruses
             getCoin = 0;
             progress = 0;
             mLastWaveIndex = -1;
-            D.I.reviveCount = 1;
+            D.I.adReviveCount = 1;
+            D.I.diamondReviveCount = 1;
             D.I.CostEnergy(ConstTable.table.energyBattleCost);
             Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.GameBegin));
             mWaveModule.Start();
@@ -150,9 +151,17 @@ namespace DestroyViruses
 
             if (evt.action == EventAircraft.Action.Crash)
             {
-                if (D.I.reviveCount > 0)
+                if (D.I.adReviveCount > 0)
                 {
-                    D.I.reviveCount -= 1;
+                    D.I.adReviveCount -= 1;
+                    GameReviveView.isDiamondRevive = false;
+                    UIManager.Open<GameReviveView>(UILayer.Top);
+                    GameModeManager.Instance.Pause();
+                }
+                else if (D.I.diamondReviveCount > 0)
+                {
+                    D.I.diamondReviveCount -= 1;
+                    GameReviveView.isDiamondRevive = true;
                     UIManager.Open<GameReviveView>(UILayer.Top);
                     GameModeManager.Instance.Pause();
                 }
@@ -169,7 +178,7 @@ namespace DestroyViruses
             if (evt.action == EventVirus.Action.DEAD)
             {
                 // add coin
-                getCoin += FormulaUtil.CoinConvert(evt.virus.size, mTableGameLevel.coinValueFactor, D.I.coinValue);
+                getCoin += FormulaUtil.CoinConvert(evt.virus.size, mTableGameLevel.coinValueFactor * D.I.vipCoinValueMul, D.I.coinValue);
                 mAddCoinCount += evt.virus.size * 0.1f;
                 if (Random.value > ConstTable.table.coinAddProb[evt.virus.size - 1])
                 {
@@ -192,7 +201,7 @@ namespace DestroyViruses
                     var buff = BuffProxy.Ins.GetBuff("coin");
                     if (buff != null && Random.value <= buff.param2)
                     {
-                        getCoin += FormulaUtil.CoinConvert(evt.virus.size, mTableGameLevel.coinValueFactor * buff.param1, D.I.coinValue);
+                        getCoin += FormulaUtil.CoinConvert(evt.virus.size, mTableGameLevel.coinValueFactor * buff.param1 * D.I.vipCoinValueMul, D.I.coinValue);
                         var pos = UIUtil.GetUIPos(evt.virus.rectTransform);
                         Unibus.Dispatch(EventBattle.Get(EventBattle.Action.GET_COIN, 1, pos));
                     }

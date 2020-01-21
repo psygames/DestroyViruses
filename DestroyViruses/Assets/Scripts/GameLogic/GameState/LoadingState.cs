@@ -29,7 +29,7 @@ namespace DestroyViruses
         }
 
         private Dictionary<string, float> mTaskWait = new Dictionary<string, float>();
-        private bool WaitTimeout(string key, float timeout = 2, bool enableLog = true)
+        private bool WaitTimeout(string key, float timeout = 1, bool enableLog = true)
         {
             if (!mTaskWait.ContainsKey(key))
             {
@@ -62,7 +62,9 @@ namespace DestroyViruses
             yield return null;
             ProxyManager.Subscribe<AnalyticsProxy>();
             yield return null;
-            while (!AnalyticsProxy.Ins.isInit && !WaitTimeout("Analytics"))
+            while (!AnalyticsProxy.Ins.isInit
+                && !AnalyticsProxy.Ins.isInitFailed
+                && !WaitTimeout("Analytics"))
                 yield return null;
 
             // #3
@@ -71,7 +73,8 @@ namespace DestroyViruses
             yield return null;
             ProxyManager.Subscribe<AdProxy>();
             yield return null;
-            while (!AdProxy.Ins.isInit && !WaitTimeout("Advertisement"))
+            while (!AdProxy.Ins.isInit
+                && !WaitTimeout("Advertisement"))
                 yield return null;
 
             // #4
@@ -80,7 +83,9 @@ namespace DestroyViruses
             yield return null;
             IAPManager.Instance.Init();
             yield return null;
-            while (!IAPManager.Instance.isInit && !WaitTimeout("In-App Purchase"))
+            while (!IAPManager.Instance.isInit
+                && !IAPManager.Instance.isInitFailed
+                && !WaitTimeout("In-App Purchase"))
                 yield return null;
 
             // #5

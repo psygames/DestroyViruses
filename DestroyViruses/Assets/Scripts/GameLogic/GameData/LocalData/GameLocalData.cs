@@ -26,6 +26,8 @@ namespace DestroyViruses
             trialCount = 0;
             trialWeaponID = 0;
             isInTrial = false;
+            lastVipTicks = 0;
+            lastVipRewardDays = -1;
         }
 
         public int firePowerLevel;      //火力
@@ -47,5 +49,7 @@ namespace DestroyViruses
         public int trialCount;              //武器试用次数
         public int trialWeaponID;           //试用武器ID
         public bool isInTrial;              //是否试用中
+        public long lastVipTicks;           //上次购买VIP时间
+        public int lastVipRewardDays;       //上次VIP奖励领取时间
     }
 }

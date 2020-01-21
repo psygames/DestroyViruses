@@ -14,6 +14,7 @@ namespace DestroyViruses
         public FadeGroup fadeGroup;
         public CoinLevelPanel levelPanel;
         public ContentGroup shopGoods;
+        public ButtonPro vipBtn;
 
         protected override void OnOpen()
         {
@@ -29,11 +30,12 @@ namespace DestroyViruses
         private void RefreshUI()
         {
             levelPanel.SetData();
-            shopGoods.SetData<ShopGoodsItem, TableShop>(TableShop.GetAll()
+            shopGoods.SetData<ShopGoodsItem, TableShop>(TableShop.GetAll().ToList(a=>a.type == 0)
             , (index, item, _data) =>
             {
                 item.SetData(_data.id);
             });
+            vipBtn.SetBtnGrey(!D.I.IsVip());
         }
 
         private void OnEventGameData(EventGameData evt)
@@ -51,6 +53,11 @@ namespace DestroyViruses
         {
             NavigationView.BlackSetting(false);
             fadeGroup.FadeOut(Close);
+        }
+
+        private void OnClickVip()
+        {
+            UIManager.Open<VipView>(UILayer.Top);
         }
     }
 }

@@ -28,6 +28,9 @@ namespace DestroyViruses
         {
             sIns = this;
             ButtonListenerInit();
+#if !UNITY_EDITOR && PUBLISH_BUILD
+            debugBtn.gameObject.SetActive(false);
+#endif
         }
 
         private void ButtonListenerInit()

@@ -47,6 +47,7 @@ namespace DestroyViruses
             }
         }
 
+        public float vipCoinValueMul { get { return (IsVip() ? 3 : 1); } }
         public int coinValueLevel { get { return localData.coinValueLevel; } }
         public float coinValue { get { return TableCoinValue.Get(coinValueLevel).value; } }
         public float coinValueUpCost { get { return TableCoinValue.Get(coinValueLevel).upcost; } }
@@ -54,7 +55,7 @@ namespace DestroyViruses
         public bool isCoinValueLevelMax { get { return coinValueLevel >= coinValueMaxLevel; } }
 
         public int coinIncomeLevel { get { return localData.coinIncomeLevel; } }
-        public float coinIncome { get { return TableCoinIncome.Get(coinIncomeLevel).income; } }
+        public float coinIncome { get { return TableCoinIncome.Get(coinIncomeLevel).income * vipCoinValueMul; } }
         public float coinIncomeUpCost { get { return TableCoinIncome.Get(coinIncomeLevel).upcost; } }
         public int coinIncomeMaxLevel { get { return TableCoinIncome.GetAll().Max(a => a.id).id; } }
         public bool isCoinIncomeLevelMax { get { return coinIncomeLevel >= coinIncomeMaxLevel; } }
@@ -85,7 +86,8 @@ namespace DestroyViruses
         // 临时数据（外部可修改）
         public bool gameEndWin { get; set; }
         public bool adRevive { get; set; }
-        public int reviveCount { get; set; }
+        public int adReviveCount { get; set; }
+        public int diamondReviveCount { get; set; }
         public int kills4Buff { get; set; }
 
         // 战斗数据
@@ -712,12 +714,21 @@ namespace DestroyViruses
         #endregion
 
         #region PURCHASE
-        public void OnPurchaseSuccess(int shopGoodsID)
+        public void OnPurchaseSuccess(int shopGoodsID, DateTime date)
         {
             var t = TableShop.Get(shopGoodsID);
-            AddDiamond(t.diamonds + t.extra);
-            SaveLocalData();
-            DispatchEvent(EventGameData.Action.DataChange);
+            if (t.type == 0) // Consumable
+            {
+                AddDiamond(t.diamonds + t.extra);
+                SaveLocalData();
+                DispatchEvent(EventGameData.Action.DataChange);
+            }
+            else if (t.type == 2) // Subscription
+            {
+                localData.lastVipTicks = date.Ticks;
+                SaveLocalData();
+                DispatchEvent(EventGameData.Action.DataChange);
+            }
         }
 
         public void Purchase(int shopGoodsID)
@@ -726,6 +737,47 @@ namespace DestroyViruses
             IAPManager.Instance.Purchase(t.productID);
         }
         #endregion
+
+        #region VIP
+        public bool IsVip()
+        {
+            return VipRemain() > 0;
+        }
+
+        public DateTime VipExpirationDate()
+        {
+            if (localData.lastVipTicks > 0)
+                return new DateTime(localData.lastVipTicks + 7 * 24 * 3600 * 10000000L);
+            return DateTime.MinValue;
+        }
+
+        public float VipRemain()
+        {
+            if (localData.lastVipTicks <= 0)
+                return 0;
+            var dt = new DateTime(localData.lastVipTicks);
+            return 7 * 24 * 3600 - (float)(DateTime.Now - dt).TotalSeconds;
+        }
+
+        public bool HasVipReward()
+        {
+            return IsVip() && localData.lastVipRewardDays != DateTime.Now.DayOfYear;
+        }
+
+        public void ReceiveVipReward()
+        {
+            localData.lastVipRewardDays = DateTime.Now.DayOfYear;
+            AddDiamond(5);
+            SaveLocalData();
+            DispatchEvent(EventGameData.Action.DataChange);
+        }
+        #endregion
+
+        public void ReviveUseDiamond()
+        {
+            AddDiamond(-1);
+            SaveLocalData();
+        }
 
 
         private void SaveLocalData()

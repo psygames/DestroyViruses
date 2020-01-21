@@ -167,6 +167,49 @@ namespace DestroyViruses
 		private float _probability;
 		public float probability { get { return _probability; } private set { _probability = value; } }
 
+		/// <summary>
+        /// buff类型权重(VIP)
+        /// </summary>
+        [SerializeField]
+        private int[] _vipBuffTypePriority_dc_key;
+        [SerializeField]
+        private float[] _vipBuffTypePriority_dc_value;
+        private Dictionary<int, float> _vipBuffTypePriority;
+        public Dictionary<int, float> vipBuffTypePriority
+        {
+            get
+            {
+                if (_vipBuffTypePriority == null)
+                {
+                    _vipBuffTypePriority = new Dictionary<int, float>();
+                    for (int i = 0; i < _vipBuffTypePriority_dc_key.Length; i++)
+                    {
+                        _vipBuffTypePriority.Add(_vipBuffTypePriority_dc_key[i], _vipBuffTypePriority_dc_value[i]);
+                    }
+                }
+                return _vipBuffTypePriority;
+            }
+            private set
+            {
+                _vipBuffTypePriority = value;
+                _vipBuffTypePriority_dc_key = new int[value.Keys.Count];
+                _vipBuffTypePriority_dc_value = new float[value.Values.Count];
+				int i = 0;
+                foreach (var kv in value)
+                {
+                    _vipBuffTypePriority_dc_key[i] = kv.Key;
+                    _vipBuffTypePriority_dc_value[i] = kv.Value;
+                    i++;
+                }
+            }
+        }
+
+		/// <summary>
+		/// <para>击杀生成buff概率(VIP)</para><para>（连续未生成，则累加概率）</para>
+		/// </summary>
+		private float _vipProbability;
+		public float vipProbability { get { return _vipProbability; } private set { _vipProbability = value; } }
+
 
 		public static TableBuffKillGen Get(int id)
 		{
