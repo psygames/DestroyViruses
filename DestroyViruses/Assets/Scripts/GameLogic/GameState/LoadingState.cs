@@ -54,24 +54,7 @@ namespace DestroyViruses
             // #0 Delay One Frame
             yield return null;
 
-            // #0.5 Remote Config
-            progress += step;
-            message = LTKey.LOADING_INITIALIZE_REMOTE_CONFIG.LT();
-            yield return null;
-            ProxyManager.Subscribe<RemoteConfigProxy>();
-            yield return null;
-            while (!RemoteConfigProxy.Ins.isInit
-                && !WaitTimeout("RemoteConfig", 0.1f, false))
-                yield return null;
-
             // #1
-            progress += step;
-            message = LTKey.LOADING_INITIALIZE_DATA.LT();
-            yield return null;
-            ProxyManager.Subscribe<DataProxy>();
-            yield return null;
-
-            // #2
             progress += step;
             message = LTKey.LOADING_INITIALIZE_ANALYTICS.LT();
             yield return null;
@@ -81,6 +64,23 @@ namespace DestroyViruses
                 && !AnalyticsProxy.Ins.isInitFailed
                 && !WaitTimeout("Analytics", 0.1f, false))
                 yield return null;
+
+            // #1 Remote Config
+            progress += step;
+            message = LTKey.LOADING_INITIALIZE_REMOTE_CONFIG.LT();
+            yield return null;
+            ProxyManager.Subscribe<RemoteConfigProxy>();
+            yield return null;
+            while (!RemoteConfigProxy.Ins.isInit
+                && !WaitTimeout("RemoteConfig", 0.1f, false))
+                yield return null;
+
+            // #2
+            progress += step;
+            message = LTKey.LOADING_INITIALIZE_DATA.LT();
+            yield return null;
+            ProxyManager.Subscribe<DataProxy>();
+            yield return null;
 
             // #3
             progress += step;

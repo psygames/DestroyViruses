@@ -21,6 +21,7 @@ namespace DestroyViruses
                 if (dependencyStatus == DependencyStatus.Available)
                 {
                     InitializeFirebase();
+                    RemoteConfigProxy.Ins.InitAfterCheck();
                 }
                 else
                 {

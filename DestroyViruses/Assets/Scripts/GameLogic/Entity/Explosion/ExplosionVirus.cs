@@ -20,8 +20,8 @@ namespace DestroyViruses
             var index = Random.Range(0, particles.Length);
             for (int i = 0; i < particles.Length; i++)
             {
-                //TODO: set active
-                //particles[i].gameObject.SetActive(i == index);
+                // TODO:?USE Random effect
+                particles[i].gameObject.SetActive(i == index);
             }
 
             if (TimeUtil.CheckInterval("ExplosionSfx", ConstTable.table.explosionSfxInterval))

@@ -18,24 +18,16 @@ namespace DestroyViruses
         {
             base.OnInit();
             lastConstGroup = GameLocalData.Instance.lastConstGroup;
-            Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
-            {
-                dependencyStatus = task.Result;
-                if (dependencyStatus == Firebase.DependencyStatus.Available)
-                {
+        }
+
+        public void InitAfterCheck()
+        {
 #if UNITY_EDITOR
-                    isInit = true;
-                    return;
+            isInit = true;
 #else
 
-                    InitializeFirebase();
+            InitializeFirebase();
 #endif
-                }
-                else
-                {
-                    Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
-                }
-            });
         }
 
         Task InitializeFirebase()
@@ -93,8 +85,12 @@ namespace DestroyViruses
             base.OnUpdate();
             if (!mLastInit && isInit)
             {
-                GameLocalData.Instance.lastConstGroup = Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue("const_group").StringValue;
-                GameLocalData.Instance.Save();
+                var constGroup = Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue("const_group").StringValue;
+                if (!string.IsNullOrEmpty(constGroup))
+                {
+                    GameLocalData.Instance.lastConstGroup = constGroup;
+                    GameLocalData.Instance.Save();
+                }
             }
             mLastInit = isInit;
         }

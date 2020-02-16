@@ -57,8 +57,9 @@ namespace DestroyViruses
         {
             progress = 0;
             UIManager.Open<LoadingView>();
-            message = LT.Get("READY_UPDATE_RESOURCE");
-            progress = 0.05f;
+            //TODO: Why cant load table
+            message = "";
+            progress = 0.00f;
             updater.Init();
             InitQuickHotUpdate();
             base.OnEnter();
