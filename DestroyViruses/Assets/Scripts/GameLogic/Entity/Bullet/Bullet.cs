@@ -17,6 +17,7 @@ namespace DestroyViruses
 
         protected float mSpeed;
         protected float mDamage;
+        protected float mSpeedMul;
 
         private void SetEffect()
         {
@@ -33,6 +34,7 @@ namespace DestroyViruses
         {
             mDamage = damage;
             mSpeed = speed;
+            mSpeedMul = 0;
             rectTransform.anchoredPosition = position;
             rectTransform.DOAnchorPos3DX(position.x + offsetX, bornCD);
             isAlive = true;
@@ -78,7 +80,9 @@ namespace DestroyViruses
                 isAlive = false;
             }
 
-            rectTransform.anchoredPosition += Vector2.up * mSpeed * GlobalData.slowDownFactor * Time.deltaTime;
+            mSpeedMul = 1;
+            rectTransform.anchoredPosition += Vector2.up * mSpeed * mSpeedMul * GlobalData.slowDownFactor * Time.deltaTime;
+            // mSpeedMul = Mathf.Clamp01(mSpeedMul + GlobalData.slowDownFactor * Time.deltaTime * 6);
         }
     }
 }
