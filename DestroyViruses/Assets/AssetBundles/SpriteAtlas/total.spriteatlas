@@ -31,10 +31,14 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1827d5ad581044f08b470c56b841c4ab, type: 3}
-    totalSpriteSurfaceArea: 6841052
+    totalSpriteSurfaceArea: 6894618
     bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: a0d7b7344e3e81cc3d2b538ff2647441
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: b90284208ae411641b3373af740c1624, type: 3}
   - {fileID: 21300000, guid: 7c35ef305f48b2247bb3c0eab8fb3c47, type: 3}
   - {fileID: 21300000, guid: 85ce31408c0a27c46a0372a92603145e, type: 3}
   - {fileID: 21300000, guid: 6870294071e48e44dabfca1db9e2384a, type: 3}
@@ -99,6 +103,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4117f8d6916344740a3a5095909d1fcd, type: 3}
   - {fileID: 21300000, guid: 18607d071361d1a4d830ef2feda90242, type: 3}
   - {fileID: 21300000, guid: b79b73175f204614eb4415c0995099f2, type: 3}
+  - {fileID: 21300000, guid: a5a03d17aa9ebdd42b230296dc50549d, type: 3}
   - {fileID: 21300000, guid: a78eed179da4b5245bae70ea2728f4fd, type: 3}
   - {fileID: 21300000, guid: 41f8c227b61c48242b8490b3ca0c143f, type: 3}
   - {fileID: 21300000, guid: 83d0282757ae23e46a00df06a64f68c5, type: 3}
@@ -138,6 +143,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: aeff78ba0d2cf994daf58c8a0d3a3933, type: 3}
   - {fileID: 21300000, guid: 7e36d9ca0c1e39140843a111f88f85b8, type: 3}
   - {fileID: 21300000, guid: 530b921b17281c9468e04da48980135a, type: 3}
+  - {fileID: 21300000, guid: 7846331bc810f3f4184ddf96b68699b4, type: 3}
   - {fileID: 21300000, guid: 3f99d44ba3d5de74d8b32c3c2f6a203a, type: 3}
   - {fileID: 21300000, guid: d5e3bf4b8bca9594d87886d32fa72a74, type: 3}
   - {fileID: 21300000, guid: 43f3056b35a7ff049b727463f37390d6, type: 3}
@@ -198,6 +204,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1b46c8ffbbeffdd459e6e72873455d52, type: 3}
   - {fileID: 21300000, guid: 0cd4dbff451c2b84db2b5c50f75b456c, type: 3}
   m_PackedSpriteNamesToIndex:
+  - reddot
   - book_item_collect_progress_bg
   - num_7
   - bullet_2_1_1
@@ -262,6 +269,7 @@ SpriteAtlas:
   - button_function
   - black_item_bg
   - ui_buff_fill_2
+  - icon_hand_2
   - weapon_missile_part1
   - icon_coin_star
   - baner_2
@@ -301,6 +309,7 @@ SpriteAtlas:
   - button_upgrade_0
   - weapon_missile_part2
   - icon_weapon_laser
+  - icon_hand
   - button_revive
   - game_level_next
   - icon_buff_ns_video

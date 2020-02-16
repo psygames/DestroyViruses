@@ -443,6 +443,12 @@ namespace DestroyViruses
             return bookData.Get(virusID);
         }
 
+        //TODO: CODE
+        public bool CanBookCollect()
+        {
+            return false;
+        }
+
         public bool BookIsUnlock(int virusID)
         {
             return bookData.Exist(virusID);

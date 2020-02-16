@@ -11,6 +11,8 @@ namespace DestroyViruses
 {
     public class UpgradeView : ViewBase
     {
+        public static RectTransform tutorialPowerUpBtn;
+
         public FadeGroup fadeGroup;
         public LevelPanel levelPanel;
         public WeaponLevelPanel weaponLevelPanel;
@@ -19,6 +21,7 @@ namespace DestroyViruses
         protected override void OnOpen()
         {
             base.OnOpen();
+            tutorialPowerUpBtn = levelPanel.firePowerUpBtn.GetComponent<RectTransform>();
             this.BindUntilDisable<EventGameData>(OnEventGameData);
             RefreshUI();
             fadeGroup.FadeIn(() =>

@@ -22,7 +22,9 @@ namespace DestroyViruses
         public GameObject canIncomeUp;
 
         public GameObject dailySignObj;
+        public GameObject dailySignReddotObj;
         public GameObject bookObj;
+        public GameObject bookReddotObj;
 
         public GameObject trialTag;
 
@@ -51,7 +53,20 @@ namespace DestroyViruses
             RefreshUI();
             AudioManager.PlayMusic($"BGM{Random.Range(1, 3)}", 1f);
             NavigationView.BlackSetting(false);
+            CheckTurtorial();
             StartCoroutine(ShowOpenHints());
+        }
+
+        bool needOpenTutorial = false;
+        void CheckTurtorial()
+        {
+            if (!needOpenTutorial)
+                return;
+            needOpenTutorial = false;
+            TutorialView.Begin(baseOptionBtn.GetComponent<RectTransform>(), 0, () =>
+            {
+                TutorialView.Begin(UpgradeView.tutorialPowerUpBtn, 2);
+            });
         }
 
         IEnumerator ShowOpenHints()
@@ -104,7 +119,9 @@ namespace DestroyViruses
             canIncomeUp.SetActive(!D.I.isCoinIncomeLevelMax && D.I.coin >= D.I.coinIncomeUpCost
                 || !D.I.isCoinValueLevelMax && D.I.coin >= D.I.coinValueUpCost);
             dailySignObj.SetActive(D.I.unlockedGameLevel >= ConstTable.table.dailySignUnlockLevel);
+            dailySignReddotObj.SetActive(D.I.CanDailySign());
             bookObj.SetActive(D.I.unlockedGameLevel >= ConstTable.table.bookUnlockLevel);
+            bookReddotObj.SetActive(bookObj.activeSelf && D.I.CanBookCollect());
             trialTag.SetActive(D.I.HasTrialWeapon() && !D.I.IsInTrial());
         }
 
@@ -113,6 +130,11 @@ namespace DestroyViruses
         {
             if (evt.action == EventGameData.Action.UnlockNewLevel)
             {
+                if (D.I.unlockedGameLevel == 2)
+                {
+                    needOpenTutorial = true;
+                }
+
                 if (D.I.unlockedGameLevel == ConstTable.table.dailySignUnlockLevel)
                 {
                     mOpenHints.Add(LTKey.UNLOCK_SYSTEM_X.LT(LTKey.DAILY_SIGN.LT()));
