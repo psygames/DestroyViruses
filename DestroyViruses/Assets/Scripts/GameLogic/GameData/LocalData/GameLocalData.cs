@@ -29,6 +29,8 @@ namespace DestroyViruses
             lastVipTicks = 0;
             lastVipRewardDays = -1;
             lastConstGroup = "default";
+            minVersion = "0.0.27";
+            latestVersion = "0.0.27";
         }
 
         public int firePowerLevel;      //火力
@@ -53,5 +55,7 @@ namespace DestroyViruses
         public long lastVipTicks;           //上次购买VIP时间
         public int lastVipRewardDays;       //上次VIP奖励领取时间
         public string lastConstGroup;       //上次配置组ID
+        public string minVersion;           //最小版本号
+        public string latestVersion;        //最新版本号
     }
 }

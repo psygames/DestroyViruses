@@ -89,7 +89,7 @@ namespace DestroyViruses
             }
             state = State.Init;
             Versions.Load();
-            Assets.Initialize(delegate
+            Assets.Initialize(() =>
             {
                 state = State.Wait;
             }, OnError);
@@ -192,7 +192,7 @@ namespace DestroyViruses
                 }
 
                 File.WriteAllText(path, sb.ToString());
-                Assets.Initialize(delegate
+                Assets.Initialize(()=>
                 {
                     if (completed != null)
                     {

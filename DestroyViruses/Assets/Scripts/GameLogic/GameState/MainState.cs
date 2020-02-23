@@ -9,7 +9,6 @@ namespace DestroyViruses
         public override void OnEnter()
         {
             base.OnEnter();
-            D.I.AnalyticsSetUserProperty();
             Aircraft.Create().Reset();
             Aircraft.ins.anima.PlayHomeIn();
             UIManager.Open<MainView>();

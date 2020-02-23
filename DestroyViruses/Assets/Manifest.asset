@@ -432,6 +432,9 @@ MonoBehaviour:
     name: GameReviveView.prefab
   - bundle: 1
     dir: 10
+    name: HoldOnView.prefab
+  - bundle: 1
+    dir: 10
     name: IncomeCollectView.prefab
   - bundle: 1
     dir: 10
@@ -444,10 +447,22 @@ MonoBehaviour:
     name: OptionView.prefab
   - bundle: 1
     dir: 10
+    name: ResAddView.prefab
+  - bundle: 1
+    dir: 10
     name: ToastView.prefab
   - bundle: 1
     dir: 10
+    name: TutorialView.prefab
+  - bundle: 1
+    dir: 10
     name: UpgradeView.prefab
+  - bundle: 1
+    dir: 10
+    name: VersionUpdateView.prefab
+  - bundle: 1
+    dir: 10
+    name: VipView.prefab
   - bundle: 2
     dir: 11
     name: BGM1.mp3

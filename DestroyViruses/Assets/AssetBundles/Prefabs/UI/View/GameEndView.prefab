@@ -433,7 +433,7 @@ MonoBehaviour:
   clickEvent: Bonus
   clickEventID: 0
   downUpEvent: 0
-  sound: collect_coin
+  sound: button_normal
 --- !u!1 &4115123548201102356
 GameObject:
   m_ObjectHideFlags: 0

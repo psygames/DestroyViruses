@@ -117,6 +117,8 @@ namespace DestroyViruses
         public static Color RED_COLOR = new Color(0.8f, 0.3f, 0.3f);
         public static Color GRAY_COLOR = new Color(0.6f, 0.7f, 0.7f);
 
-        public static Vector2 COIN_POS { get { return new Vector2(72, height - 78); } }
+        public static Vector2 COIN_POS { get { return new Vector2(63, height - 53); } }
+        public static Vector2 DIAMOND_POS { get { return new Vector2(684, height - 60); } }
+        public static Vector2 ENERGY_POS { get { return new Vector2(366, height - 78); } }
     }
 }

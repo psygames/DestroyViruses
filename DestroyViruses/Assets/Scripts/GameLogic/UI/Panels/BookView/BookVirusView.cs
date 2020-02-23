@@ -119,15 +119,14 @@ namespace DestroyViruses
             {
                 if (v.needPlayAd)
                 {
-                    if (AdProxy.Ins.ShowAd("book_reward"))
+                    AdProxy.Ins.ShowAd("book_reward", () =>
                     {
                         D.I.BookCollect(v.id);
                         AudioManager.PlaySound("collect_coin");
-                    }
-                    else
+                    }, () =>
                     {
                         Toast.Show(LTKey.AD_PLAY_FAILED.LT());
-                    }
+                    });
                 }
                 else
                 {

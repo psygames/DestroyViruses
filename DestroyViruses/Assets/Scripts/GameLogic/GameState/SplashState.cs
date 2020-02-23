@@ -10,7 +10,7 @@ namespace DestroyViruses
         public override void OnEnter()
         {
             base.OnEnter();
-            m_max = 0.1f;
+            m_max = 0.0f;
         }
 
         public override void OnUpdate(float deltaTime)
@@ -19,7 +19,7 @@ namespace DestroyViruses
             m_max -= deltaTime;
             if (m_max <= 0)
             {
-                StateManager.ChangeState<HotUpdateState>();
+                StateManager.ChangeState<LoadingState>();
             }
         }
     }

@@ -12,10 +12,15 @@ namespace DestroyViruses
 {
     public class TutorialView : ViewBase
     {
+        public Text title;
+        public Text title1;
+        public Text title2;
+        public Text title3;
         public RectTransform handRect;
         public RadioObjects radioDirection;
 
         private static RectTransform target;
+        private static string titleStr;
         private static Action onClickCallback;
         private static int direction = 0;
 
@@ -61,6 +66,7 @@ namespace DestroyViruses
 
             handRect.anchoredPosition = UIUtil.GetUIPos(target);
             handRect.sizeDelta = target.rect.size;
+            title1.text = title2.text = title3.text = title.text = titleStr;
             radioDirection.Radio(direction);
         }
 
@@ -70,8 +76,6 @@ namespace DestroyViruses
             {
                 DestroyImmediate(target.gameObject.GetComponent<GraphicRaycaster>());
             }
-
-
             if (!hasCanvas)
             {
                 DestroyImmediate(target.gameObject.GetComponent<Canvas>());
@@ -92,8 +96,9 @@ namespace DestroyViruses
             onClickCallback?.Invoke();
         }
 
-        public static void Begin(RectTransform target, int direction = 0, Action callback = null)
+        public static void Begin(RectTransform target, string title = "", int direction = 0, Action callback = null)
         {
+            TutorialView.titleStr = title;
             TutorialView.target = target;
             TutorialView.onClickCallback = callback;
             TutorialView.direction = direction;

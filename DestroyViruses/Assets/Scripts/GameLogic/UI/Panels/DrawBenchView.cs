@@ -46,16 +46,16 @@ namespace DestroyViruses
             if (receiveBtn.isGrey)
                 return;
 
-            if (!AdProxy.Ins.ShowAd("mystical_reward"))
+            AdProxy.Ins.ShowAd("mystical_reward", () =>
+            {
+                receiveBtn.SetBtnGrey(true);
+                AnimaStart();
+            }, () =>
             {
                 receiveBtn.gameObject.SetActive(false);
                 closeBtn.gameObject.SetActive(true);
                 Toast.Show(LTKey.AD_PLAY_FAILED.LT());
-                return;
-            }
-
-            receiveBtn.SetBtnGrey(true);
-            AnimaStart();
+            });
         }
 
         private void OnClickClose()

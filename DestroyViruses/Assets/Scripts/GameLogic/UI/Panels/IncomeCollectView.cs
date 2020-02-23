@@ -40,15 +40,15 @@ namespace DestroyViruses
 
         private void OnClickReward()
         {
-            if (!AdProxy.Ins.ShowAd("offline_reward"))
+            AdProxy.Ins.ShowAd("offline_reward",()=>
             {
+                PlayCollectEffect();
+                D.I.TakeIncomeCoins(2);
+                Close();
+            },()=>
+            { 
                 Toast.Show(LTKey.AD_PLAY_FAILED.LT());
-                return;
-            }
-
-            PlayCollectEffect();
-            D.I.TakeIncomeCoins(2);
-            Close();
+            });
         }
 
         private void PlayCollectEffect()

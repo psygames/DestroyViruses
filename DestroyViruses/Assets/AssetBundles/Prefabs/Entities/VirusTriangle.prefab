@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8133169030309794485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6107307736484738969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773ebef3854631d4cb556d623102287c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bindTarget: {fileID: 5861081206247289504}
 --- !u!1 &5388636947329759520
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +43,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3180405299673914540}
+  - {fileID: 7105235314808718730}
   - {fileID: 4932857185015267841}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -55,7 +68,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 125
+  m_Radius: 100
 --- !u!50 &1689229572713921544
 Rigidbody2D:
   serializedVersion: 4
@@ -90,20 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpText: {fileID: 8954366229148676931}
-  animator: {fileID: 6884435303802005704}
---- !u!114 &8133169030309794485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4465065352498292026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 773ebef3854631d4cb556d623102287c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bindTarget: {fileID: 5861081206247289504}
+  animator: {fileID: 869438948624607472}
 --- !u!1001 &5265378668825736485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -173,19 +173,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e46ee6ab8dda4b4eaacdb092b137695, type: 3}
---- !u!1 &4465065352498292026 stripped
+--- !u!1 &6107307736484738969 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2149314368354648764, guid: 6e46ee6ab8dda4b4eaacdb092b137695,
     type: 3}
   m_PrefabInstance: {fileID: 5265378668825736485}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &3180405299673914540 stripped
+--- !u!4 &7105235314808718730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3136968105565810863, guid: 6e46ee6ab8dda4b4eaacdb092b137695,
     type: 3}
   m_PrefabInstance: {fileID: 5265378668825736485}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &6884435303802005704 stripped
+--- !u!95 &869438948624607472 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4972743777986698709, guid: 6e46ee6ab8dda4b4eaacdb092b137695,
     type: 3}

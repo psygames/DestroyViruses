@@ -179,6 +179,12 @@ namespace DestroyViruses
         {
             localData.diamond += count;
         }
+
+        private void AddDiamondWithEffect(float count)
+        {
+            AddDiamond(count);
+            ResAddEffect.Play(ResAddView.ResType.Diamond, (int)count);
+        }
         #endregion
 
         #region BATTLE
@@ -269,8 +275,14 @@ namespace DestroyViruses
             localData.signDays = (days % 7) + 1;
             localData.lastSignDateTicks = DateTime.Now.Date.Ticks;
             var t = TableDailySign.Get(days);
-            if (t.type == 1) AddDiamond(t.count);
-            else if (t.type == 2) AddCoin(t.count * multiple * FormulaUtil.Expresso(ConstTable.table.formulaArgsDailySignCoin));
+            if (t.type == 1)
+            {
+                AddDiamondWithEffect(t.count);
+            }
+            else if (t.type == 2)
+            {
+                AddCoin(t.count * multiple * FormulaUtil.Expresso(ConstTable.table.formulaArgsDailySignCoin));
+            }
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
 
@@ -383,6 +395,8 @@ namespace DestroyViruses
             localData.diamond -= diamond;
             var addEnergy = (int)diamond * ConstTable.table.energyExchange;
             localData.energy += addEnergy;
+            // TODO: FIX ENERGY
+            ResAddEffect.Play(ResAddView.ResType.Energy, addEnergy);
 
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
@@ -467,7 +481,7 @@ namespace DestroyViruses
                 return;
             }
 
-            AddDiamond(GetBookDiamond(virusID));
+            AddDiamondWithEffect(GetBookDiamond(virusID));
             bookData.AddIndex(virusID, 1);
             SaveLocalData();
             SaveBookData();
@@ -615,7 +629,8 @@ namespace DestroyViruses
                     var add = (int)(diff / ConstTable.table.energyRecoverInterval);
                     localData.lastEnergyTicks = DateTime.Now.Ticks
                         - (long)(diff - add * ConstTable.table.energyRecoverInterval) * 10000000L;
-                    AddEnergy(Mathf.Min(add, maxEnergy - energy));
+                    var energys = Mathf.Min(add, maxEnergy - energy);
+                    AddEnergy(energys);
                 }
             }
 
@@ -725,7 +740,7 @@ namespace DestroyViruses
             var t = TableShop.Get(shopGoodsID);
             if (t.type == 0) // Consumable
             {
-                AddDiamond(t.diamonds + t.extra);
+                AddDiamondWithEffect(t.diamonds + t.extra);
                 SaveLocalData();
                 DispatchEvent(EventGameData.Action.DataChange);
             }
@@ -773,7 +788,7 @@ namespace DestroyViruses
         public void ReceiveVipReward()
         {
             localData.lastVipRewardDays = DateTime.Now.DayOfYear;
-            AddDiamond(5);
+            AddDiamondWithEffect(5);
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
         }

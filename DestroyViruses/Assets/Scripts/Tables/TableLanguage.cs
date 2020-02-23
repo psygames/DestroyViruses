@@ -124,42 +124,6 @@ namespace DestroyViruses
 		private string _en;
 		public string en { get { return _en; } private set { _en = value; } }
 
-		/// <summary>
-		/// 法语（标准）
-		/// </summary>
-		private string _fr;
-		public string fr { get { return _fr; } private set { _fr = value; } }
-
-		/// <summary>
-		/// 西班牙语
-		/// </summary>
-		private string _sp;
-		public string sp { get { return _sp; } private set { _sp = value; } }
-
-		/// <summary>
-		/// 德语（标准）
-		/// </summary>
-		private string _de;
-		public string de { get { return _de; } private set { _de = value; } }
-
-		/// <summary>
-		/// 俄语
-		/// </summary>
-		private string _ru;
-		public string ru { get { return _ru; } private set { _ru = value; } }
-
-		/// <summary>
-		/// 日语
-		/// </summary>
-		private string _ja;
-		public string ja { get { return _ja; } private set { _ja = value; } }
-
-		/// <summary>
-		/// 韩语
-		/// </summary>
-		private string _ko;
-		public string ko { get { return _ko; } private set { _ko = value; } }
-
 
 		public static TableLanguage Get(string id)
 		{

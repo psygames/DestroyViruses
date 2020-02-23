@@ -9,7 +9,7 @@ namespace DestroyViruses
 {
     public static class LT
     {
-        public static readonly string[] Tags = { TAG_EN, TAG_CN, TAG_FR, TAG_SP, TAG_DE, TAG_RU, TAG_JA, TAG_KO };
+        public static readonly string[] Tags = { TAG_EN, TAG_CN };
         public const string TAG_DEFAULT = TAG_EN;
         public const string TAG_EN = "en";
         public const string TAG_CN = "cn";
@@ -36,12 +36,6 @@ namespace DestroyViruses
             string val;
             if (tag == TAG_EN) val = t.en;
             else if (tag == TAG_CN) val = t.cn;
-            else if (tag == TAG_FR) val = t.fr;
-            else if (tag == TAG_SP) val = t.sp;
-            else if (tag == TAG_DE) val = t.de;
-            else if (tag == TAG_RU) val = t.ru;
-            else if (tag == TAG_JA) val = t.ja;
-            else if (tag == TAG_KO) val = t.ko;
             else val = t.en;
 
             if (args == null || args.Length <= 0)

@@ -11,23 +11,12 @@ namespace DestroyViruses
     public class AnalyticsProxy : ProxyBase<AnalyticsProxy>
     {
         public bool isInit { get; private set; }
-        public bool isInitFailed { get; private set; }
         protected override void OnInit()
         {
             base.OnInit();
-            FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+            FirebaseChecker.Check(() =>
             {
-                var dependencyStatus = task.Result;
-                if (dependencyStatus == DependencyStatus.Available)
-                {
-                    InitializeFirebase();
-                    RemoteConfigProxy.Ins.InitAfterCheck();
-                }
-                else
-                {
-                    isInitFailed = true;
-                    Debug.LogError(string.Format("Could not resolve all Firebase dependencies: {0}", dependencyStatus));
-                }
+                InitializeFirebase();
             });
         }
 
@@ -38,11 +27,14 @@ namespace DestroyViruses
             FirebaseAnalytics.SetUserId(DeviceID.UUID);
             FirebaseAnalytics.SetSessionTimeoutDuration(new TimeSpan(0, 30, 0));
 
+            D.I.AnalyticsSetUserProperty();
             Analytics.Event.Login(DeviceID.UUID);
         }
 
         public void ResetAnalyticsData()
         {
+            if (!isInit)
+                return;
             FirebaseAnalytics.ResetAnalyticsData();
         }
 
@@ -165,6 +157,10 @@ namespace DestroyViruses
         {
             public static void Set(string name, object value)
             {
+                if (!proxy.isInit)
+                {
+                    return;
+                }
                 proxy.SetUserProperty(name, value);
             }
         }
@@ -173,7 +169,7 @@ namespace DestroyViruses
         {
             public static void Login(string uuid)
             {
-                if(!proxy.isInit)
+                if (!proxy.isInit)
                 {
                     return;
                 }
@@ -301,4 +297,53 @@ namespace DestroyViruses
         }
     }
 
+
+    public static class FirebaseChecker
+    {
+        public static bool isInited { get; private set; }
+        public static bool isSuccess { get; private set; }
+
+        private static UnityEngine.Events.UnityEvent mSuccessCallback = new UnityEngine.Events.UnityEvent();
+        private static bool isIniting = false;
+
+        public static void Check(UnityEngine.Events.UnityAction successCallback)
+        {
+#if UNITY_EDITOR || !UNITY_ANDROID
+            return;
+#else
+            GameManager.Instance.DelayDo(0.5f, () =>
+            {
+                 if (!isInited)
+                 {
+                     mSuccessCallback.AddListener(successCallback);
+
+                     if (!isIniting)
+                     {
+                         isIniting = true;
+
+                         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+                         {
+                             isInited = true;
+                             var dependencyStatus = task.Result;
+                             if (dependencyStatus == DependencyStatus.Available)
+                             {
+                                 isSuccess = true;
+                                 mSuccessCallback.Invoke();
+                             }
+                             else
+                             {
+                                 isSuccess = false;
+                                 Debug.LogError(string.Format("Could not resolve all Firebase dependencies: {0}", dependencyStatus));
+                             }
+                         });
+                     }
+                 }
+                 else if (isSuccess)
+                 {
+                     successCallback.Invoke();
+                 }
+             });
+#endif
+        }
+    }
 }

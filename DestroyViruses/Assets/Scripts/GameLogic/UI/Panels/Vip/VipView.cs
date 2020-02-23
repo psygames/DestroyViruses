@@ -41,7 +41,7 @@ namespace DestroyViruses
                 new Tuple<string, string>("icon_vip_difficulty",LT.Get("vipRewardDifficulty")),
                 new Tuple<string, string>("icon_vip_revival",LT.Get("vipRewardRevival")),
             };
-            rewardGroup.SetData<VipRewardItem,Tuple<string,string>>(rewards);
+            rewardGroup.SetData<VipRewardItem, Tuple<string, string>>(rewards);
             radioBtn.Radio(!D.I.IsVip() ? 0 : D.I.HasVipReward() ? 1 : 2);
             expirationObj.SetActive(D.I.IsVip());
             if (D.I.IsVip())

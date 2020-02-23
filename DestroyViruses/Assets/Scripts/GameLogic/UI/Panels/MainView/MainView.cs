@@ -53,8 +53,26 @@ namespace DestroyViruses
             RefreshUI();
             AudioManager.PlayMusic($"BGM{Random.Range(1, 3)}", 1f);
             NavigationView.BlackSetting(false);
+            CheckVersion();
             CheckTurtorial();
             StartCoroutine(ShowOpenHints());
+        }
+
+        bool needCheckVersion = true;
+        void CheckVersion()
+        {
+            if (!needCheckVersion)
+                return;
+
+            needCheckVersion = false;
+            var min = System.Version.Parse(GameLocalData.Instance.minVersion);
+            var latest = System.Version.Parse(GameLocalData.Instance.latestVersion);
+            var current = System.Version.Parse(Application.version);
+
+            if (current < min || current < latest)
+            {
+                UIManager.Open<VersionUpdateView>(UILayer.Top);
+            }
         }
 
         bool needOpenTutorial = false;
@@ -63,9 +81,9 @@ namespace DestroyViruses
             if (!needOpenTutorial)
                 return;
             needOpenTutorial = false;
-            TutorialView.Begin(baseOptionBtn.GetComponent<RectTransform>(), 0, () =>
+            TutorialView.Begin(baseOptionBtn.GetComponent<RectTransform>(), LTKey.TUTORIAL_CLICK_PANEL_BASE.LT(), 0, () =>
             {
-                TutorialView.Begin(UpgradeView.tutorialPowerUpBtn, 2);
+                TutorialView.Begin(UpgradeView.tutorialPowerUpBtn, LTKey.TUTORIAL_CLICK_UPDATE_POWER.LT(), 2);
             });
         }
 

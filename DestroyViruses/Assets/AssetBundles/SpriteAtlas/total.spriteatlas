@@ -31,11 +31,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1827d5ad581044f08b470c56b841c4ab, type: 3}
-    totalSpriteSurfaceArea: 6894618
+    totalSpriteSurfaceArea: 6911002
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: a0d7b7344e3e81cc3d2b538ff2647441
+      Hash: ec93451110c3b18ec0a4e4cb71b9dca7
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: b90284208ae411641b3373af740c1624, type: 3}
@@ -135,6 +135,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5219a1e9bf179e94e93fc748283be771, type: 3}
   - {fileID: 21300000, guid: d6167a0af69c47b4b9d49d2944b6e80a, type: 3}
   - {fileID: 21300000, guid: 32c4403a158a0e6419b8d950536ddf9b, type: 3}
+  - {fileID: 21300000, guid: d7cc0e5a7a7470449b5b3a7d3f31bdad, type: 3}
   - {fileID: 21300000, guid: af1ee56a6b0bcee4bae4cbcd6170361b, type: 3}
   - {fileID: 21300000, guid: 7946178a0d44b8140bf8d4bb80eb80ac, type: 3}
   - {fileID: 21300000, guid: 1168ceaab723b4704bee60c9db1dc6eb, type: 3}
@@ -301,6 +302,7 @@ SpriteAtlas:
   - icon_buff_knockback
   - coin_frame_4
   - hp_boss_0
+  - icon_hold_on
   - bullet_0_1_0
   - num_0
   - button_shuaxin

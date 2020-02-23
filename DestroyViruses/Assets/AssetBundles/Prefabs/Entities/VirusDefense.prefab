@@ -55,7 +55,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 125
+  m_Radius: 100
 --- !u!50 &1689229572713921544
 Rigidbody2D:
   serializedVersion: 4
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpText: {fileID: 8954366229148676931}
-  glowImage: {fileID: 608814506457954176}
+  animator: {fileID: 0}
   triangleImage1: {fileID: 2826496132838734164}
 --- !u!1 &6281222621183888845
 GameObject:
@@ -432,18 +432,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7797313964291804979}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &608814506457954176 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7225865264347855027, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b,
-    type: 3}
-  m_PrefabInstance: {fileID: 7797313964291804979}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8954366229148676931 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1184960284371418224, guid: 7ff4a6cb2adb8554aa7cd70c0f65224b,

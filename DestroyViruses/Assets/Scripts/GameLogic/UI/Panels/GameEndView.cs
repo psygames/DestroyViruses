@@ -22,14 +22,15 @@ namespace DestroyViruses
 
         private void OnClickBonus()
         {
-            if (!AdProxy.Ins.ShowAd("triple_reward"))
+            AdProxy.Ins.ShowAd("triple_reward", () =>
+            {
+                D.I.GameEndReceive(3);
+                AudioManager.PlaySound("collect_coin");
+                GameEnd();
+            }, () =>
             {
                 Toast.Show(LTKey.AD_PLAY_FAILED.LT());
-                return;
-            }
-
-            D.I.GameEndReceive(3);
-            GameEnd();
+            });
         }
 
         private void OnClickMysticalBonus()
@@ -55,6 +56,10 @@ namespace DestroyViruses
             coinText.text = D.I.battleGetCoin.KMB();
             winLoseRadio.Radio(!D.I.gameEndWin);
             mysticalBonus.SetActive(Random.value <= ConstTable.table.mysticalBonusProbability);
+            this.DelayDo(1, () =>
+            {
+                ResAddEffect.Play(ResAddView.ResType.Energy, ConstTable.table.energyRecoverWin);
+            });
 
             if (D.I.gameEndWin)
             {

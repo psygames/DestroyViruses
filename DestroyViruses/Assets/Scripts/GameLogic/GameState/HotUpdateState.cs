@@ -10,8 +10,8 @@ namespace DestroyViruses
     {
         private AssetsUpdate updater = new AssetsUpdate();
 
-        public float progress { get; private set; }
-        public string message { get; private set; }
+        public float progress { get { return 0; } private set { LoadingView.SetProgress(value); } }
+        public string message { get { return ""; } private set { LoadingView.SetMessage(value); } }
 
 #if !UNITY_EDITOR && PUBLISH_BUILD
         public const bool ENABLE_QUICK_HOT_UPDATE = false;
@@ -24,7 +24,7 @@ namespace DestroyViruses
         private int mQuickHotUpdateIndex = 0;
         private float mQuickHotUpdateProgress = 0;
         private UnityWebRequest mQuickHotUpdateRequest = null;
-        private List<Type> mQuickHotUpdateList = new List<Type>();
+        private List<string> mQuickHotUpdateList = new List<string>();
 
         private void InitQuickHotUpdate()
         {
@@ -32,34 +32,18 @@ namespace DestroyViruses
             mQuickHotUpdateFinished = false;
             mQuickHotUpdateIndex = 0;
             mQuickHotUpdateProgress = 0;
-            mQuickHotUpdateList.Add(typeof(TableAdsCollection));
-            mQuickHotUpdateList.Add(typeof(TableAircraftCollection));
-            mQuickHotUpdateList.Add(typeof(TableBuffCollection));
-            mQuickHotUpdateList.Add(typeof(TableBuffAutoGenCollection));
-            mQuickHotUpdateList.Add(typeof(TableBuffKillGenCollection));
-            mQuickHotUpdateList.Add(typeof(TableCoinIncomeCollection));
-            mQuickHotUpdateList.Add(typeof(TableCoinValueCollection));
-            mQuickHotUpdateList.Add(typeof(TableConstCollection));
-            mQuickHotUpdateList.Add(typeof(TableDailySignCollection));
-            mQuickHotUpdateList.Add(typeof(TableFirePowerCollection));
-            mQuickHotUpdateList.Add(typeof(TableFireSpeedCollection));
-            mQuickHotUpdateList.Add(typeof(TableGameLevelCollection));
-            mQuickHotUpdateList.Add(typeof(TableGameWaveCollection));
-            mQuickHotUpdateList.Add(typeof(TableLanguageCollection));
-            mQuickHotUpdateList.Add(typeof(TableShopCollection));
-            mQuickHotUpdateList.Add(typeof(TableVirusCollection));
-            mQuickHotUpdateList.Add(typeof(TableWeaponCollection));
-            mQuickHotUpdateList.Add(typeof(TableWeaponPowerLevelCollection));
-            mQuickHotUpdateList.Add(typeof(TableWeaponSpeedLevelCollection));
+            mQuickHotUpdateList.Clear();
+            foreach (var t in TableList.GetAll())
+            {
+                mQuickHotUpdateList.Add(t.id);
+            }
         }
 
         public override void OnEnter()
         {
-            progress = 0;
             UIManager.Open<LoadingView>();
-            //TODO: Why cant load table
+            progress = 0;
             message = "";
-            progress = 0.00f;
             updater.Init();
             InitQuickHotUpdate();
             base.OnEnter();
@@ -139,7 +123,7 @@ namespace DestroyViruses
 
             if (mQuickHotUpdateRequest == null)
             {
-                string url = sQuickHotUpdateUrl + mQuickHotUpdateList[mQuickHotUpdateIndex].Name.Replace("Collection", "") + ".bytes";
+                string url = sQuickHotUpdateUrl + mQuickHotUpdateList[mQuickHotUpdateIndex] + ".bytes";
                 mQuickHotUpdateRequest = UnityWebRequest.Get(url);
                 mQuickHotUpdateRequest.SendWebRequest();
                 mQuickHotUpdateProgress = 0;
@@ -171,14 +155,14 @@ namespace DestroyViruses
 
         private void LoadToTable(byte[] bytes)
         {
-            var type = mQuickHotUpdateList[mQuickHotUpdateIndex];
+            var type = Type.GetType(mQuickHotUpdateList[mQuickHotUpdateIndex] + "Collection");
             type.GetMethod("Load", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public)
                 .Invoke(null, new object[] { bytes });
-            //Debug.Log("qucik hot update success table: " + mQuickHotUpdateList[mQuickHotUpdateIndex]);
         }
 
         public override void OnExit()
         {
+            UIManager.Close<LoadingView>();
             base.OnExit();
         }
     }

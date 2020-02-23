@@ -16,9 +16,11 @@ namespace DestroyViruses
         private float mCountDown = 0;
         public static bool isDiamondRevive;
 
+        private bool pause = false;
         protected override void OnOpen()
         {
             base.OnOpen();
+            pause = false;
             mCountDown = ConstTable.table.reviveCountDown;
             btnRadio.Radio(isDiamondRevive);
         }
@@ -26,7 +28,10 @@ namespace DestroyViruses
         private int mLast = -1;
         private void Update()
         {
-            mCountDown = this.UpdateCD(mCountDown);
+            if (!pause)
+            {
+                mCountDown = this.UpdateCD(mCountDown);
+            }
 
             int cur = Mathf.CeilToInt(mCountDown);
             if (mLast != cur)
@@ -54,14 +59,18 @@ namespace DestroyViruses
 
         private void OnClickRevive()
         {
-            if (!AdProxy.Ins.ShowAd("revive"))
+            pause = true;
+            AdProxy.Ins.ShowAd("revive", () =>
             {
+                pause = false;
+                var mode = GameModeManager.Instance.currentMode as LevelMode;
+                mode?.DoRevive();
+                Close();
+            }, () =>
+            {
+                pause = false;
                 Toast.Show(LTKey.AD_PLAY_FAILED.LT());
-                return;
-            }
-            var mode = GameModeManager.Instance.currentMode as LevelMode;
-            mode?.DoRevive();
-            Close();
+            });
         }
 
         private void OnClickReviveUseDiamond()

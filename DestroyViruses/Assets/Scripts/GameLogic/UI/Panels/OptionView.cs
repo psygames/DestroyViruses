@@ -53,12 +53,6 @@ namespace DestroyViruses
             {
                 if (_tag == LT.TAG_EN) val = t.en;
                 else if (_tag == LT.TAG_CN) val = t.cn;
-                else if (_tag == LT.TAG_FR) val = t.fr;
-                else if (_tag == LT.TAG_SP) val = t.sp;
-                else if (_tag == LT.TAG_DE) val = t.de;
-                else if (_tag == LT.TAG_RU) val = t.ru;
-                else if (_tag == LT.TAG_JA) val = t.ja;
-                else if (_tag == LT.TAG_KO) val = t.ko;
                 else val = t.en;
                 languageDropdown.options.Add(new Dropdown.OptionData(val));
             }
