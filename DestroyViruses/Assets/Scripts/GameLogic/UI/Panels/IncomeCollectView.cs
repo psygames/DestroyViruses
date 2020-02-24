@@ -40,12 +40,13 @@ namespace DestroyViruses
 
         private void OnClickReward()
         {
-            AdProxy.Ins.ShowAd("offline_reward",()=>
+            AdProxy.Ins.ShowAd(()=>
             {
                 PlayCollectEffect();
                 D.I.TakeIncomeCoins(2);
                 Close();
-            },()=>
+                Analytics.Event.Advertising("offline_reward");
+            }, ()=>
             { 
                 Toast.Show(LTKey.AD_PLAY_FAILED.LT());
             });

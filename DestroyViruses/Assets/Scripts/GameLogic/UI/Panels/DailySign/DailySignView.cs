@@ -70,7 +70,11 @@ namespace DestroyViruses
         {
             if (D.I.CanDailySign())
             {
-                AdProxy.Ins.ShowAd("daily_sign", () => Sign(2), () =>
+                AdProxy.Ins.ShowAd(() =>
+                {
+                    Sign(2);
+                    Analytics.Event.Advertising("daily_sign");
+                }, () =>
                 {
                     Toast.Show(LTKey.AD_PLAY_FAILED.LT());
                 });

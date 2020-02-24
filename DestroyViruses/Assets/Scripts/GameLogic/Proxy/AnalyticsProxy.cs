@@ -207,16 +207,14 @@ namespace DestroyViruses
                     );
             }
 
-            public static void ClickAd(string adName, string adUnit)
+            public static void Advertising(string adName)
             {
                 if (!proxy.isInit)
                 {
                     return;
                 }
                 proxy.LogEvent("advertising",
-                    new Parameter("name", adName),
-                    new Parameter("unitID", adUnit)
-                    );
+                    new Parameter("name", adName));
             }
 
             public static void DailySign(int days, float multiple)

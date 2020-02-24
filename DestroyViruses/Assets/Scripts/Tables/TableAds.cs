@@ -131,10 +131,10 @@ namespace DestroyViruses
 		public string type { get { return _type; } private set { _type = value; } }
 
 		/// <summary>
-		/// <para>预加载优先级，大->小</para><para><=0 不加载</para>
+		/// <para>播放优先级</para><para>0 不加载</para>
 		/// </summary>
-		private float _preloadPriority;
-		public float preloadPriority { get { return _preloadPriority; } private set { _preloadPriority = value; } }
+		private float _priority;
+		public float priority { get { return _priority; } private set { _priority = value; } }
 
 
 		public static TableAds Get(string id)

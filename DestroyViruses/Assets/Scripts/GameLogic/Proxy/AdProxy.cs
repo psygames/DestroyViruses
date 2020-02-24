@@ -7,7 +7,15 @@ namespace DestroyViruses
 {
     public class AdProxy : ProxyBase<AdProxy>
     {
-        private string defalutAdUnitID { get { return TableAds.Get("default").unitID; } }
+        public enum AdType
+        {
+            None = 0,
+            Banner = 1,
+            Interstitial = 2,
+            RewardedVideo = 3,
+        }
+
+        private string defalutAdUnitID { get { return TableAds.GetAll().First().unitID; } }
         private readonly Dictionary<string, bool> loadedAds = new Dictionary<string, bool>();
         private readonly Dictionary<string, float> loadingAds = new Dictionary<string, float>();
         private readonly Dictionary<string, List<MoPub.Reward>> rewards = new Dictionary<string, List<MoPub.Reward>>();
@@ -47,70 +55,63 @@ namespace DestroyViruses
             base.OnDestroy();
         }
 
-        private string currentShowUnitId;
         private Action currentSuccessCallback;
         private Action currentErrorCallback;
-        private float currentLoadingCD;
+        private float currentShowingCD;
+        private bool currentShowingAd;
 
         private void AutoPlay(string unitID)
         {
-            HoldOn.Stop();
-            if (currentShowUnitId != unitID)
+            if (!currentShowingAd)
                 return;
+            HoldOn.Stop();
             MoPub.ShowRewardedVideo(unitID);
         }
 
         private void Success(string unitID)
         {
-            HoldOn.Stop();
-            if (currentShowUnitId != unitID)
+            if (!currentShowingAd)
                 return;
-            currentShowUnitId = "";
-            currentLoadingCD = 0;
+            HoldOn.Stop();
+            currentShowingAd = false;
+            currentShowingCD = 0;
             currentSuccessCallback?.Invoke();
         }
 
         private void Failed(string unitID)
         {
-            HoldOn.Stop();
-            if (currentShowUnitId != unitID)
+            if (!currentShowingAd)
                 return;
-            currentShowUnitId = "";
-            currentLoadingCD = 0;
+            HoldOn.Stop();
+            currentShowingAd = false;
+            currentShowingCD = 0;
             currentErrorCallback?.Invoke();
         }
 
-        public void ShowAd(string adId, Action successCallback, Action errorCallback)
+        public void ShowAd(Action successCallback, Action errorCallback)
         {
             currentSuccessCallback = successCallback;
             currentErrorCallback = errorCallback;
-            var ad = TableAds.Get(adId);
-            if (ad == null)
-            {
-                Log(adId, "广告", "播放", false, "播放广告失败，配置表不存在项");
-                Failed(currentShowUnitId);
-                return;
-            }
+            currentShowingCD = AD_LOAD_TIMEOUT;
+            currentShowingAd = true;
 
 #if !UNITY_EDITOR
             HoldOn.Start();
 #endif
-            currentShowUnitId = ad.unitID;
-            currentLoadingCD = AD_LOAD_TIMEOUT;
-
-            Analytics.Event.ClickAd(ad.id, ad.unitID); 
-            if (ad.type == "RewardedVideo")
-            {
-                ShowRewardVideo(ad.unitID);
+            var loadedAd = "";
+            var maxPriority = 0;
+            foreach (var ad in loadedAds)
+            { 
+                
             }
-            else if (ad.type == "Interstitial")
+            if (loadedAds.Count(a => a.Value) > 0)
             {
-                ShowInterstitial(ad.unitID);
-            }
-            else
-            {
-                Failed(currentShowUnitId);
-                Log(adId, "类型尚未集成", ad.type, false, "UnitID is AD ID ");
+                var adUnit = "";
+                foreach (var ad in loadedAds)
+                { 
+                if(ad.Value && ad.)
+                }
+                ShowAd();
             }
         }
 
@@ -128,22 +129,33 @@ namespace DestroyViruses
             LoadRewardedVideosPlugin();
         }
 
-        private void RequestAd(string adId)
+        private AdType GetAdType(string adUnit)
         {
-            var ad = TableAds.Get(adId);
-            if (ad != null)
+            switch (TableAds.Get(a => a.unitID == adUnit).type)
             {
-                if (ad.type == "RewardedVideo")
-                {
-                    RequestRewardedVideo(ad.unitID);
-                }
+                case "Banner":
+                    return AdType.Banner;
+                case "Interstitial":
+                    return AdType.Interstitial;
+                case "RewardedVideo":
+                    return AdType.RewardedVideo;
+            }
+            return AdType.None;
+        }
 
-                if (ad.type == "Interstitial")
-                {
-                    RequestInterstitial(ad.unitID);
-                }
+        private void ShowAd(string adUnit)
+        {
+            var adType = GetAdType(adUnit);
+            if (adType == AdType.Interstitial)
+            {
+                ShowInterstitial(adUnit);
+            }
+            else if (adType == AdType.RewardedVideo)
+            {
+                ShowRewardVideo(adUnit);
             }
         }
+
 
         private void RequestRewardedVideo(string adUnit)
         {
@@ -341,12 +353,7 @@ namespace DestroyViruses
 
         private bool NeedCache(string unitID)
         {
-            foreach (var aid in m_needAutoCacheAds)
-            {
-                if (TableAds.Get(aid).unitID == unitID)
-                    return true;
-            }
-            return false;
+            return m_needAutoCacheAds.Contains(unitID);
         }
 
         private void Log(string unitID, string name, string action, string end)
@@ -363,25 +370,23 @@ namespace DestroyViruses
         protected override void OnUpdate()
         {
             base.OnUpdate();
+
+            var lastDelay = m_delayCacheAd;
+            m_delayCacheAd -= Time.deltaTime;
+            if (lastDelay > 0 && m_delayCacheAd <= 0)
+            {
+                // ADD TO CACHE
+
+            }
             if (m_delayCacheAd > 0)
             {
-                m_delayCacheAd -= Time.deltaTime;
                 if (m_delayCacheAd <= 0)
                 {
                     m_needAutoCacheAds.Clear();
                     foreach (var t in TableAds.GetAll())
                     {
-                        if (t.preloadPriority <= 0)
-                            continue;
                         m_needAutoCacheAds.Add(t.id);
                     }
-
-                    m_needAutoCacheAds.Sort((a, b) =>
-                    {
-                        var ta = TableAds.Get(a).preloadPriority;
-                        var tb = TableAds.Get(b).preloadPriority;
-                        return tb.CompareTo(ta);
-                    });
                 }
             }
 
@@ -389,14 +394,14 @@ namespace DestroyViruses
             if (m_cacheAdCd <= 0 && m_autoCacheIndex < m_needAutoCacheAds.Count)
             {
                 m_cacheAdCd = AD_AUTO_LOAD_INTERAL;
-                RequestAd(m_needAutoCacheAds[m_autoCacheIndex]);
+                PreRequestAd(m_needAutoCacheAds[m_autoCacheIndex]);
                 m_autoCacheIndex++;
             }
 
-            if (!string.IsNullOrEmpty(currentShowUnitId) && currentLoadingCD > 0)
+            if (!string.IsNullOrEmpty(currentShowUnitId) && currentShowingCD > 0)
             {
-                currentLoadingCD -= Time.deltaTime;
-                if (currentLoadingCD <= 0)
+                currentShowingCD -= Time.deltaTime;
+                if (currentShowingCD <= 0)
                 {
                     Failed(currentShowUnitId);
                 }

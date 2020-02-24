@@ -46,10 +46,11 @@ namespace DestroyViruses
             if (receiveBtn.isGrey)
                 return;
 
-            AdProxy.Ins.ShowAd("mystical_reward", () =>
+            AdProxy.Ins.ShowAd(() =>
             {
                 receiveBtn.SetBtnGrey(true);
                 AnimaStart();
+                Analytics.Event.Advertising("mystical_reward");
             }, () =>
             {
                 receiveBtn.gameObject.SetActive(false);

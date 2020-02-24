@@ -60,12 +60,13 @@ namespace DestroyViruses
         private void OnClickRevive()
         {
             pause = true;
-            AdProxy.Ins.ShowAd("revive", () =>
+            AdProxy.Ins.ShowAd(() =>
             {
                 pause = false;
                 var mode = GameModeManager.Instance.currentMode as LevelMode;
                 mode?.DoRevive();
                 Close();
+                Analytics.Event.Advertising("revive");
             }, () =>
             {
                 pause = false;

@@ -22,11 +22,12 @@ namespace DestroyViruses
 
         private void OnClickBonus()
         {
-            AdProxy.Ins.ShowAd("triple_reward", () =>
+            AdProxy.Ins.ShowAd(() =>
             {
                 D.I.GameEndReceive(3);
                 AudioManager.PlaySound("collect_coin");
                 GameEnd();
+                Analytics.Event.Advertising("triple_reward");
             }, () =>
             {
                 Toast.Show(LTKey.AD_PLAY_FAILED.LT());

@@ -119,10 +119,11 @@ namespace DestroyViruses
             {
                 if (v.needPlayAd)
                 {
-                    AdProxy.Ins.ShowAd("book_reward", () =>
+                    AdProxy.Ins.ShowAd(() =>
                     {
                         D.I.BookCollect(v.id);
                         AudioManager.PlaySound("collect_coin");
+                        Analytics.Event.Advertising("book_reward");
                     }, () =>
                     {
                         Toast.Show(LTKey.AD_PLAY_FAILED.LT());
