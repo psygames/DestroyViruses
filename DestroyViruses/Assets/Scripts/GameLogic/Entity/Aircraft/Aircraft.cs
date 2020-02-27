@@ -16,6 +16,8 @@ namespace DestroyViruses
         private AircraftInputHandle mInputHandle;
         private AircraftSupport mSupport;
         private RectTransform mHeadRoot;
+        private RectTransform mCrashPointRoot;
+        private RectTransform mCrashPointPos;
 
         public Vector2 headPosition { get { return rectTransform.anchoredPosition + mHeadRoot.anchoredPosition; } }
         public bool isInvincible { get; private set; }
@@ -36,6 +38,16 @@ namespace DestroyViruses
                 mHeadRoot = transform.Find("headRoot")?.GetComponent<RectTransform>();
             if (mHeadRoot == null)
                 Debug.LogError("headRoot is null, please take care of this!");
+
+            if (mCrashPointRoot == null)
+                mCrashPointRoot = transform.Find("crashPointRoot")?.GetComponent<RectTransform>();
+            if (mCrashPointRoot == null)
+                Debug.LogError("crashPointRoot is null, please take care of this!");
+
+            if (mCrashPointPos == null)
+                mCrashPointPos = transform.Find("crashPointRoot/crashPointPos")?.GetComponent<RectTransform>();
+            if (mCrashPointPos == null)
+                Debug.LogError("crashPointPos is null, please take care of this!");
         }
 
         public void Reset()
@@ -44,6 +56,7 @@ namespace DestroyViruses
             firement.HoldFire();
             anima.KillAll();
             weapon.Reset();
+            HideCrashPoint();
         }
 
         public void Revive()
@@ -52,12 +65,29 @@ namespace DestroyViruses
             isInvincible = true;
             anima.PlayInvincible(invincibleCD);
             this.DelayDo(invincibleCD, () => { isInvincible = false; });
+            HideCrashPoint();
+        }
+
+        private void ShowCrashPoint(Vector2 offsetPos)
+        {
+            mCrashPointPos.anchoredPosition = offsetPos;
+            mCrashPointPos.gameObject.SetActive(true);
+        }
+
+        private void HideCrashPoint()
+        {
+            mCrashPointPos.gameObject.SetActive(false);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (!GameUtil.isInBattle)
+                return;
+
             if (!isInvincible && collision.tag == TagUtil.Virus)
             {
+                var crashPoint = (collision.transform.GetUIPos() - mCrashPointRoot.GetUIPos()).normalized * 40;
+                ShowCrashPoint(crashPoint);
                 UnibusEvent.Unibus.Dispatch(EventAircraft.Get(EventAircraft.Action.Crash));
             }
             else if (collision.tag == TagUtil.Buff)

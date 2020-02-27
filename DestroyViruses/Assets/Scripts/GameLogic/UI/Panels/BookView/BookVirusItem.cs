@@ -35,6 +35,9 @@ namespace DestroyViruses
                     if (mVirus != null)
                     {
                         mVirus.rectTransform.SetParent(modelRoot, false);
+                        mVirus.GetComponent<Collider2D>().enabled = false;
+                        mVirus.stunEffect.gameObject.SetActive(false);
+                        mVirus.cureEffect.gameObject.SetActive(false);
                         mColorIndex = UnityEngine.Random.Range(0, 6);
                         mVirus.SetColor(mColorIndex);
                     }

@@ -17,7 +17,8 @@ namespace DestroyViruses
         static ViewBase LoadViewFunc(string panelName)
         {
             if (panelName.Equals(typeof(LoadingView).Name)
-                || panelName.Equals(typeof(SplashView).Name))
+                || panelName.Equals(typeof(SplashView).Name)
+                || panelName.Equals(typeof(MaintenanceView).Name))
             {
                 return Resources.Load<ViewBase>("Prefabs/" + panelName);
             }

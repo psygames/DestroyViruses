@@ -155,14 +155,20 @@ namespace DestroyViruses
                 {
                     D.I.adReviveCount -= 1;
                     GameReviveView.isDiamondRevive = false;
-                    UIManager.Open<GameReviveView>(UILayer.Top);
+                    GameManager.Instance.DelayDo(1, () =>
+                    {
+                        UIManager.Open<GameReviveView>(UILayer.Top);
+                    });
                     GameModeManager.Instance.Pause();
                 }
                 else if (D.I.diamondReviveCount > 0)
                 {
                     D.I.diamondReviveCount -= 1;
                     GameReviveView.isDiamondRevive = true;
-                    UIManager.Open<GameReviveView>(UILayer.Top);
+                    GameManager.Instance.DelayDo(1, () =>
+                    {
+                        UIManager.Open<GameReviveView>(UILayer.Top);
+                    });
                     GameModeManager.Instance.Pause();
                 }
                 else

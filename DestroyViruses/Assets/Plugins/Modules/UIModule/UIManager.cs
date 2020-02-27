@@ -31,29 +31,18 @@ public class UIManager : Singleton<UIManager>
         if (view == null)
             return;
 
-        Vector3 anchorPos3D = view.rectTransform.anchoredPosition3D;
-        Vector2 anchorPos = view.rectTransform.anchoredPosition;
-        Vector2 offsetMin = view.rectTransform.offsetMin;
-        Vector2 offsetMax = view.rectTransform.offsetMax;
-
         if (layer == UILayer.Common && commonLayer != null)
         {
-            view.transform.SetParent(commonLayer);
+            view.transform.SetParent(commonLayer, false);
         }
         else if (layer == UILayer.Top && topLayer != null)
         {
-            view.transform.SetParent(topLayer);
+            view.transform.SetParent(topLayer, false);
         }
         else if (layer == UILayer.Bottom && bottomLayer != null)
         {
-            view.transform.SetParent(bottomLayer);
+            view.transform.SetParent(bottomLayer, false);
         }
-        view.rectTransform.localScale = Vector3.one;
-        view.rectTransform.rotation = Quaternion.identity;
-        view.rectTransform.anchoredPosition3D = anchorPos3D;
-        view.rectTransform.anchoredPosition = anchorPos;
-        view.rectTransform.offsetMin = offsetMin;
-        view.rectTransform.offsetMax = offsetMax;
     }
 
     private ViewBase load(Type viewType)
@@ -97,8 +86,8 @@ public class UIManager : Singleton<UIManager>
             view = Load<T>();
         }
 
-        view.gameObject.SetActive(true);
         setLayer(view, layer);
+        view.gameObject.SetActive(true);
         view.ReflectInvokeMethod("OnOpen");
         return view as T;
     }

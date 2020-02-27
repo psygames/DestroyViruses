@@ -107,7 +107,7 @@ namespace DestroyViruses
 
             if (GameUtil.isInBattle)
             {
-                GlobalData.isBattleTouchOn = mIsDown;
+                GlobalData.isBattleTouchOn = mIsDown && !GameUtil.isFrozen;
                 if (mLastBattleDown != mIsDown)
                 {
                     if (mIsDown)

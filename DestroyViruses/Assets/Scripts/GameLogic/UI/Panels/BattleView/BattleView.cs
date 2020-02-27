@@ -91,8 +91,10 @@ namespace DestroyViruses
 
         private void ShowGameEndPanel(bool isWin)
         {
-            // TODO: game end
-            UIManager.Open<GameEndView>(UILayer.Top);
+            this.DelayDo(1.5f, () =>
+            {
+                UIManager.Open<GameEndView>(UILayer.Top);
+            });
         }
     }
 }

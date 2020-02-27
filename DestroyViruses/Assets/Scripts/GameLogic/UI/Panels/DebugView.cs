@@ -30,6 +30,8 @@ namespace DestroyViruses
         {
             if (int.TryParse(gameLevelInput.text, out var level))
             {
+                var maxLevel = TableGameLevel.GetAll().Max(a => a.id);
+                level = Mathf.Min(level, maxLevel.id);
                 GameLocalData.Instance.gameLevel = level;
                 GameLocalData.Instance.unlockedGameLevel = level;
                 if (GameLocalData.Instance.weaponId == 0 && level >= ConstTable.table.weaponUnlockLevel)

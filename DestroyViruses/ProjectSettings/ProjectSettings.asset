@@ -121,7 +121,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.0.027
+  bundleVersion: 0.0.028
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -152,8 +152,6 @@ PlayerSettings:
       sharedDepthBuffer: 1
       dashSupport: 1
       lowOverheadMode: 0
-      protectedContext: 0
-      v2Signing: 0
     enable360StereoCapture: 0
   isWsaHolographicRemotingEnabled: 0
   protectGraphicsMemory: 0
@@ -168,7 +166,7 @@ PlayerSettings:
     Android: com.unionfun.pss
     Standalone: com.Company.ProductName
   buildNumber: {}
-  AndroidBundleVersionCode: 27
+  AndroidBundleVersionCode: 28
   AndroidMinSdkVersion: 21
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -261,7 +259,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/Administrator.YIN-PC/Desktop/DestroyViruses/Docs/keys/user.keystore
+  AndroidKeystoreName: /Users/yinlong/Documents/github/DestroyViruses/Docs/keys/user.keystore
   AndroidKeyaliasName: unionfunkey
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0

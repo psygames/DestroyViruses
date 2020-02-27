@@ -113,7 +113,7 @@ namespace DestroyViruses
 		public string id { get { return _id; } private set { _id = value; } }
 
 		/// <summary>
-		/// 程序用，副武器类型
+		/// 描述
 		/// </summary>
 		private string _desc;
 		public string desc { get { return _desc; } private set { _desc = value; } }
@@ -125,7 +125,7 @@ namespace DestroyViruses
 		public string unitID { get { return _unitID; } private set { _unitID = value; } }
 
 		/// <summary>
-		/// <para>类型， Banner, Interstitial, RewardedVideo</para><para></para>
+		/// <para>类型： </para><para>Banner</para><para>Interstitial</para><para>RewardedVideo</para><para></para>
 		/// </summary>
 		private string _type;
 		public string type { get { return _type; } private set { _type = value; } }
@@ -133,8 +133,8 @@ namespace DestroyViruses
 		/// <summary>
 		/// <para>播放优先级</para><para>0 不加载</para>
 		/// </summary>
-		private float _priority;
-		public float priority { get { return _priority; } private set { _priority = value; } }
+		private int _priority;
+		public int priority { get { return _priority; } private set { _priority = value; } }
 
 
 		public static TableAds Get(string id)

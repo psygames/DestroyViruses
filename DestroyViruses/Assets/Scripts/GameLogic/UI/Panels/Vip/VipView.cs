@@ -43,9 +43,11 @@ namespace DestroyViruses
             };
             rewardGroup.SetData<VipRewardItem, Tuple<string, string>>(rewards);
             radioBtn.Radio(!D.I.IsVip() ? 0 : D.I.HasVipReward() ? 1 : 2);
-            expirationObj.SetActive(D.I.IsVip());
+            expirationObj.SetActive(D.I.IsVip() && false);
             if (D.I.IsVip())
+            {
                 expirationTime.text = D.I.VipExpirationDate().ToString("yyyy-MM-dd HH:mm:ss");
+            }
         }
 
         private void OnClickVip()

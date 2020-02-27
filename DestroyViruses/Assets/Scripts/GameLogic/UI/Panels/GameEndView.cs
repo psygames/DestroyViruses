@@ -57,6 +57,7 @@ namespace DestroyViruses
             coinText.text = D.I.battleGetCoin.KMB();
             winLoseRadio.Radio(!D.I.gameEndWin);
             mysticalBonus.SetActive(Random.value <= ConstTable.table.mysticalBonusProbability);
+
             this.DelayDo(1, () =>
             {
                 ResAddEffect.Play(ResAddView.ResType.Energy, ConstTable.table.energyRecoverWin);

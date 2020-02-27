@@ -48,6 +48,8 @@ namespace DestroyViruses
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (!GameUtil.isInBattle)
+                return;
             if (mCheckCD <= 0)
                 return;
             if (collision.tag == TagUtil.Virus)

@@ -43,12 +43,10 @@ namespace DestroyViruses
             else
                 mFire.HoldFire();
 
-            if (target.rectTransform.anchoredPosition3D.x > UIUtil.width * 0.7f)
-                offset = new Vector3(-Mathf.Abs(offset.x), offset.y);
-            else if(target.rectTransform.anchoredPosition3D.x < UIUtil.width * 0.3f)
-                offset = new Vector3(Mathf.Abs(offset.x), offset.y);
-            var tarpos = target.rectTransform.anchoredPosition3D + offset;
-            rectTransform.anchoredPosition3D = Vector2.MoveTowards(rectTransform.anchoredPosition3D, tarpos, speed * Time.deltaTime);
+            var dist = offset.magnitude;
+            var dir = (rectTransform.anchoredPosition - target.rectTransform.GetUIPos()).normalized;
+            var tarpos = target.rectTransform.GetUIPos() + dir * dist;
+            rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, tarpos, Time.deltaTime * 8f * GlobalData.slowDownFactor);
         }
     }
 }

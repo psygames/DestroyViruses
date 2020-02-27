@@ -10,6 +10,7 @@ namespace DestroyViruses
         public override void OnEnter()
         {
             base.OnEnter();
+            ProxyManager.Subscribe<InternalProxy>();
             m_max = 0.0f;
         }
 

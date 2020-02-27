@@ -395,7 +395,6 @@ namespace DestroyViruses
             localData.diamond -= diamond;
             var addEnergy = (int)diamond * ConstTable.table.energyExchange;
             localData.energy += addEnergy;
-            // TODO: FIX ENERGY
             ResAddEffect.Play(ResAddView.ResType.Energy, addEnergy);
 
             SaveLocalData();

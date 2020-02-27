@@ -31,11 +31,8 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1827d5ad581044f08b470c56b841c4ab, type: 3}
-    totalSpriteSurfaceArea: 6911002
+    totalSpriteSurfaceArea: 7055402
     bindAsDefault: 1
-    storedHash:
-      serializedVersion: 2
-      Hash: ec93451110c3b18ec0a4e4cb71b9dca7
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: b90284208ae411641b3373af740c1624, type: 3}
@@ -44,6 +41,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6870294071e48e44dabfca1db9e2384a, type: 3}
   - {fileID: 21300000, guid: 1a62cf703e9d64a2a972ea81b08eda53, type: 3}
   - {fileID: 21300000, guid: b1f962806f8e58244943c667298dbec8, type: 3}
+  - {fileID: 21300000, guid: 95e6fc80591a344d2ae86046b9411d89, type: 3}
   - {fileID: 21300000, guid: c467d0c095ed2b544ace0de0e20d6f76, type: 3}
   - {fileID: 21300000, guid: beaaafd0ab9e9447382aa70467ed2517, type: 3}
   - {fileID: 21300000, guid: 6dbb820152979a4408d785877f33702f, type: 3}
@@ -211,6 +209,7 @@ SpriteAtlas:
   - bullet_2_1_1
   - shop_diamond_1
   - icon_up
+  - red_area
   - coin_frame_2
   - weapon_default
   - button_1
