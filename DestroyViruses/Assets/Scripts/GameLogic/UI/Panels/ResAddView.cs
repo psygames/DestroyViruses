@@ -80,20 +80,22 @@ namespace DestroyViruses
 
             gameObject.GetOrAddComponent<CanvasGroup>().DOKill();
             gameObject.GetOrAddComponent<CanvasGroup>().alpha = 1;
-            gameObject.GetOrAddComponent<CanvasGroup>().DOFade(0, 0.5f).SetDelay(1.5f);
+            gameObject.GetOrAddComponent<CanvasGroup>().DOFade(0, 0.5f).SetDelay(2f);
 
             this.StopAllCoroutines();
-            this.DelayDo(2, Close);
+            this.DelayDo(2.5f, Close);
         }
 
-        private void DoTwEff(RectTransform rect, Vector2 rawPos, Vector2 targetPos)
+        private void DoTwEff(RectTransform rect, Vector2 _rawPos, Vector2 targetPos)
         {
             rect.GetComponent<Image>().DOKill();
             rect.GetComponent<Image>().SetAlpha(1);
             rect.anchoredPosition = icon.rectTransform.GetUIPos();
+            rect.localScale = Vector3.zero;
+            rect.DOScale(0.5f, 0.1f).SetDelay(0.9f);
             var cPos = rect.anchoredPosition;
-            rect.DOAnchorPos((rawPos - cPos) * Random.Range(0.65f, 1f) + cPos, 0.1f + Random.Range(0, 0.2f))
-                .SetDelay(Random.Range(0, 0.1f)).OnComplete(() =>
+            rect.DOAnchorPos((_rawPos - cPos) * Random.Range(0.65f, 1f) + cPos, 0.1f + Random.Range(0, 0.2f))
+                .SetDelay(Random.Range(0.9f, 1f)).OnComplete(() =>
             {
                 rect.DOAnchorPos(targetPos, 0.5f).SetDelay(0.5f).OnComplete(() =>
                 {

@@ -4,6 +4,7 @@
     public static class LTKey
     {
         public const string RECEIVE = "RECEIVE";
+        public const string VERSION = "VERSION";
 
         public const string ALREADY_LEVEL_MAX = "ALREADY_LEVEL_MAX";
         public const string UPGRADE_LACK_OF_COIN = "UPGRADE_LACK_OF_COIN";

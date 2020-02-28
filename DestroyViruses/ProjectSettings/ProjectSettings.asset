@@ -121,7 +121,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.0.028
+  bundleVersion: 0.0.029
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -166,7 +166,7 @@ PlayerSettings:
     Android: com.unionfun.pss
     Standalone: com.Company.ProductName
   buildNumber: {}
-  AndroidBundleVersionCode: 28
+  AndroidBundleVersionCode: 29
   AndroidMinSdkVersion: 21
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -620,7 +620,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: ENABLE_LOG;mopub_manager
     4: ENABLE_LOG;mopub_manager
-    7: ENABLE_LOG;mopub_manager
+    7: ENABLE_LOG;mopub_manager;PUBLISH_BUILD
     13: ENABLE_LOG
     14: ENABLE_LOG
   platformArchitecture: {}

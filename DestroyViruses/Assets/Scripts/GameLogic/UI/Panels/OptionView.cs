@@ -15,6 +15,7 @@ namespace DestroyViruses
         public Button musicBtn;
         public Button vibrationBtn;
         public Dropdown languageDropdown;
+        public Text version;
 
         private void Awake()
         {
@@ -58,6 +59,7 @@ namespace DestroyViruses
             }
             languageDropdown.value = LT.Tags.IndexOf(Option.language);
             SetMusic();
+            version.text = $"{LTKey.VERSION.LT()}: {Application.version}";
         }
 
         private void SetMusic()

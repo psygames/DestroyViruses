@@ -11,7 +11,48 @@ namespace DestroyViruses
 {
     public class DebugView : ViewBase
     {
-        public InputField gameLevelInput;
+        public InputField input1;
+        public InputField input2;
+
+        private void Awake()
+        {
+            input1.text = "100";
+            input2.text = "100";
+        }
+
+        private float GetFloat1()
+        {
+            float.TryParse(input1.text, out float val);
+            return val;
+        }
+
+        private int GetInt1()
+        {
+            int.TryParse(input1.text, out int val);
+            return val;
+        }
+
+        private float GetFloat2()
+        {
+            float.TryParse(input2.text, out float val);
+            return val;
+        }
+
+        private int GetInt2()
+        {
+            int.TryParse(input2.text, out int val);
+            return val;
+        }
+
+        private void SaveAndDispatch()
+        {
+            GameLocalData.Instance.Save();
+            Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
+        }
+
+        private void OnClickReporter()
+        {
+        }
 
         private void OnClickClear()
         {
@@ -23,62 +64,104 @@ namespace DestroyViruses
             GameLocalData.Reload();
             BookData.Reload();
             WeaponLevelData.Reload();
-            Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
+            SaveAndDispatch();
         }
 
         private void OnClickSelect()
         {
-            if (int.TryParse(gameLevelInput.text, out var level))
+            var level = GetInt1();
+            var maxLevel = TableGameLevel.GetAll().Max(a => a.id);
+            level = Mathf.Clamp(level, 1, maxLevel.id);
+            GameLocalData.Instance.gameLevel = level;
+            GameLocalData.Instance.unlockedGameLevel = level;
+            if (GameLocalData.Instance.weaponId == 0
+                && level >= ConstTable.table.weaponUnlockLevel)
             {
-                var maxLevel = TableGameLevel.GetAll().Max(a => a.id);
-                level = Mathf.Min(level, maxLevel.id);
-                GameLocalData.Instance.gameLevel = level;
-                GameLocalData.Instance.unlockedGameLevel = level;
-                if (GameLocalData.Instance.weaponId == 0 && level >= ConstTable.table.weaponUnlockLevel)
-                    GameLocalData.Instance.weaponId = 1;
-                GameLocalData.Instance.Save();
-                Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
+                GameLocalData.Instance.weaponId = 1;
             }
+            SaveAndDispatch();
         }
 
         private void OnClickCollectCount()
         {
-            if (int.TryParse(gameLevelInput.text, out var level))
+            int count = GetInt1();
+            var bookIndex = new int[] { 1, 4, 7, 10, 12, 15 };
+            for (int i = 0; i < bookIndex.Length; i++)
             {
-                for (int i = 0; i < 100; i++)
-                {
-                    BookData.Instance.Set(i, level);
-                }
-                BookData.Instance.Save();
-                Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
+                BookData.Instance.Set(bookIndex[i], count);
             }
+            SaveAndDispatch();
         }
 
         private void OnClickCoin()
         {
-            GameLocalData.Instance.coin = 99999999;
-            GameLocalData.Instance.Save();
-            Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
+            GameLocalData.Instance.coin = GetFloat1();
+            SaveAndDispatch();
         }
 
         private void OnClickDiamond()
         {
-            GameLocalData.Instance.diamond = 99999;
-            GameLocalData.Instance.Save();
-            Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
+            GameLocalData.Instance.diamond = GetFloat1();
+            SaveAndDispatch();
         }
 
         private void OnClickEnergy()
         {
-            GameLocalData.Instance.energy = ConstTable.table.energyMax;
-            GameLocalData.Instance.Save();
-            Unibus.Dispatch(EventGameData.Get(EventGameData.Action.DataChange));
+            GameLocalData.Instance.energy = Mathf.Clamp(GetInt1(), 0, ConstTable.table.energyMax);
+            SaveAndDispatch();
         }
 
-        protected override void OnOpen()
+        private void OnClickPower()
         {
-            base.OnOpen();
-            gameLevelInput.text = D.I.gameLevel.ToString();
+            GameLocalData.Instance.firePowerLevel = Mathf.Clamp(GetInt1(), 1, D.I.firePowerMaxLevel);
+            SaveAndDispatch();
+        }
+
+        private void OnClickFireSpeed()
+        {
+            GameLocalData.Instance.fireSpeedLevel = Mathf.Clamp(GetInt1(), 1, D.I.fireSpeedMaxLevel);
+            SaveAndDispatch();
+        }
+
+        private void OnClickWeaponPower()
+        {
+            if (D.I.weaponId == 0)
+            {
+                Toast.Show("尚未解锁武器");
+                return;
+            }
+            WeaponLevelData.Instance.SetPowerLevel(D.I.weaponId, Mathf.Clamp(GetInt1(), 1, D.I.weaponPowerMaxLevel));
+            SaveAndDispatch();
+        }
+
+        private void OnClickWeaponFireSpeed()
+        {
+            if (D.I.weaponId == 0)
+            {
+                Toast.Show("尚未解锁武器");
+                return;
+            }
+            WeaponLevelData.Instance.SetSpeedLevel(D.I.weaponId, Mathf.Clamp(GetInt1(), 1, D.I.weaponSpeedMaxLevel));
+            SaveAndDispatch();
+        }
+
+        private void OnClickCoinValue()
+        {
+            GameLocalData.Instance.coinValueLevel = Mathf.Clamp(GetInt1(), 1, D.I.coinValueMaxLevel);
+            SaveAndDispatch();
+        }
+
+        private void OnClickCoinIncome()
+        {
+            GameLocalData.Instance.coinIncomeLevel = Mathf.Clamp(GetInt1(), 1, D.I.coinIncomeMaxLevel);
+            SaveAndDispatch();
+        }
+
+        private void OnClickVip()
+        {
+            GameLocalData.Instance.lastVipRewardDays = -1;
+            GameLocalData.Instance.lastVipTicks = System.DateTime.Now.Ticks;
+            SaveAndDispatch();
         }
     }
 }

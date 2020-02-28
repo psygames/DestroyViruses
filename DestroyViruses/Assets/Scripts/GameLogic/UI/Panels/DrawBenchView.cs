@@ -62,7 +62,7 @@ namespace DestroyViruses
         private void OnClickClose()
         {
             Close();
-            UIManager.Open<GameEndView>(UILayer.Top);
+            UIManager.Open<GameEndView>();
         }
 
         private void AnimaStart()

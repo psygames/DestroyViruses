@@ -6,64 +6,23 @@ namespace DestroyViruses
 {
     public class GameLevelPanel : MonoBehaviour
     {
-        // game level
-        public DOTweenTrigger gameLevelTweenTrigger;
-        public Text previousLevelText;
-        public Text currentLevelText;
-        public Text nextLevelText;
-        public Button previousLevelBtn;
-        public Button currentLevelBtn;
-        public Button nextLevelBtn;
-        public GameObject previousBossTag;
-        public GameObject currentBossTag;
-        public GameObject nextBossTag;
+        public GameLevelPanelItem[] items;
 
-
-        private void Awake()
+        public void PlayLevelUp()
         {
-            previousLevelBtn?.OnClick(() =>
+            for (int i = 0; i < items.Length; i++)
             {
-                //D.I.SelectGameLevel(D.I.gameLevel - 1);
-                //gameLevelTweenTrigger.DoTrigger();
-            });
-
-            currentLevelBtn?.OnClick(() =>
-            {
-                //gameLevelTweenTrigger.DoTrigger();
-            });
-
-            nextLevelBtn?.OnClick(() =>
-            {
-                //D.I.SelectGameLevel(D.I.gameLevel + 1);
-                //gameLevelTweenTrigger.DoTrigger();
-            });
+                var level = D.I.gameLevel + i - 2;
+                items[i].FadeToLevelPos(level);
+            }
         }
 
         public void SetData()
         {
-            if (D.I.gameLevel - 1 <= 0)
+            for (int i = 0; i < items.Length; i++)
             {
-                previousLevelText.text = "-";
-                previousBossTag.SetActive(false);
-            }
-            else
-            {
-                previousLevelText.text = (D.I.gameLevel - 1).ToString();
-                previousBossTag.SetActive(TableGameLevel.Get(D.I.gameLevel - 1).isBoss);
-            }
-
-            currentLevelText.text = D.I.gameLevel.ToString();
-            currentBossTag.SetActive(TableGameLevel.Get(D.I.gameLevel).isBoss);
-
-            if (TableGameLevel.Get(D.I.gameLevel + 1) == null)
-            {
-                nextLevelText.text = "-";
-                nextBossTag.SetActive(false);
-            }
-            else
-            {
-                nextLevelText.text = (D.I.gameLevel + 1).ToString();
-                nextBossTag.SetActive(TableGameLevel.Get(D.I.gameLevel + 1).isBoss);
+                var level = D.I.gameLevel + i - 1;
+                items[i].SetLevel(level);
             }
         }
     }

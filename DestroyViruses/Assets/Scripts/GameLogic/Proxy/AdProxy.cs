@@ -382,7 +382,11 @@ namespace DestroyViruses
                 return;
             Log(adUnitId, "奖励视频", "获得奖励", false);
             AdDismissed(adUnitId);
+#if UNITY_EDITOR
+            Success();
+#else
             Failed();
+#endif
             RequestAd(adUnitId);
         }
 

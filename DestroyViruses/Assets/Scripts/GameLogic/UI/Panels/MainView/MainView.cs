@@ -202,5 +202,11 @@ namespace DestroyViruses
         {
             UIManager.Open<BookView>();
         }
+
+        private void OnClickTest()
+        {
+            gameLevelPanel.PlayLevelUp();
+            this.DelayDo(1f, gameLevelPanel.SetData);
+        }
     }
 }

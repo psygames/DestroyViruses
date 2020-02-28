@@ -43,6 +43,12 @@ public class UIManager : Singleton<UIManager>
         {
             view.transform.SetParent(bottomLayer, false);
         }
+
+        var parent = view.transform.parent;
+        if (parent != null)
+        {
+            view.rectTransform.SetSiblingIndex(parent.childCount);
+        }
     }
 
     private ViewBase load(Type viewType)
@@ -87,7 +93,10 @@ public class UIManager : Singleton<UIManager>
         }
 
         setLayer(view, layer);
-        view.gameObject.SetActive(true);
+        if (!view.gameObject.activeSelf)
+        {
+            view.gameObject.SetActive(true);
+        }
         view.ReflectInvokeMethod("OnOpen");
         return view as T;
     }

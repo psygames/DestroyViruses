@@ -47,7 +47,7 @@ namespace DestroyViruses
         public void PlayFlyAway()
         {
             AudioManager.PlaySound("flyaway");
-            mRectTransform.DOAnchorPos3D(new Vector3(UIUtil.width * 0.5f, UIUtil.height + 400, 0), 1).SetEase(Ease.InQuad);
+            mRectTransform.DOAnchorPos3D(new Vector3(UIUtil.width * 0.5f, UIUtil.height + 1000, 0), 0.5f).SetEase(Ease.InCirc);
         }
 
         public void PlayHomeIn()

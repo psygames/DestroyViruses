@@ -11,20 +11,26 @@ namespace DestroyViruses
     public class BattleView : ViewBase
     {
         public GameLevelPanel gameLevelPanel;
-        public RectTransform coinTransform;
-        public Text coinText;
+
+        public CanvasGroup progressCanvasGroup;
         public Slider progressFill;
         public Text progressText;
+        public RectTransform coinTransform;
+        public Text coinText;
 
         public GameObject bossWaveToast;
         public FadeAlpha slowDownFade;
 
         private bool mLastIsBattleTouchOn;
+        private Vector2 mLevelPanelRawPos;
+        private RectTransform mLevelPanelRect;
 
         private void Awake()
         {
             this.BindUntilDisable<EventGameProcedure>(OnEventGameProcedure);
             this.BindUntilDisable<EventBattle>(OnEventBattle);
+            mLevelPanelRawPos = gameLevelPanel.GetComponent<RectTransform>().anchoredPosition;
+            mLevelPanelRect = gameLevelPanel.GetComponent<RectTransform>();
         }
 
         protected override void OnOpen()
@@ -36,8 +42,11 @@ namespace DestroyViruses
             AudioManager.PlayMusic($"BGM{Random.Range(3, 5)}", 0.6f);
             gameLevelPanel.SetData();
             mLastIsBattleTouchOn = GlobalData.isBattleTouchOn;
-            if(mLastIsBattleTouchOn) slowDownFade.FadeOutImmediately();
+            if (mLastIsBattleTouchOn) slowDownFade.FadeOutImmediately();
             else slowDownFade.FadeInImmediately();
+            mLevelPanelRect.anchoredPosition = mLevelPanelRawPos;
+            mLevelPanelRect.localScale = Vector3.one * 0.5f;
+            progressCanvasGroup.alpha = 1;
         }
 
         private void OnEventGameProcedure(EventGameProcedure procedure)
@@ -91,10 +100,44 @@ namespace DestroyViruses
 
         private void ShowGameEndPanel(bool isWin)
         {
-            this.DelayDo(1.5f, () =>
+            if (isWin)
             {
-                UIManager.Open<GameEndView>(UILayer.Top);
-            });
+                this.DelayDo(0.5f, () =>
+                {
+                    mLevelPanelRect.DOAnchorPos(mLevelPanelRawPos + Vector2.down * 300, 0.25f);
+                    mLevelPanelRect.DOScale(1, 0.25f);
+                    progressCanvasGroup.DOFade(0, 0.25f);
+                    ResAddEffect.Play(ResAddView.ResType.Energy, ConstTable.table.energyRecoverWin);
+                });
+
+                this.DelayDo(1f, () =>
+                {
+                    Aircraft.ins.anima.PlayFlyAway();
+                });
+
+                this.DelayDo(2f, () =>
+                {
+                    UIManager.Open<NavigationView>(UILayer.Top);
+                    gameLevelPanel.PlayLevelUp();
+                });
+
+                this.DelayDo(2.5f, () =>
+                {
+                    UIManager.Open<GameEndView>();
+                });
+            }
+            else
+            {
+                this.DelayDo(0.5f, () =>
+                {
+                    Aircraft.ins.anima.PlayCrash();
+                });
+
+                this.DelayDo(1f, () =>
+                {
+                    UIManager.Open<GameEndView>();
+                });
+            }
         }
     }
 }

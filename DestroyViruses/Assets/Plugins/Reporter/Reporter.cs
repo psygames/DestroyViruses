@@ -74,7 +74,6 @@ public class Images
 
 public class Reporter : MonoBehaviour
 {
-
     public enum _LogType
     {
         Assert = LogType.Assert,
@@ -303,6 +302,11 @@ public class Reporter : MonoBehaviour
 
     void Awake()
     {
+#if UNITY_EDITOR || PUBLISH_BUILD
+        DestroyImmediate(gameObject);
+        return;
+#endif
+
         if (!Initialized)
             Initialize();
 
@@ -1763,9 +1767,6 @@ public class Reporter : MonoBehaviour
     int gestureCount = 0;
     bool isGestureDone()
     {
-#if UNITY_EDITOR || PUBLISH_BUILD
-        return false;
-#endif
         if (Application.platform == RuntimePlatform.Android ||
             Application.platform == RuntimePlatform.IPhonePlayer)
         {
