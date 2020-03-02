@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1157556790
+CRC: 242600449
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c6c766463db1efda04da1656ef4b584e
+    Hash: 942ea50b77397ec30954607308910ef5
   TypeTreeHash:
     serializedVersion: 2
-    Hash: b3f526842d364845b289df6920d30fd9
+    Hash: 85959c8de65ef94fa74f92c56d4825ac
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -66,7 +66,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 8f53cee1e3cdd6c4dbf2688052db8995, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 686a4c42d909f804dbc6a72af9892dbc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ca4fff42954379346bd6e9a5b7eccb8f, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
 - Class: 114
@@ -136,6 +140,10 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: cec1c0871b5c14d319a38554b10e1105, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 7e356eb786aea4ae5a253ffcd38a45be, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 325782c72c9714c4685f8312b204e94d, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: b62eb50825e7a1846ad2b257a6948792, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 218e36186a5d60145920b9fa9af64e0f, type: 3}
@@ -158,6 +166,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 4f0e6bd90294e73448ea1197cc5324e3, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 3765ded9429bb504f94b12a84b2cf7fb, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 9b0cd7e9651bd1d4c9b372ae62696433, type: 3}
@@ -165,6 +175,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 2f68f53a0aacf8148b13266a2ab6a3fb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e274fd5af28ca084ab67d3c03f83b875, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 380c02aaaf1adee4a95b4512c0d9f2ea, type: 3}
 - Class: 114
@@ -196,13 +208,21 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 5e279c7c3f8234a4083f96aff7276d90, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 4cab828c71ac7e540a8e056d69038344, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 267d038c9aa005a40877c094dbf430b2, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 4deeabbce48d3954c90d7330fd6b6b55, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 252369fc658d0c0408ecd2f3f8f9419b, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: c86dd71d392cb894886b9153653359c1, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: eddc4b2dd5916cf4db8812fd31320f41, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4495624d82bd14ac7a05333311515823, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fdc1215d2fe8440919acd48889bc2095, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f717845d2f74f4ce7b29db0c4a9d2cfe, type: 3}
 - Class: 114
@@ -236,13 +256,7 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: c1f9e4df3b422455a957d92e53e46d52, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 4f0e6bd90294e73448ea1197cc5324e3, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: e274fd5af28ca084ab67d3c03f83b875, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 252369fc658d0c0408ecd2f3f8f9419b, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 7e356eb786aea4ae5a253ffcd38a45be, type: 3}
+  Script: {fileID: 11500000, guid: c25c9859b010144d6ac1fd9381ce6567, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 120
@@ -288,6 +302,7 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/Bullet.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandMaterial.mat
 - Assets/AssetBundles/Prefabs/Entities3D/VirusRecover/VirusRecover3D.prefab
+- Assets/AssetBundles/Prefabs/UI/View/ResAddView.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallow3D.prefab
 - Assets/AssetBundles/Prefabs/Entities/WeaponNormalBullet.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusCure.prefab
@@ -324,6 +339,7 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/weapon/weapon_railgun_boom.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureRaw.FBX
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCollider/VirusColliderAnimation_Hurt.anim
+- Assets/AssetBundles/Prefabs/UI/View/VipView.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowRaw.FBX
 - Assets/AssetBundles/Prefabs/UI/View/ToastView.prefab
 - Assets/AssetBundles/Prefabs/UI/View/ExchangeView.prefab
@@ -354,6 +370,7 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/VirusSpeed.prefab
 - Assets/AssetBundles/Prefabs/Entities/weapon/weapon_missile_boom.prefab
 - Assets/AssetBundles/Prefabs/Entities/Items/virus_base.prefab
+- Assets/AssetBundles/Prefabs/UI/View/VersionUpdateView.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusExpand/VirusExpandRaw.FBX
 - Assets/AssetBundles/Prefabs/Entities/weapon/weapon_laser_part_2.prefab
 - Assets/AssetBundles/Prefabs/Entities/WeaponMissileBullet.prefab
@@ -366,6 +383,8 @@ Assets:
 - Assets/AssetBundles/Prefabs/Entities/VirusExpand.prefab
 - Assets/AssetBundles/Prefabs/Entities/weapon/weapon_normal_part_4.prefab
 - Assets/AssetBundles/Prefabs/UI/View/GameEndView.prefab
+- Assets/AssetBundles/Prefabs/UI/View/HoldOnView.prefab
+- Assets/AssetBundles/Prefabs/UI/View/TutorialView.prefab
 - Assets/AssetBundles/Prefabs/Entities/Items/cure_buff.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusCollider.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusSwallow/VirusSwallowAnimation_Hurt.anim

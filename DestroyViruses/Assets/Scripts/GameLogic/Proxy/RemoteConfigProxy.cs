@@ -80,6 +80,7 @@ namespace DestroyViruses
         {
             Debug.Log("RemoteConfig Init Success!");
             var allKeys = Firebase.RemoteConfig.FirebaseRemoteConfig.Keys;
+            LogKeys(allKeys);
             Func<string, bool> hasKey = (str) =>
             {
                 foreach (var k in allKeys)
@@ -88,7 +89,7 @@ namespace DestroyViruses
                 return false;
             };
 
-            Func<string, Firebase.RemoteConfig.ConfigValue> getVal = (str) => Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue(CONST_GROUP);
+            Func<string, Firebase.RemoteConfig.ConfigValue> getVal = Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue;
 
             bool hasChange = false;
             if (hasKey(CONST_GROUP))
@@ -99,18 +100,29 @@ namespace DestroyViruses
             if (hasKey(MIN_VERSION))
             {
                 hasChange = true;
-                GameLocalData.Instance.lastConstGroup = getVal(MIN_VERSION).StringValue;
+                GameLocalData.Instance.minVersion = getVal(MIN_VERSION).StringValue;
             }
             if (hasKey(LATEST_VERSION))
             {
                 hasChange = true;
-                GameLocalData.Instance.lastConstGroup = getVal(LATEST_VERSION).StringValue;
+                GameLocalData.Instance.latestVersion = getVal(LATEST_VERSION).StringValue;
             }
 
             if (hasChange)
             {
                 GameLocalData.Instance.Save();
             }
+        }
+
+        private void LogKeys(IEnumerable<string> keys)
+        {
+#if !PUBLISH_BUILD
+            foreach (var k in keys)
+            {
+                var v = Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue(k);
+                Debug.Log($"[Remote Config] {k}: {v.StringValue}");
+            }
+#endif
         }
 
         private bool mLastInit = false;

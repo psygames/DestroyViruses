@@ -29,8 +29,8 @@ namespace DestroyViruses
             lastVipTicks = 0;
             lastVipRewardDays = -1;
             lastConstGroup = "default";
-            minVersion = "0.0.27";
-            latestVersion = "0.0.27";
+            minVersion = "0.1.0";
+            latestVersion = "0.1.0";
         }
 
         public int firePowerLevel;      //火力
