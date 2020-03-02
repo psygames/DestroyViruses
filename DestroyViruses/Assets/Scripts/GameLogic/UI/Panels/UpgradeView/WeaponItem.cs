@@ -26,12 +26,12 @@ namespace DestroyViruses
             selectedObj.SetActive(id == D.I.weaponId);
             radioState.Radio(D.I.unlockedGameLevel < table.unlockLevel ? 0 : D.I.weaponId == id ? 2 : 1);
             unlockText.text = LTKey.WEAPON_UNLOCK_ON_GAME_LEVEL_X.LT(table.unlockLevel - 1);
-            trialTag.SetActive(D.I.GetTrialWeaponID() == id && !D.I.IsInTrial());
+            trialTag.SetActive(!D.I.noAd && D.I.GetTrialWeaponID() == id && !D.I.IsInTrial());
         }
 
         private void OnClickSelf()
         {
-            if (D.I.GetTrialWeaponID() == mId && !D.I.IsInTrial())
+            if (!D.I.noAd && D.I.GetTrialWeaponID() == mId && !D.I.IsInTrial())
             {
                 AdProxy.Ins.ShowAd(() =>
                 {

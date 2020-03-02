@@ -13,6 +13,8 @@ namespace DestroyViruses
         public Text coinText;
         public RadioObjects winLoseRadio;
         public GameObject mysticalBonus;
+        public GameObject bonusObj;
+
 
         private void OnClickReceive()
         {
@@ -56,7 +58,8 @@ namespace DestroyViruses
             base.OnOpen();
             coinText.text = D.I.battleGetCoin.KMB();
             winLoseRadio.Radio(!D.I.gameEndWin);
-            mysticalBonus.SetActive(Random.value <= ConstTable.table.mysticalBonusProbability);
+            bonusObj.SetActive(!D.I.noAd);
+            mysticalBonus.SetActive(!D.I.noAd && Random.value <= ConstTable.table.mysticalBonusProbability);
         }
     }
 }

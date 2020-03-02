@@ -16,7 +16,7 @@ namespace DestroyViruses
         {
             receiveBtn?.OnClick(() =>
             {
-                if (D.I.isCoinIncomePoolFull)
+                if (!D.I.noAd && D.I.isCoinIncomePoolFull)
                 {
                     UIManager.Open<IncomeCollectView>(UILayer.Top);
                 }

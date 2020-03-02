@@ -43,6 +43,8 @@ namespace DestroyViruses
 
             receiveBtn.SetBtnGrey(!D.I.CanDailySign());
             receiveBtn2.SetBtnGrey(!D.I.CanDailySign());
+
+            receiveBtn2.gameObject.SetActive(!D.I.noAd);
         }
 
         private void OnClickSign()

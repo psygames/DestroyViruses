@@ -140,7 +140,7 @@ namespace DestroyViruses
             dailySignReddotObj.SetActive(D.I.CanDailySign());
             bookObj.SetActive(D.I.unlockedGameLevel >= ConstTable.table.bookUnlockLevel);
             bookReddotObj.SetActive(bookObj.activeSelf && D.I.CanBookCollect());
-            trialTag.SetActive(D.I.HasTrialWeapon() && !D.I.IsInTrial());
+            trialTag.SetActive(!D.I.noAd && D.I.HasTrialWeapon() && !D.I.IsInTrial());
         }
 
         List<string> mOpenHints = new List<string>();

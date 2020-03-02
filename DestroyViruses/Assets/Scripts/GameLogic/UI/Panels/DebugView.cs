@@ -163,5 +163,19 @@ namespace DestroyViruses
             GameLocalData.Instance.lastVipTicks = System.DateTime.Now.Ticks;
             SaveAndDispatch();
         }
+
+        private void OnClickNoAd()
+        {
+            GameLocalData.Instance.noAd = !GameLocalData.Instance.noAd;
+            if (GameLocalData.Instance.noAd)
+            {
+                Toast.Show("AD OFF");
+            }
+            else
+            {
+                Toast.Show("AD ON");
+            }
+            SaveAndDispatch();
+        }
     }
 }

@@ -98,7 +98,7 @@ namespace DestroyViruses
             title.text = v.name;
             tips.text = v.tips;
             description.text = v.description;
-            adReceiveRadio.Radio(v.needPlayAd);
+            adReceiveRadio.Radio(!D.I.noAd && v.needPlayAd);
         }
 
         private void OnEventGameData(EventGameData evt)
@@ -117,7 +117,7 @@ namespace DestroyViruses
             }
             else if (v.isReceivable)
             {
-                if (v.needPlayAd)
+                if (!D.I.noAd && v.needPlayAd)
                 {
                     AdProxy.Ins.ShowAd(() =>
                     {

@@ -26,6 +26,7 @@ namespace DestroyViruses
             trialCount = 0;
             trialWeaponID = 0;
             isInTrial = false;
+            noAd = false;
             lastVipTicks = 0;
             lastVipRewardDays = -1;
             lastConstGroup = "default";
@@ -52,6 +53,7 @@ namespace DestroyViruses
         public int trialCount;              //武器试用次数
         public int trialWeaponID;           //试用武器ID
         public bool isInTrial;              //是否试用中
+        public bool noAd;                   //移除广告功能        
         public long lastVipTicks;           //上次购买VIP时间
         public int lastVipRewardDays;       //上次VIP奖励领取时间
         public string lastConstGroup;       //上次配置组ID

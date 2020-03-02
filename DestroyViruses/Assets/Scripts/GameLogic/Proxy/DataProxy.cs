@@ -17,6 +17,7 @@ namespace DestroyViruses
         public bool isGameLevelMax { get { return TableGameLevel.Get(gameLevel + 1) == null; } }
         public int unlockedGameLevel { get { return localData.unlockedGameLevel; } }
         public bool isUnlockedGameLevelMax { get { return TableGameLevel.Get(unlockedGameLevel + 1) == null; } }
+        public bool noAd { get { return localData.noAd; } }
 
         public int firePowerLevel { get { return localData.firePowerLevel; } }
         public int firePowerMaxLevel { get { return TableFirePower.GetAll().Max(a => a.id).id; } }

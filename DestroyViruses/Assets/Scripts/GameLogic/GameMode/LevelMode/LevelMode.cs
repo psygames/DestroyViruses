@@ -43,7 +43,7 @@ namespace DestroyViruses
             getCoin = 0;
             progress = 0;
             mLastWaveIndex = -1;
-            D.I.adReviveCount = 1;
+            D.I.adReviveCount = D.I.noAd ? 0 : 1;
             D.I.diamondReviveCount = D.I.IsVip() ? 1 : 0;
             D.I.CostEnergy(ConstTable.table.energyBattleCost);
             Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.GameBegin));
