@@ -51,6 +51,7 @@ MonoBehaviour:
   - tables/tablegamelevel
   - tables/tablegamewave
   - tables/tablelanguage
+  - tables/tablelist
   - tables/tableshop
   - tables/tablevirus
   - tables/tableweapon
@@ -567,124 +568,127 @@ MonoBehaviour:
     name: TableLanguage.bytes
   - bundle: 36
     dir: 13
-    name: TableShop.bytes
+    name: TableList.bytes
   - bundle: 37
     dir: 13
-    name: TableVirus.bytes
+    name: TableShop.bytes
   - bundle: 38
     dir: 13
-    name: TableWeapon.bytes
+    name: TableVirus.bytes
   - bundle: 39
     dir: 13
-    name: TableWeaponPowerLevel.bytes
+    name: TableWeapon.bytes
   - bundle: 40
     dir: 13
-    name: TableWeaponSpeedLevel.bytes
+    name: TableWeaponPowerLevel.bytes
   - bundle: 41
-    dir: 14
-    name: VirusColliderTexture_1.png
+    dir: 13
+    name: TableWeaponSpeedLevel.bytes
   - bundle: 42
     dir: 14
-    name: VirusColliderTexture_2.png
+    name: VirusColliderTexture_1.png
   - bundle: 43
     dir: 14
-    name: VirusColliderTexture_3.png
+    name: VirusColliderTexture_2.png
   - bundle: 44
     dir: 14
-    name: VirusColliderTexture_4.png
+    name: VirusColliderTexture_3.png
   - bundle: 45
     dir: 14
-    name: VirusColliderTexture_5.png
+    name: VirusColliderTexture_4.png
   - bundle: 46
     dir: 14
-    name: VirusColliderTexture_6.png
+    name: VirusColliderTexture_5.png
   - bundle: 47
     dir: 14
-    name: VirusCureTexture_1.png
+    name: VirusColliderTexture_6.png
   - bundle: 48
     dir: 14
-    name: VirusCureTexture_2.png
+    name: VirusCureTexture_1.png
   - bundle: 49
     dir: 14
-    name: VirusCureTexture_3.png
+    name: VirusCureTexture_2.png
   - bundle: 50
     dir: 14
-    name: VirusCureTexture_4.png
+    name: VirusCureTexture_3.png
   - bundle: 51
     dir: 14
-    name: VirusCureTexture_5.png
+    name: VirusCureTexture_4.png
   - bundle: 52
     dir: 14
-    name: VirusCureTexture_6.png
+    name: VirusCureTexture_5.png
   - bundle: 53
     dir: 14
-    name: VirusExpandTexture_1.png
+    name: VirusCureTexture_6.png
   - bundle: 54
     dir: 14
-    name: VirusExpandTexture_2.png
+    name: VirusExpandTexture_1.png
   - bundle: 55
     dir: 14
-    name: VirusExpandTexture_3.png
+    name: VirusExpandTexture_2.png
   - bundle: 56
     dir: 14
-    name: VirusExpandTexture_4.png
+    name: VirusExpandTexture_3.png
   - bundle: 57
     dir: 14
-    name: VirusExpandTexture_5.png
+    name: VirusExpandTexture_4.png
   - bundle: 58
     dir: 14
-    name: VirusExpandTexture_6.png
+    name: VirusExpandTexture_5.png
   - bundle: 59
     dir: 14
-    name: VirusRecoverTexture_1.png
+    name: VirusExpandTexture_6.png
   - bundle: 60
     dir: 14
-    name: VirusRecoverTexture_2.png
+    name: VirusRecoverTexture_1.png
   - bundle: 61
     dir: 14
-    name: VirusRecoverTexture_3.png
+    name: VirusRecoverTexture_2.png
   - bundle: 62
     dir: 14
-    name: VirusRecoverTexture_4.png
+    name: VirusRecoverTexture_3.png
   - bundle: 63
     dir: 14
-    name: VirusRecoverTexture_5.png
+    name: VirusRecoverTexture_4.png
   - bundle: 64
     dir: 14
-    name: VirusRecoverTexture_6.png
+    name: VirusRecoverTexture_5.png
   - bundle: 65
     dir: 14
-    name: VirusSwallowTexture_1.png
+    name: VirusRecoverTexture_6.png
   - bundle: 66
     dir: 14
-    name: VirusSwallowTexture_2.png
+    name: VirusSwallowTexture_1.png
   - bundle: 67
     dir: 14
-    name: VirusSwallowTexture_3.png
+    name: VirusSwallowTexture_2.png
   - bundle: 68
     dir: 14
-    name: VirusSwallowTexture_4.png
+    name: VirusSwallowTexture_3.png
   - bundle: 69
     dir: 14
-    name: VirusSwallowTexture_5.png
+    name: VirusSwallowTexture_4.png
   - bundle: 70
     dir: 14
-    name: VirusSwallowTexture_6.png
+    name: VirusSwallowTexture_5.png
   - bundle: 71
     dir: 14
-    name: VirusTriangleTexture_1.png
+    name: VirusSwallowTexture_6.png
   - bundle: 72
     dir: 14
-    name: VirusTriangleTexture_2.png
+    name: VirusTriangleTexture_1.png
   - bundle: 73
     dir: 14
-    name: VirusTriangleTexture_3.png
+    name: VirusTriangleTexture_2.png
   - bundle: 74
     dir: 14
-    name: VirusTriangleTexture_4.png
+    name: VirusTriangleTexture_3.png
   - bundle: 75
     dir: 14
-    name: VirusTriangleTexture_5.png
+    name: VirusTriangleTexture_4.png
   - bundle: 76
+    dir: 14
+    name: VirusTriangleTexture_5.png
+  - bundle: 77
     dir: 14
     name: VirusTriangleTexture_6.png

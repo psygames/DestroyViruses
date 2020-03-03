@@ -1,4 +1,4 @@
-manifest:706a928e8a1364b9a20cefd178717642
+manifest:9f34c8488269938d7fa4812d8a0bb3f3
 prefabs:65ace7fa9838fb94c9d8aebc1ef7cbce
 sounds/bgm1:0db23cab1756cc35b74c68674fa50b5c
 sounds/bgm2:bb6458967b481ba2ff02fe24926c2e49
@@ -34,6 +34,7 @@ tables/tablefirespeed:68d70893eaa6884a997f12eff4df742a
 tables/tablegamelevel:509233b2581fc1d254193b3216920785
 tables/tablegamewave:02925325d4ef237e588f392c2af8e8cc
 tables/tablelanguage:c2c0ce10b1435c55fc70c7dc68e337fd
+tables/tablelist:12905fc1cf26c7fc247942c38e21c5f9
 tables/tableshop:9686b5cb5d37917fa874f4e8935eaa5b
 tables/tablevirus:79859f33d462ff211364e541d789b29f
 tables/tableweapon:71f88365335c9531ff8cd0a41ab9ba3c

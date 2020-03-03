@@ -17,6 +17,7 @@ namespace DestroyViruses
         {
             var isAssetsInited = false;
             Plugins.XAsset.Assets.Initialize(() => { isAssetsInited = true; }, (str) => Debug.LogError(str));
+            yield return null;
             while (!isAssetsInited)
                 yield return null;
             Debug.Log("XAsset Initialized");

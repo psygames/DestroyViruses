@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2362350047
+CRC: 17976996
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -234,4 +234,7 @@ AssetBundleManifest:
       Dependencies: {}
     Info_76:
       Name: tables/tableshop
+      Dependencies: {}
+    Info_77:
+      Name: tables/tablelist
       Dependencies: {}
