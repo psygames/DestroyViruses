@@ -11,7 +11,6 @@ namespace DestroyViruses
     {
         public enum State
         {
-            Init,
             Wait,
             Checking,
             Downloading,
@@ -87,12 +86,8 @@ namespace DestroyViruses
                 state = State.Completed;
                 return;
             }
-            state = State.Init;
             Versions.Load();
-            Assets.Initialize(() =>
-            {
-                state = State.Wait;
-            }, OnError);
+            state = State.Wait;
             onProgress += OnProgress;
         }
 
@@ -192,16 +187,16 @@ namespace DestroyViruses
                 }
 
                 File.WriteAllText(path, sb.ToString());
-                Assets.Initialize(()=>
+                Assets.Initialize(() =>
                 {
                     if (completed != null)
                     {
                         completed();
                     }
+                    state = State.Completed;
+                    message = string.Format("{0} files has update.", _downloads.Count);
                 }, OnError);
-                state = State.Completed;
 
-                message = string.Format("{0} files has update.", _downloads.Count);
                 return;
             }
 

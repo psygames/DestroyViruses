@@ -6,22 +6,26 @@ namespace DestroyViruses
 {
     public class SplashState : StateBase
     {
-        float m_max;
         public override void OnEnter()
         {
             base.OnEnter();
             ProxyManager.Subscribe<InternalProxy>();
-            m_max = 0.0f;
+            GameManager.Instance.StartCoroutine(TaskBegin());
         }
 
-        public override void OnUpdate(float deltaTime)
+        private IEnumerator TaskBegin()
         {
-            base.OnUpdate(deltaTime);
-            m_max -= deltaTime;
-            if (m_max <= 0)
-            {
-                StateManager.ChangeState<LoadingState>();
-            }
+            var isAssetsInited = false;
+            Plugins.XAsset.Assets.Initialize(() => { isAssetsInited = true; }, (str) => Debug.LogError(str));
+            while (!isAssetsInited)
+                yield return null;
+            Debug.Log("XAsset Initialized");
+
+#if PUBLISH_BUILD
+            StateManager.ChangeState<LoadingState>();
+#else
+            StateManager.ChangeState<HotUpdateState>();
+#endif
         }
     }
 }

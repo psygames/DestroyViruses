@@ -34,14 +34,6 @@ namespace DestroyViruses
             mTaskWait.Clear();
             yield return null;
 
-            // #0 Assets Init
-            progress = 0.0f;
-            message = "Assets Init ...";
-            isAssetsInited = false;
-            Plugins.XAsset.Assets.Initialize(() => { isAssetsInited = true; }, (str) => Debug.LogError(str));
-            while (!isAssetsInited)
-                yield return null;
-
             // #1
             progress = 0.1f;
             message = LTKey.LOADING_INITIALIZE_ANALYTICS.LT();
