@@ -53,16 +53,18 @@ namespace DestroyViruses
             RefreshUI();
             AudioManager.PlayMusic($"BGM{Random.Range(1, 3)}", 1f);
             NavigationView.BlackSetting(false);
-            CheckVersion();
-            CheckTurtorial();
-            StartCoroutine(ShowOpenHints());
+            if (CheckVersion())
+            {
+                CheckTurtorial();
+                StartCoroutine(ShowOpenHints());
+            }
         }
 
         bool needCheckVersion = true;
-        void CheckVersion()
+        bool CheckVersion()
         {
             if (!needCheckVersion)
-                return;
+                return true;
 
             needCheckVersion = false;
             var min = System.Version.Parse(GameLocalData.Instance.minVersion);
@@ -72,7 +74,9 @@ namespace DestroyViruses
             if (current < min || current < latest)
             {
                 UIManager.Open<VersionUpdateView>(UILayer.Top);
+                return false;
             }
+            return true;
         }
 
         bool needOpenTutorial = false;

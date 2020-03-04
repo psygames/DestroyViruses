@@ -33,12 +33,29 @@ public static class GameExtension
     }
 
     private static Material sGreyMat;
+
+    private static Material GreyMat
+    {
+        get
+        {
+            if (sGreyMat == null)
+                sGreyMat = Resources.Load<Material>("Materials/UIGrey");
+            return sGreyMat;
+        }
+    }
+
     public static void SetGrey(this Image image, bool isGrey)
     {
-        if (sGreyMat == null)
-            sGreyMat = Resources.Load<Material>("Materials/UIGrey");
-        if (image != null && sGreyMat != null)
-            image.material = isGrey ? sGreyMat : null;
+        if (image != null)
+            image.material = isGrey ? GreyMat : null;
+    }
+
+    public static void SetGrey(this Text text, bool isGrey)
+    {
+        if (text != null)
+        {
+            text.material = isGrey ? GreyMat : null;
+        }
     }
 
     // 数值单位转换

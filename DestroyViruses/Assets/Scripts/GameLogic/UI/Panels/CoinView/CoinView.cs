@@ -15,6 +15,7 @@ namespace DestroyViruses
         public CoinLevelPanel levelPanel;
         public ContentGroup shopGoods;
         public ButtonPro vipBtn;
+        public Text vipRewardText;
 
         protected override void OnOpen()
         {
@@ -36,6 +37,7 @@ namespace DestroyViruses
                 item.SetData(_data.id);
             });
             vipBtn.targetImage.SetGrey(!D.I.IsVip());
+            vipRewardText.gameObject.SetActive(D.I.IsVip());
         }
 
         private void OnEventGameData(EventGameData evt)
