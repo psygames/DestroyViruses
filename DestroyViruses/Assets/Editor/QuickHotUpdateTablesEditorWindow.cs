@@ -15,7 +15,7 @@ public class QuickHotUpdateTablesEditorWindow : EditorWindow
     }
 
     private bool isRunning = false;
-    private string checkRoot = "";
+    private string checkRoot = "../QuickHotUpdateTool";
     private string tableRoot = "Assets/Tables/";
     private string tableOutRoot = "Assets/AssetBundles/Tables/";
     private string quickHotUpdateRoot = "QuickHotUpdate";
