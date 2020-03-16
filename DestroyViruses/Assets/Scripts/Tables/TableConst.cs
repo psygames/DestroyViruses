@@ -335,6 +335,12 @@ namespace DestroyViruses
 		public int energyExchange { get { return _energyExchange; } private set { _energyExchange = value; } }
 
 		/// <summary>
+		/// 游戏打分提示（关卡）
+		/// </summary>
+		private int[] _rateUsHintLevel;
+		public int[] rateUsHintLevel { get { return _rateUsHintLevel; } private set { _rateUsHintLevel = value; } }
+
+		/// <summary>
 		/// 子弹横向距离
 		/// </summary>
 		private float _bulletHDist;

@@ -234,31 +234,11 @@ namespace DestroyViruses
             var _size = size - 1;
             var pos = transform.GetUIPos();
 
-            if (this.size >= 3)
-            {
-                var divCount = Mathf.Pow(2, this.size - 1);
-                for (int i = 0; i < divCount; i++)
-                {
-                    var tarpos = Random.insideUnitCircle * 350;
-                    var dir = Random.insideUnitCircle.normalized;
-                    var v = Create();
-                    v.Reset(id, _hp, 1, speed, pos, dir, hpRange, false);
-                    v.mStunCD = 1;
-                    v.rectTransform.DOAnchorPos(pos + tarpos, 0.75f).OnComplete(() =>
-                    {
-                        v.position = v.rectTransform.anchoredPosition;
-                        v.mStunCD = 0;
-                    });
-                }
-            }
-            else
-            {
-                Vector2 dirA = Quaternion.AngleAxis(ConstTable.table.divideVirusDirection[0].random, Vector3.forward) * Vector2.up;
-                Create().Reset(id, _hp, _size, speed, pos, dirA, hpRange, false);
+            Vector2 dirA = Quaternion.AngleAxis(ConstTable.table.divideVirusDirection[0].random, Vector3.forward) * Vector2.up;
+            Create().Reset(id, _hp, _size, speed, pos, dirA, hpRange, false);
 
-                Vector2 dirB = Quaternion.AngleAxis(ConstTable.table.divideVirusDirection[1].random, Vector3.forward) * Vector2.up;
-                Create().Reset(id, _hp, _size, speed, pos, dirB, hpRange, false);
-            }
+            Vector2 dirB = Quaternion.AngleAxis(ConstTable.table.divideVirusDirection[1].random, Vector3.forward) * Vector2.up;
+            Create().Reset(id, _hp, _size, speed, pos, dirB, hpRange, false);
         }
 
         protected VirusBase Create()
