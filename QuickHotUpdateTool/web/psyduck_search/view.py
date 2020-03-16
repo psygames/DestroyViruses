@@ -18,6 +18,8 @@ def upload(request):
             return render(request, 'index.html')
         if not check_file_name(obj.name):
             return resp("不支持的热更文件：" + obj.name)
+        if os.path.exists(finish_tag):
+            os.remove(finish_tag)
         save_file(obj)
         res = check_result()
         return resp(res)
@@ -44,7 +46,7 @@ def check_file_name(_name):
 
 def check_result():
     import time
-    n = 3.0
+    n = 10.0
     while n > 0:
         n = n - 0.1
         time.sleep(0.1)

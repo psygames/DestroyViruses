@@ -149,3 +149,7 @@ tables/tablevirus
 tables/tableweapon
 tables/tableweaponpowerlevel
 tables/tableweaponspeedlevel
+132288587999516000:
+tables/tableconst
+tables/tablegamewave
+tables/tablevirus
