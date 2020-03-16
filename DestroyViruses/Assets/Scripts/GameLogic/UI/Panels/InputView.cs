@@ -130,7 +130,7 @@ namespace DestroyViruses
             if (mIsTriggerBattleStateOnDown)
                 return;
             mIsTriggerBattleStateOnDown = true;
-            if (D.I.energy >= ConstTable.table.energyBattleCost)
+            if (D.I.energy >= CT.table.energyBattleCost)
             {
                 mLastBattleDown = false;
                 StateManager.ChangeState<BattleState>();

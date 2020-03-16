@@ -29,7 +29,7 @@ namespace DestroyViruses
             if (evt.action == EventVirus.Action.DEAD
                 && TimeUtil.CheckInterval("BackgroundShake", 0.1f))
             {
-                shakeRoot.DOShakeAnchorPos(0.1f, ConstTable.table.virusBombShakeScreenRate);
+                shakeRoot.DOShakeAnchorPos(0.1f, CT.table.virusBombShakeScreenRate);
             }
         }
 

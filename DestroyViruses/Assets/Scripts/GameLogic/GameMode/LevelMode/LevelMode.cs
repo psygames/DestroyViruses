@@ -21,7 +21,7 @@ namespace DestroyViruses
             base.OnInit();
 
             mTableGameLevel = TableGameLevel.Get(D.I.gameLevel);
-            mSpawnCountFix = FormulaUtil.Expresso(ConstTable.table.formulaArgsVirusSpawnCount);
+            mSpawnCountFix = FormulaUtil.Expresso(CT.table.formulaArgsVirusSpawnCount);
 
             mWaveModule.Init();
             mBuffGenModule.Init();
@@ -45,7 +45,7 @@ namespace DestroyViruses
             mLastWaveIndex = -1;
             D.I.adReviveCount = D.I.noAd ? 0 : 1;
             D.I.diamondReviveCount = D.I.IsVip() ? 1 : 0;
-            D.I.CostEnergy(ConstTable.table.energyBattleCost);
+            D.I.CostEnergy(CT.table.energyBattleCost);
             Unibus.Dispatch(EventGameProcedure.Get(EventGameProcedure.Action.GameBegin));
             mWaveModule.Start();
         }
@@ -186,7 +186,7 @@ namespace DestroyViruses
                 // add coin
                 getCoin += FormulaUtil.CoinConvert(evt.virus.size, mTableGameLevel.coinValueFactor * D.I.vipCoinValueMul, D.I.coinValue);
                 mAddCoinCount += evt.virus.size * 0.1f;
-                if (Random.value > ConstTable.table.coinAddProb[evt.virus.size - 1])
+                if (Random.value > CT.table.coinAddProb[evt.virus.size - 1])
                 {
                     var pos = UIUtil.GetUIPos(evt.virus.rectTransform);
                     int coinCount = Mathf.Clamp(Mathf.CeilToInt(mAddCoinCount), 1, 15);

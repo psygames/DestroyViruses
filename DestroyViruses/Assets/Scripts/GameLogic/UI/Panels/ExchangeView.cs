@@ -36,7 +36,7 @@ namespace DestroyViruses
         private void Refresh()
         {
             costText.text = mCurrent.KMB();
-            gainText.text = (mCurrent * FormulaUtil.Expresso(ConstTable.table.formulaArgsCoinExchange)).KMB();
+            gainText.text = (mCurrent * FormulaUtil.Expresso(CT.table.formulaArgsCoinExchange)).KMB();
 
             subBtn.SetBtnGrey(mCurrent <= 0);
             addBtn.SetBtnGrey(mCurrent >= D.I.diamond);

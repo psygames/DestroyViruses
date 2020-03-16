@@ -82,7 +82,7 @@ namespace DestroyViruses
 
         public static float CoinConvert(int size, float factor1 = 1, float factor2 = 1)
         {
-            return ConstTable.table.coinValue[size - 1] * factor1 * factor2;
+            return CT.table.coinValue[size - 1] * factor1 * factor2;
         }
 
         public static int GetHpColorIndex(Vector2 hpRange, float hp, int colorCount = 6)

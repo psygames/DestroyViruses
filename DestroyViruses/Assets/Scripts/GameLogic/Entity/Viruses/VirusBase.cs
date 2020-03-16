@@ -120,8 +120,8 @@ namespace DestroyViruses
 
         private float GetSizeScale(int _size)
         {
-            var index = Mathf.Clamp(_size - 1, 0, ConstTable.table.virusSize.Length - 1);
-            return ConstTable.table.virusSize[index];
+            var index = Mathf.Clamp(_size - 1, 0, CT.table.virusSize.Length - 1);
+            return CT.table.virusSize[index];
         }
 
         private void OnEventBullet(EventBullet evt)
@@ -163,11 +163,11 @@ namespace DestroyViruses
                 animator.SetTrigger("hurt");
             }
 
-            if (TimeUtil.CheckInterval("virus_" + uid + "_hurt_shake", ConstTable.table.hitVirusShakeCD))
+            if (TimeUtil.CheckInterval("virus_" + uid + "_hurt_shake", CT.table.hitVirusShakeCD))
             {
                 DOTween.Shake(() => Vector3.one * mShakeScale, x => mShakeScale = x.x
-                , ConstTable.table.hitVirusShakeCD, Vector3.one * ConstTable.table.hitVirusShakeScale
-                , ConstTable.table.hitVirusShakeTimes);
+                , CT.table.hitVirusShakeCD, Vector3.one * CT.table.hitVirusShakeScale
+                , CT.table.hitVirusShakeTimes);
             }
         }
 
@@ -181,7 +181,7 @@ namespace DestroyViruses
         float mLastHitSlowdownTime = 0;
         private void UpdateHitSlowdown()
         {
-            var _cd = ConstTable.table.hitVirusSlowdownCD;
+            var _cd = CT.table.hitVirusSlowdownCD;
             if (isHitSlowdown && GameUtil.runningTime - mLastHitSlowdownTime > _cd)
             {
                 isHitSlowdown = false;
@@ -214,8 +214,8 @@ namespace DestroyViruses
                 isGen = true;
                 var _typeProb = D.I.IsVip() ? _tab.vipBuffTypePriority : _tab.buffTypePriority;
                 var buffID = FormulaUtil.RandomInProbDict(_typeProb);
-                var _speed = ConstTable.table.buffSpeedRange.random;
-                var dir = Quaternion.AngleAxis(ConstTable.table.buffSpawnDirection.random, Vector3.forward) * Vector2.down;
+                var _speed = CT.table.buffSpeedRange.random;
+                var dir = Quaternion.AngleAxis(CT.table.buffSpawnDirection.random, Vector3.forward) * Vector2.down;
                 Buff.Create().Reset(buffID, position, dir, _speed);
             }
 
@@ -234,10 +234,10 @@ namespace DestroyViruses
             var _size = size - 1;
             var pos = transform.GetUIPos();
 
-            Vector2 dirA = Quaternion.AngleAxis(ConstTable.table.divideVirusDirection[0].random, Vector3.forward) * Vector2.up;
+            Vector2 dirA = Quaternion.AngleAxis(CT.table.divideVirusDirection[0].random, Vector3.forward) * Vector2.up;
             Create().Reset(id, _hp, _size, speed, pos, dirA, hpRange, false);
 
-            Vector2 dirB = Quaternion.AngleAxis(ConstTable.table.divideVirusDirection[1].random, Vector3.forward) * Vector2.up;
+            Vector2 dirB = Quaternion.AngleAxis(CT.table.divideVirusDirection[1].random, Vector3.forward) * Vector2.up;
             Create().Reset(id, _hp, _size, speed, pos, dirB, hpRange, false);
         }
 
@@ -288,7 +288,7 @@ namespace DestroyViruses
         protected float HitSlowdownSpeedMul()
         {
             if (isHitSlowdown)
-                return ConstTable.table.hitVirusSlowdown;
+                return CT.table.hitVirusSlowdown;
             return 1;
         }
 

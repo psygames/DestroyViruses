@@ -50,12 +50,13 @@ namespace DestroyViruses
         protected override void OnOpen()
         {
             base.OnOpen();
+            UIManager.Open<RateView>(UILayer.Top);
+
             RefreshUI();
             AudioManager.PlayMusic($"BGM{Random.Range(1, 3)}", 1f);
             NavigationView.BlackSetting(false);
             if (CheckVersion())
             {
-                CheckTurtorial();
                 StartCoroutine(ShowOpenHints());
             }
         }
@@ -80,17 +81,7 @@ namespace DestroyViruses
         }
 
         bool needOpenTutorial = false;
-        void CheckTurtorial()
-        {
-            if (!needOpenTutorial)
-                return;
-            needOpenTutorial = false;
-            TutorialView.Begin(baseOptionBtn.GetComponent<RectTransform>(), LTKey.TUTORIAL_CLICK_PANEL_BASE.LT(), 0, () =>
-            {
-                TutorialView.Begin(UpgradeView.tutorialPowerUpBtn, LTKey.TUTORIAL_CLICK_UPDATE_POWER.LT(), 2);
-            });
-        }
-
+        bool needOpenRate = false;
         IEnumerator ShowOpenHints()
         {
             yield return new WaitForSeconds(1);
@@ -102,7 +93,20 @@ namespace DestroyViruses
 
             mOpenHints.Clear();
 
-            if (D.I.CanDailySign())
+            if (needOpenTutorial)
+            {
+                needOpenTutorial = false;
+                TutorialView.Begin(baseOptionBtn.GetComponent<RectTransform>(), LTKey.TUTORIAL_CLICK_PANEL_BASE.LT(), 0, () =>
+                {
+                    TutorialView.Begin(UpgradeView.tutorialPowerUpBtn, LTKey.TUTORIAL_CLICK_UPDATE_POWER.LT(), 2);
+                });
+            }
+            else if (needOpenRate)
+            {
+                needOpenRate = false;
+                UIManager.Open<RateView>(UILayer.Top);
+            }
+            else if (D.I.CanDailySign())
             {
                 UIManager.Open<DailySignView>(UILayer.Top);
             }
@@ -140,9 +144,9 @@ namespace DestroyViruses
                 || !D.I.isWeaponPowerLevelMax && D.I.coin >= D.I.weaponPowerUpCost);
             canIncomeUp.SetActive(!D.I.isCoinIncomeLevelMax && D.I.coin >= D.I.coinIncomeUpCost
                 || !D.I.isCoinValueLevelMax && D.I.coin >= D.I.coinValueUpCost);
-            dailySignObj.SetActive(D.I.unlockedGameLevel >= ConstTable.table.dailySignUnlockLevel);
+            dailySignObj.SetActive(D.I.unlockedGameLevel >= CT.table.dailySignUnlockLevel);
             dailySignReddotObj.SetActive(D.I.CanDailySign());
-            bookObj.SetActive(D.I.unlockedGameLevel >= ConstTable.table.bookUnlockLevel);
+            bookObj.SetActive(D.I.unlockedGameLevel >= CT.table.bookUnlockLevel);
             bookReddotObj.SetActive(bookObj.activeSelf && D.I.CanBookCollect());
             trialTag.SetActive(!D.I.noAd && D.I.HasTrialWeapon() && !D.I.IsInTrial());
         }
@@ -156,16 +160,27 @@ namespace DestroyViruses
                 {
                     needOpenTutorial = true;
                 }
+                else if (!GameLocalData.Instance.isRateOver)
+                {
+                    foreach (var lv in CT.table.rateUsHintLevel)
+                    {
+                        if (lv == D.I.unlockedGameLevel - 1)
+                        {
+                            needOpenRate = true;
+                            break;
+                        }
+                    }
+                }
 
-                if (D.I.unlockedGameLevel == ConstTable.table.dailySignUnlockLevel)
+                if (D.I.unlockedGameLevel == CT.table.dailySignUnlockLevel)
                 {
                     mOpenHints.Add(LTKey.UNLOCK_SYSTEM_X.LT(LTKey.DAILY_SIGN.LT()));
                 }
-                if (D.I.unlockedGameLevel == ConstTable.table.bookUnlockLevel)
+                if (D.I.unlockedGameLevel == CT.table.bookUnlockLevel)
                 {
                     mOpenHints.Add(LTKey.UNLOCK_SYSTEM_X.LT(LTKey.VIRUS_BOOK.LT()));
                 }
-                if (D.I.unlockedGameLevel == ConstTable.table.weaponUnlockLevel)
+                if (D.I.unlockedGameLevel == CT.table.weaponUnlockLevel)
                 {
                     mOpenHints.Add(LTKey.UNLOCK_SYSTEM_X.LT(LTKey.WEAPON_SYSTEM.LT()));
                 }

@@ -107,7 +107,7 @@ namespace DestroyViruses
                     mLevelPanelRect.DOAnchorPos(mLevelPanelRawPos + Vector2.down * 300, 0.25f);
                     mLevelPanelRect.DOScale(1, 0.25f);
                     progressCanvasGroup.DOFade(0, 0.25f);
-                    ResAddEffect.Play(ResAddView.ResType.Energy, ConstTable.table.energyRecoverWin);
+                    ResAddEffect.Play(ResAddView.ResType.Energy, CT.table.energyRecoverWin);
                 });
 
                 this.DelayDo(1f, () =>

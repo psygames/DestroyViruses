@@ -19,7 +19,7 @@ namespace DestroyViruses
 
         public void PlaySound()
         {
-            if (TimeUtil.CheckInterval("CoinSfx", ConstTable.table.coinSfxInterval))
+            if (TimeUtil.CheckInterval("CoinSfx", CT.table.coinSfxInterval))
             {
                 AudioManager.PlaySound("coin");
             }

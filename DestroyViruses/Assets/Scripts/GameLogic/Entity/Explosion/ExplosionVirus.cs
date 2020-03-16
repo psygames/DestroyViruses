@@ -24,7 +24,7 @@ namespace DestroyViruses
                 particles[i].gameObject.SetActive(i == index);
             }
 
-            if (TimeUtil.CheckInterval("ExplosionSfx", ConstTable.table.explosionSfxInterval))
+            if (TimeUtil.CheckInterval("ExplosionSfx", CT.table.explosionSfxInterval))
             {
                 AudioManager.PlaySound("explosion");
             }
@@ -37,9 +37,9 @@ namespace DestroyViruses
         private void Vibrate()
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
-            if (TimeUtil.CheckInterval("Vibrate", ConstTable.table.vibrateInterval))
+            if (TimeUtil.CheckInterval("Vibrate", CT.table.vibrateInterval))
             {
-                Vibration.Vibrate((int)(ConstTable.table.vibrateDuration * 1000));
+                Vibration.Vibrate((int)(CT.table.vibrateDuration * 1000));
             }
 #endif
         }

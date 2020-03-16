@@ -36,7 +36,7 @@ namespace DestroyViruses
         private void Refresh()
         {
             costText.text = mCurrent.KMB();
-            gainText.text = (mCurrent * ConstTable.table.energyExchange).ToString();
+            gainText.text = (mCurrent * CT.table.energyExchange).ToString();
 
             subBtn.SetBtnGrey(mCurrent <= 0);
             addBtn.SetBtnGrey(mCurrent >= D.I.diamond || IsEnergyFull());
@@ -46,7 +46,7 @@ namespace DestroyViruses
 
         private bool IsEnergyFull()
         {
-            if (mCurrent * ConstTable.table.energyExchange >= D.I.maxEnergy - D.I.energy)
+            if (mCurrent * CT.table.energyExchange >= D.I.maxEnergy - D.I.energy)
             {
                 return true;
             }

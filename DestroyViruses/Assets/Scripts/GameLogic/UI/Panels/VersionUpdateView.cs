@@ -36,11 +36,10 @@ namespace DestroyViruses
 
         private void OnClickConfirm()
         {
-            var appid = "com.unionfun.pss";
 #if UNITY_ANDROID && !UNITY_EDITOR
-            Application.OpenURL("market://details?id=" + appid);
+            Application.OpenURL("market://details?id=" + Application.identifier);
 #else
-            Application.OpenURL("https://play.google.com/store/apps/details?id=" + appid);
+            Application.OpenURL("https://play.google.com/store/apps/details?id=" + Application.identifier);
 #endif
         }
 

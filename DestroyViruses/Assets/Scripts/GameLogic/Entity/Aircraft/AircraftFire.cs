@@ -29,7 +29,7 @@ namespace DestroyViruses
             var bulletSpeed = TableFireSpeed.Get(D.I.fireSpeedLevel).bulletSpeed;
             mFirePower = D.I.firePower * buffProxy.Effect_FirePower;
             mFireSpeed = D.I.fireSpeed * buffProxy.Effect_FireSpeed;
-            mFireSpeed = Mathf.Min(mFireSpeed, ConstTable.table.maxFireSpeed);
+            mFireSpeed = Mathf.Min(mFireSpeed, CT.table.maxFireSpeed);
             var _bullets = mFireSpeed * Bullet.BULLET_HEIGH / bulletSpeed;
             mFireOnceBullets = Mathf.RoundToInt(_bullets);
             mFireOnceBullets = Mathf.Max(mFireOnceBullets, 1);

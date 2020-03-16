@@ -75,7 +75,7 @@ namespace DestroyViruses
             GameLocalData.Instance.gameLevel = level;
             GameLocalData.Instance.unlockedGameLevel = level;
             if (GameLocalData.Instance.weaponId == 0
-                && level >= ConstTable.table.weaponUnlockLevel)
+                && level >= CT.table.weaponUnlockLevel)
             {
                 GameLocalData.Instance.weaponId = 1;
             }
@@ -107,7 +107,7 @@ namespace DestroyViruses
 
         private void OnClickEnergy()
         {
-            GameLocalData.Instance.energy = Mathf.Clamp(GetInt1(), 0, ConstTable.table.energyMax);
+            GameLocalData.Instance.energy = Mathf.Clamp(GetInt1(), 0, CT.table.energyMax);
             SaveAndDispatch();
         }
 

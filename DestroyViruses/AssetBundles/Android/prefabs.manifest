@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3527971802
+CRC: 1621345180
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 93ad9d266d9b30f699d97b6eb210c687
+    Hash: 01efc6d464cb09bdd27652eca27f590b
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 8b2f7cad35357fdabcf2b6358feffe17
+    Hash: 57cacb7191a6f0c5dd5fb171fc7b08ab
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -257,6 +257,10 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c1f9e4df3b422455a957d92e53e46d52, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 39386a9c18d774eb5babc16fdddd1927, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 76b08e55917dd4a92b3e97bceadb3d6c, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 120
@@ -309,6 +313,7 @@ Assets:
 - Assets/AssetBundles/Prefabs/UI/View/NavigationView.prefab
 - Assets/AssetBundles/Prefabs/Entities/VirusDodge.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusTriangle/VirusTriangleAnimator.controller
+- Assets/AssetBundles/Prefabs/UI/View/RateView.prefab
 - Assets/AssetBundles/Prefabs/Entities3D/VirusCure/VirusCureAnimator.controller
 - Assets/AssetBundles/Prefabs/Entities/WeaponMissile.prefab
 - Assets/AssetBundles/Prefabs/UI/View/EnergyView.prefab

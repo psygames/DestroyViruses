@@ -21,7 +21,7 @@ namespace DestroyViruses
         {
             base.OnOpen();
             pause = false;
-            mCountDown = ConstTable.table.reviveCountDown;
+            mCountDown = CT.table.reviveCountDown;
             btnRadio.Radio(isDiamondRevive);
         }
 

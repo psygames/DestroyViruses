@@ -31,7 +31,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1827d5ad581044f08b470c56b841c4ab, type: 3}
-    totalSpriteSurfaceArea: 7055402
+    totalSpriteSurfaceArea: 7058444
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -143,6 +143,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7e36d9ca0c1e39140843a111f88f85b8, type: 3}
   - {fileID: 21300000, guid: 530b921b17281c9468e04da48980135a, type: 3}
   - {fileID: 21300000, guid: 7846331bc810f3f4184ddf96b68699b4, type: 3}
+  - {fileID: 21300000, guid: 184b051b314614440ad442de782867e3, type: 3}
   - {fileID: 21300000, guid: 3f99d44ba3d5de74d8b32c3c2f6a203a, type: 3}
   - {fileID: 21300000, guid: d5e3bf4b8bca9594d87886d32fa72a74, type: 3}
   - {fileID: 21300000, guid: 43f3056b35a7ff049b727463f37390d6, type: 3}
@@ -156,6 +157,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 98befbfb645994d50aa9db23c7c7d1cd, type: 3}
   - {fileID: 21300000, guid: f569740cb808344c0af3bef6b416821a, type: 3}
   - {fileID: 21300000, guid: bf5f755c705b0404e8b7f956ec0bd3c2, type: 3}
+  - {fileID: 21300000, guid: 0eb3a26ca6b0e4d8bb057b5f9a387a7d, type: 3}
   - {fileID: 21300000, guid: bad8286c322c94bb79bf009c837aef07, type: 3}
   - {fileID: 21300000, guid: cf49f07c9b1646d4b9c63316bab747cb, type: 3}
   - {fileID: 21300000, guid: d08ec68cb7df5c1418f55a5cf67a23d4, type: 3}
@@ -311,6 +313,7 @@ SpriteAtlas:
   - weapon_missile_part2
   - icon_weapon_laser
   - icon_hand
+  - icon_star_gold
   - button_revive
   - game_level_next
   - icon_buff_ns_video
@@ -324,6 +327,7 @@ SpriteAtlas:
   - button_vip
   - shop_diamond_4
   - icon_buff_06
+  - icon_star_empty
   - weapon_normal_part2
   - coin_frame_6
   - button_luck_gift

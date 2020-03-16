@@ -79,14 +79,14 @@ namespace DestroyViruses
                 {
                     SpawnVirus();
                     //随机CD
-                    mSpawnCD = spawnInterval * ConstTable.table.spawnVirusInterval.random;
+                    mSpawnCD = spawnInterval * CT.table.spawnVirusInterval.random;
                     spawnIndex++;
                 }
             }
             else // 等待当前波结束结束
             {
                 // 非最终波
-                if (!isFinalWave && (!needClear || EntityManager.Count<VirusBase>() <= ConstTable.table.waveClearVirusCount))
+                if (!isFinalWave && (!needClear || EntityManager.Count<VirusBase>() <= CT.table.waveClearVirusCount))
                 {
                     SetWave(waveIndex + 1);
                 }
@@ -96,7 +96,7 @@ namespace DestroyViruses
 
         private void SpawnVirus()
         {
-            var direction = Quaternion.AngleAxis(ConstTable.table.spawnVirusDirection.random, Vector3.forward) * Vector2.down;
+            var direction = Quaternion.AngleAxis(CT.table.spawnVirusDirection.random, Vector3.forward) * Vector2.down;
             var pos = new Vector2(Random.Range(VirusBase.baseRadius, UIUtil.width - VirusBase.baseRadius), UIUtil.height + VirusBase.baseRadius);
 
             var virusIndex = FormulaUtil.RandomIndexInProbArray(tableGameWave.virusProb);
@@ -105,8 +105,8 @@ namespace DestroyViruses
             var virus = (VirusBase)EntityManager.Create(System.Type.GetType(virusType));
 
             var hpRange = new Vector2(tableGameLevel.hpRange.min, tableGameLevel.hpRange.max);
-            var hp = tableGameWave.virusHp[virusIndex].random * tableGameLevel.virusHpFactor * mHpFixFactor * ConstTable.table.hpRandomRange.random;
-            var speed = tableGameWave.virusSpeed[virusIndex].random * tableGameLevel.virusSpeedFactor * mSpeedFixFactor * ConstTable.table.speedRandomRange.random;
+            var hp = tableGameWave.virusHp[virusIndex].random * tableGameLevel.virusHpFactor * mHpFixFactor * CT.table.hpRandomRange.random;
+            var speed = tableGameWave.virusSpeed[virusIndex].random * tableGameLevel.virusSpeedFactor * mSpeedFixFactor * CT.table.speedRandomRange.random;
             var size = tableGameWave.virusSize[virusIndex].random;
 
             virus.Reset(virusTable.id, hp, size, speed, pos, direction, hpRange, true);
@@ -122,8 +122,8 @@ namespace DestroyViruses
             }
             else
             {
-                mHpFixFactor = FormulaUtil.Expresso(ConstTable.table.formulaArgsVirusHp);
-                mSpawnCountFixFactor = FormulaUtil.Expresso(ConstTable.table.formulaArgsVirusSpawnCount);
+                mHpFixFactor = FormulaUtil.Expresso(CT.table.formulaArgsVirusHp);
+                mSpawnCountFixFactor = FormulaUtil.Expresso(CT.table.formulaArgsVirusSpawnCount);
                 mSpeedFixFactor = 1;
             }
         }

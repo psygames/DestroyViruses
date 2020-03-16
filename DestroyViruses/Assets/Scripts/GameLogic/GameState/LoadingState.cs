@@ -68,7 +68,7 @@ namespace DestroyViruses
             progress = 0.6f;
             message = LTKey.LOADING_INITIALIZE_SETTINGS.LT();
             yield return null;
-            Application.targetFrameRate = ConstTable.table.frameRate;
+            Application.targetFrameRate = CT.table.frameRate;
 
             // #7
             progress = 0.7f;

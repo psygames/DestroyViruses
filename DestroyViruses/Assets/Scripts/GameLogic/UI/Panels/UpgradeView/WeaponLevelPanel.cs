@@ -36,7 +36,7 @@ namespace DestroyViruses
 
         public void SetData()
         {
-            if (D.I.unlockedGameLevel < ConstTable.table.weaponUnlockLevel)
+            if (D.I.unlockedGameLevel < CT.table.weaponUnlockLevel)
             {
                 gameObject.SetActive(false);
                 return;

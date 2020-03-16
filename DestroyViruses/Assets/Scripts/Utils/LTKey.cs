@@ -69,5 +69,6 @@
         public const string UPDATE_CONTENT = "UPDATE_CONTENT";
         public const string UPDATE_CONTENT_FORCE = "UPDATE_CONTENT_FORCE";
 
+        public const string TAP_STAR_TO_RATE = "TAP_STAR_TO_RATE";
     }
 }

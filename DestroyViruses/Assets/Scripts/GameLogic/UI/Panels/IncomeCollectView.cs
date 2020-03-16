@@ -54,7 +54,7 @@ namespace DestroyViruses
 
         private void PlayCollectEffect()
         {
-            var uiCoinCount = (int)(D.I.coinIncomeTotal / (ConstTable.table.coinIncomeRefreshCD * D.I.coinIncome));
+            var uiCoinCount = (int)(D.I.coinIncomeTotal / (CT.table.coinIncomeRefreshCD * D.I.coinIncome));
             var pos = GetComponent<RectTransform>().GetUIPos();
             Coin.CreateGroup(pos, UIUtil.COIN_POS, uiCoinCount);
             AudioManager.PlaySound("collect_coin");

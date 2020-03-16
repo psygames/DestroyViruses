@@ -59,7 +59,7 @@ namespace DestroyViruses
             coinText.text = D.I.battleGetCoin.KMB();
             winLoseRadio.Radio(!D.I.gameEndWin);
             bonusObj.SetActive(!D.I.noAd);
-            mysticalBonus.SetActive(!D.I.noAd && Random.value <= ConstTable.table.mysticalBonusProbability);
+            mysticalBonus.SetActive(!D.I.noAd && Random.value <= CT.table.mysticalBonusProbability);
         }
     }
 }

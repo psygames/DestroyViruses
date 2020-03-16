@@ -32,6 +32,7 @@ namespace DestroyViruses
             lastConstGroup = "default";
             minVersion = "0.1.0";
             latestVersion = "0.1.0";
+            isRateOver = false;
         }
 
         public int firePowerLevel;      //火力
@@ -59,5 +60,6 @@ namespace DestroyViruses
         public string lastConstGroup;       //上次配置组ID
         public string minVersion;           //最小版本号
         public string latestVersion;        //最新版本号
+        public bool isRateOver;               //已经评价过
     }
 }

@@ -22,7 +22,7 @@ namespace DestroyViruses
                 }
                 else
                 {
-                    var uiCoinCount = (int)(D.I.coinIncomeTotal / (ConstTable.table.coinIncomeRefreshCD * D.I.coinIncome));
+                    var uiCoinCount = (int)(D.I.coinIncomeTotal / (CT.table.coinIncomeRefreshCD * D.I.coinIncome));
                     if (uiCoinCount > 0)
                     {
                         var pos = GetComponent<RectTransform>().GetUIPos();
@@ -37,7 +37,7 @@ namespace DestroyViruses
 
         private void OnEnable()
         {
-            mRefreshCD = ConstTable.table.coinIncomeRefreshCD;
+            mRefreshCD = CT.table.coinIncomeRefreshCD;
             countText.text = D.I.coinIncomeTotal.KMB();
         }
 
@@ -52,10 +52,10 @@ namespace DestroyViruses
             }
             else
             {
-                imageFill.fillAmount = 1f - mRefreshCD / ConstTable.table.coinIncomeRefreshCD;
+                imageFill.fillAmount = 1f - mRefreshCD / CT.table.coinIncomeRefreshCD;
                 if (mRefreshCD <= 0)
                 {
-                    mRefreshCD = ConstTable.table.coinIncomeRefreshCD;
+                    mRefreshCD = CT.table.coinIncomeRefreshCD;
                     if (D.I.coinIncomeTotal < 1)
                         countText.text = "0";
                     else

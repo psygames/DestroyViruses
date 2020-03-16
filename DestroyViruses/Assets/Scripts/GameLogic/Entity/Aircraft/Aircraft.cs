@@ -61,7 +61,7 @@ namespace DestroyViruses
 
         public void Revive()
         {
-            float invincibleCD = ConstTable.table.reviveInvincibleCD;
+            float invincibleCD = CT.table.reviveInvincibleCD;
             isInvincible = true;
             anima.PlayInvincible(invincibleCD);
             this.DelayDo(invincibleCD, () => { isInvincible = false; });

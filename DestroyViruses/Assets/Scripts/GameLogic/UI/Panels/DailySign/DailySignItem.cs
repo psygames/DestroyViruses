@@ -21,7 +21,7 @@ namespace DestroyViruses
             title.text = LT.Get(t.nameID);
             image.SetSprite(t.icon);
             if (t.type == 2) // coin
-                count.text = "x" + t.count * FormulaUtil.Expresso(ConstTable.table.formulaArgsDailySignCoin);
+                count.text = "x" + t.count * FormulaUtil.Expresso(CT.table.formulaArgsDailySignCoin);
             else
                 count.text = "x" + t.count;
             if (days == D.I.signDays)

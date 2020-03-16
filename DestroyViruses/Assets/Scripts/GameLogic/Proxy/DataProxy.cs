@@ -35,7 +35,7 @@ namespace DestroyViruses
         public int signDays { get { return localData.signDays; } }
         public int weaponId { get { return localData.weaponId; } }
         public int energy { get { return Mathf.Min(localData.energy, maxEnergy); } }
-        public int maxEnergy { get { return ConstTable.table.energyMax; } }
+        public int maxEnergy { get { return CT.table.energyMax; } }
         public bool isEnergyMax { get { return energy >= maxEnergy; } }
         public int energyRechargeRemain
         {
@@ -44,7 +44,7 @@ namespace DestroyViruses
                 if (isEnergyMax)
                     return 0;
                 var elapse = (int)(DateTime.Now - new DateTime(localData.lastEnergyTicks)).TotalSeconds;
-                return Mathf.Max(0, ConstTable.table.energyRecoverInterval - elapse);
+                return Mathf.Max(0, CT.table.energyRecoverInterval - elapse);
             }
         }
 
@@ -65,7 +65,7 @@ namespace DestroyViruses
             get
             {
                 var span = DateTime.Now - new DateTime(localData.lastTakeIncomeTicks);
-                return span.TotalSeconds >= ConstTable.table.coinIncomeMaxDuration;
+                return span.TotalSeconds >= CT.table.coinIncomeMaxDuration;
             }
         }
 
@@ -79,7 +79,7 @@ namespace DestroyViruses
                     SaveLocalData();
                 }
                 var span = DateTime.Now - new DateTime(localData.lastTakeIncomeTicks);
-                var secMax = Mathf.Min(ConstTable.table.coinIncomeMaxDuration, (float)span.TotalSeconds);
+                var secMax = Mathf.Min(CT.table.coinIncomeMaxDuration, (float)span.TotalSeconds);
                 return secMax * coinIncome;
             }
         }
@@ -213,7 +213,7 @@ namespace DestroyViruses
             // energy
             if (isWin)
             {
-                AddEnergy(ConstTable.table.energyRecoverWin);
+                AddEnergy(CT.table.energyRecoverWin);
             }
             // trial end
             if (localData.trialWeaponID != 0 || localData.isInTrial)
@@ -233,7 +233,7 @@ namespace DestroyViruses
             }
             localData.unlockedGameLevel += 1;
             // auto equip
-            if (weaponId <= 0 && ConstTable.table.weaponUnlockLevel <= unlockedGameLevel)
+            if (weaponId <= 0 && CT.table.weaponUnlockLevel <= unlockedGameLevel)
             {
                 localData.weaponId = 1;
             }
@@ -282,7 +282,7 @@ namespace DestroyViruses
             }
             else if (t.type == 2)
             {
-                AddCoin(t.count * multiple * FormulaUtil.Expresso(ConstTable.table.formulaArgsDailySignCoin));
+                AddCoin(t.count * multiple * FormulaUtil.Expresso(CT.table.formulaArgsDailySignCoin));
             }
             SaveLocalData();
             DispatchEvent(EventGameData.Action.DataChange);
@@ -298,7 +298,7 @@ namespace DestroyViruses
 
         public bool IsDailySignUnlocked()
         {
-            return gameLevel >= ConstTable.table.dailySignUnlockLevel;
+            return gameLevel >= CT.table.dailySignUnlockLevel;
         }
         #endregion
 
@@ -376,7 +376,7 @@ namespace DestroyViruses
             }
 
             localData.diamond -= diamond;
-            var addCoin = diamond * FormulaUtil.Expresso(ConstTable.table.formulaArgsCoinExchange);
+            var addCoin = diamond * FormulaUtil.Expresso(CT.table.formulaArgsCoinExchange);
             localData.coin += addCoin;
 
             SaveLocalData();
@@ -394,7 +394,7 @@ namespace DestroyViruses
             }
 
             localData.diamond -= diamond;
-            var addEnergy = (int)diamond * ConstTable.table.energyExchange;
+            var addEnergy = (int)diamond * CT.table.energyExchange;
             localData.energy += addEnergy;
             ResAddEffect.Play(ResAddView.ResType.Energy, addEnergy);
 
@@ -423,33 +423,33 @@ namespace DestroyViruses
                 return 0;
             if (bookData.GetIndex(virusID) <= 0)
                 return 0;
-            return ConstTable.table.bookVirusCollectKillCount[bookData.GetIndex(virusID) - 1];
+            return CT.table.bookVirusCollectKillCount[bookData.GetIndex(virusID) - 1];
         }
 
         public int GetBookCountEnd(int virusID)
         {
             if (IsBookCollectMax(virusID))
                 return 0;
-            return ConstTable.table.bookVirusCollectKillCount[bookData.GetIndex(virusID)];
+            return CT.table.bookVirusCollectKillCount[bookData.GetIndex(virusID)];
         }
 
         public int GetBookDiamond(int virusID)
         {
             if (IsBookCollectMax(virusID))
                 return 0;
-            return ConstTable.table.bookVirusCollectRewardDiamond[bookData.GetIndex(virusID)];
+            return CT.table.bookVirusCollectRewardDiamond[bookData.GetIndex(virusID)];
         }
 
         public bool IsBookCollectMax(int virusID)
         {
-            return bookData.GetIndex(virusID) >= ConstTable.table.bookVirusCollectKillCount.Length
-                || bookData.GetIndex(virusID) >= ConstTable.table.bookVirusCollectRewardDiamond.Length;
+            return bookData.GetIndex(virusID) >= CT.table.bookVirusCollectKillCount.Length
+                || bookData.GetIndex(virusID) >= CT.table.bookVirusCollectRewardDiamond.Length;
         }
 
         public bool IsBookCollectNeedPlayAd(int virusID)
         {
-            return bookData.GetIndex(virusID) < ConstTable.table.bookVirusCollectNeedPlayAD.Length
-                && ConstTable.table.bookVirusCollectNeedPlayAD[bookData.GetIndex(virusID)] > 0;
+            return bookData.GetIndex(virusID) < CT.table.bookVirusCollectNeedPlayAD.Length
+                && CT.table.bookVirusCollectNeedPlayAD[bookData.GetIndex(virusID)] > 0;
         }
 
         public int BookGetCollectCount(int virusID)
@@ -624,11 +624,11 @@ namespace DestroyViruses
             {
                 DateTime _egLast = new DateTime(localData.lastEnergyTicks);
                 var diff = (DateTime.Now - _egLast).TotalSeconds;
-                if (diff >= ConstTable.table.energyRecoverInterval)
+                if (diff >= CT.table.energyRecoverInterval)
                 {
-                    var add = (int)(diff / ConstTable.table.energyRecoverInterval);
+                    var add = (int)(diff / CT.table.energyRecoverInterval);
                     localData.lastEnergyTicks = DateTime.Now.Ticks
-                        - (long)(diff - add * ConstTable.table.energyRecoverInterval) * 10000000L;
+                        - (long)(diff - add * CT.table.energyRecoverInterval) * 10000000L;
                     var energys = Mathf.Min(add, maxEnergy - energy);
                     AddEnergy(energys);
                 }
@@ -679,7 +679,7 @@ namespace DestroyViruses
 
         public int GetTrialWeaponID()
         {
-            if (unlockedGameLevel < ConstTable.table.weaponUnlockLevel)
+            if (unlockedGameLevel < CT.table.weaponUnlockLevel)
                 return 0;
 
             var _last = new DateTime(localData.lastTrialTicks);
@@ -689,7 +689,7 @@ namespace DestroyViruses
                 localData.trialCount = 0;
                 SaveLocalData();
             }
-            if (localData.trialCount >= ConstTable.table.maxWeaponTrialCount)
+            if (localData.trialCount >= CT.table.maxWeaponTrialCount)
             {
                 return 0;
             }

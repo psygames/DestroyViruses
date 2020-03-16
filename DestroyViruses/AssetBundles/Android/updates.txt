@@ -137,3 +137,15 @@ prefabs
 tables/tableconst
 tables/tablegamelevel
 tables/tablegamewave
+132288573217662950:
+manifest
+prefabs
+spriteatlas/total
+tables/tableconst
+tables/tablegamelevel
+tables/tablegamewave
+tables/tablelanguage
+tables/tablevirus
+tables/tableweapon
+tables/tableweaponpowerlevel
+tables/tableweaponspeedlevel

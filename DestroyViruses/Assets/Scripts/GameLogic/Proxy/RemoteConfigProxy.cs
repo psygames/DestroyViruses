@@ -114,6 +114,14 @@ namespace DestroyViruses
             }
         }
 
+        public string GetValue(string key, string defaultVal = "")
+        {
+            foreach (var k in Firebase.RemoteConfig.FirebaseRemoteConfig.Keys)
+                if (k == key)
+                    return Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue(k).StringValue;
+            return defaultVal;
+        }
+
         private void LogKeys(IEnumerable<string> keys)
         {
 #if !PUBLISH_BUILD

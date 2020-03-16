@@ -448,6 +448,9 @@ MonoBehaviour:
     name: OptionView.prefab
   - bundle: 1
     dir: 10
+    name: RateView.prefab
+  - bundle: 1
+    dir: 10
     name: ResAddView.prefab
   - bundle: 1
     dir: 10

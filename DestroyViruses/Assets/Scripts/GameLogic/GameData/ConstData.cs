@@ -1,7 +1,7 @@
 ﻿using System;
 namespace DestroyViruses
 {
-    public class ConstTable
+    public class CT
     {
         public static TableConst table
         {

@@ -9,8 +9,8 @@ namespace DestroyViruses
 {
     public class Bullet : EntityBase<Bullet>
     {
-        public static float BULLET_HEIGH => ConstTable.table.bulletVDist;
-        public static float BULLET_WIDTH => ConstTable.table.bulletHDist;
+        public static float BULLET_HEIGH => CT.table.bulletVDist;
+        public static float BULLET_WIDTH => CT.table.bulletHDist;
 
         public Image icon;
         public float bornCD = 0.03f;
