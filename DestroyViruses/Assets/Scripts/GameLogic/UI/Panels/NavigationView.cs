@@ -33,10 +33,27 @@ namespace DestroyViruses
 #endif
         }
 
+        private int mDebugHit = 0;
+        private float mLastDebugHit = 0;
         private void ButtonListenerInit()
         {
             settingBtn.OnClick(() => { UIManager.Open<OptionView>(UILayer.Top); });
-            debugBtn.OnClick(() => { UIManager.Open<DebugView>(UILayer.Top); });
+            debugBtn.OnClick(() =>
+            {
+                if (Time.time - mLastDebugHit <= 0.5f)
+                {
+                    mDebugHit++;
+                    if (mDebugHit >= 2)
+                    {
+                        UIManager.Open<DebugView>(UILayer.Top);
+                    }
+                }
+                else
+                {
+                    mDebugHit = 0;
+                }
+                mLastDebugHit = Time.time;
+            });
         }
 
         protected override void OnOpen()
