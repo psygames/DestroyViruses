@@ -153,3 +153,7 @@ tables/tableweaponspeedlevel
 tables/tableconst
 tables/tablegamewave
 tables/tablevirus
+132290611778592360:
+manifest
+132290618977593610:
+manifest

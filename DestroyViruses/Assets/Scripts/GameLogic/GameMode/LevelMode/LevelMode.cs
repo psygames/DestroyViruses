@@ -39,7 +39,7 @@ namespace DestroyViruses
         protected override void OnBegin()
         {
             base.OnBegin();
-            Analytics.Event.GameBegin(D.I.gameLevel);
+            Analytics.Event.GameStart(D.I.gameLevel);
             getCoin = 0;
             progress = 0;
             mLastWaveIndex = -1;
@@ -53,7 +53,7 @@ namespace DestroyViruses
         protected override void OnEnd(bool isWin)
         {
             base.OnEnd(isWin);
-            Analytics.Event.GameEnd(D.I.gameLevel, isWin, progress);
+            Analytics.Event.GameOver(D.I.gameLevel, isWin, progress);
             mWaveModule.Stop();
             D.I.BattleEnd(isWin);
             if (isWin)

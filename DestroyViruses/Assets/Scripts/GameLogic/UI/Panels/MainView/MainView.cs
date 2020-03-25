@@ -50,8 +50,6 @@ namespace DestroyViruses
         protected override void OnOpen()
         {
             base.OnOpen();
-            UIManager.Open<RateView>(UILayer.Top);
-
             RefreshUI();
             AudioManager.PlayMusic($"BGM{Random.Range(1, 3)}", 1f);
             NavigationView.BlackSetting(false);

@@ -22,7 +22,7 @@
                   android:configChanges="keyboardHidden|orientation|screenSize"/>
 
         <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-6997766984294588~7770804300"/>
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="472940060301625"/>
+        <!-- <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="1941825102629255"/>  --> <!-- Already defined in Default AndroidManifest.xml -->
         <meta-data android:name="applovin.sdk.key" android:value="i9C6PPXpWEnic7UFK9TOF_aXw4OWrkqTu1eHQB5xPse0-8FIIogToG4hKSDAB1i33MLTXQPxH3yFCBTU-D1mT6" />
     </application>
 

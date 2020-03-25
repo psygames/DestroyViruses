@@ -122,6 +122,26 @@ namespace DestroyViruses
         {
             base.OnUpdate();
             UpdateEnergy();
+            UpdateCheckAnalytics();
+        }
+
+        private float checkAnalyticsTimeout = 30;
+        private void UpdateCheckAnalytics()
+        {
+            checkAnalyticsTimeout -= Time.deltaTime;
+            if (checkAnalyticsTimeout <= 0 || !AnalyticsProxy.Ins.IsInit)
+                return;
+            checkAnalyticsTimeout = 0;
+            Analytics.Event.Login(DeviceID.UUID);
+            Analytics.UserProperty.Set("coin", coin.KMB());
+            Analytics.UserProperty.Set("diamond", diamond.KMB());
+            Analytics.UserProperty.Set("game_level", gameLevel.ToString());
+            Analytics.UserProperty.Set("unlocked_game_level", unlockedGameLevel.ToString());
+            Analytics.UserProperty.Set("fire_power_level", firePowerLevel.ToString());
+            Analytics.UserProperty.Set("fire_speed_level", fireSpeedLevel.ToString());
+            Analytics.UserProperty.Set("streak", streak.ToString());
+            Analytics.UserProperty.Set("daily_sign", signDays.ToString());
+            Analytics.UserProperty.Set("weapon_id", weaponId.ToString());
         }
 
         #region MAIN
@@ -716,21 +736,6 @@ namespace DestroyViruses
         public bool IsInTrial()
         {
             return localData.isInTrial;
-        }
-        #endregion
-
-        #region ANALYTICS
-        public void AnalyticsSetUserProperty()
-        {
-            Analytics.UserProperty.Set("coin", coin.KMB());
-            Analytics.UserProperty.Set("diamond", diamond.KMB());
-            Analytics.UserProperty.Set("game_level", gameLevel);
-            Analytics.UserProperty.Set("unlocked_game_level", unlockedGameLevel);
-            Analytics.UserProperty.Set("fire_power_level", firePowerLevel);
-            Analytics.UserProperty.Set("fire_speed_level", fireSpeedLevel);
-            Analytics.UserProperty.Set("streak", streak);
-            Analytics.UserProperty.Set("daily_sign", signDays);
-            Analytics.UserProperty.Set("weapon_id", weaponId);
         }
         #endregion
 
