@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 631382684
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ca5b2bdb7aaa3237f10b031ba8cb96ad
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2ed26e3ad9f6be9c24f85f5f5b54339d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/Textures/VirusRecoverTexture_1.png
+Dependencies: []

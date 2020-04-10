@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 132870495
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 57c3b89ecc1b3fc67424541d29faa2ec
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/Tables/TableGameWave.bytes
+Dependencies: []

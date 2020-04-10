@@ -193,6 +193,11 @@ void _moPubForceWKWebView(bool shouldForce)
     [MoPub sharedInstance].forceWKWebView = (shouldForce ? YES : NO);
 }
 
+bool _moPubIsPluginReady(const char* adUnitId)
+{
+    // MoPubManagers are lazily initialized, so they are always "ready"
+    return true;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Banners

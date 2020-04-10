@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 2019144670
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2f6f91ad458215a0ba429e503805e3c6
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/Sounds/button_normal.wav
+Dependencies: []

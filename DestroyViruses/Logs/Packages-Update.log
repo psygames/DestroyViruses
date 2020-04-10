@@ -104,3 +104,15 @@ The following packages were updated:
 The following packages were removed:
   com.unity.2d.sprite@1.0.0
   com.unity.xr.legacyinputhelpers@2.0.2
+
+=== Tue Apr  7 23:25:44 2020
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.rider from version 1.1.0 to 1.1.4
+  com.unity.ide.vscode from version 1.1.2 to 1.1.4
+  com.unity.test-framework from version 1.0.13 to 1.1.11
+The following packages were removed:
+  com.unity.package-manager-ui@2.2.0

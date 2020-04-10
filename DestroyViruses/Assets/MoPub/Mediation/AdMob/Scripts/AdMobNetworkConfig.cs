@@ -17,16 +17,6 @@ public class AdMobNetworkConfig : MoPubNetworkConfig
                   : "MPGoogleGlobalMediationSettings"; }
     }
 
-    [Header("Network Configuration")]
-
-    [Tooltip("Enter your app ID that the Mobile Ads SDK can use to initialize.")]
-    [Config.Optional]
-    public PlatformSpecificString appid;
-
-    [Tooltip("Check to request non-personalized ads. Clear to request personalized ads.")]
-    [Config.Optional]
-    public bool npa;
-
     [Header("Mediation Settings (Global)")]
 
     [Tooltip("Enter a web URL corresponding to the content shown in app to utilize AdMob's contextual targeting.")]
@@ -44,16 +34,5 @@ public class AdMobNetworkConfig : MoPubNetworkConfig
     [Tooltip("Check if you want your ad request to be handled suitable for users under the age of consent.")]
     [Mediation.Optional]
     public bool taggedForUnderAgeOfConsent;
-
-    public override MoPub.MediatedNetwork NetworkOptions
-    {
-        get {
-            var options = base.NetworkOptions;
-            if (enabledOptions.Contains("npa"))
-                // AdMob adapter wants "1" and "0" for true and false.
-                options.NetworkConfiguration["npa"] = npa ? "1" : "0";
-            return options;
-        }
-    }
 }
 #endif

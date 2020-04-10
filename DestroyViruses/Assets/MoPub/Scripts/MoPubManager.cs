@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using MoPubInternal.ThirdParty.MiniJSON;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -181,11 +179,11 @@ public class MoPubManager : MonoBehaviour
     public InitializedEvent Initialized;
 
     // API to make calls to the platform-specific MoPub SDK.
-    internal MoPubPlatformApi MoPubPlatformApi { get; private set; }
+    internal static MoPubPlatformApi MoPubPlatformApi { get; private set; }
 
 
     // Whether the consent dialog is being shown
-    private bool consentDialogShown;
+    private static bool consentDialogShown;
 
 
     // Forwards invocations of C# event OnSdkInitializedEvent to UnityEvent OnInitialized.
@@ -206,15 +204,16 @@ public class MoPubManager : MonoBehaviour
             Debug.LogWarning("Another production MoPubManager singleton instance already exists.  That object will initialize the SDK instead of this one.");
         }
 
-        MoPubPlatformApi = new
+        if (MoPubPlatformApi == null)
+            MoPubPlatformApi = new
 #if UNITY_EDITOR
-            MoPubUnityEditor
+                MoPubUnityEditor
 #elif UNITY_ANDROID
-            MoPubAndroid
+                MoPubAndroid
 #else
-            MoPubiOS
+                MoPubiOS
 #endif
-            ();
+                ();
 
         OnSdkInitializedEvent += fwdSdkInitialized;
         if (transform.parent == null)
@@ -229,17 +228,6 @@ public class MoPubManager : MonoBehaviour
         MoPub.InitializeSdk(SdkConfiguration);
         MoPub.ReportApplicationOpen(itunesAppId);
         MoPub.EnableLocationSupport(LocationAware);
-    }
-
-    public static void Initial(string AdUnitId)
-    {
-        if (Instance != null)
-        {
-            Instance.SdkConfiguration.AdUnitId = AdUnitId;
-            MoPub.InitializeSdk(Instance.SdkConfiguration);
-            MoPub.ReportApplicationOpen(Instance.itunesAppId);
-            MoPub.EnableLocationSupport(Instance.LocationAware);
-        }
     }
 
 
@@ -329,7 +317,7 @@ public class MoPubManager : MonoBehaviour
     }
 
 
-    public void EmitConsentDialogDismissedEvent()
+    public static void EmitConsentDialogDismissedEvent()
     {
         MoPubLog.Log("EmitConsentDialogDismissedEvent", MoPubLog.ConsentLogEvent.Dismissed);
         var evt = OnConsentDialogDismissedEvent;
@@ -646,10 +634,10 @@ public class MoPubManager : MonoBehaviour
     /// <param name="applicationPaused">True when the application is pausing; False when the application is resuming.</param>
     public static void EmitConsentDialogDismissedIfApplicable(bool applicationPaused)
     {
-        if (applicationPaused || !Instance.consentDialogShown) return;
+        if (applicationPaused || !consentDialogShown) return;
 
-        Instance.EmitConsentDialogDismissedEvent();
-        Instance.consentDialogShown = false;
+        EmitConsentDialogDismissedEvent();
+        consentDialogShown = false;
     }
 
 

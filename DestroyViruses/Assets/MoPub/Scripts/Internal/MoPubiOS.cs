@@ -128,7 +128,6 @@ internal class MoPubiOS : MoPubPlatformApi
 
     internal override void LoadConsentDialog()
     {
-        MoPubLog.Log("LoadConsentDialog", MoPubLog.ConsentLogEvent.LoadAttempted);
         _moPubLoadConsentDialog();
     }
 
@@ -142,7 +141,6 @@ internal class MoPubiOS : MoPubPlatformApi
 
     internal override void ShowConsentDialog()
     {
-        MoPubLog.Log("ShowConsentDialog", MoPubLog.ConsentLogEvent.ShowAttempted);
         _moPubShowConsentDialog();
     }
 

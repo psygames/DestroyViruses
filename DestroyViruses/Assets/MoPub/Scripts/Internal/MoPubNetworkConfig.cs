@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using MoPubInternal.ThirdParty.MiniJSON;
+using MJ = MoPubInternal.ThirdParty.MiniJSON;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -118,7 +118,7 @@ public abstract class MoPubNetworkConfig : MonoBehaviour
         public override string ToString()
         {
             var val = value;
-            return val is string ? (string)val : Json.Serialize(val);
+            return val is string ? (string)val : MJ.Json.Serialize(val);
         }
     }
 

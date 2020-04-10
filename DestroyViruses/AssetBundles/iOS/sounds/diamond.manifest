@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 1276311757
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 57cf5a37116c38c9576ee489628c52b0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/Sounds/diamond.mp3
+Dependencies: []

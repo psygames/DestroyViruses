@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 1634100533
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ea6ede5d4d0d5a33c920bc03d0c3d0fb
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2ed26e3ad9f6be9c24f85f5f5b54339d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/Textures/VirusSwallowTexture_4.png
+Dependencies: []

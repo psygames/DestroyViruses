@@ -42,7 +42,7 @@ namespace DestroyViruses
             MoPubManager.OnRewardedVideoReceivedRewardEvent += OnRewardedVideoReveicedRewardEvent;
             MoPubManager.OnRewardedVideoClosedEvent += OnRewardedVideoClosedEvent;
 
-            MoPubManager.Initial(defalutAdUnitID);
+            MoPub.InitializeSdk(defalutAdUnitID);
 
             /*
             MoPubManager.OnInterstitialClickedEvent += _ => Debug.LogError("OnInterstitialClickedEvent: " + _);

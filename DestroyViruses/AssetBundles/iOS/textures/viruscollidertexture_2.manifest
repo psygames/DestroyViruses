@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 3216109434
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 26e05de6cf6bc165990ff6f1b5122aba
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2ed26e3ad9f6be9c24f85f5f5b54339d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundles/Textures/VirusColliderTexture_2.png
+Dependencies: []
