@@ -17,11 +17,23 @@ namespace DestroyViruses
 
         private void OnClickFirePowerUp()
         {
+            if (!D.I.isFirePowerLevelMax && D.I.coin < D.I.firePowerUpCost)
+            {
+                Toast.Show(LTKey.UPGRADE_LACK_OF_COIN.LT());
+                UIManager.Open<ExchangeView>();
+                return;
+            }
             D.I.FirePowerUp();
         }
 
         private void OnClickFireSpeedUp()
         {
+            if (!D.I.isFireSpeedLevelMax && D.I.coin < D.I.fireSpeedUpCost)
+            {
+                Toast.Show(LTKey.UPGRADE_LACK_OF_COIN.LT());
+                UIManager.Open<ExchangeView>();
+                return;
+            }
             D.I.FireSpeedUp();
         }
 

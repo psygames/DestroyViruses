@@ -18,14 +18,22 @@ namespace DestroyViruses
         private void OnClickCoinValueUp()
         {
             if (coinValueUpBtn.isGrey)
+            {
+                Toast.Show(LTKey.UPGRADE_LACK_OF_COIN.LT());
+                UIManager.Open<ExchangeView>();
                 return;
+            }
             D.I.CoinValueLevelUp();
         }
 
         private void OnClickCoinIncomeUp()
         {
             if (coinIncomeUpBtn.isGrey)
+            {
+                Toast.Show(LTKey.UPGRADE_LACK_OF_COIN.LT());
+                UIManager.Open<ExchangeView>();
                 return;
+            }
             D.I.CoinIncomeLevelUp();
         }
 

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 using DG.Tweening;
 using UnibusEvent;
 using System.IO;
@@ -43,6 +42,7 @@ namespace DestroyViruses
         protected override void OnOpen()
         {
             base.OnOpen();
+            PlayOpenSound();
             isOpening = true;
 
             title.text = amountText;
@@ -75,7 +75,7 @@ namespace DestroyViruses
             for (int i = 0; i < iconEffs.Length; i++)
             {
                 iconEffs[i].SetSprite(sp);
-                DoTwEff(iconEffs[i].rectTransform, rawPos[i], targetPos);
+                DoTwEff(iconEffs[i].rectTransform, rawPos[i], targetPos, 0.4f + i * 0.1f);
             }
 
             gameObject.GetOrAddComponent<CanvasGroup>().DOKill();
@@ -86,7 +86,7 @@ namespace DestroyViruses
             this.DelayDo(2.5f, Close);
         }
 
-        private void DoTwEff(RectTransform rect, Vector2 _rawPos, Vector2 targetPos)
+        private void DoTwEff(RectTransform rect, Vector2 _rawPos, Vector2 targetPos, float _dur)
         {
             rect.GetComponent<Image>().DOKill();
             rect.GetComponent<Image>().SetAlpha(1);
@@ -97,11 +97,24 @@ namespace DestroyViruses
             rect.DOAnchorPos((_rawPos - cPos) * Random.Range(0.65f, 1f) + cPos, 0.1f + Random.Range(0, 0.2f))
                 .SetDelay(Random.Range(0.9f, 1f)).OnComplete(() =>
             {
-                rect.DOAnchorPos(targetPos, 0.5f).SetDelay(0.5f).OnComplete(() =>
+                rect.DOAnchorPos(targetPos, _dur).SetDelay(0.5f).OnComplete(() =>
                 {
                     rect.GetComponent<Image>().DOFade(0, 0.15f);
+                    PlayItemSound();
                 });
             });
+        }
+
+        private void PlayOpenSound()
+        {
+            //TODO: Play Open Sound
+            AudioManager.PlaySound("coin");
+        }
+
+        private void PlayItemSound()
+        {
+            //TODO: Play Item Sound
+            AudioManager.PlaySound("button_normal");
         }
 
         protected override void OnClose()

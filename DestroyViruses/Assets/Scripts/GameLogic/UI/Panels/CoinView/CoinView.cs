@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 using DG.Tweening;
 using UnibusEvent;
 using System.IO;
@@ -17,15 +16,19 @@ namespace DestroyViruses
         public ButtonPro vipBtn;
         public Text vipRewardText;
 
+        private void OnEnable()
+        {
+            fadeGroup.FadeIn(() =>
+            {
+                NavigationView.BlackSetting(true);
+            });
+        }
+
         protected override void OnOpen()
         {
             base.OnOpen();
             this.BindUntilDisable<EventGameData>(OnEventGameData);
             RefreshUI();
-            fadeGroup.FadeIn(() =>
-            {
-                NavigationView.BlackSetting(true);
-            });
         }
 
         private void RefreshUI()

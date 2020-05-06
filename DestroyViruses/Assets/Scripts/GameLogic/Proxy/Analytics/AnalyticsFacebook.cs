@@ -14,22 +14,21 @@ namespace DestroyViruses
 #if UNITY_EDITOR
             return;
 #endif
-            GameManager.Instance.DelayDo(5, () =>
-             {
-                 if (!FB.IsInitialized)
-                 {
-                     FB.Init(InitCallback, OnHideUnity);
-                 }
-                 else
-                 {
-                     ActivateApp();
-                 }
-             });
+            GameManager.Instance.DelayDo(1, () =>
+            {
+                if (!FB.IsInitialized)
+                {
+                    FB.Init(InitCallback, OnHideUnity);
+                }
+                else
+                {
+                    ActivateApp();
+                }
+            });
         }
 
         private void ActivateApp()
         {
-            Debug.Log("activate app");
             FB.ActivateApp();
             FB.Mobile.UserID = DeviceID.UUID;
             IsInit = true;
@@ -39,6 +38,7 @@ namespace DestroyViruses
         {
             if (FB.IsInitialized)
             {
+                UnityEngine.Debug.Log("AnalyticsFacebook Inited");
                 ActivateApp();
             }
             else

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UniRx;
 using UnityEngine.UI;
 using DG.Tweening;
 
@@ -36,12 +35,10 @@ namespace DestroyViruses
 
         private void Vibrate()
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
             if (TimeUtil.CheckInterval("Vibrate", CT.table.vibrateInterval))
             {
-                Vibration.Vibrate((int)(CT.table.vibrateDuration * 1000));
+                Vibrator.Vibrate(CT.table.vibrateDuration);
             }
-#endif
         }
     }
 }

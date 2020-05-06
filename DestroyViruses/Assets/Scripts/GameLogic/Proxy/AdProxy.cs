@@ -21,30 +21,36 @@ namespace DestroyViruses
         private readonly Dictionary<string, float> delayLoadingAds = new Dictionary<string, float>();
 
         public const float AD_AUTO_LOAD_DELAY = 1;
-        public const float AD_AUTO_LOAD_INTERAL = 2;
+        public const float AD_AUTO_LOAD_INTERAL = 5;
         public const float AD_LOAD_TIMEOUT = 10f;
-        public const float AD_LOAD_FAILED_RETRY_DELAY = 10f;
+        public const float AD_LOAD_FAILED_RETRY_DELAY = 60f;
 
         public bool isInit { get; private set; }
 
         protected override void OnInit()
         {
             base.OnInit();
-            MoPubManager.OnSdkInitializedEvent += MoPubManager_OnSdkInitializedEvent;
 
-            MoPubManager.OnInterstitialLoadedEvent += OnInterstitialLoadedEvent;
-            MoPubManager.OnInterstitialFailedEvent += OnInterstitialFailedEvent;
-            MoPubManager.OnInterstitialDismissedEvent += OnInterstitialClosedEvent;
+            GameManager.Instance.DelayDo(1, () =>
+            {
+                MoPubManager.OnSdkInitializedEvent += MoPubManager_OnSdkInitializedEvent;
 
-            MoPubManager.OnRewardedVideoLoadedEvent += OnRewardedVideoLoadedEvent;
-            MoPubManager.OnRewardedVideoFailedEvent += OnRewardedVideoFailedEvent;
-            MoPubManager.OnRewardedVideoFailedToPlayEvent += OnRewardedVideoFailedToPlayEvent;
-            MoPubManager.OnRewardedVideoReceivedRewardEvent += OnRewardedVideoReveicedRewardEvent;
-            MoPubManager.OnRewardedVideoClosedEvent += OnRewardedVideoClosedEvent;
+                MoPubManager.OnInterstitialLoadedEvent += OnInterstitialLoadedEvent;
+                MoPubManager.OnInterstitialFailedEvent += OnInterstitialFailedEvent;
+                MoPubManager.OnInterstitialDismissedEvent += OnInterstitialClosedEvent;
 
-            MoPub.InitializeSdk(defalutAdUnitID);
+                MoPubManager.OnRewardedVideoLoadedEvent += OnRewardedVideoLoadedEvent;
+                MoPubManager.OnRewardedVideoFailedEvent += OnRewardedVideoFailedEvent;
+                MoPubManager.OnRewardedVideoFailedToPlayEvent += OnRewardedVideoFailedToPlayEvent;
+                MoPubManager.OnRewardedVideoReceivedRewardEvent += OnRewardedVideoReveicedRewardEvent;
+                MoPubManager.OnRewardedVideoClosedEvent += OnRewardedVideoClosedEvent;
 
-            /*
+                MoPub.InitializeSdk(defalutAdUnitID);
+            });
+        }
+
+        private void LogEventInit()
+        {
             MoPubManager.OnInterstitialClickedEvent += _ => Debug.LogError("OnInterstitialClickedEvent: " + _);
             MoPubManager.OnInterstitialDismissedEvent += _ => Debug.LogError("OnInterstitialDismissedEvent: " + _);
             MoPubManager.OnInterstitialExpiredEvent += _ => Debug.LogError("OnInterstitialExpiredEvent: " + _);
@@ -59,10 +65,9 @@ namespace DestroyViruses
             MoPubManager.OnRewardedVideoShownEvent += _ => Debug.LogError("OnRewardedVideoShownEvent: " + _);
             MoPubManager.OnRewardedVideoClickedEvent += _ => Debug.LogError("OnRewardedVideoClickedEvent: " + _);
             MoPubManager.OnRewardedVideoFailedToPlayEvent += (_, error) => Debug.LogError("OnRewardedVideoFailedToPlayEvent: " + _ + " error: " + error);
-            MoPubManager.OnRewardedVideoReceivedRewardEvent += (_,label,amount) => Debug.LogError("OnRewardedVideoReceivedRewardEvent: " + _ + " label: " + label + " amount: " + amount);
+            MoPubManager.OnRewardedVideoReceivedRewardEvent += (_, label, amount) => Debug.LogError("OnRewardedVideoReceivedRewardEvent: " + _ + " label: " + label + " amount: " + amount);
             MoPubManager.OnRewardedVideoClosedEvent += _ => Debug.LogError("OnRewardedVideoClosedEvent: " + _);
             MoPubManager.OnRewardedVideoLeavingApplicationEvent += _ => Debug.LogError("OnRewardedVideoLeavingApplicationEvent: " + _);
-            */
         }
 
         protected override void OnDestroy()
@@ -447,8 +452,8 @@ namespace DestroyViruses
                 delayLoadingAds[k] -= Time.deltaTime;
                 if (delayLoadingAds[k] <= 0)
                 {
-                    RequestAd(k);
                     delayLoadingAds.Remove(k);
+                    RequestAd(k);
                 }
             }
 

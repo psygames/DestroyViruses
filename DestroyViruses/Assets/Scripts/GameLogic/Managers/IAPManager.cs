@@ -21,6 +21,7 @@ namespace DestroyViruses
                 builder.AddProduct(t.productID, (ProductType)t.type, new IDs
                 {
                     {t.productID, GooglePlay.Name},
+                    {t.productID, AppleAppStore.Name }
                 });
             }
             builder.Configure<IGooglePlayConfiguration>().SetPublicKey("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt1lvHFO1vq2djnUEgv3PGrTsieVKtLUIRSlW99wnqHZMYLRoXnK0qOnWU6Lz/jt07LkktqJzWrW+OE/w67VtLJMrycBaA0eCDqErr62pg4HkXK4tS9+0oJJxJ9pvr+QACLigJlHefPGtoZ+JumUILnxM6dPwW7xalxaCTmhSpfg3CVZ75NXTmIx4X5qLAHFPOCPrjdTTZPdX7zZMRTdIYAAseXn4X+BE2gRhhyCVA0T9+m1AD8lC+wftuQz+xRksYjEj9XgNJJ3A0Z9QKr3MZoyqYQ0+6HPpNzKY6owf7t3fix36oJl4OYu+99ksO2p2oqVrpbPSJVWFkmbJRrFepQIDAQAB");

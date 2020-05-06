@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UniRx;
 using System;
 
 namespace DestroyViruses
@@ -32,6 +31,11 @@ namespace DestroyViruses
             {
                 Analytics.Event.Log(type, condition, stackTrace);
             }
+        }
+
+        private void Update()
+        {
+            FirebaseChecker.Update(Time.deltaTime);
         }
     }
 }

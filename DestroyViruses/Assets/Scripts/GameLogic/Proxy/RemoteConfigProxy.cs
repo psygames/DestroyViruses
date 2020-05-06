@@ -19,21 +19,25 @@ namespace DestroyViruses
         protected override void OnInit()
         {
             base.OnInit();
-            FirebaseChecker.Check(() =>
+#if UNITY_EDITOR
+            return;
+#endif
+            GameManager.Instance.DelayDo(1.2f, () =>
             {
-                InitializeFirebase();
+                FirebaseChecker.Check(InitializeFirebase);
             });
         }
 
-        Task InitializeFirebase()
+        void InitializeFirebase()
         {
+            UnityEngine.Debug.Log("AnalyticsFacebook Inited");
             var defaults = new Dictionary<string, object>();
             defaults.Add(CONST_GROUP, GameLocalData.Instance.lastConstGroup);
             defaults.Add(MIN_VERSION, GameLocalData.Instance.minVersion);
             defaults.Add(LATEST_VERSION, GameLocalData.Instance.latestVersion);
             Firebase.RemoteConfig.FirebaseRemoteConfig.SetDefaults(defaults);
             var fetchTask = Firebase.RemoteConfig.FirebaseRemoteConfig.FetchAsync();
-            return fetchTask.ContinueWithOnMainThread(FetchComplete);
+            fetchTask.ContinueWithOnMainThread(FetchComplete);
         }
 
         void FetchComplete(Task fetchTask)

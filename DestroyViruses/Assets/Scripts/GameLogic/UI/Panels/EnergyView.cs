@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 using DG.Tweening;
 using UnibusEvent;
 
@@ -58,6 +57,14 @@ namespace DestroyViruses
             if (IsEnergyFull())
             {
                 Toast.Show(LTKey.ENERGY_EXCHANGE_ENERGY_WILL_BE_OVERFLOW.LT());
+                return;
+            }
+
+            if (D.I.diamond <= 0)
+            {
+                Toast.Show(LTKey.UPGRADE_LACK_OF_DIAMOND.LT());
+                UIManager.Open<CoinView>();
+                Close();
                 return;
             }
 

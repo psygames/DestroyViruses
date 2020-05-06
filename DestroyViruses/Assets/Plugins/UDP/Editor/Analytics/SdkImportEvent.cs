@@ -1,8 +1,7 @@
-#if (UNITY_5_6_OR_NEWER && !UNITY_5_6_0)
-
 using UnityEditor;
 using UnityEngine.Networking;
 
+#if (UNITY_5_6_OR_NEWER && !UNITY_5_6_0)
 namespace UnityEngine.UDP.Editor.Analytics
 {
     [InitializeOnLoad]
@@ -29,5 +28,4 @@ namespace UnityEngine.UDP.Editor.Analytics
         }
     }
 }
-
 #endif

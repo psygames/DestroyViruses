@@ -2,7 +2,7 @@
 <manifest package="com.mopub.unity.plugin" xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-sdk android:minSdkVersion="16"/>
 
-    <application>
+    <application android:networkSecurityConfig="@xml/network_security_config">
         <uses-library
           android:name="org.apache.http.legacy"
           android:required="false" />
@@ -20,6 +20,9 @@
                   android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name="com.mopub.common.privacy.ConsentDialogActivity"
                   android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-6997766984294588~7770804300"/>
+        <!-- <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="1941825102629255"/>  --> <!-- Already defined in Default AndroidManifest.xml -->
+        <meta-data android:name="applovin.sdk.key" android:value="i9C6PPXpWEnic7UFK9TOF_aXw4OWrkqTu1eHQB5xPse0-8FIIogToG4hKSDAB1i33MLTXQPxH3yFCBTU-D1mT6" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

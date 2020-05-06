@@ -30,6 +30,7 @@ public class StateManager : Singleton<StateManager>
 
     public static void ChangeState<T>() where T : StateMachine.State, new()
     {
+        // Debug.Log($"Change State ({typeof(T)}) at ({Time.time})");
         Instance.mStateMachine.currentState = new T();
     }
 

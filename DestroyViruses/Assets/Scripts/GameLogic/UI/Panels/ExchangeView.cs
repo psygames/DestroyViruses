@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 using DG.Tweening;
 using UnibusEvent;
 
@@ -46,6 +45,14 @@ namespace DestroyViruses
 
         private void OnClickAdd()
         {
+            if (D.I.diamond <= 0)
+            {
+                Toast.Show(LTKey.UPGRADE_LACK_OF_DIAMOND.LT());
+                UIManager.Open<CoinView>();
+                Close();
+                return;
+            }
+
             mCurrent = Mathf.Min(D.I.diamond, mCurrent + Mathf.Max(1, D.I.diamond * 0.1f));
             Refresh();
         }

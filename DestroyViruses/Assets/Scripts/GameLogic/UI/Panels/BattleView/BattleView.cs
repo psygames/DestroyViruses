@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 using DG.Tweening;
 using UnibusEvent;
 
@@ -91,7 +90,7 @@ namespace DestroyViruses
         private void ToastBossWave()
         {
             bossWaveToast.SetActive(true);
-            Observable.Timer(5).Subscribe(_ =>
+            this.DelayDo(5, () =>
             {
                 bossWaveToast.SetActive(false);
             });

@@ -23,6 +23,16 @@ namespace DestroyViruses
         {
             if (D.I.weaponId <= 0)
                 return;
+
+            if (D.I.weaponPowerLevel < D.I.firePowerLevel
+                && !D.I.isWeaponPowerLevelMax
+                && D.I.coin < D.I.weaponPowerUpCost)
+            {
+                Toast.Show(LTKey.UPGRADE_LACK_OF_COIN.LT());
+                UIManager.Open<ExchangeView>();
+                return;
+            }
+
             D.I.WeaponPowerLevelUp();
         }
 
@@ -30,6 +40,16 @@ namespace DestroyViruses
         {
             if (D.I.weaponId <= 0)
                 return;
+
+            if (D.I.weaponSpeedLevel < D.I.fireSpeedLevel
+                && !D.I.isWeaponSpeedLevelMax
+                && D.I.coin < D.I.weaponSpeedUpCost)
+            {
+                Toast.Show(LTKey.UPGRADE_LACK_OF_COIN.LT());
+                UIManager.Open<ExchangeView>();
+                return;
+            }
+
             D.I.WeaponSpeedLevelUp();
         }
 

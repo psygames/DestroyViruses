@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 using DG.Tweening;
 using UnibusEvent;
 
@@ -36,7 +35,7 @@ namespace DestroyViruses
 
         private void OnClickConfirm()
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
             Application.OpenURL("market://details?id=" + Application.identifier);
 #else
             Application.OpenURL("https://play.google.com/store/apps/details?id=" + Application.identifier);

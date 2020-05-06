@@ -9,11 +9,18 @@ namespace DestroyViruses
 
         public void Init()
         {
-            FirebaseChecker.Check(InitializeFirebase);
+#if UNITY_EDITOR
+            return;
+#endif
+            GameManager.Instance.DelayDo(1.5f, () =>
+            {
+                FirebaseChecker.Check(InitializeFirebase);
+            });
         }
 
         void InitializeFirebase()
         {
+            UnityEngine.Debug.Log("AnalyticsFirebase Inited");
             IsInit = true;
             FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
             FirebaseAnalytics.SetUserId(DeviceID.UUID);

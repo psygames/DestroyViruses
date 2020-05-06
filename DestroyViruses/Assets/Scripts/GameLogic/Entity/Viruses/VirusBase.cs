@@ -4,7 +4,6 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnibusEvent;
-using UniRx;
 
 namespace DestroyViruses
 {
