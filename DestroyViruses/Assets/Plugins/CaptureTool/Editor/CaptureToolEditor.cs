@@ -2,13 +2,13 @@
 using UnityEditor;
 using UnityEngine;
 
-public class ImageCaptureToolEditor : EditorWindow
+public class CaptureToolEditor : EditorWindow
 {
     #region Filed
 
     public string outputDirectory = null;
 
-    public string outputFileName = ImageCaptureTool.DefaultOutputFileName;
+    public string outputFileName = CaptureTool.DefaultOutputFileName;
 
     public int outputFileNameIndex = 0;
 
@@ -32,10 +32,10 @@ public class ImageCaptureToolEditor : EditorWindow
 
     #region Method
 
-    [MenuItem("Tools/Image Capture")]
+    [MenuItem("Tools/图像捕获")]
     static void Init()
     {
-        EditorWindow.GetWindow<ImageCaptureToolEditor>("Image Capture Tool");
+        EditorWindow.GetWindow<CaptureToolEditor>("Image Capture Tool");
     }
 
     protected void OnEnable()
@@ -140,7 +140,7 @@ public class ImageCaptureToolEditor : EditorWindow
         };
     }
 
-    protected ImageCaptureTool.CaptureResult Capture()
+    protected CaptureTool.CaptureResult Capture()
     {
         Camera _camera = this.camera == null ? Camera.main : this.camera;
 
@@ -148,8 +148,8 @@ public class ImageCaptureToolEditor : EditorWindow
         int _imageWidth = (int)((this.imageWidth == 0 ? gameViewResolution[0] : this.imageWidth) * this.imageScale);
         int _imageHeight = (int)((this.imageHeight == 0 ? gameViewResolution[1] : this.imageHeight) * this.imageScale);
 
-        ImageCaptureTool.CaptureResult result
-        = ImageCaptureTool.Capture(_camera,
+        CaptureTool.CaptureResult result
+        = CaptureTool.Capture(_camera,
                                    textureFormat,
                                    outputFileExtension,
                                    _imageWidth,
@@ -179,7 +179,7 @@ public class ImageCaptureToolEditor : EditorWindow
         return result;
     }
 
-    protected virtual void HookAfterImageCaptured(ImageCaptureTool.CaptureResult result)
+    protected virtual void HookAfterImageCaptured(CaptureTool.CaptureResult result)
     {
         // Nothing to do in here. This is used for inheritance.
     }

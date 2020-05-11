@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using UnityEngine;
 
-public static class ImageCaptureTool
+public static class CaptureTool
 {
     #region Field
 
@@ -150,7 +150,7 @@ public static class ImageCaptureTool
 
         if (string.IsNullOrEmpty(outputFile))
         {
-            outputFile = ImageCaptureTool.DefaultOutputFileName;
+            outputFile = CaptureTool.DefaultOutputFileName;
         }
 
         outputPath = Path.Combine(outputDirectory, outputFile + outputExtension);
