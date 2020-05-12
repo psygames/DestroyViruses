@@ -320,7 +320,7 @@ SpriteAtlas:
   - icon_hold_on
   - bullet_0_1_0
   - num_0
-  - button_shuaxin
+  - button_restore
   - num_6
   - icon_aircraft
   - button_upgrade_0

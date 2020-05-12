@@ -68,6 +68,11 @@ namespace DestroyViruses
             D.I.ReceiveVipReward();
         }
 
+        private void OnClickRestore()
+        {
+            IAPManager.Instance.Restore();
+        }
+
         bool lastIsVip = false;
         public void Update()
         {

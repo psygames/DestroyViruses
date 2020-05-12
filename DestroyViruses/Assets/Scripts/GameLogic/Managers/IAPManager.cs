@@ -9,12 +9,15 @@ namespace DestroyViruses
     {
         private IStoreController controller;
         private IExtensionProvider extensions;
+        private AppStore appStore;
 
         public bool isInit { get; private set; }
         public bool isInitFailed { get; private set; }
 
         public void Init()
         {
+            var module = StandardPurchasingModule.Instance();
+            appStore = module.appStore;
             var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
             foreach (var t in TableShop.GetAll())
             {
@@ -124,6 +127,33 @@ namespace DestroyViruses
         {
             Toast.Show(LTKey.PURCHASE_FAILED.LT());
             Debug.LogError("Purchase Failed: " + p.ToString() + ", productID: " + i.definition.id);
+        }
+        #endregion
+
+        #region Restore
+        public void Restore()
+        {
+            // Google Play
+            if (Application.platform == RuntimePlatform.Android && appStore == AppStore.GooglePlay)
+            {
+                extensions.GetExtension<IGooglePlayStoreExtensions>().RestoreTransactions(OnTransactionsRestored);
+            }
+            else if (Application.platform == RuntimePlatform.IPhonePlayer && appStore == AppStore.AppleAppStore)
+            {
+                extensions.GetExtension<IGooglePlayStoreExtensions>().RestoreTransactions(OnTransactionsRestored);
+            }
+            else
+            {
+                Debug.LogError("Restore Failed casue platform not implement");
+            }
+        }
+
+        /// <summary>
+        /// This will be called after a call to IAppleExtensions.RestoreTransactions().
+        /// </summary>
+        private void OnTransactionsRestored(bool success)
+        {
+            Debug.Log($"Transactions restored ({(success ? "success" : "failed")}).");
         }
         #endregion
     }
