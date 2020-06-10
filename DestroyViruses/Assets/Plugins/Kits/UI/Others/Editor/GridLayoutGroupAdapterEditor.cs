@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using DestroyViruses;
 using ReflectionEx;
 
 [CustomEditor(typeof(GridLayoutGroupAdapter))]

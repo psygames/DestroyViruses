@@ -32,8 +32,8 @@ namespace DestroyViruses
         }
 
         private void RefreshUI()
-        {
-            var rewards = new List<Tuple<string, string>>() {
+        {   
+            var rewards = new List<Tuple<string, string>> {
                 new Tuple<string, string>("icon_vip_fund",LT.Get("vipRewardFund")),
                 new Tuple<string, string>("icon_vip_diamond",LT.Get("vipRewardDiamond")),
                 new Tuple<string, string>("icon_vip_ad",LT.Get("vipRewardAd")),
