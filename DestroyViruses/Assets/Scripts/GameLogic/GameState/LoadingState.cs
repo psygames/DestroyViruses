@@ -62,7 +62,7 @@ namespace DestroyViruses
             progress = 0.5f;
             message = LTKey.LOADING_INITIALIZE_IN_APP_PURCHASE.LT();
             yield return null;
-            IAPManager.Instance.Init();
+            // IAPManager.Instance.Init();
 
             // #6
             progress = 0.6f;

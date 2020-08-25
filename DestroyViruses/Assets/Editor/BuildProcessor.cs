@@ -1,21 +1,29 @@
 ﻿using System.IO;
 using UnityEditor;
 using UnityEditor.Callbacks;
-using UnityEditor.iOS.Xcode;
 using UnityEngine;
+
+#if UNITY_IOS
+using UnityEditor.iOS.Xcode;
+#endif
 
 public class BuildProcess : MonoBehaviour
 {
     [PostProcessBuild]
     public static void OnPostprocessBuild(BuildTarget BuildTarget, string path)
     {
+
+#if UNITY_IOS
         if (BuildTarget == BuildTarget.iOS)
         {
             Debug.Log("XCodePostProcess: Starting to perform post build tasks for iOS platform.");
             XcodeProcess(path);
         }
+#endif
+
     }
 
+#if UNITY_IOS
     private static void XcodeProcess(string path)
     {
         /*======== project ========*/
@@ -72,4 +80,5 @@ public class BuildProcess : MonoBehaviour
         // Write to file
         File.WriteAllText(plistPath, plist.WriteToString());
     }
+#endif
 }

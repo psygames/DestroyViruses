@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using Firebase.Extensions;
 using System.Threading.Tasks;
 using System;
-using System.Threading;
+
+#if USE_FIREBASE
+using Firebase.Extensions;
+#endif
 
 namespace DestroyViruses
 {
@@ -24,7 +25,7 @@ namespace DestroyViruses
 #endif
             GameManager.Instance.DelayDo(1.2f, () =>
             {
-                FirebaseChecker.Check(InitializeFirebase);
+                // FirebaseChecker.Check(InitializeFirebase);
             });
         }
 
@@ -35,9 +36,9 @@ namespace DestroyViruses
             defaults.Add(CONST_GROUP, GameLocalData.Instance.lastConstGroup);
             defaults.Add(MIN_VERSION, GameLocalData.Instance.minVersion);
             defaults.Add(LATEST_VERSION, GameLocalData.Instance.latestVersion);
-            Firebase.RemoteConfig.FirebaseRemoteConfig.SetDefaults(defaults);
-            var fetchTask = Firebase.RemoteConfig.FirebaseRemoteConfig.FetchAsync();
-            fetchTask.ContinueWithOnMainThread(FetchComplete);
+            // Firebase.RemoteConfig.FirebaseRemoteConfig.SetDefaults(defaults);
+            // var fetchTask = Firebase.RemoteConfig.FirebaseRemoteConfig.FetchAsync();
+            // fetchTask.ContinueWithOnMainThread(FetchComplete);
         }
 
         void FetchComplete(Task fetchTask)
@@ -55,6 +56,7 @@ namespace DestroyViruses
                 Debug.Log("Fetch completed successfully!");
             }
 
+            /*
             var info = Firebase.RemoteConfig.FirebaseRemoteConfig.Info;
             switch (info.LastFetchStatus)
             {
@@ -78,10 +80,12 @@ namespace DestroyViruses
                     Debug.LogError("Latest Fetch call still pending.");
                     break;
             }
+            */
         }
 
         private void OnInitSuccess()
         {
+            /*
             Debug.Log("RemoteConfig Init Success!");
             var allKeys = Firebase.RemoteConfig.FirebaseRemoteConfig.Keys;
             LogKeys(allKeys);
@@ -116,18 +120,23 @@ namespace DestroyViruses
             {
                 GameLocalData.Instance.Save();
             }
+            */
         }
 
         public string GetValue(string key, string defaultVal = "")
         {
+            /*
             foreach (var k in Firebase.RemoteConfig.FirebaseRemoteConfig.Keys)
                 if (k == key)
                     return Firebase.RemoteConfig.FirebaseRemoteConfig.GetValue(k).StringValue;
+            return defaultVal;
+            */
             return defaultVal;
         }
 
         private void LogKeys(IEnumerable<string> keys)
         {
+            /*
 #if !PUBLISH_BUILD
             foreach (var k in keys)
             {
@@ -135,6 +144,7 @@ namespace DestroyViruses
                 Debug.Log($"[Remote Config] {k}: {v.StringValue}");
             }
 #endif
+            */
         }
 
         private bool mLastInit = false;

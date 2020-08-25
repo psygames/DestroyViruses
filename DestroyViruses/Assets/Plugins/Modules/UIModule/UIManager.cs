@@ -72,6 +72,12 @@ public class UIManager : Singleton<UIManager>
         }
 
         view = loadViewFunc?.Invoke(viewType.Name);
+        if (view == null)
+        {
+            Debug.LogError("View Load Failed: " + viewType.Name);
+            return null;
+        }
+
         view = Instantiate(view);
         view.gameObject.SetActive(false);
         mCachedViews.Add(view);

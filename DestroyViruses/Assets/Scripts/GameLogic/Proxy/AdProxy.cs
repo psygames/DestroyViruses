@@ -33,6 +33,7 @@ namespace DestroyViruses
 
             GameManager.Instance.DelayDo(1, () =>
             {
+                /*
                 MoPubManager.OnSdkInitializedEvent += MoPubManager_OnSdkInitializedEvent;
 
                 MoPubManager.OnInterstitialLoadedEvent += OnInterstitialLoadedEvent;
@@ -46,11 +47,13 @@ namespace DestroyViruses
                 MoPubManager.OnRewardedVideoClosedEvent += OnRewardedVideoClosedEvent;
 
                 MoPub.InitializeSdk(defalutAdUnitID);
+                */
             });
         }
 
         private void LogEventInit()
         {
+            /*
             MoPubManager.OnInterstitialClickedEvent += _ => Debug.LogError("OnInterstitialClickedEvent: " + _);
             MoPubManager.OnInterstitialDismissedEvent += _ => Debug.LogError("OnInterstitialDismissedEvent: " + _);
             MoPubManager.OnInterstitialExpiredEvent += _ => Debug.LogError("OnInterstitialExpiredEvent: " + _);
@@ -68,10 +71,12 @@ namespace DestroyViruses
             MoPubManager.OnRewardedVideoReceivedRewardEvent += (_, label, amount) => Debug.LogError("OnRewardedVideoReceivedRewardEvent: " + _ + " label: " + label + " amount: " + amount);
             MoPubManager.OnRewardedVideoClosedEvent += _ => Debug.LogError("OnRewardedVideoClosedEvent: " + _);
             MoPubManager.OnRewardedVideoLeavingApplicationEvent += _ => Debug.LogError("OnRewardedVideoLeavingApplicationEvent: " + _);
+            */
         }
 
         protected override void OnDestroy()
         {
+            /*
             MoPubManager.OnInterstitialLoadedEvent -= OnInterstitialLoadedEvent;
             MoPubManager.OnInterstitialFailedEvent -= OnInterstitialFailedEvent;
             MoPubManager.OnInterstitialDismissedEvent -= OnInterstitialClosedEvent;
@@ -85,6 +90,7 @@ namespace DestroyViruses
             MoPubManager.OnSdkInitializedEvent -= MoPubManager_OnSdkInitializedEvent;
             isInit = false;
             base.OnDestroy();
+            */
         }
 
         #region INITIALIZE
@@ -121,7 +127,7 @@ namespace DestroyViruses
             var adUnits = GetAdUnits("Interstitial");
             if (adUnits.Count > 0)
             {
-                MoPub.LoadInterstitialPluginsForAdUnits(adUnits.ToArray());
+                // MoPub.LoadInterstitialPluginsForAdUnits(adUnits.ToArray());
                 Log("", "插屏模块插件", "初始化", true);
             }
         }
@@ -131,7 +137,7 @@ namespace DestroyViruses
             var adUnits = GetAdUnits("RewardedVideo");
             if (adUnits.Count > 0)
             {
-                MoPub.LoadRewardedVideoPluginsForAdUnits(adUnits.ToArray());
+                // MoPub.LoadRewardedVideoPluginsForAdUnits(adUnits.ToArray());
                 Log("", "奖励视频模块插件", "初始化", true);
             }
         }
@@ -233,14 +239,14 @@ namespace DestroyViruses
         private void HoldOn()
         {
 #if !UNITY_EDITOR
-            DestroyViruses.HoldOn.Start();
+        DestroyViruses.HoldOn.Start();
 #endif
         }
 
         private void CancelHoldOn()
         {
 #if !UNITY_EDITOR
-            DestroyViruses.HoldOn.Stop();
+        DestroyViruses.HoldOn.Stop();
 #endif
         }
 
@@ -248,10 +254,12 @@ namespace DestroyViruses
         {
             loadedAds.TryGetValue(unitID, out var val);
             var adType = GetAdType(unitID);
+            /*
             if (adType == AdType.RewardedVideo)
                 return val && MoPub.HasRewardedVideo(unitID);
             if (adType == AdType.Interstitial)
                 return val && MoPub.IsInterstitialReady(unitID);
+            */
             return val;
         }
 
@@ -266,12 +274,12 @@ namespace DestroyViruses
             if (adType == AdType.Interstitial)
             {
                 Log(unitID, "插屏广告", "播放");
-                MoPub.ShowInterstitialAd(unitID);
+                // MoPub.ShowInterstitialAd(unitID);
             }
             else if (adType == AdType.RewardedVideo)
             {
                 Log(unitID, "奖励视频", "播放");
-                MoPub.ShowRewardedVideo(unitID);
+                // MoPub.ShowRewardedVideo(unitID);
             }
             else
             {
@@ -286,13 +294,13 @@ namespace DestroyViruses
             {
                 Log(unitID, "插屏广告", "请求");
                 loadingAds[unitID] = Time.time;
-                MoPub.RequestInterstitialAd(unitID);
+                // MoPub.RequestInterstitialAd(unitID);
             }
             else if (adType == AdType.RewardedVideo)
             {
                 Log(unitID, "奖励视频", "请求");
                 loadingAds[unitID] = Time.time;
-                MoPub.RequestRewardedVideo(unitID);
+                // MoPub.RequestRewardedVideo(unitID);
             }
             else
             {

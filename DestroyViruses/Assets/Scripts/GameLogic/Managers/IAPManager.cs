@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+#if UNITY_PURCHASE
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Security;
 
@@ -54,7 +55,7 @@ namespace DestroyViruses
             Debug.LogError("IAP Initialize Failed: " + error.ToString());
         }
 
-        #region Purchase
+#region Purchase
         // Example method called when the user presses a 'buy' button
         // to start the purchase process.
         public void Purchase(string productId)
@@ -128,9 +129,9 @@ namespace DestroyViruses
             Toast.Show(LTKey.PURCHASE_FAILED.LT());
             Debug.LogError("Purchase Failed: " + p.ToString() + ", productID: " + i.definition.id);
         }
-        #endregion
+#endregion
 
-        #region Restore
+#region Restore
         public void Restore()
         {
             // Google Play
@@ -155,6 +156,7 @@ namespace DestroyViruses
         {
             Debug.Log($"Transactions restored ({(success ? "success" : "failed")}).");
         }
-        #endregion
+#endregion
     }
 }
+#endif

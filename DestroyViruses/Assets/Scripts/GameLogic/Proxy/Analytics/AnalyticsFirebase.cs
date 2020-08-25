@@ -1,4 +1,5 @@
 ﻿using System;
+#if USE_FIREBASE
 using Firebase.Analytics;
 
 namespace DestroyViruses
@@ -108,3 +109,4 @@ namespace DestroyViruses
         }
     }
 }
+#endif

@@ -12,8 +12,8 @@ namespace DestroyViruses
         protected override void OnInit()
         {
             base.OnInit();
-            mAnalyticses.Add(new AnalyticsFirebase());
-            mAnalyticses.Add(new AnalyticsFacebook());
+            // mAnalyticses.Add(new AnalyticsFirebase());
+            // mAnalyticses.Add(new AnalyticsFacebook());
 
             foreach (var ana in mAnalyticses)
             {

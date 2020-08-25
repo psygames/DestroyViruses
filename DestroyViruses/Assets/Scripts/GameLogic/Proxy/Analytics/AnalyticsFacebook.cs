@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if USE_FACEBOOK
+using System;
 using System.Collections.Generic;
 using Facebook.Unity;
 using UnityEngine;
@@ -121,3 +122,4 @@ namespace DestroyViruses
         }
     }
 }
+#endif

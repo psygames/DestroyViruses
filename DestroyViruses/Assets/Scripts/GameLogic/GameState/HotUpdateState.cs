@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 
 namespace DestroyViruses
 {
+#if HOT_UPDATE
     public class HotUpdateState : StateBase
     {
         private AssetsUpdate updater = new AssetsUpdate();
@@ -168,4 +169,5 @@ namespace DestroyViruses
             base.OnExit();
         }
     }
+#endif
 }

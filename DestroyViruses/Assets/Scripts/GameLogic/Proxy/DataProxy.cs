@@ -760,7 +760,7 @@ namespace DestroyViruses
         public void Purchase(int shopGoodsID)
         {
             var t = TableShop.Get(shopGoodsID);
-            IAPManager.Instance.Purchase(t.productID);
+            // IAPManager.Instance.Purchase(t.productID);
         }
         #endregion
 

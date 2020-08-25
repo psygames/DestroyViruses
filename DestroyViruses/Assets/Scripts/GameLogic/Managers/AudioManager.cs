@@ -81,9 +81,7 @@ namespace DestroyViruses
         {
             if (!mCached.TryGetValue(clipName, out AudioClip clip))
             {
-                clip = ResourceUtil.Load<AudioClip>(PathUtil.Sound(clipName, ".wav"));
-                if (clip == null)
-                    clip = ResourceUtil.Load<AudioClip>(PathUtil.Sound(clipName, ".mp3"));
+                clip = ResourceUtil.Load<AudioClip>(PathUtil.Sound(clipName));
                 mCached.Add(clipName, clip);
             }
             return clip;

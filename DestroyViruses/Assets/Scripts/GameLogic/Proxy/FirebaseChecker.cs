@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if USE_FIREBASE
+using System;
 using Firebase;
 using UnityEngine;
 
@@ -32,7 +33,7 @@ namespace DestroyViruses
                 if (!isIniting)
                 {
                     isIniting = true;
-
+                    /*
                     FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
                     {
                         isIniting = false;
@@ -49,6 +50,7 @@ namespace DestroyViruses
                             Debug.LogError(string.Format("Could not resolve all Firebase dependencies: {0}", dependencyStatus));
                         }
                     });
+                    */
                 }
             }
         }
@@ -61,5 +63,6 @@ namespace DestroyViruses
             needCallback = false;
         }
     }
-
 }
+
+#endif

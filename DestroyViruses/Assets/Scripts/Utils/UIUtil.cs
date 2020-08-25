@@ -83,6 +83,8 @@ namespace DestroyViruses
                 foreach (var atlasName in PathUtil.GetSpriteAtlasNames())
                 {
                     var atlas = ResourceUtil.Load<SpriteAtlas>(PathUtil.SpriteAtlas(atlasName));
+                    if (atlas == null)
+                        return;
                     Sprite[] sprites = new Sprite[atlas.spriteCount];
                     atlas.GetSprites(sprites);
                     foreach (var sprite in sprites)

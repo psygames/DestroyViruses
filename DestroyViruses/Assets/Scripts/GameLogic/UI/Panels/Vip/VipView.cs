@@ -70,7 +70,7 @@ namespace DestroyViruses
 
         private void OnClickRestore()
         {
-            IAPManager.Instance.Restore();
+            // IAPManager.Instance.Restore();
         }
 
         bool lastIsVip = false;

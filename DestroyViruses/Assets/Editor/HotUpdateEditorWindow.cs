@@ -7,6 +7,7 @@ using System.Text;
 
 public class HotUpdateEditorWindow : EditorWindow
 {
+#if HOT_UPDATE
     [MenuItem("Tools/热更检测工具")]
     static void GenConfigClass()
     {
@@ -145,4 +146,5 @@ public class HotUpdateEditorWindow : EditorWindow
         if (!File.Exists(triggerFile))
             File.Create(triggerFile).Close();
     }
+#endif
 }
