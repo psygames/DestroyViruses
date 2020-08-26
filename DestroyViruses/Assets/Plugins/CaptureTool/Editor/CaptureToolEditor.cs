@@ -50,11 +50,6 @@ public class CaptureToolEditor : EditorWindow
 
     protected void OnGUI()
     {
-        if (GUILayout.Button("Click to Capture"))
-        {
-            HookAfterImageCaptured(Capture());
-        }
-
         this.scrollPosition = EditorGUILayout.BeginScrollView(this.scrollPosition, GUI.skin.box);
         int[] gameViewResolution = GetGameViewResolution();
 
@@ -112,6 +107,12 @@ public class CaptureToolEditor : EditorWindow
 
         EditorGUILayout.EndScrollView();
 
+        EditorGUILayout.Space(2);
+        if (GUILayout.Button("Click to Capture"))
+        {
+            HookAfterImageCaptured(Capture());
+        }
+        EditorGUILayout.Space();
     }
 
     protected void ForceOnGUI()
