@@ -12,7 +12,7 @@ namespace DestroyViruses
     public class VipView : ViewBase
     {
         public ContentGroup rewardGroup;
-        public RadioObjects radioBtn;
+        public RadioGameObject radioBtn;
         public GameObject expirationObj;
         public Text expirationTime;
 

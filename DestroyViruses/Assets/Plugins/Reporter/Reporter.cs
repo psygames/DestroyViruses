@@ -304,14 +304,12 @@ public class Reporter : MonoBehaviour
     {
 #if UNITY_EDITOR || PUBLISH_BUILD
         DestroyImmediate(gameObject);
-        return;
-#endif
-
+#else
         if (!Initialized)
             Initialize();
-
 #if UNITY_CHANGE3
         SceneManager.sceneLoaded += _OnLevelWasLoaded;
+#endif
 #endif
     }
 

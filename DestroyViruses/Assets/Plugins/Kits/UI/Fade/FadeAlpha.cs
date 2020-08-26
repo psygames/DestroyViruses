@@ -2,7 +2,6 @@
 using DG.Tweening;
 
 [RequireComponent(typeof(RectTransform))]
-[RequireComponent(typeof(CanvasGroup))]
 public class FadeAlpha : Fade, IFade
 {
     [Range(0, 1)]

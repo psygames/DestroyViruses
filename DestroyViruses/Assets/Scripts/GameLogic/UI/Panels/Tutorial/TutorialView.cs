@@ -16,7 +16,7 @@ namespace DestroyViruses
         public Text title2;
         public Text title3;
         public RectTransform handRect;
-        public RadioObjects radioDirection;
+        public RadioGameObject radioDirection;
 
         private static RectTransform target;
         private static string titleStr;

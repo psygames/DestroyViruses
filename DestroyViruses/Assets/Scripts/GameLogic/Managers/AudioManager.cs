@@ -11,13 +11,13 @@ namespace DestroyViruses
 
         //音乐播放器
         [SerializeField]
-        private AudioSource _MusicPlayer;
+        private AudioSource _MusicPlayer = null;
         //开火音乐
         [SerializeField]
-        private AudioSource _FireMusicPlayer;
+        private AudioSource _FireMusicPlayer = null;
         //音效播放器
         [SerializeField]
-        private AudioSource _SoundPlayer;
+        private AudioSource _SoundPlayer = null;
 
         private string mLastMusic = "";
         //播放音乐

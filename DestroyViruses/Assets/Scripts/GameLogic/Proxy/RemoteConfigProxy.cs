@@ -20,13 +20,12 @@ namespace DestroyViruses
         protected override void OnInit()
         {
             base.OnInit();
-#if UNITY_EDITOR
-            return;
-#endif
+#if !UNITY_EDITOR
             GameManager.Instance.DelayDo(1.2f, () =>
             {
                 // FirebaseChecker.Check(InitializeFirebase);
             });
+#endif
         }
 
         void InitializeFirebase()

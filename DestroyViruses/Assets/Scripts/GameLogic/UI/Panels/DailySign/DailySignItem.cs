@@ -11,9 +11,9 @@ namespace DestroyViruses
         public Text count;
         public ButtonPro btn;
         [Header("0-未领取, 1-可领取, 2-已领取")]
-        public RadioObjects stateRadio;
+        public RadioGameObject stateRadio;
         [Header("0-未领取, 1-可领取, 2-已领取")]
-        public RadioObjects bgRadio;
+        public RadioGameObject bgRadio;
 
         public void SetData(int days)
         {

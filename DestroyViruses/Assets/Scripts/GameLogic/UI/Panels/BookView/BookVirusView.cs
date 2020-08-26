@@ -41,7 +41,7 @@ namespace DestroyViruses
         public Transform modelRoot;
         public Slider fill;
         public Text fillText;
-        public RadioObjects adReceiveRadio;
+        public RadioGameObject adReceiveRadio;
 
         public static int VirusID { get; set; }
         public static int ColorIndex { get; set; }

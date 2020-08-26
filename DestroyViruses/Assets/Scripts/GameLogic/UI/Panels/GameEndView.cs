@@ -10,7 +10,7 @@ namespace DestroyViruses
     public class GameEndView : ViewBase
     {
         public Text coinText;
-        public RadioObjects winLoseRadio;
+        public RadioGameObject winLoseRadio;
         public GameObject mysticalBonus;
         public GameObject bonusObj;
 

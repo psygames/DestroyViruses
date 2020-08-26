@@ -9,8 +9,8 @@ namespace DestroyViruses
 {
     public class OptionView : ViewBase
     {
-        public RadioObjects musicRadio;
-        public RadioObjects vibraitonRadio;
+        public RadioGameObject musicRadio;
+        public RadioGameObject vibraitonRadio;
         public Button musicBtn;
         public Button vibrationBtn;
         public Dropdown languageDropdown;

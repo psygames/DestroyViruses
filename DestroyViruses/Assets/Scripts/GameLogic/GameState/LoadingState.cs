@@ -28,7 +28,6 @@ namespace DestroyViruses
             taskFinished = true;
         }
 
-        bool isAssetsInited = false;
         IEnumerator TaskAll()
         {
             mTaskWait.Clear();
